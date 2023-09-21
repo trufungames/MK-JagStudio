@@ -39,9 +39,11 @@ ROM,BMP_CLOUD2,gfx_clut16,ASSETS\GFX\pg_cloud2.BMP
 ROM,BMP_HUD,gfx_clut16,ASSETS\GFX\hud.BMP
 ROM,BMP_HUD_BAR,gfx_clut16,ASSETS\GFX\hud_bar.BMP
 ROM,BMP_HUD_KANO,gfx_clut16,ASSETS\GFX\hud_kano.BMP
-ROM,BMP_HUD_SUBZERO,gfx_clut16,ASSETS\GFX\hud_subzero.BMP
+ROM,BMP_HUD_SCORPION,gfx_clut16,ASSETS\GFX\hud_scorpion.BMP
 ROM,BMP_KANO_IDLE,gfx_clut16,ASSETS\GFX\kano_idle.BMP
-ROM,BMP_SUBZERO_IDLE,gfx_clut16,ASSETS\GFX\subzero_idle.BMP
+ROM,BMP_KANO_IDLE_S,gfx_clut16,ASSETS\GFX\kano_idle_s.BMP
+ROM,BMP_SCORPION_IDLE,gfx_clut16,ASSETS\GFX\scorpion_idle.BMP
+ROM,BMP_SCORPION_IDLE_S,gfx_clut16,ASSETS\GFX\scorpion_idle_s.BMP
 ABS,explode_sam,sfx_raw8000,ASSETS\SFX\explosion.wav
 ABS,fight_sam,sfx_raw8000,ASSETS\SFX\fight.wav
 ' End of file.

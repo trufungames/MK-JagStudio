@@ -48,7 +48,7 @@ void basicmain()
 	js_r_textbuffer=(char *)"B to Make a Sound";
 	rapPrint();
 
-	*(volatile unsigned short*)(BG)=(volatile unsigned short)2000;		// Set Background colour.
+	*(volatile unsigned short*)(BG)=(volatile unsigned short)2047;		// Set Background colour.
 
 
 	//Main Loop

@@ -7,9 +7,11 @@
 #define BMP_HUD 0x8A9130
 #define BMP_HUD_BAR 0x8ADF30
 #define BMP_HUD_KANO 0x8AE9B0
-#define BMP_HUD_SUBZERO 0x8AED70
+#define BMP_HUD_SCORPION 0x8AED70
 #define BMP_KANO_IDLE 0x8AF430
-#define BMP_SUBZERO_IDLE 0x8D03D0
+#define BMP_KANO_IDLE_S 0x8D03D0
+#define BMP_SCORPION_IDLE 0x8D81D0
+#define BMP_SCORPION_IDLE_S 0x8FAEC0
 extern void *explode_sam asm("explode_sam");
 extern void *explode_sam_end asm("explode_sam_end");
 extern void *fight_sam asm("fight_sam");

@@ -37,7 +37,7 @@ __Z9basicmainv:
 	move.l #.LC2,_js_r_textbuffer
 	addq.l #8,%sp
 	jsr (%a2)
-	move.w #2000,15728728
+	move.w #2047,15728728
 	lea jsfGetPad,%a4
 	move.l #__Z6moveUpv,%d3
 	move.l #__Z8moveDownv,%d5
