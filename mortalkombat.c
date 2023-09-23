@@ -31,22 +31,6 @@ void fireButton (void);
 void basicmain()
 {
 	pad1=0;
-	
-	jsfSetFontIndx(1);
-	jsfSetFontSize(1);
-	rapLocate(0,20);
-	js_r_textbuffer=(char *)"        JagStudio C Template";
-	rapPrint();
-	
-	jsfSetFontIndx(0);
-	jsfSetFontSize(0);
-	rapLocate(16,50);
-	js_r_textbuffer=(char *)"DPAD to Move";
-	rapPrint();
-	
-	rapLocate(16,60);
-	js_r_textbuffer=(char *)"B to Make a Sound";
-	rapPrint();
 /*
 The formula (C-notation) to get a 16-bit color value from the red/green/blue parts is as follows:
 
@@ -60,7 +44,7 @@ where red and blue has a range of 0…31 and green has a range of 0…63, the ma
 rapDebugSetXY(5,20);
 rapDebugInverse();
 //rapDebugPrint "This is some debug text";
-rapDebugSetMonitor(0, (char *)(sprite[BG1_BACKDROP].x));
+//rapDebugSetMonitor(0, (char *)(sprite[BG1_BACKDROP].x));
 
 
 	//Main Loop
@@ -68,14 +52,6 @@ rapDebugSetMonitor(0, (char *)(sprite[BG1_BACKDROP].x));
 	{
 		pad1=jsfGetPad(LEFT_PAD);
 		
-		if(pad1 & JAGPAD_UP)
-		{
-			moveUp();
-		}
-		else if(pad1 & JAGPAD_DOWN)
-		{
-			moveDown();
-		}
 		if(pad1 & JAGPAD_LEFT)
 		{
 			moveLeft();
@@ -89,26 +65,22 @@ rapDebugSetMonitor(0, (char *)(sprite[BG1_BACKDROP].x));
 		
 		if(pad1 & JAGPAD_STAR)
 		{
-			//sprite[P1_HB_BODY].active = R_is_active;
-			sprite[P1_HB_BODY].trans = R_is_trans;
-			//sprite[P1_HB_BODY].x_ -= 7;
-			//sprite[P1_HB_DUCK].active = R_is_active;
-			//sprite[P1_HB_ATTACK].active = R_is_active;
-			//sprite[P2_HB_BODY].active = R_is_active;
-			//sprite[P2_HB_DUCK].active = R_is_active;
-			// sprite[P2_HB_ATTACK].active = R_is_active;
+			sprite[P1_HB_BODY].active = R_is_active;
+			sprite[P1_HB_DUCK].active = R_is_active;
+			sprite[P1_HB_ATTACK].active = R_is_active;
+			sprite[P2_HB_BODY].active = R_is_active;
+			sprite[P2_HB_DUCK].active = R_is_active;
+			sprite[P2_HB_ATTACK].active = R_is_active;
 			rapDebugSetVisible(DEBUG_SHOW);
 		}
 		else if (pad1 & JAGPAD_HASH)
 		{
-			//sprite[P1_HB_BODY].x_ += 5;
-			sprite[P1_HB_BODY].trans = R_is_opaque;
-			//sprite[P1_HB_BODY].active = R_is_inactive;
-			//sprite[P1_HB_DUCK].active = R_is_inactive;
-			//sprite[P1_HB_ATTACK].active = R_is_inactive;
-			//sprite[P2_HB_BODY].active = R_is_inactive;
-			//sprite[P2_HB_DUCK].active = R_is_inactive;
-			// sprite[P2_HB_ATTACK].active = R_is_inactive;
+			sprite[P1_HB_BODY].active = R_is_inactive;
+			sprite[P1_HB_DUCK].active = R_is_inactive;
+			sprite[P1_HB_ATTACK].active = R_is_inactive;
+			sprite[P2_HB_BODY].active = R_is_inactive;
+			sprite[P2_HB_DUCK].active = R_is_inactive;
+			sprite[P2_HB_ATTACK].active = R_is_inactive;
 			rapDebugSetVisible(DEBUG_HIDE);
 		}
 		
