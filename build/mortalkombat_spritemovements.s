@@ -19,7 +19,7 @@ __Z9moveRightv:
 	movem.l #60,-(%sp)
 	move.l sprite,%a2
 	lea ___floatsisf,%a5
-	move.w 968(%a2),%a0
+	move.w 776(%a2),%a0
 	move.l %a0,-(%sp)
 	jsr (%a5)
 	lea ___subsf3,%a4
@@ -30,8 +30,8 @@ __Z9moveRightv:
 	lea ___fixsfsi,%a3
 	move.l %d0,-(%sp)
 	jsr (%a3)
-	move.w %d0,968(%a2)
-	move.w 1160(%a2),%a0
+	move.w %d0,776(%a2)
+	move.w 968(%a2),%a0
 	move.l %a0,(%sp)
 	jsr (%a5)
 	move.l #0x3f800000,(%sp)
@@ -40,8 +40,27 @@ __Z9moveRightv:
 	addq.l #4,%sp
 	move.l %d0,(%sp)
 	jsr (%a3)
+	move.w %d0,968(%a2)
+	move.w 1160(%a2),%a0
+	move.l %a0,(%sp)
+	jsr (%a5)
+	move.l #0x40000000,(%sp)
+	move.l %d0,-(%sp)
+	jsr (%a4)
+	addq.l #4,%sp
+	move.l %d0,(%sp)
+	jsr (%a3)
 	move.w %d0,1160(%a2)
 	move.w 1352(%a2),%a0
+	move.l %a0,(%sp)
+	jsr (%a5)
+	move.l #0x40000000,(%sp)
+	move.l %d0,-(%sp)
+	jsr (%a4)
+	addq.l #4,%sp
+	move.l %d0,(%sp)
+	jsr (%a3)
+	move.w %d0,%a0
 	move.l %a0,(%sp)
 	jsr (%a5)
 	move.l #0x40000000,(%sp)
@@ -62,7 +81,7 @@ __Z8moveLeftv:
 	movem.l #60,-(%sp)
 	move.l sprite,%a2
 	lea ___floatsisf,%a5
-	move.w 968(%a2),%a0
+	move.w 776(%a2),%a0
 	move.l %a0,-(%sp)
 	jsr (%a5)
 	lea ___addsf3,%a4
@@ -73,8 +92,8 @@ __Z8moveLeftv:
 	lea ___fixsfsi,%a3
 	move.l %d0,-(%sp)
 	jsr (%a3)
-	move.w %d0,968(%a2)
-	move.w 1160(%a2),%a0
+	move.w %d0,776(%a2)
+	move.w 968(%a2),%a0
 	move.l %a0,(%sp)
 	jsr (%a5)
 	move.l #0x3f800000,(%sp)
@@ -83,8 +102,27 @@ __Z8moveLeftv:
 	addq.l #4,%sp
 	move.l %d0,(%sp)
 	jsr (%a3)
+	move.w %d0,968(%a2)
+	move.w 1160(%a2),%a0
+	move.l %a0,(%sp)
+	jsr (%a5)
+	move.l #0x40000000,(%sp)
+	move.l %d0,-(%sp)
+	jsr (%a4)
+	addq.l #4,%sp
+	move.l %d0,(%sp)
+	jsr (%a3)
 	move.w %d0,1160(%a2)
 	move.w 1352(%a2),%a0
+	move.l %a0,(%sp)
+	jsr (%a5)
+	move.l #0x40000000,(%sp)
+	move.l %d0,-(%sp)
+	jsr (%a4)
+	addq.l #4,%sp
+	move.l %d0,(%sp)
+	jsr (%a3)
+	move.w %d0,%a0
 	move.l %a0,(%sp)
 	jsr (%a5)
 	move.l #0x40000000,(%sp)

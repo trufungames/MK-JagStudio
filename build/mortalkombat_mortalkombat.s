@@ -10,7 +10,7 @@
 	.globl	__Z9basicmainv
 __Z9basicmainv:
 	link.w %fp,#0
-	movem.l #15420,-(%sp)
+	movem.l #15932,-(%sp)
 	clr.l __ZL4pad1
 	moveq #1,%d0
 	move.l %d0,_jsfFontIndx
@@ -37,85 +37,115 @@ __Z9basicmainv:
 	move.l #.LC2,_js_r_textbuffer
 	addq.l #8,%sp
 	jsr (%a2)
-	move.w #2047,15728728
-	lea jsfGetPad,%a4
-	move.l #__Z6moveUpv,%d3
-	move.l #__Z8moveDownv,%d5
-	move.l #__Z8moveLeftv,%d2
-	move.l #__Z9moveRightv,%d4
-	lea jsfGetPadPressed,%a3
-	lea __Z8sfxShootv,%a5
+	move.w #-20673,15728728
+	pea 20.w
+	pea 5.w
+	jsr rapDebugSetXY
+	addq.l #8,%sp
+	jsr RAPTOR_console_inverse
+	move.l sprite,%a0
+	move.l 1160(%a0),-(%sp)
+	clr.l -(%sp)
+	jsr rapDebugSetMonitor
+	addq.l #8,%sp
+	lea jsfGetPad,%a5
+	move.l #__Z6moveUpv,%d4
+	move.l #__Z8moveDownv,%d6
+	move.l #__Z8moveLeftv,%d3
+	move.l #__Z9moveRightv,%d5
+	lea jsfGetPadPressed,%a4
+	move.l #rapDebugSetVisible,%d2
+	lea rapDebugUpdate,%a3
 	lea _jsfVsync,%a2
 	pea 1.w
-	jsr (%a4)
+	jsr (%a5)
 	move.l %d0,__ZL4pad1
 	move.l %d0,%d1
 	and.l JAGPAD_UP,%d1
 	addq.l #4,%sp
-	jne .L9
+	jne .L10
 .L2:
 	move.l %d0,%d1
 	and.l JAGPAD_DOWN,%d1
-	jne .L10
+	jne .L11
 .L3:
 	move.l %d0,%d1
 	and.l JAGPAD_LEFT,%d1
-	jne .L11
+	jne .L12
 .L4:
 	and.l JAGPAD_RIGHT,%d0
-	jne .L12
-	pea 1.w
-	jsr (%a3)
-	move.l %d0,__ZL4pad1
-	and.l JAGPAD_B,%d0
-	addq.l #4,%sp
 	jne .L13
+.L5:
+	pea 1.w
+	jsr (%a4)
+	move.l %d0,__ZL4pad1
+	move.l %d0,%d1
+	and.l JAGPAD_STAR,%d1
+	addq.l #4,%sp
+	jne .L14
 .L6:
+	and.l JAGPAD_HASH,%d0
+	jne .L15
+	jsr (%a3)
 	clr.l -(%sp)
 	jsr (%a2)
 	addq.l #4,%sp
-.L14:
+.L16:
 	pea 1.w
-	jsr (%a4)
+	jsr (%a5)
 	move.l %d0,__ZL4pad1
 	move.l %d0,%d1
 	and.l JAGPAD_UP,%d1
 	addq.l #4,%sp
 	jeq .L2
-.L9:
-	move.l %d3,%a0
+.L10:
+	move.l %d4,%a0
 	jsr (%a0)
 	move.l __ZL4pad1,%d0
 	move.l %d0,%d1
 	and.l JAGPAD_LEFT,%d1
 	jeq .L4
-.L11:
-	move.l %d2,%a0
+.L12:
+	move.l %d3,%a0
 	jsr (%a0)
 	pea 1.w
-	jsr (%a3)
+	jsr (%a4)
 	move.l %d0,__ZL4pad1
-	and.l JAGPAD_B,%d0
+	move.l %d0,%d1
+	and.l JAGPAD_STAR,%d1
 	addq.l #4,%sp
 	jeq .L6
-.L13:
-	jsr (%a5)
+.L14:
+	move.l sprite,%a0
+	moveq #1,%d0
+	move.l %d0,3624(%a0)
+	pea 1.w
+	move.l %d2,%a0
+	jsr (%a0)
+	addq.l #4,%sp
+	jsr (%a3)
 	clr.l -(%sp)
 	jsr (%a2)
 	addq.l #4,%sp
-	jra .L14
-.L12:
-	move.l %d4,%a0
+	jra .L16
+.L15:
+	move.l sprite,%a0
+	clr.l 3624(%a0)
+	clr.l -(%sp)
+	move.l %d2,%a0
 	jsr (%a0)
-	pea 1.w
-	jsr (%a3)
-	move.l %d0,__ZL4pad1
-	and.l JAGPAD_B,%d0
 	addq.l #4,%sp
-	jeq .L6
-	jra .L13
-.L10:
+	jsr (%a3)
+	clr.l -(%sp)
+	jsr (%a2)
+	addq.l #4,%sp
+	jra .L16
+.L13:
 	move.l %d5,%a0
+	jsr (%a0)
+	jra .L5
+.L11:
+	move.l %d6,%a0
 	jsr (%a0)
 	move.l __ZL4pad1,%d0
 	jra .L3

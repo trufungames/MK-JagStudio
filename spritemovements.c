@@ -17,15 +17,19 @@ void moveDown (void)
 
 void moveRight (void)
 {
-	sprite[sprTempleLeft].x_ -= 1.0f;
-	sprite[sprTempleRight].x_ -= 1.0f;
-	sprite[sprPG_Backdrop].x_ -= 2.0f;
+	sprite[BG1_TEMPLE_LEFT].x_ -= 1.0f;
+	sprite[BG1_TEMPLE_RIGHT].x_ -= 1.0f;
+	sprite[BG1_BACKDROP].x_ -= 2.0f;
+	sprite[BG1_FLAME1].x_ -= 2.0f;
+	sprite[BG1_FLAME1].x_ -= 2.0f;
 }
 
 
 void moveLeft (void)
 {
-	sprite[sprTempleLeft].x_ += 1.0f;
-	sprite[sprTempleRight].x_ += 1.0f;
-	sprite[sprPG_Backdrop].x_ += 2.0f;
+	sprite[BG1_TEMPLE_LEFT].x_ += 1.0f;
+	sprite[BG1_TEMPLE_RIGHT].x_ += 1.0f;
+	sprite[BG1_BACKDROP].x_ += 2.0f;
+	sprite[BG1_FLAME1].x_ += 2.0f;
+	sprite[BG1_FLAME1].x_ += 2.0f;
 }

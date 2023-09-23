@@ -2,10 +2,14 @@
 #include "jstudio.h"
 #include "romassets.h"
 
-#define sprParticleLayer 0
-#define sprBugIndex sprParticleLayer +1
-#define sprBug2Index sprBugIndex +1
-
-#define sprTempleLeft 5
-#define sprTempleRight sprTempleLeft + 1
-#define sprPG_Backdrop sprTempleRight + 1
+#define BG1_TEMPLE_LEFT 4
+#define BG1_TEMPLE_RIGHT BG1_TEMPLE_LEFT + 1
+#define BG1_BACKDROP BG1_TEMPLE_RIGHT + 1
+#define BG1_FLAME1 BG1_BACKDROP + 1
+#define BG1_FLAME2 BG1_FLAME1 + 1
+#define P1_HB_BODY 18
+#define P1_HB_DUCK P1_HB_BODY + 1
+#define P1_HB_ATTACK P1_HB_DUCK + 1
+#define P2_HB_BODY P1_HB_ATTACK + 1
+#define P2_HB_DUCK P2_HB_BODY + 1
+#define P2_HB_ATTACK P2_HB_DUCK + 1

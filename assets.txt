@@ -32,7 +32,6 @@
 '
 ROM,BMP_PG_0,gfx_clut16,ASSETS\GFX\pg_0.BMP
 ROM,BMP_MOUNTAINS,gfx_clut16,ASSETS\GFX\pg_mountains.BMP
-ROM,BMP_SKY,gfx_clut16,ASSETS\GFX\sky.BMP
 ROM,BMP_TEMPLE,gfx_clut16,ASSETS\GFX\pg_temple.BMP
 ROM,BMP_CLOUD1,gfx_clut16,ASSETS\GFX\pg_cloud1.BMP
 ROM,BMP_CLOUD2,gfx_clut16,ASSETS\GFX\pg_cloud2.BMP
@@ -44,6 +43,10 @@ ROM,BMP_KANO_IDLE,gfx_clut16,ASSETS\GFX\kano_idle.BMP
 ROM,BMP_KANO_IDLE_S,gfx_clut16,ASSETS\GFX\kano_idle_s.BMP
 ROM,BMP_SCORPION_IDLE,gfx_clut16,ASSETS\GFX\scorpion_idle.BMP
 ROM,BMP_SCORPION_IDLE_S,gfx_clut16,ASSETS\GFX\scorpion_idle_s.BMP
+ROM,BMP_FLAME,gfx_clut16,ASSETS\GFX\flame.BMP
+ROM,BMP_HITBOX_BODY,gfx_clut16,ASSETS\GFX\hitbox_body.BMP
+ROM,BMP_HITBOX_DUCK,gfx_clut16,ASSETS\GFX\hitbox_duck.BMP
+ROM,BMP_HITBOX_ATTACK,gfx_clut16,ASSETS\GFX\hitbox_attack.BMP
 ABS,explode_sam,sfx_raw8000,ASSETS\SFX\explosion.wav
 ABS,fight_sam,sfx_raw8000,ASSETS\SFX\fight.wav
 ' End of file.
