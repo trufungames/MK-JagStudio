@@ -21,7 +21,7 @@ void moveRight (void)
 	sprite[BG1_TEMPLE_RIGHT].x_ -= 1.0f;
 	sprite[BG1_BACKDROP].x_ -= 2.0f;
 	sprite[BG1_FLAME1].x_ -= 2.0f;
-	sprite[BG1_FLAME1].x_ -= 2.0f;
+	sprite[BG1_FLAME2].x_ -= 2.0f;
 }
 
 
@@ -31,5 +31,5 @@ void moveLeft (void)
 	sprite[BG1_TEMPLE_RIGHT].x_ += 1.0f;
 	sprite[BG1_BACKDROP].x_ += 2.0f;
 	sprite[BG1_FLAME1].x_ += 2.0f;
-	sprite[BG1_FLAME1].x_ += 2.0f;
+	sprite[BG1_FLAME2].x_ += 2.0f;
 }

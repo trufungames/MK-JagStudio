@@ -60,7 +60,8 @@ __Z9moveRightv:
 	addq.l #4,%sp
 	move.l %d0,(%sp)
 	jsr (%a3)
-	move.w %d0,%a0
+	move.w %d0,1352(%a2)
+	move.w 1544(%a2),%a0
 	move.l %a0,(%sp)
 	jsr (%a5)
 	move.l #0x40000000,(%sp)
@@ -70,7 +71,7 @@ __Z9moveRightv:
 	move.l %d0,(%sp)
 	jsr (%a3)
 	addq.l #4,%sp
-	move.w %d0,1352(%a2)
+	move.w %d0,1544(%a2)
 	movem.l -16(%fp),#15360
 	unlk %fp
 	rts
@@ -122,7 +123,8 @@ __Z8moveLeftv:
 	addq.l #4,%sp
 	move.l %d0,(%sp)
 	jsr (%a3)
-	move.w %d0,%a0
+	move.w %d0,1352(%a2)
+	move.w 1544(%a2),%a0
 	move.l %a0,(%sp)
 	jsr (%a5)
 	move.l #0x40000000,(%sp)
@@ -132,7 +134,7 @@ __Z8moveLeftv:
 	move.l %d0,(%sp)
 	jsr (%a3)
 	addq.l #4,%sp
-	move.w %d0,1352(%a2)
+	move.w %d0,1544(%a2)
 	movem.l -16(%fp),#15360
 	unlk %fp
 	rts

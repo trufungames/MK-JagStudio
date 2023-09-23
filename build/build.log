@@ -228,7 +228,7 @@ RAPTOR_console_inverse G  00022120   RAPTOR_console_update_registers G  00022148
 RAPTOR_console_update_textline G  00022222   raptor_mapindex G  000232E4   raptor_ang_search G  00023344   
 raptor_col_user G  00023348   rapLocate G  00030864   _rapPrint G  00030808   
 rapDebugSetXY G  0003060E   rapDebugSetMonitor G  000305BC   jsfGetPad G  0002FAE4   
-__Z6moveUpv G  00023600   __Z8moveDownv G  00023608   __Z8moveLeftv G  000236C2   
+__Z6moveUpv G  00023600   __Z8moveDownv G  00023608   __Z8moveLeftv G  000236C8   
 __Z9moveRightv G  00023610   jsfGetPadPressed G  0002FCAE   rapDebugSetVisible G  00030626   
 rapDebugUpdate G  000305FA   _jsfVsync G  0002FFA6   __Z10fireButtonv G  0002357A   
 __Z8sfxShootv G  000235A0   zeroPlaySample G  0003109E   ___floatsisf G  0002F81E   
@@ -405,7 +405,7 @@ RAPTOR_console_inverse G  00022120   RAPTOR_console_update_registers G  00022148
 RAPTOR_console_update_textline G  00022222   raptor_mapindex G  000232E4   raptor_ang_search G  00023344   
 raptor_col_user G  00023348   rapLocate G  00030864   _rapPrint G  00030808   
 rapDebugSetXY G  0003060E   rapDebugSetMonitor G  000305BC   jsfGetPad G  0002FAE4   
-__Z6moveUpv G  00023600   __Z8moveDownv G  00023608   __Z8moveLeftv G  000236C2   
+__Z6moveUpv G  00023600   __Z8moveDownv G  00023608   __Z8moveLeftv G  000236C8   
 __Z9moveRightv G  00023610   jsfGetPadPressed G  0002FCAE   rapDebugSetVisible G  00030626   
 rapDebugUpdate G  000305FA   _jsfVsync G  0002FFA6   __Z10fireButtonv G  0002357A   
 __Z8sfxShootv G  000235A0   zeroPlaySample G  0003109E   ___floatsisf G  0002F81E   
