@@ -15,21 +15,27 @@ void moveDown (void)
 }
 
 
-void moveRight (void)
+void bgScrollRight (void)
 {
-	sprite[BG1_TEMPLE_LEFT].x_ -= 1.0f;
-	sprite[BG1_TEMPLE_RIGHT].x_ -= 1.0f;
-	sprite[BG1_BACKDROP].x_ -= 2.0f;
-	sprite[BG1_FLAME1].x_ -= 2.0f;
-	sprite[BG1_FLAME2].x_ -= 2.0f;
+	if (sprite[BG1_BACKDROP].x_ >= -692.0f)
+	{
+		sprite[BG1_TEMPLE_LEFT].x_ -= 1.0f;
+		sprite[BG1_TEMPLE_RIGHT].x_ -= 1.0f;
+		sprite[BG1_BACKDROP].x_ -= 2.0f;
+		sprite[BG1_FLAME1].x_ -= 2.0f;
+		sprite[BG1_FLAME2].x_ -= 2.0f;
+	}
 }
 
 
-void moveLeft (void)
+void bgScrollLeft (void)
 {
-	sprite[BG1_TEMPLE_LEFT].x_ += 1.0f;
-	sprite[BG1_TEMPLE_RIGHT].x_ += 1.0f;
-	sprite[BG1_BACKDROP].x_ += 2.0f;
-	sprite[BG1_FLAME1].x_ += 2.0f;
-	sprite[BG1_FLAME2].x_ += 2.0f;
+	if (sprite[BG1_BACKDROP].x_ <= -2.0f)
+	{
+		sprite[BG1_TEMPLE_LEFT].x_ += 1.0f;
+		sprite[BG1_TEMPLE_RIGHT].x_ += 1.0f;
+		sprite[BG1_BACKDROP].x_ += 2.0f;
+		sprite[BG1_FLAME1].x_ += 2.0f;
+		sprite[BG1_FLAME2].x_ += 2.0f;
+	}
 }

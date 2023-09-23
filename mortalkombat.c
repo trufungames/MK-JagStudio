@@ -43,8 +43,9 @@ where red and blue has a range of 0…31 and green has a range of 0…63, the ma
 
 rapDebugSetXY(5,20);
 rapDebugInverse();
+
 //rapDebugPrint "This is some debug text";
-//rapDebugSetMonitor(0, (char *)(sprite[BG1_BACKDROP].x));
+rapDebugSetMonitor(0, (char *)(sprite[BG1_BACKDROP].x));
 
 
 	//Main Loop
@@ -54,11 +55,11 @@ rapDebugInverse();
 		
 		if(pad1 & JAGPAD_LEFT)
 		{
-			moveLeft();
+			bgScrollLeft();
 		}
 		else if(pad1 & JAGPAD_RIGHT)
 		{
-			moveRight();
+			bgScrollRight();
 		}		
 		
 		pad1=jsfGetPadPressed(LEFT_PAD);

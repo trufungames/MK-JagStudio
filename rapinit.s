@@ -205,7 +205,7 @@ raptor_init_table:
 	dc.l	0								; sprite_animspd				; frame delay between animation changes
 	dc.l	0								; sprite_maxframe				; number of frames in animation chain
 	dc.l	ani_rept						; sprite_animloop				; repeat or play once
-	dc.l	edge_wrap						; sprite_wrap					; wrap on screen exit, or remove
+	dc.l	edge_ignore						; sprite_wrap					; wrap on screen exit, or remove
 	dc.l	spr_inf							; sprite_timer					; frames sprite is active for (or spr_inf)
 	dc.l	spr_linear						; sprite_track					; use 16.16 xadd/yadd or point to 16.16 x/y table
 	dc.l	0								; sprite_tracktop				; pointer to loop point in track table (if used)
@@ -244,7 +244,7 @@ raptor_init_table:
 	dc.l	0								; sprite_animspd				; frame delay between animation changes
 	dc.l	0								; sprite_maxframe				; number of frames in animation chain
 	dc.l	ani_rept						; sprite_animloop				; repeat or play once
-	dc.l	edge_wrap						; sprite_wrap					; wrap on screen exit, or remove
+	dc.l	edge_ignore						; sprite_wrap					; wrap on screen exit, or remove
 	dc.l	spr_inf							; sprite_timer					; frames sprite is active for (or spr_inf)
 	dc.l	spr_linear						; sprite_track					; use 16.16 xadd/yadd or point to 16.16 x/y table
 	dc.l	0								; sprite_tracktop				; pointer to loop point in track table (if used)
@@ -599,8 +599,8 @@ raptor_init_table:
 	dc.l	spr_inf							; sprite_timer					; frames sprite is active for (or spr_inf)
 	dc.l	spr_linear						; sprite_track					; use 16.16 xadd/yadd or point to 16.16 x/y table
 	dc.l	0								; sprite_tracktop				; pointer to loop point in track table (if used)
-	dc.l	spr_unscale						; sprite_scaled					; flag for scaleable object
-	dc.l	%00100000						; sprite_scale_x				; x scale factor (if scaled)
+	dc.l	spr_scale						; sprite_scaled					; flag for scaleable object
+	dc.l	%00100100						; sprite_scale_x				; x scale factor (if scaled)
 	dc.l	%00100000						; sprite_scale_y				; y scale factor (if scaled)
 	dc.l	-1								; sprite_was_hit				; initially flagged as not hit
 	dc.l	no_CLUT							; sprite_CLUT					; no_CLUT (8/16/24 bit) or CLUT (1/2/4 bit)

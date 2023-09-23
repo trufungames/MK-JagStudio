@@ -12,9 +12,14 @@ __Z9basicmainv:
 	jsr rapDebugSetXY
 	addq.l #8,%sp
 	jsr RAPTOR_console_inverse
+	move.l sprite,%a0
+	move.l 1160(%a0),-(%sp)
+	clr.l -(%sp)
+	jsr rapDebugSetMonitor
+	addq.l #8,%sp
 	lea jsfGetPad,%a5
-	move.l #__Z8moveLeftv,%d3
-	move.l #__Z9moveRightv,%d4
+	move.l #__Z12bgScrollLeftv,%d3
+	move.l #__Z13bgScrollRightv,%d4
 	lea jsfGetPadPressed,%a4
 	move.l #rapDebugSetVisible,%d2
 	lea rapDebugUpdate,%a3
