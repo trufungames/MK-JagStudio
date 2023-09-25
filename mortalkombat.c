@@ -47,6 +47,7 @@ rapDebugInverse();
 //rapDebugPrint "This is some debug text";
 rapDebugSetMonitor(0, (char *)(sprite[BG1_BACKDROP].x));
 
+jsfLoadClut((unsigned short *)(void *)(BMPKANOIDLE_clut),0,255);
 
 	//Main Loop
 	for(;;)

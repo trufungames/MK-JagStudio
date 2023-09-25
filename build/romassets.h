@@ -7,14 +7,15 @@
 #define BMP_HUD_BAR 0x891330
 #define BMP_HUD_KANO 0x891DB0
 #define BMP_HUD_SCORPION 0x8922B0
-#define BMP_KANO_IDLE 0x892BB0
-#define BMP_KANO_IDLE_S 0x8B3B50
-#define BMP_SCORPION_IDLE 0x8BB950
-#define BMP_SCORPION_IDLE_S 0x8DE640
-#define BMP_FLAME 0x8E7240
-#define BMP_HITBOX_BODY 0x8EA240
-#define BMP_HITBOX_DUCK 0x8EBA40
-#define BMP_HITBOX_ATTACK 0x8EC640
+#define BMPKANOIDLE 0x892BB0
+#define BMPKANOIDLE_clut 0x8A3380
+#define BMP_KANO_IDLE_S 0x8A3580
+#define BMP_SCORPION_IDLE 0x8AB380
+#define BMP_SCORPION_IDLE_S 0x8CE070
+#define BMP_FLAME 0x8D6C70
+#define BMP_HITBOX_BODY 0x8D9C70
+#define BMP_HITBOX_DUCK 0x8DB470
+#define BMP_HITBOX_ATTACK 0x8DC070
 extern void *explode_sam asm("explode_sam");
 extern void *explode_sam_end asm("explode_sam_end");
 extern void *fight_sam asm("fight_sam");

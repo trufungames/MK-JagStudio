@@ -17,6 +17,11 @@ __Z9basicmainv:
 	clr.l -(%sp)
 	jsr rapDebugSetMonitor
 	addq.l #8,%sp
+	pea 255.w
+	clr.l -(%sp)
+	move.l #9057152,-(%sp)
+	jsr jsfLoadClut
+	lea (12,%sp),%sp
 	lea jsfGetPad,%a5
 	move.l #__Z12bgScrollLeftv,%d3
 	move.l #__Z13bgScrollRightv,%d4
