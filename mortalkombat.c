@@ -9,6 +9,7 @@
 // -----------------------------------------------------------------------
 #include "common.h"								// This should be included in all source files
 #include "spritemovements.h"
+#include "spriteanimator.h"
 #include "sound.h"
 
 
@@ -47,7 +48,53 @@ rapDebugInverse();
 //rapDebugPrint "This is some debug text";
 rapDebugSetMonitor(0, (char *)(sprite[BG1_BACKDROP].x));
 
-jsfLoadClut((unsigned short *)(void *)(BMPKANOIDLE_clut),0,255);
+rapSetClock(0);
+rapClockMode = Clock_Countup;
+
+//load cluts
+jsfLoadClut((unsigned short *)(void *)(BMPSCORPION_clut),0,16);
+jsfLoadClut((unsigned short *)(void *)(BMPKANO_clut),1,16);
+
+//Scorpion animation frames
+SpriteAnimator scorpionShadowAnimator = {
+	SCORPION_SHADOW, 0.125f, BMPSCORPIONSHADOW, 0, 0
+};
+AnimationFrame scorpionShadowFrames[] = {
+	{ 80, 32, 0, 0, 6 },
+	{ 80, 32, 80, 0, 6 },
+	{ 80, 32, 160, 0, 6 },
+	{ 80, 32, 240, 0, 6 },
+	{ 80, 32, 320, 0, 6 },
+	{ 80, 32, 400, 0, 6 },
+	{ 80, 32, 480, 0, 6 }
+};
+
+SpriteAnimator scorpionAnimator = {
+	SCORPION, 0.5f, BMPSCORPION, 0, 0
+};
+AnimationFrame scorpionFrames[] = {
+	{ 80, 144, 0, 0, 6 },
+	{ 80, 144, 80, 0, 6 },
+	{ 80, 144, 160, 0, 6 },
+	{ 80, 144, 240, 0, 6 },
+	{ 80, 144, 320, 0, 6 },
+	{ 80, 144, 400, 0, 6 },
+	{ 80, 144, 480, 0, 6 }
+};
+
+//Kano animation frames
+SpriteAnimator kanoAnimator = {
+	KANO, 0.5f, BMPKANO, 0, 0
+};
+AnimationFrame kanoFrames[] = {
+	{ 80, 144, 0, 0, 5 },
+	{ 80, 144, 80, 0, 5 },
+	{ 80, 144, 160, 0, 5 },
+	{ 80, 144, 240, 0, 5 },
+	{ 80, 144, 320, 0, 5 },
+	{ 80, 144, 400, 0, 5 },
+	{ 80, 144, 480, 0, 5 }
+};
 
 	//Main Loop
 	for(;;)
@@ -85,7 +132,12 @@ jsfLoadClut((unsigned short *)(void *)(BMPKANOIDLE_clut),0,255);
 			sprite[P2_HB_ATTACK].active = R_is_inactive;
 			rapDebugSetVisible(DEBUG_HIDE);
 		}
+
+		//updateSpriteAnimator(&scorpionShadowAnimator, scorpionShadowFrames, SCORPION_IDLE_FRAME_COUNT, true, true);
+		updateSpriteAnimator(&scorpionAnimator, scorpionFrames, SCORPION_IDLE_FRAME_COUNT, true, true);
 		
+		updateSpriteAnimator(&kanoAnimator, kanoFrames, KANO_IDLE_FRAME_COUNT, true, true);
+
 		rapDebugUpdate();
 		jsfVsync(0);
 	}
