@@ -1,7 +1,7 @@
 #NO_APP
 	.data
 	.even
-.LC1:
+.LC0:
 	.long	80
 	.long	144
 	.long	0
@@ -36,6 +36,58 @@
 	.long	144
 	.long	480
 	.long	0
+	.long	6
+	.even
+.LC1:
+	.long	80
+	.long	144
+	.long	560
+	.long	0
+	.long	6
+	.long	80
+	.long	144
+	.long	640
+	.long	0
+	.long	6
+	.long	80
+	.long	144
+	.long	720
+	.long	0
+	.long	6
+	.long	80
+	.long	144
+	.long	800
+	.long	0
+	.long	6
+	.long	80
+	.long	144
+	.long	880
+	.long	0
+	.long	6
+	.long	80
+	.long	144
+	.long	0
+	.long	144
+	.long	6
+	.long	80
+	.long	144
+	.long	80
+	.long	144
+	.long	6
+	.long	80
+	.long	144
+	.long	160
+	.long	144
+	.long	6
+	.long	80
+	.long	144
+	.long	240
+	.long	144
+	.long	6
+	.long	80
+	.long	144
+	.long	320
+	.long	144
 	.long	6
 	.even
 .LC2:
@@ -74,13 +126,61 @@
 	.long	480
 	.long	0
 	.long	5
+	.even
+.LC3:
+	.long	80
+	.long	144
+	.long	560
+	.long	0
+	.long	6
+	.long	80
+	.long	144
+	.long	640
+	.long	0
+	.long	6
+	.long	80
+	.long	144
+	.long	720
+	.long	0
+	.long	6
+	.long	80
+	.long	144
+	.long	800
+	.long	0
+	.long	6
+	.long	80
+	.long	144
+	.long	880
+	.long	0
+	.long	6
+	.long	80
+	.long	144
+	.long	0
+	.long	144
+	.long	6
+	.long	80
+	.long	144
+	.long	80
+	.long	144
+	.long	6
+	.long	80
+	.long	144
+	.long	160
+	.long	144
+	.long	6
+	.long	80
+	.long	144
+	.long	240
+	.long	144
+	.long	6
 	.text
 	.even
 	.globl	__Z9basicmainv
 __Z9basicmainv:
-	link.w %fp,#-320
+	link.w %fp,#-700
 	movem.l #16188,-(%sp)
 	clr.l __ZL4pad1
+	clr.l __ZL4pad2
 	move.w #-20673,15728728
 	pea 20.w
 	pea 5.w
@@ -95,114 +195,172 @@ __Z9basicmainv:
 	clr.l (%sp)
 	jsr rapSetClock
 	move.w #8,raptor_clock_mode
-	moveq #16,%d0
-	move.l %d0,(%sp)
+	moveq #16,%d1
+	move.l %d1,(%sp)
 	clr.l -(%sp)
 	move.l #9535920,-(%sp)
 	lea jsfLoadClut,%a2
 	jsr (%a2)
 	addq.l #8,%sp
-	moveq #16,%d1
-	move.l %d1,(%sp)
+	moveq #16,%d2
+	move.l %d2,(%sp)
 	pea 1.w
-	move.l #10088912,-(%sp)
+	move.l #10060240,-(%sp)
 	jsr (%a2)
-	moveq #13,%d0
+	moveq #12,%d0
 	move.l %d0,-40(%fp)
 	move.l #0x3f000000,-36(%fp)
 	move.l #9011632,-32(%fp)
 	clr.l -28(%fp)
 	clr.l -24(%fp)
-	move.l %fp,%d3
-	add.l #-320,%d3
 	pea 140.w
-	pea .LC1
-	move.l %d3,-(%sp)
+	pea .LC0
+	pea -320(%fp)
 	lea _memcpy,%a2
 	jsr (%a2)
-	moveq #14,%d0
+	pea 200.w
+	pea .LC1
+	pea -700(%fp)
+	jsr (%a2)
+	moveq #13,%d0
 	move.l %d0,-20(%fp)
 	move.l #0x3f000000,-16(%fp)
-	move.l #9564624,-12(%fp)
+	move.l #9535952,-12(%fp)
 	clr.l -8(%fp)
 	clr.l -4(%fp)
-	move.l %fp,%d2
-	add.l #-180,%d2
+	lea (36,%sp),%sp
 	pea 140.w
 	pea .LC2
-	move.l %d2,-(%sp)
+	pea -180(%fp)
 	jsr (%a2)
-	lea (36,%sp),%sp
-	move.l #jsfGetPad,%d6
-	move.l #jsfGetPadPressed,%d5
-	move.l #rapDebugSetVisible,%d7
-	moveq #-40,%d4
-	add.l %fp,%d4
-	lea __Z20updateSpriteAnimatorP14SpriteAnimatorP14AnimationFrameibb,%a2
-	lea (-20,%fp),%a5
-	lea rapDebugUpdate,%a4
-	lea _jsfVsync,%a3
+	pea 180.w
+	pea .LC3
+	pea -500(%fp)
+	jsr (%a2)
+	lea (24,%sp),%sp
+	clr.b %d3
+	clr.b %d2
+	lea jsfGetPad,%a2
+	move.l #__Z12bgScrollLeftv,%d7
+	moveq #-40,%d6
+	add.l %fp,%d6
+	lea __Z20updateSpriteAnimatorP14SpriteAnimatorP14AnimationFrameibb,%a3
+	moveq #-20,%d5
+	add.l %fp,%d5
+	move.l #jsfGetPadPressed,%d4
+	lea rapDebugUpdate,%a5
+	lea _jsfVsync,%a4
 	pea 1.w
-	move.l %d6,%a0
-	jsr (%a0)
+	jsr (%a2)
 	move.l %d0,__ZL4pad1
+	moveq #2,%d0
+	move.l %d0,(%sp)
+	jsr (%a2)
+	move.l %d0,__ZL4pad2
+	move.l __ZL4pad1,%d0
 	move.l %d0,%d1
 	and.l JAGPAD_LEFT,%d1
 	addq.l #4,%sp
-	jne .L8
+	jne .L16
 .L2:
 	and.l JAGPAD_RIGHT,%d0
-	jne .L9
-.L3:
+	jne .L17
+	tst.b %d2
+	jeq .L5
+	clr.l -24(%fp)
+.L5:
 	pea 1.w
-	move.l %d5,%a0
+	pea 1.w
+	pea 7.w
+	pea -320(%fp)
+	move.l %d6,-(%sp)
+	jsr (%a3)
+	lea (20,%sp),%sp
+	clr.b %d2
+	move.l __ZL4pad2,%d0
+	move.l %d0,%d1
+	and.l JAGPAD_LEFT,%d1
+	jne .L18
+.L6:
+	and.l JAGPAD_RIGHT,%d0
+	jne .L19
+	tst.b %d3
+	jeq .L9
+	clr.l -4(%fp)
+.L9:
+	pea 1.w
+	pea 1.w
+	pea 7.w
+	pea -180(%fp)
+	move.l %d5,-(%sp)
+	jsr (%a3)
+	lea (20,%sp),%sp
+	clr.b %d3
+	pea 1.w
+	move.l %d4,%a0
 	jsr (%a0)
 	move.l %d0,__ZL4pad1
 	move.l %d0,%d1
 	and.l JAGPAD_STAR,%d1
 	addq.l #4,%sp
-	jne .L10
-.L4:
+	jne .L20
+.L10:
 	and.l JAGPAD_HASH,%d0
-	jne .L11
-	pea 1.w
-	pea 1.w
-	pea 7.w
-	move.l %d3,-(%sp)
-	move.l %d4,-(%sp)
-	jsr (%a2)
-	lea (20,%sp),%sp
-	pea 1.w
-	pea 1.w
-	pea 7.w
-	move.l %d2,-(%sp)
-	move.l %a5,-(%sp)
-	jsr (%a2)
-	lea (20,%sp),%sp
-	jsr (%a4)
+	jne .L21
+	jsr (%a5)
 	clr.l -(%sp)
-	jsr (%a3)
+	jsr (%a4)
 	addq.l #4,%sp
-.L12:
+.L22:
 	pea 1.w
-	move.l %d6,%a0
-	jsr (%a0)
+	jsr (%a2)
 	move.l %d0,__ZL4pad1
+	moveq #2,%d0
+	move.l %d0,(%sp)
+	jsr (%a2)
+	move.l %d0,__ZL4pad2
+	move.l __ZL4pad1,%d0
 	move.l %d0,%d1
 	and.l JAGPAD_LEFT,%d1
 	addq.l #4,%sp
 	jeq .L2
-.L8:
-	jsr __Z12bgScrollLeftv
+.L16:
+	move.l %d7,%a0
+	jsr (%a0)
 	pea 1.w
-	move.l %d5,%a0
+	pea 1.w
+	pea 9.w
+	pea -700(%fp)
+	move.l %d6,-(%sp)
+	jsr (%a3)
+	lea (20,%sp),%sp
+	moveq #1,%d2
+.L24:
+	move.l __ZL4pad2,%d0
+	move.l %d0,%d1
+	and.l JAGPAD_LEFT,%d1
+	jeq .L6
+.L18:
+	move.l %d7,%a0
+	jsr (%a0)
+	pea 1.w
+	pea 1.w
+	pea 9.w
+	pea -500(%fp)
+	move.l %d5,-(%sp)
+	jsr (%a3)
+	lea (20,%sp),%sp
+	moveq #1,%d3
+.L23:
+	pea 1.w
+	move.l %d4,%a0
 	jsr (%a0)
 	move.l %d0,__ZL4pad1
 	move.l %d0,%d1
 	and.l JAGPAD_STAR,%d1
 	addq.l #4,%sp
-	jeq .L4
-.L10:
+	jeq .L10
+.L20:
 	move.l sprite,%a0
 	moveq #1,%d0
 	move.l %d0,2692(%a0)
@@ -212,29 +370,14 @@ __Z9basicmainv:
 	move.l %d0,3460(%a0)
 	move.l %d0,3652(%a0)
 	pea 1.w
-	move.l %d7,%a0
-	jsr (%a0)
+	jsr rapDebugSetVisible
 	addq.l #4,%sp
-	pea 1.w
-	pea 1.w
-	pea 7.w
-	move.l %d3,-(%sp)
-	move.l %d4,-(%sp)
-	jsr (%a2)
-	lea (20,%sp),%sp
-	pea 1.w
-	pea 1.w
-	pea 7.w
-	move.l %d2,-(%sp)
-	move.l %a5,-(%sp)
-	jsr (%a2)
-	lea (20,%sp),%sp
-	jsr (%a4)
+	jsr (%a5)
 	clr.l -(%sp)
-	jsr (%a3)
+	jsr (%a4)
 	addq.l #4,%sp
-	jra .L12
-.L11:
+	jra .L22
+.L21:
 	move.l sprite,%a0
 	moveq #-1,%d0
 	move.l %d0,2692(%a0)
@@ -244,31 +387,35 @@ __Z9basicmainv:
 	move.l %d0,3460(%a0)
 	move.l %d0,3652(%a0)
 	clr.l -(%sp)
-	move.l %d7,%a0
-	jsr (%a0)
+	jsr rapDebugSetVisible
 	addq.l #4,%sp
-	pea 1.w
-	pea 1.w
-	pea 7.w
-	move.l %d3,-(%sp)
-	move.l %d4,-(%sp)
-	jsr (%a2)
-	lea (20,%sp),%sp
-	pea 1.w
-	pea 1.w
-	pea 7.w
-	move.l %d2,-(%sp)
-	move.l %a5,-(%sp)
-	jsr (%a2)
-	lea (20,%sp),%sp
-	jsr (%a4)
+	jsr (%a5)
 	clr.l -(%sp)
-	jsr (%a3)
+	jsr (%a4)
 	addq.l #4,%sp
-	jra .L12
-.L9:
+	jra .L22
+.L19:
 	jsr __Z13bgScrollRightv
-	jra .L3
+	pea 1.w
+	clr.l -(%sp)
+	pea 9.w
+	pea -500(%fp)
+	move.l %d5,-(%sp)
+	jsr (%a3)
+	lea (20,%sp),%sp
+	moveq #1,%d3
+	jra .L23
+.L17:
+	jsr __Z13bgScrollRightv
+	pea 1.w
+	clr.l -(%sp)
+	pea 9.w
+	pea -700(%fp)
+	move.l %d6,-(%sp)
+	jsr (%a3)
+	lea (20,%sp),%sp
+	moveq #1,%d2
+	jra .L24
 	.even
 	.globl	__Z10fireButtonv
 __Z10fireButtonv:
@@ -285,3 +432,4 @@ colliders:
 sprite:
 	.long	RAPTOR_sprite_table
 .lcomm __ZL4pad1,4
+.lcomm __ZL4pad2,4

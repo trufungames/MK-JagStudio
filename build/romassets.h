@@ -13,10 +13,8 @@
 #define BMP_HITBOX_ATTACK 0x897FB0
 #define BMPSCORPION 0x8981B0
 #define BMPSCORPION_clut 0x9181B0
-#define BMPSCORPIONSHADOW 0x9181D0
-#define BMPSCORPIONSHADOW_clut 0x91F1D0
-#define BMPKANO 0x91F1D0
-#define BMPKANO_clut 0x99F1D0
+#define BMPKANO 0x9181D0
+#define BMPKANO_clut 0x9981D0
 extern void *explode_sam asm("explode_sam");
 extern void *explode_sam_end asm("explode_sam_end");
 extern void *fight_sam asm("fight_sam");

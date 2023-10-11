@@ -18,6 +18,7 @@
 //            User Global Variables
 // *************************************************
 static int     pad1;
+static int 	   pad2;
 
 // *************************************************
 
@@ -32,6 +33,7 @@ void fireButton (void);
 void basicmain()
 {
 	pad1=0;
+	pad2=0;
 /*
 The formula (C-notation) to get a 16-bit color value from the red/green/blue parts is as follows:
 
@@ -56,23 +58,10 @@ jsfLoadClut((unsigned short *)(void *)(BMPSCORPION_clut),0,16);
 jsfLoadClut((unsigned short *)(void *)(BMPKANO_clut),1,16);
 
 //Scorpion animation frames
-SpriteAnimator scorpionShadowAnimator = {
-	SCORPION_SHADOW, 0.125f, BMPSCORPIONSHADOW, 0, 0
-};
-AnimationFrame scorpionShadowFrames[] = {
-	{ 80, 32, 0, 0, 6 },
-	{ 80, 32, 80, 0, 6 },
-	{ 80, 32, 160, 0, 6 },
-	{ 80, 32, 240, 0, 6 },
-	{ 80, 32, 320, 0, 6 },
-	{ 80, 32, 400, 0, 6 },
-	{ 80, 32, 480, 0, 6 }
-};
-
 SpriteAnimator scorpionAnimator = {
 	SCORPION, 0.5f, BMPSCORPION, 0, 0
 };
-AnimationFrame scorpionFrames[] = {
+AnimationFrame scorpionIdleFrames[] = {
 	{ 80, 144, 0, 0, 6 },
 	{ 80, 144, 80, 0, 6 },
 	{ 80, 144, 160, 0, 6 },
@@ -81,12 +70,24 @@ AnimationFrame scorpionFrames[] = {
 	{ 80, 144, 400, 0, 6 },
 	{ 80, 144, 480, 0, 6 }
 };
+AnimationFrame scorpionWalkFrames[] = {
+	{ 80, 144, 560, 0, 6 },
+	{ 80, 144, 640, 0, 6 },
+	{ 80, 144, 720, 0, 6 },
+	{ 80, 144, 800, 0, 6 },
+	{ 80, 144, 880, 0, 6 },
+	{ 80, 144, 0, 144, 6 },
+	{ 80, 144, 80, 144, 6 },
+	{ 80, 144, 160, 144, 6 },
+	{ 80, 144, 240, 144, 6 },
+	{ 80, 144, 320, 144, 6 }
+};
 
 //Kano animation frames
 SpriteAnimator kanoAnimator = {
 	KANO, 0.5f, BMPKANO, 0, 0
 };
-AnimationFrame kanoFrames[] = {
+AnimationFrame kanoIdleFrames[] = {
 	{ 80, 144, 0, 0, 5 },
 	{ 80, 144, 80, 0, 5 },
 	{ 80, 144, 160, 0, 5 },
@@ -95,21 +96,71 @@ AnimationFrame kanoFrames[] = {
 	{ 80, 144, 400, 0, 5 },
 	{ 80, 144, 480, 0, 5 }
 };
+AnimationFrame kanoWalkFrames[] = {
+	{ 80, 144, 560, 0, 6 },
+	{ 80, 144, 640, 0, 6 },
+	{ 80, 144, 720, 0, 6 },
+	{ 80, 144, 800, 0, 6 },
+	{ 80, 144, 880, 0, 6 },
+	{ 80, 144, 0, 144, 6 },
+	{ 80, 144, 80, 144, 6 },
+	{ 80, 144, 160, 144, 6 },
+	{ 80, 144, 240, 144, 6 }
+};
+
+bool player1WasWalking = false;
+bool player2WasWalking = false;
 
 	//Main Loop
 	for(;;)
 	{
 		pad1=jsfGetPad(LEFT_PAD);
+		pad2=jsfGetPad(RIGHT_PAD);
 		
 		if(pad1 & JAGPAD_LEFT)
 		{
 			bgScrollLeft();
+			updateSpriteAnimator(&scorpionAnimator, scorpionWalkFrames, SCORPION_WALK_FRAME_COUNT, true, true);
+			player1WasWalking = true;
 		}
 		else if(pad1 & JAGPAD_RIGHT)
 		{
 			bgScrollRight();
+			updateSpriteAnimator(&scorpionAnimator, scorpionWalkFrames, SCORPION_WALK_FRAME_COUNT, false, true);
+			player1WasWalking = true;
 		}		
-		
+		else
+		{
+			if (player1WasWalking)
+			{
+				player1WasWalking = false;
+				scorpionAnimator.currentFrame = 0;
+			}
+			updateSpriteAnimator(&scorpionAnimator, scorpionIdleFrames, SCORPION_IDLE_FRAME_COUNT, true, true);
+		}
+
+		if(pad2 & JAGPAD_LEFT)
+		{
+			bgScrollLeft();
+			updateSpriteAnimator(&kanoAnimator, kanoWalkFrames, KANO_WALK_FRAME_COUNT, true, true);
+			player2WasWalking = true;
+		}
+		else if(pad2 & JAGPAD_RIGHT)
+		{
+			bgScrollRight();
+			updateSpriteAnimator(&kanoAnimator, kanoWalkFrames, KANO_WALK_FRAME_COUNT, false, true);
+			player2WasWalking = true;
+		}		
+		else
+		{
+			if (player2WasWalking)
+			{
+				player2WasWalking = false;
+				kanoAnimator.currentFrame = 0;
+			}
+			updateSpriteAnimator(&kanoAnimator, kanoIdleFrames, KANO_IDLE_FRAME_COUNT, true, true);
+		}
+
 		pad1=jsfGetPadPressed(LEFT_PAD);
 		
 		if(pad1 & JAGPAD_STAR)
@@ -133,10 +184,10 @@ AnimationFrame kanoFrames[] = {
 			rapDebugSetVisible(DEBUG_HIDE);
 		}
 
-		//updateSpriteAnimator(&scorpionShadowAnimator, scorpionShadowFrames, SCORPION_IDLE_FRAME_COUNT, true, true);
-		updateSpriteAnimator(&scorpionAnimator, scorpionFrames, SCORPION_IDLE_FRAME_COUNT, true, true);
+
 		
-		updateSpriteAnimator(&kanoAnimator, kanoFrames, KANO_IDLE_FRAME_COUNT, true, true);
+		
+		
 
 		rapDebugUpdate();
 		jsfVsync(0);
