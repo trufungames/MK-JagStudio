@@ -10,6 +10,7 @@
 #include "common.h"								// This should be included in all source files
 #include "spritemovements.h"
 #include "spriteanimator.h"
+#include "fighter.h"
 #include "sound.h"
 
 
@@ -70,7 +71,12 @@ AnimationFrame scorpionIdleFrames[] = {
 	{ 80, 144, 240, 0, 6 },
 	{ 80, 144, 320, 0, 6 },
 	{ 80, 144, 400, 0, 6 },
-	{ 80, 144, 480, 0, 6 }
+	{ 80, 144, 480, 0, 6 },
+	{ 0, 0, 0, 0, 0},
+	{ 0, 0, 0, 0, 0},
+	{ 0, 0, 0, 0, 0},
+	{ 0, 0, 0, 0, 0},
+	{ 0, 0, 0, 0, 0}
 };
 AnimationFrame scorpionWalkFrames[] = {
 	{ 80, 144, 560, 0, 6 },
@@ -97,6 +103,32 @@ AnimationFrame scorpionBlockFrames[] = {
 AnimationFrame scorpionBlockDuckFrames[] = {
 	{ 80, 144, 880, 144, 3 },
 	{ 80, 144, 0, 288, 3 }
+};
+
+Fighter fighterScorpion = {
+	SCORPION, BMPSCORPION,
+	{{ 80, 144, 0, 0, 6 },  //Idle
+	{ 80, 144, 80, 0, 6 },
+	{ 80, 144, 160, 0, 6 },
+	{ 80, 144, 240, 0, 6 },
+	{ 80, 144, 320, 0, 6 },
+	{ 80, 144, 400, 0, 6 },
+	{ 80, 144, 480, 0, 6 },
+	{ 0, 0, 0, 0, 0},
+	{ 0, 0, 0, 0, 0},
+	{ 0, 0, 0, 0, 0},
+	{ 0, 0, 0, 0, 0},
+	{ 0, 0, 0, 0, 0}},
+	{{ 80, 144, 560, 0, 6 },  //Walk
+	{ 80, 144, 640, 0, 6 },
+	{ 80, 144, 720, 0, 6 },
+	{ 80, 144, 800, 0, 6 },
+	{ 80, 144, 880, 0, 6 },
+	{ 80, 144, 0, 144, 6 },
+	{ 80, 144, 80, 144, 6 },
+	{ 80, 144, 160, 144, 6 },
+	{ 80, 144, 240, 144, 6 },
+	{ 80, 144, 320, 144, 6 }}
 };
 
 //Kano animation frames
@@ -158,7 +190,26 @@ bool player2WasBlocking = false;
 				player1WasBlocking = true;
 				scorpionAnimator.currentFrame = 0;
 			}
-			updateSpriteAnimator(&scorpionAnimator, scorpionBlockFrames, SCORPION_BLOCK_FRAME_COUNT, true, false);
+
+			if (pad1 & JAGPAD_DOWN)
+			{
+				if (!player1WasDucking)
+				{
+					player1WasDucking = true;
+					scorpionAnimator.currentFrame = 0;
+				}
+
+				updateSpriteAnimator(&scorpionAnimator, scorpionBlockDuckFrames, SCORPION_BLOCK_DUCK_FRAME_COUNT, true, false);
+			}
+			else
+			{
+				if (player1WasDucking)
+				{
+					player1WasDucking = false;
+				}
+				
+				updateSpriteAnimator(&scorpionAnimator, scorpionBlockFrames, SCORPION_BLOCK_FRAME_COUNT, true, false);
+			}
 		}
 		else if(pad1 & JAGPAD_LEFT)
 		{

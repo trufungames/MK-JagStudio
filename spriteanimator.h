@@ -6,6 +6,8 @@ struct AnimationFrame {
     unsigned int ticks;
 };
 
+
+
 void animateFrame(unsigned int spriteIndex, unsigned int frame, struct AnimationFrame animationFrames[], float mulFactor, unsigned int base);
 
 struct SpriteAnimator {
