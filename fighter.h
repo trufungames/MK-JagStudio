@@ -1,13 +1,26 @@
 struct Fighter {
     unsigned int spriteIndex;
     unsigned int spriteBase;
-    struct AnimationFrame idleFrames[12];
-    struct AnimationFrame walkFrames[10];
-    struct AnimationFrame duckFrames[3];
-    struct AnimationFrame blockFrames[3];
-    struct AnimationFrame blockDuckFrames[2];
+    unsigned int IDLE_FRAME_COUNT;
+    unsigned int WALK_FRAME_COUNT;
+    unsigned int DUCK_FRAME_COUNT;
+    unsigned int BLOCK_FRAME_COUNT;
+    unsigned int BLOCK_DUCK_FRAME_COUNT;
+
+    bool playerWasWalking;
+    bool playerWasDucking;
+    bool playerWasBlocking;
+    unsigned int HB_BODY;
+    unsigned int HB_DUCK;
+    unsigned int HB_ATTACK;
+    int pad;
+    unsigned int PAD;
+    int playerMoveForwardSpeed;
+    int playerMoveBackwardSpeed;
 };
 
-void fighterInitialize(struct Fighter fighter, bool player1);
+void fighterHide(struct Fighter* fighter);
 
-void fighterHandleInput(struct Fighter fighter, )
+void fighterInitialize(struct Fighter* fighter, bool isPlayer1);
+
+void fighterUpdate(struct Fighter* fighter, struct SpriteAnimator* animator, struct AnimationFrame idleFrames[], struct AnimationFrame walkFrames[], struct AnimationFrame duckFrames[], struct AnimationFrame blockFrames[], struct AnimationFrame blockDuckFrames[]);

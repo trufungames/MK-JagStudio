@@ -30,7 +30,7 @@
 '
 ' That's all, have fun!
 '
-ROM,BMP_PG_0,gfx_clut16,ASSETS\GFX\pg_0.BMP
+ROM,BMP_PG_0,gfx_clut,ASSETS\GFX\pg_0.BMP
 ROM,BMP_MOUNTAINS,gfx_clut16,ASSETS\GFX\pg_mountains.BMP
 ROM,BMP_TEMPLE,gfx_clut16,ASSETS\GFX\pg_temple.BMP
 ROM,BMP_CLOUD1,gfx_clut16,ASSETS\GFX\pg_cloud1.BMP

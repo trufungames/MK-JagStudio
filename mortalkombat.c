@@ -20,8 +20,6 @@
 // *************************************************
 static int     pad1;
 static int 	   pad2;
-static int playerMoveForwardSpeed = 5;
-static int playerMoveBackwardSpeed = 4;
 
 // *************************************************
 
@@ -31,7 +29,6 @@ static int playerMoveBackwardSpeed = 4;
 //               User Prototypes
 // *************************************************
 void fireButton (void);
-
 
 void basicmain()
 {
@@ -57,13 +54,15 @@ rapSetClock(0);
 rapClockMode = Clock_Countup;
 
 //load cluts
-jsfLoadClut((unsigned short *)(void *)(BMPSCORPION_clut),0,16);
-jsfLoadClut((unsigned short *)(void *)(BMPKANO_clut),1,16);
+jsfLoadClut((unsigned short *)(void *)(BMP_PG_0_clut),0,112);
+jsfLoadClut((unsigned short *)(void *)(BMPSCORPION_clut),14,16);
+jsfLoadClut((unsigned short *)(void *)(BMPKANO_clut),15,16);
 
 //Scorpion animation frames
 SpriteAnimator scorpionAnimator = {
 	SCORPION, 0.5f, BMPSCORPION, 0, 0
 };
+
 AnimationFrame scorpionIdleFrames[] = {
 	{ 80, 144, 0, 0, 6 },
 	{ 80, 144, 80, 0, 6 },
@@ -105,32 +104,6 @@ AnimationFrame scorpionBlockDuckFrames[] = {
 	{ 80, 144, 0, 288, 3 }
 };
 
-Fighter fighterScorpion = {
-	SCORPION, BMPSCORPION,
-	{{ 80, 144, 0, 0, 6 },  //Idle
-	{ 80, 144, 80, 0, 6 },
-	{ 80, 144, 160, 0, 6 },
-	{ 80, 144, 240, 0, 6 },
-	{ 80, 144, 320, 0, 6 },
-	{ 80, 144, 400, 0, 6 },
-	{ 80, 144, 480, 0, 6 },
-	{ 0, 0, 0, 0, 0},
-	{ 0, 0, 0, 0, 0},
-	{ 0, 0, 0, 0, 0},
-	{ 0, 0, 0, 0, 0},
-	{ 0, 0, 0, 0, 0}},
-	{{ 80, 144, 560, 0, 6 },  //Walk
-	{ 80, 144, 640, 0, 6 },
-	{ 80, 144, 720, 0, 6 },
-	{ 80, 144, 800, 0, 6 },
-	{ 80, 144, 880, 0, 6 },
-	{ 80, 144, 0, 144, 6 },
-	{ 80, 144, 80, 144, 6 },
-	{ 80, 144, 160, 144, 6 },
-	{ 80, 144, 240, 144, 6 },
-	{ 80, 144, 320, 144, 6 }}
-};
-
 //Kano animation frames
 SpriteAnimator kanoAnimator = {
 	KANO, 0.5f, BMPKANO, 0, 0
@@ -170,12 +143,26 @@ AnimationFrame kanoBlockDuckFrames[] = {
 	{ 80, 144, 880, 144, 3 }
 };
 
-bool player1WasWalking = false;
-bool player2WasWalking = false;
-bool player1WasDucking = false;
-bool player2WasDucking = false;
-bool player1WasBlocking = false;
-bool player2WasBlocking = false;
+Fighter fighterScorpion = {
+	SCORPION, BMPSCORPION,
+	SCORPION_IDLE_FRAME_COUNT,
+	SCORPION_WALK_FRAME_COUNT,
+	SCORPION_DUCK_FRAME_COUNT,
+	SCORPION_BLOCK_FRAME_COUNT,
+	SCORPION_BLOCK_DUCK_FRAME_COUNT
+};
+
+Fighter fighterKano = {
+	KANO, BMPKANO,
+	KANO_IDLE_FRAME_COUNT,
+	KANO_WALK_FRAME_COUNT,
+	KANO_DUCK_FRAME_COUNT,
+	KANO_BLOCK_FRAME_COUNT,
+	KANO_BLOCK_DUCK_FRAME_COUNT
+};
+
+fighterInitialize(&fighterScorpion, true);
+fighterInitialize(&fighterKano, false);
 
 	//Main Loop
 	for(;;)
@@ -183,191 +170,9 @@ bool player2WasBlocking = false;
 		pad1=jsfGetPad(LEFT_PAD);
 		pad2=jsfGetPad(RIGHT_PAD);
 		
-		if (pad1 & JAGPAD_B)
-		{
-			if (!player1WasBlocking)
-			{
-				player1WasBlocking = true;
-				scorpionAnimator.currentFrame = 0;
-			}
-
-			if (pad1 & JAGPAD_DOWN)
-			{
-				if (!player1WasDucking)
-				{
-					player1WasDucking = true;
-					scorpionAnimator.currentFrame = 0;
-				}
-
-				updateSpriteAnimator(&scorpionAnimator, scorpionBlockDuckFrames, SCORPION_BLOCK_DUCK_FRAME_COUNT, true, false);
-			}
-			else
-			{
-				if (player1WasDucking)
-				{
-					player1WasDucking = false;
-				}
-				
-				updateSpriteAnimator(&scorpionAnimator, scorpionBlockFrames, SCORPION_BLOCK_FRAME_COUNT, true, false);
-			}
-		}
-		else if(pad1 & JAGPAD_LEFT)
-		{
-			updateSpriteAnimator(&scorpionAnimator, scorpionWalkFrames, SCORPION_WALK_FRAME_COUNT, true, true);
-			player1WasWalking = true;
-			player1WasDucking = false;
-			player1WasBlocking  = false;
-
-			if (sprite[SCORPION].x_ > 0)
-			{
-				sprite[SCORPION].x_ -= playerMoveBackwardSpeed;
-				sprite[P1_HB_BODY].x_ -= playerMoveBackwardSpeed;
-				sprite[P1_HB_DUCK].x_ -= playerMoveBackwardSpeed;
-				sprite[P1_HB_ATTACK].x_ -= playerMoveBackwardSpeed;
-			}
-			else
-			{
-				bgScrollLeft();
-			}
-		}
-		else if(pad1 & JAGPAD_RIGHT)
-		{
-			updateSpriteAnimator(&scorpionAnimator, scorpionWalkFrames, SCORPION_WALK_FRAME_COUNT, false, true);
-			player1WasWalking = true;
-			player1WasDucking = false;
-			player1WasBlocking = false;
-			
-			if (sprite[SCORPION].x_ < 260)
-			{
-				sprite[SCORPION].x_ += playerMoveForwardSpeed;
-				sprite[P1_HB_BODY].x_ += playerMoveForwardSpeed;
-				sprite[P1_HB_DUCK].x_ += playerMoveForwardSpeed;
-				sprite[P1_HB_ATTACK].x_ += playerMoveForwardSpeed;
-			}
-			else
-			{
-				bgScrollRight();
-			}
-		}
-		else if (pad1 & JAGPAD_DOWN)
-		{
-			if (!player1WasDucking)
-			{
-				player1WasDucking = true;
-				scorpionAnimator.currentFrame = 0;
-			}
-			updateSpriteAnimator(&scorpionAnimator, scorpionDuckFrames, SCORPION_DUCK_FRAME_COUNT, true, false);
-			sprite[P1_HB_BODY].active = R_is_inactive;
-		}
-		else
-		{
-			if (player1WasDucking)
-			{
-				updateSpriteAnimator(&scorpionAnimator, scorpionDuckFrames, SCORPION_DUCK_FRAME_COUNT, false, false);
-				
-				if (scorpionAnimator.currentFrame == 0)
-				{
-					player1WasDucking = false;
-
-					if (sprite[P1_HB_DUCK].active == R_is_active)
-					{
-						sprite[P1_HB_BODY].active = R_is_active;
-					}
-				}
-			}
-			else if (player1WasBlocking)
-			{
-				updateSpriteAnimator(&scorpionAnimator, scorpionBlockFrames, SCORPION_BLOCK_FRAME_COUNT, false, false);
-				
-				if (scorpionAnimator.currentFrame == 0)
-				{
-					player1WasBlocking = false;
-				}
-			}
-			else
-			{
-				if (player1WasWalking)
-				{
-					player1WasWalking = false;
-					scorpionAnimator.currentFrame = 0;
-				}
-				updateSpriteAnimator(&scorpionAnimator, scorpionIdleFrames, SCORPION_IDLE_FRAME_COUNT, true, true);
-			}
-		}
-
-		if(pad2 & JAGPAD_LEFT)
-		{
-			updateSpriteAnimator(&kanoAnimator, kanoWalkFrames, KANO_WALK_FRAME_COUNT, true, true);
-			player2WasWalking = true;
-			player2WasDucking = false;
-
-			if (sprite[KANO].x_ > 0)
-			{
-				sprite[KANO].x_ -= playerMoveForwardSpeed;
-				sprite[P2_HB_BODY].x_ -= playerMoveForwardSpeed;
-				sprite[P2_HB_DUCK].x_ -= playerMoveForwardSpeed;
-				sprite[P2_HB_ATTACK].x_ -= playerMoveForwardSpeed;
-			}
-			else
-			{
-				bgScrollLeft();
-			}
-		}
-		else if(pad2 & JAGPAD_RIGHT)
-		{
-			updateSpriteAnimator(&kanoAnimator, kanoWalkFrames, KANO_WALK_FRAME_COUNT, false, true);
-			player2WasWalking = true;
-			player2WasDucking = false;
-
-			if (sprite[KANO].x_ < 260)
-			{
-				sprite[KANO].x_ += playerMoveBackwardSpeed;
-				sprite[P2_HB_BODY].x_ += playerMoveBackwardSpeed;
-				sprite[P2_HB_DUCK].x_ += playerMoveBackwardSpeed;
-				sprite[P2_HB_ATTACK].x_ += playerMoveBackwardSpeed;
-			}
-			else
-			{
-				bgScrollRight();
-			}
-		}
-		else if (pad2 & JAGPAD_DOWN)
-		{
-			if (!player2WasDucking)
-			{
-				player2WasDucking = true;
-				kanoAnimator.currentFrame = 0;
-			}
-			updateSpriteAnimator(&kanoAnimator, kanoDuckFrames, KANO_DUCK_FRAME_COUNT, true, false);
-			sprite[P2_HB_BODY].active = R_is_inactive;
-		}
-		else
-		{
-			if (player2WasDucking)
-			{
-				updateSpriteAnimator(&kanoAnimator, kanoDuckFrames, KANO_DUCK_FRAME_COUNT, false, false);
-				
-				if (kanoAnimator.currentFrame == 0)
-				{
-					player2WasDucking = false;
-
-					if (sprite[P2_HB_DUCK].active == R_is_active)
-					{
-						sprite[P2_HB_BODY].active = R_is_active;
-					}
-				}
-			}
-			else
-			{
-				if (player2WasWalking)
-				{
-					player2WasWalking = false;
-					kanoAnimator.currentFrame = 0;
-				}
-				updateSpriteAnimator(&kanoAnimator, kanoIdleFrames, KANO_IDLE_FRAME_COUNT, true, true);
-			}
-		}
-
+		fighterUpdate(&fighterScorpion, &scorpionAnimator, scorpionIdleFrames, scorpionWalkFrames, scorpionDuckFrames, scorpionBlockFrames, scorpionBlockDuckFrames);
+		fighterUpdate(&fighterKano, &kanoAnimator, kanoIdleFrames, kanoWalkFrames, kanoDuckFrames, kanoBlockFrames, kanoBlockDuckFrames);
+		
 		pad1=jsfGetPadPressed(LEFT_PAD);
 		
 		if(pad1 & JAGPAD_STAR)
@@ -391,11 +196,6 @@ bool player2WasBlocking = false;
 			rapDebugSetVisible(DEBUG_HIDE);
 		}
 
-
-		
-		
-		
-
 		rapDebugUpdate();
 		jsfVsync(0);
 	}
@@ -410,7 +210,3 @@ void fireButton (void)
 {
 	sfxShoot();
 }
-
-
-
-
