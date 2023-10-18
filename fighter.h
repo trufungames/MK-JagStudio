@@ -21,6 +21,12 @@ struct Fighter {
 
 void fighterHide(struct Fighter* fighter);
 
+void fighterShow(struct Fighter* fighter);
+
+void fighterMakeSelectable(struct Fighter* fighter, bool isPlayer1);
+
 void fighterInitialize(struct Fighter* fighter, bool isPlayer1);
 
-void fighterUpdate(struct Fighter* fighter, struct SpriteAnimator* animator, struct AnimationFrame idleFrames[], struct AnimationFrame walkFrames[], struct AnimationFrame duckFrames[], struct AnimationFrame blockFrames[], struct AnimationFrame blockDuckFrames[]);
+void fighterUpdateIdle(float delta, struct Fighter *fighter, struct SpriteAnimator* animator, struct AnimationFrame idleFrames[]);
+
+void fighterUpdate(float delta, struct Fighter* fighter, struct SpriteAnimator* animator, struct AnimationFrame idleFrames[], struct AnimationFrame walkFrames[], struct AnimationFrame duckFrames[], struct AnimationFrame blockFrames[], struct AnimationFrame blockDuckFrames[], bool walkForward);

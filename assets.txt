@@ -43,8 +43,17 @@ ROM,BMP_FLAME,gfx_clut16,ASSETS\GFX\flame.BMP
 ROM,BMP_HITBOX_BODY,gfx_clut16,ASSETS\GFX\hitbox_body.BMP
 ROM,BMP_HITBOX_DUCK,gfx_clut16,ASSETS\GFX\hitbox_duck.BMP
 ROM,BMP_HITBOX_ATTACK,gfx_clut16,ASSETS\GFX\hitbox_attack.BMP
+ROM,BMPCAGE,gfx_clut,ASSETS\GFX\cage.BMP
+ROM,BMPKANG,gfx_clut,ASSETS\GFX\liukang.BMP
+ROM,BMPRAIDEN,gfx_clut,ASSETS\GFX\raiden.BMP
+ROM,BMPSUBZERO,gfx_clut,ASSETS\GFX\subzero.BMP
+ROM,BMPSONYA,gfx_clut,ASSETS\GFX\sonya.BMP
 ROM,BMPSCORPION,gfx_clut,ASSETS\GFX\scorpion.BMP
 ROM,BMPKANO,gfx_clut,ASSETS\GFX\kano.BMP
+ROM,BMP_TITLESCREEN,gfx_clut16,ASSETS\GFX\title_screen.BMP
+ROM,BMP_CHOOSEFIGHTER,gfx_clut,ASSETS\GFX\choose_your_fighter.BMP
+ROM,BMP_P1_SELECTOR,gfx_clut16,ASSETS\GFX\p1_selector.BMP
+ROM,BMP_P2_SELECTOR,gfx_clut16,ASSETS\GFX\p2_selector.BMP
 ABS,explode_sam,sfx_raw8000,ASSETS\SFX\explosion.wav
 ABS,fight_sam,sfx_raw8000,ASSETS\SFX\fight.wav
 ' End of file.

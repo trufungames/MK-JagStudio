@@ -5,14 +5,33 @@
 
 void fighterHide(struct Fighter *fighter)
 {
+    sprite[fighter->spriteIndex].active = R_is_inactive;
+}
 
+void fighterShow(struct Fighter *fighter)
+{
+    sprite[fighter->spriteIndex].active = R_is_active;
+}
+
+void fighterMakeSelectable(struct Fighter* fighter, bool isPlayer1)
+{
+    if (isPlayer1)
+    {
+        sprite[fighter->spriteIndex].x_ = 4;
+        sprite[fighter->spriteIndex].flip = R_is_normal;
+    }
+    else
+    {
+        sprite[fighter->spriteIndex].x_ = 245;
+        sprite[fighter->spriteIndex].flip = R_is_flipped;
+    }
 }
 
 void fighterInitialize(struct Fighter *fighter, bool isPlayer1)
 {
     fighter->pad = 0;
-    fighter->playerMoveForwardSpeed = 4;
-    fighter->playerMoveBackwardSpeed = 4;
+    fighter->playerMoveForwardSpeed = 4000;
+    fighter->playerMoveBackwardSpeed = 4000;
 
     fighter->playerWasWalking = false;
     fighter->playerWasDucking = false;
@@ -35,7 +54,12 @@ void fighterInitialize(struct Fighter *fighter, bool isPlayer1)
     }
 }
 
-void fighterUpdate(struct Fighter *fighter, struct SpriteAnimator* animator, struct AnimationFrame idleFrames[], struct AnimationFrame walkFrames[], struct AnimationFrame duckFrames[], struct AnimationFrame blockFrames[], struct AnimationFrame blockDuckFrames[])
+void fighterUpdateIdle(float delta, struct Fighter *fighter, struct SpriteAnimator* animator, struct AnimationFrame idleFrames[])
+{
+    updateSpriteAnimator(animator, idleFrames, fighter->IDLE_FRAME_COUNT, true, true);
+}
+
+void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* animator, struct AnimationFrame idleFrames[], struct AnimationFrame walkFrames[], struct AnimationFrame duckFrames[], struct AnimationFrame blockFrames[], struct AnimationFrame blockDuckFrames[], bool walkForward)
 {
     fighter->pad = jsfGetPad(fighter->PAD);
     
@@ -69,40 +93,40 @@ void fighterUpdate(struct Fighter *fighter, struct SpriteAnimator* animator, str
     }
     else if(fighter->pad & JAGPAD_LEFT)
     {
-        updateSpriteAnimator(animator, walkFrames, fighter->WALK_FRAME_COUNT, true, true);
+        updateSpriteAnimator(animator, walkFrames, fighter->WALK_FRAME_COUNT, walkForward, true);
         fighter->playerWasWalking = true;
         fighter->playerWasDucking = false;
         fighter->playerWasBlocking  = false;
 
         if (sprite[fighter->spriteIndex].x_ > 0)
         {
-            sprite[fighter->spriteIndex].x_ -= fighter->playerMoveBackwardSpeed;
-            sprite[fighter->HB_BODY].x_ -= fighter->playerMoveBackwardSpeed;
-            sprite[fighter->HB_DUCK].x_ -= fighter->playerMoveBackwardSpeed;
-            sprite[fighter->HB_ATTACK].x_ -= fighter->playerMoveBackwardSpeed;
+            sprite[fighter->spriteIndex].x_ -= fighter->playerMoveBackwardSpeed * delta;
+            sprite[fighter->HB_BODY].x_ -= fighter->playerMoveBackwardSpeed * delta;
+            sprite[fighter->HB_DUCK].x_ -= fighter->playerMoveBackwardSpeed * delta;
+            sprite[fighter->HB_ATTACK].x_ -= fighter->playerMoveBackwardSpeed * delta;
         }
         else
         {
-            bgScrollLeft();
+            bgScrollLeft(delta);
         }
     }
     else if(fighter->pad & JAGPAD_RIGHT)
     {
-        updateSpriteAnimator(animator, walkFrames, fighter->WALK_FRAME_COUNT, false, true);
+        updateSpriteAnimator(animator, walkFrames, fighter->WALK_FRAME_COUNT, !walkForward, true);
         fighter->playerWasWalking = true;
         fighter->playerWasDucking = false;
         fighter->playerWasBlocking = false;
         
         if (sprite[fighter->spriteIndex].x_ < 260)
         {
-            sprite[fighter->spriteIndex].x_ += fighter->playerMoveForwardSpeed;
-            sprite[fighter->HB_BODY].x_ += fighter->playerMoveForwardSpeed;
-            sprite[fighter->HB_DUCK].x_ += fighter->playerMoveForwardSpeed;
-            sprite[fighter->HB_ATTACK].x_ += fighter->playerMoveForwardSpeed;
+            sprite[fighter->spriteIndex].x_ += fighter->playerMoveForwardSpeed * delta;
+            sprite[fighter->HB_BODY].x_ += fighter->playerMoveForwardSpeed * delta;
+            sprite[fighter->HB_DUCK].x_ += fighter->playerMoveForwardSpeed * delta;
+            sprite[fighter->HB_ATTACK].x_ += fighter->playerMoveForwardSpeed * delta;
         }
         else
         {
-            bgScrollRight();
+            bgScrollRight(delta);
         }
     }
     else if (fighter->pad & JAGPAD_DOWN)

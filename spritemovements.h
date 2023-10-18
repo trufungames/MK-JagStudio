@@ -2,5 +2,5 @@
 
 void moveUp (void);
 void moveDown (void);
-void bgScrollRight (void);
-void bgScrollLeft (void);
+void bgScrollRight (float delta);
+void bgScrollLeft (float delta);
