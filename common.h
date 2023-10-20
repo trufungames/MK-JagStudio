@@ -2,26 +2,35 @@
 #include "jstudio.h"
 #include "romassets.h"
 
-#define P1_CURSOR 1
+#define P1_CURSOR 3
 #define P2_CURSOR 2
-#define BG1_TEMPLE_LEFT 7
+#define BG1_TEMPLE_LEFT 8
 #define BG1_TEMPLE_RIGHT BG1_TEMPLE_LEFT + 1
 #define BG1_BACKDROP BG1_TEMPLE_RIGHT + 1
 #define BG1_FLAME1 BG1_BACKDROP + 1
 #define BG1_FLAME2 BG1_FLAME1 + 1
-#define P1_HB_BODY 22
+#define P1_HB_BODY 33
 #define P1_HB_DUCK P1_HB_BODY + 1
 #define P1_HB_ATTACK P1_HB_DUCK + 1
 #define P2_HB_BODY P1_HB_ATTACK + 1
 #define P2_HB_DUCK P2_HB_BODY + 1
 #define P2_HB_ATTACK P2_HB_DUCK + 1
-#define SCORPION 15
+#define SCORPION 16
 #define KANO SCORPION + 1
 #define CAGE KANO + 1
 #define KANG CAGE + 1
 #define RAIDEN KANG + 1
-#define SUBZERO RAIDEN + 1
+#define LIGHTNING RAIDEN + 1
+#define SUBZERO LIGHTNING + 1
 #define SONYA SUBZERO + 1
+#define SCORPION2 SONYA + 1
+#define KANO2 SCORPION2 + 1
+#define CAGE2 KANO2 + 1
+#define KANG2 CAGE2 + 1
+#define RAIDEN2 KANG2 + 1
+#define LIGHTNING2 RAIDEN2 + 1
+#define SUBZERO2 LIGHTNING2 + 1
+#define SONYA2 SUBZERO2 + 1
 
 #define SCORPION_IDLE_FRAME_COUNT 7
 #define SCORPION_WALK_FRAME_COUNT 9

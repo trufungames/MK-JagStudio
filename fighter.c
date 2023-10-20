@@ -22,7 +22,13 @@ void fighterMakeSelectable(struct Fighter* fighter, bool isPlayer1)
     }
     else
     {
-        sprite[fighter->spriteIndex].x_ = 245;
+        sprite[fighter->spriteIndex].x_ = 243;
+
+        if (fighter->spriteIndex == CAGE2)
+        {
+            sprite[fighter->spriteIndex].x_ = 227;
+        }
+
         sprite[fighter->spriteIndex].flip = R_is_flipped;
     }
 }

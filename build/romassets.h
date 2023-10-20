@@ -27,11 +27,31 @@
 #define BMPKANO 0xB5C470
 #define BMPKANO_clut 0xBDC470
 #define BMP_TITLESCREEN 0xBDC490
-#define BMP_CHOOSEFIGHTER 0xBF0E90
-#define BMP_CHOOSEFIGHTER_clut 0xC05890
-#define BMP_P1_SELECTOR 0xC05A90
-#define BMP_P2_SELECTOR 0xC0AA90
+#define BMP_TITLESCREEN_clut 0xBF0E90
+#define BMP_CHOOSEFIGHTER 0xBF1090
+#define BMP_CHOOSEFIGHTER_clut 0xC05A90
+#define BMP_P1_SELECTOR 0xC05C90
+#define BMP_P2_SELECTOR 0xC0AC90
+#define BMP_DOTLAST 0xC0FC90
+#define BMP_LIGHTNING 0xC0FCA0
+#define BMP_LIGHTNING_clut 0xC39FA0
 extern void *explode_sam asm("explode_sam");
 extern void *explode_sam_end asm("explode_sam_end");
 extern void *fight_sam asm("fight_sam");
 extern void *fight_sam_end asm("fight_sam_end");
+extern void *select_sam asm("select_sam");
+extern void *select_sam_end asm("select_sam_end");
+extern void *johnnycage_sam asm("johnnycage_sam");
+extern void *johnnycage_sam_end asm("johnnycage_sam_end");
+extern void *kano_sam asm("kano_sam");
+extern void *kano_sam_end asm("kano_sam_end");
+extern void *raiden_sam asm("raiden_sam");
+extern void *raiden_sam_end asm("raiden_sam_end");
+extern void *liukang_sam asm("liukang_sam");
+extern void *liukang_sam_end asm("liukang_sam_end");
+extern void *scorpion_sam asm("scorpion_sam");
+extern void *scorpion_sam_end asm("scorpion_sam_end");
+extern void *subzero_sam asm("subzero_sam");
+extern void *subzero_sam_end asm("subzero_sam_end");
+extern void *sonya_sam asm("sonya_sam");
+extern void *sonya_sam_end asm("sonya_sam_end");

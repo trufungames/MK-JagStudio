@@ -50,11 +50,21 @@ ROM,BMPSUBZERO,gfx_clut,ASSETS\GFX\subzero.BMP
 ROM,BMPSONYA,gfx_clut,ASSETS\GFX\sonya.BMP
 ROM,BMPSCORPION,gfx_clut,ASSETS\GFX\scorpion.BMP
 ROM,BMPKANO,gfx_clut,ASSETS\GFX\kano.BMP
-ROM,BMP_TITLESCREEN,gfx_clut16,ASSETS\GFX\title_screen.BMP
+ROM,BMP_TITLESCREEN,gfx_clut,ASSETS\GFX\title_screen.BMP
 ROM,BMP_CHOOSEFIGHTER,gfx_clut,ASSETS\GFX\choose_your_fighter.BMP
 ROM,BMP_P1_SELECTOR,gfx_clut16,ASSETS\GFX\p1_selector.BMP
 ROM,BMP_P2_SELECTOR,gfx_clut16,ASSETS\GFX\p2_selector.BMP
+ROM,BMP_DOTLAST,gfx_clut16,ASSETS\GFX\dotlast.BMP
+ROM,BMP_LIGHTNING,gfx_clut,ASSETS\GFX\lightning.BMP
 ABS,explode_sam,sfx_raw8000,ASSETS\SFX\explosion.wav
 ABS,fight_sam,sfx_raw8000,ASSETS\SFX\fight.wav
+ABS,select_sam,sfx_raw8000,ASSETS\SFX\select.wav
+ABS,johnnycage_sam,sfx_raw8000,ASSETS\SFX\johnnycage.wav
+ABS,kano_sam,sfx_raw8000,ASSETS\SFX\kano.wav
+ABS,raiden_sam,sfx_raw8000,ASSETS\SFX\raiden.wav
+ABS,liukang_sam,sfx_raw8000,ASSETS\SFX\liukang.wav
+ABS,scorpion_sam,sfx_raw8000,ASSETS\SFX\scorpion.wav
+ABS,subzero_sam,sfx_raw8000,ASSETS\SFX\subzero.wav
+ABS,sonya_sam,sfx_raw8000,ASSETS\SFX\sonya.wav
 ' End of file.
 

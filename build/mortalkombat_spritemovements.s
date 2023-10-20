@@ -20,7 +20,7 @@ __Z13bgScrollRightf:
 	move.l 8(%fp),%d2
 	move.l sprite,%a2
 	lea ___floatsisf,%a3
-	move.w 1736(%a2),%a0
+	move.w 1928(%a2),%a0
 	move.l %a0,-(%sp)
 	jsr (%a3)
 	move.l %d0,%d3
@@ -30,7 +30,7 @@ __Z13bgScrollRightf:
 	addq.l #8,%sp
 	tst.l %d0
 	jlt .L3
-	move.w 1352(%a2),%a0
+	move.w 1544(%a2),%a0
 	move.l %a0,-(%sp)
 	jsr (%a3)
 	lea ___subsf3,%a5
@@ -41,8 +41,8 @@ __Z13bgScrollRightf:
 	lea ___fixsfsi,%a4
 	move.l %d0,-(%sp)
 	jsr (%a4)
-	move.w %d0,1352(%a2)
-	move.w 1544(%a2),%a0
+	move.w %d0,1544(%a2)
+	move.w 1736(%a2),%a0
 	move.l %a0,(%sp)
 	jsr (%a3)
 	move.l %d2,(%sp)
@@ -51,7 +51,7 @@ __Z13bgScrollRightf:
 	addq.l #4,%sp
 	move.l %d0,(%sp)
 	jsr (%a4)
-	move.w %d0,1544(%a2)
+	move.w %d0,1736(%a2)
 	move.l %d2,(%sp)
 	move.l %d2,-(%sp)
 	jsr ___addsf3
@@ -59,16 +59,6 @@ __Z13bgScrollRightf:
 	move.l %d0,%d2
 	move.l %d0,-(%sp)
 	move.l %d3,-(%sp)
-	jsr (%a5)
-	addq.l #4,%sp
-	move.l %d0,(%sp)
-	jsr (%a4)
-	move.w %d0,1736(%a2)
-	move.w 1928(%a2),%a0
-	move.l %a0,(%sp)
-	jsr (%a3)
-	move.l %d2,(%sp)
-	move.l %d0,-(%sp)
 	jsr (%a5)
 	addq.l #4,%sp
 	move.l %d0,(%sp)
@@ -83,8 +73,18 @@ __Z13bgScrollRightf:
 	addq.l #4,%sp
 	move.l %d0,(%sp)
 	jsr (%a4)
-	addq.l #4,%sp
 	move.w %d0,2120(%a2)
+	move.w 2312(%a2),%a0
+	move.l %a0,(%sp)
+	jsr (%a3)
+	move.l %d2,(%sp)
+	move.l %d0,-(%sp)
+	jsr (%a5)
+	addq.l #4,%sp
+	move.l %d0,(%sp)
+	jsr (%a4)
+	addq.l #4,%sp
+	move.w %d0,2312(%a2)
 .L3:
 	movem.l -24(%fp),#15372
 	unlk %fp
@@ -97,7 +97,7 @@ __Z12bgScrollLeftf:
 	move.l 8(%fp),%d2
 	move.l sprite,%a2
 	lea ___floatsisf,%a3
-	move.w 1736(%a2),%a0
+	move.w 1928(%a2),%a0
 	move.l %a0,-(%sp)
 	jsr (%a3)
 	move.l %d0,%d3
@@ -107,7 +107,7 @@ __Z12bgScrollLeftf:
 	addq.l #8,%sp
 	tst.l %d0
 	jgt .L9
-	move.w 1352(%a2),%a0
+	move.w 1544(%a2),%a0
 	move.l %a0,-(%sp)
 	jsr (%a3)
 	lea ___addsf3,%a4
@@ -118,8 +118,8 @@ __Z12bgScrollLeftf:
 	lea ___fixsfsi,%a5
 	move.l %d0,-(%sp)
 	jsr (%a5)
-	move.w %d0,1352(%a2)
-	move.w 1544(%a2),%a0
+	move.w %d0,1544(%a2)
+	move.w 1736(%a2),%a0
 	move.l %a0,(%sp)
 	jsr (%a3)
 	move.l %d0,(%sp)
@@ -128,7 +128,7 @@ __Z12bgScrollLeftf:
 	addq.l #4,%sp
 	move.l %d0,(%sp)
 	jsr (%a5)
-	move.w %d0,1544(%a2)
+	move.w %d0,1736(%a2)
 	move.l %d2,(%sp)
 	move.l %d2,-(%sp)
 	jsr (%a4)
@@ -136,16 +136,6 @@ __Z12bgScrollLeftf:
 	move.l %d0,%d2
 	move.l %d3,-(%sp)
 	move.l %d0,-(%sp)
-	jsr (%a4)
-	addq.l #4,%sp
-	move.l %d0,(%sp)
-	jsr (%a5)
-	move.w %d0,1736(%a2)
-	move.w 1928(%a2),%a0
-	move.l %a0,(%sp)
-	jsr (%a3)
-	move.l %d0,(%sp)
-	move.l %d2,-(%sp)
 	jsr (%a4)
 	addq.l #4,%sp
 	move.l %d0,(%sp)
@@ -160,8 +150,18 @@ __Z12bgScrollLeftf:
 	addq.l #4,%sp
 	move.l %d0,(%sp)
 	jsr (%a5)
-	addq.l #4,%sp
 	move.w %d0,2120(%a2)
+	move.w 2312(%a2),%a0
+	move.l %a0,(%sp)
+	jsr (%a3)
+	move.l %d0,(%sp)
+	move.l %d2,-(%sp)
+	jsr (%a4)
+	addq.l #4,%sp
+	move.l %d0,(%sp)
+	jsr (%a5)
+	addq.l #4,%sp
+	move.w %d0,2312(%a2)
 .L9:
 	movem.l -24(%fp),#15372
 	unlk %fp
