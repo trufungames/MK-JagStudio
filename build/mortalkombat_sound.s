@@ -1,11 +1,18 @@
 #NO_APP
 	.text
 	.even
-	.globl	__Z8sfxShootv
-__Z8sfxShootv:
+	.globl	__Z8sfxShootb
+__Z8sfxShootb:
 	link.w %fp,#0
 	move.l %a2,-(%sp)
 	move.l %d2,-(%sp)
+	tst.b 11(%fp)
+	jne .L4
+	move.l -8(%fp),%d2
+	move.l -4(%fp),%a2
+	unlk %fp
+	rts
+.L4:
 	move.l #fight_sam_end,%d2
 	sub.l #fight_sam-3,%d2
 	moveq #-4,%d0
@@ -30,11 +37,18 @@ __Z8sfxShootv:
 	unlk %fp
 	rts
 	.even
-	.globl	__Z9sfxSelectv
-__Z9sfxSelectv:
+	.globl	__Z9sfxSelectb
+__Z9sfxSelectb:
 	link.w %fp,#0
 	move.l %a2,-(%sp)
 	move.l %d2,-(%sp)
+	tst.b 11(%fp)
+	jne .L9
+	move.l -8(%fp),%d2
+	move.l -4(%fp),%a2
+	unlk %fp
+	rts
+.L9:
 	move.l #select_sam_end,%d2
 	sub.l #select_sam-3,%d2
 	moveq #-4,%d0
@@ -59,11 +73,18 @@ __Z9sfxSelectv:
 	unlk %fp
 	rts
 	.even
-	.globl	__Z8sfxFightv
-__Z8sfxFightv:
+	.globl	__Z8sfxFightb
+__Z8sfxFightb:
 	link.w %fp,#0
 	move.l %a2,-(%sp)
 	move.l %d2,-(%sp)
+	tst.b 11(%fp)
+	jne .L14
+	move.l -8(%fp),%d2
+	move.l -4(%fp),%a2
+	unlk %fp
+	rts
+.L14:
 	move.l #fight_sam_end,%d2
 	sub.l #fight_sam-3,%d2
 	moveq #-4,%d0
@@ -88,11 +109,18 @@ __Z8sfxFightv:
 	unlk %fp
 	rts
 	.even
-	.globl	__Z13sfxJohnnyCagev
-__Z13sfxJohnnyCagev:
+	.globl	__Z13sfxJohnnyCageb
+__Z13sfxJohnnyCageb:
 	link.w %fp,#0
 	move.l %a2,-(%sp)
 	move.l %d2,-(%sp)
+	tst.b 11(%fp)
+	jne .L19
+	move.l -8(%fp),%d2
+	move.l -4(%fp),%a2
+	unlk %fp
+	rts
+.L19:
 	move.l #johnnycage_sam_end,%d2
 	sub.l #johnnycage_sam-3,%d2
 	moveq #-4,%d0
@@ -117,11 +145,18 @@ __Z13sfxJohnnyCagev:
 	unlk %fp
 	rts
 	.even
-	.globl	__Z7sfxKanov
-__Z7sfxKanov:
+	.globl	__Z7sfxKanob
+__Z7sfxKanob:
 	link.w %fp,#0
 	move.l %a2,-(%sp)
 	move.l %d2,-(%sp)
+	tst.b 11(%fp)
+	jne .L24
+	move.l -8(%fp),%d2
+	move.l -4(%fp),%a2
+	unlk %fp
+	rts
+.L24:
 	move.l #kano_sam_end,%d2
 	sub.l #kano_sam-3,%d2
 	moveq #-4,%d0
@@ -146,11 +181,18 @@ __Z7sfxKanov:
 	unlk %fp
 	rts
 	.even
-	.globl	__Z9sfxRaidenv
-__Z9sfxRaidenv:
+	.globl	__Z9sfxRaidenb
+__Z9sfxRaidenb:
 	link.w %fp,#0
 	move.l %a2,-(%sp)
 	move.l %d2,-(%sp)
+	tst.b 11(%fp)
+	jne .L29
+	move.l -8(%fp),%d2
+	move.l -4(%fp),%a2
+	unlk %fp
+	rts
+.L29:
 	move.l #raiden_sam_end,%d2
 	sub.l #raiden_sam-3,%d2
 	moveq #-4,%d0
@@ -175,11 +217,18 @@ __Z9sfxRaidenv:
 	unlk %fp
 	rts
 	.even
-	.globl	__Z10sfxLiuKangv
-__Z10sfxLiuKangv:
+	.globl	__Z10sfxLiuKangb
+__Z10sfxLiuKangb:
 	link.w %fp,#0
 	move.l %a2,-(%sp)
 	move.l %d2,-(%sp)
+	tst.b 11(%fp)
+	jne .L34
+	move.l -8(%fp),%d2
+	move.l -4(%fp),%a2
+	unlk %fp
+	rts
+.L34:
 	move.l #liukang_sam_end,%d2
 	sub.l #liukang_sam-3,%d2
 	moveq #-4,%d0
@@ -204,11 +253,18 @@ __Z10sfxLiuKangv:
 	unlk %fp
 	rts
 	.even
-	.globl	__Z11sfxScorpionv
-__Z11sfxScorpionv:
+	.globl	__Z11sfxScorpionb
+__Z11sfxScorpionb:
 	link.w %fp,#0
 	move.l %a2,-(%sp)
 	move.l %d2,-(%sp)
+	tst.b 11(%fp)
+	jne .L39
+	move.l -8(%fp),%d2
+	move.l -4(%fp),%a2
+	unlk %fp
+	rts
+.L39:
 	move.l #scorpion_sam_end,%d2
 	sub.l #scorpion_sam-3,%d2
 	moveq #-4,%d0
@@ -233,11 +289,18 @@ __Z11sfxScorpionv:
 	unlk %fp
 	rts
 	.even
-	.globl	__Z10sfxSubzerov
-__Z10sfxSubzerov:
+	.globl	__Z10sfxSubzerob
+__Z10sfxSubzerob:
 	link.w %fp,#0
 	move.l %a2,-(%sp)
 	move.l %d2,-(%sp)
+	tst.b 11(%fp)
+	jne .L44
+	move.l -8(%fp),%d2
+	move.l -4(%fp),%a2
+	unlk %fp
+	rts
+.L44:
 	move.l #subzero_sam_end,%d2
 	sub.l #subzero_sam-3,%d2
 	moveq #-4,%d0
@@ -262,11 +325,18 @@ __Z10sfxSubzerov:
 	unlk %fp
 	rts
 	.even
-	.globl	__Z8sfxSonyav
-__Z8sfxSonyav:
+	.globl	__Z8sfxSonyab
+__Z8sfxSonyab:
 	link.w %fp,#0
 	move.l %a2,-(%sp)
 	move.l %d2,-(%sp)
+	tst.b 11(%fp)
+	jne .L49
+	move.l -8(%fp),%d2
+	move.l -4(%fp),%a2
+	unlk %fp
+	rts
+.L49:
 	move.l #sonya_sam_end,%d2
 	sub.l #sonya_sam-3,%d2
 	moveq #-4,%d0

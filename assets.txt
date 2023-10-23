@@ -56,6 +56,9 @@ ROM,BMP_P1_SELECTOR,gfx_clut16,ASSETS\GFX\p1_selector.BMP
 ROM,BMP_P2_SELECTOR,gfx_clut16,ASSETS\GFX\p2_selector.BMP
 ROM,BMP_DOTLAST,gfx_clut16,ASSETS\GFX\dotlast.BMP
 ROM,BMP_LIGHTNING,gfx_clut,ASSETS\GFX\lightning.BMP
+ROM,BMP_BG_STONE,gfx_clut,ASSETS\GFX\bg_stone.BMP
+ROM,BMP_BATTLE,gfx_clut,ASSETS\GFX\bg_battle.BMP
+
 ABS,explode_sam,sfx_raw8000,ASSETS\SFX\explosion.wav
 ABS,fight_sam,sfx_raw8000,ASSETS\SFX\fight.wav
 ABS,select_sam,sfx_raw8000,ASSETS\SFX\select.wav

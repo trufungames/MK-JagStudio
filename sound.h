@@ -1,12 +1,12 @@
 
 
-void sfxShoot(void);
-void sfxSelect(void);
-void sfxFight(void);
-void sfxJohnnyCage(void);
-void sfxKano(void);
-void sfxRaiden(void);
-void sfxLiuKang(void);
-void sfxScorpion(void);
-void sfxSubzero(void);
-void sfxSonya(void);
+void sfxShoot(bool enableSFX);
+void sfxSelect(bool enableSFX);
+void sfxFight(bool enableSFX);
+void sfxJohnnyCage(bool enableSFX);
+void sfxKano(bool enableSFX);
+void sfxRaiden(bool enableSFX);
+void sfxLiuKang(bool enableSFX);
+void sfxScorpion(bool enableSFX);
+void sfxSubzero(bool enableSFX);
+void sfxSonya(bool enableSFX);

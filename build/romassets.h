@@ -35,6 +35,10 @@
 #define BMP_DOTLAST 0xC0FC90
 #define BMP_LIGHTNING 0xC0FCA0
 #define BMP_LIGHTNING_clut 0xC39FA0
+#define BMP_BG_STONE 0xC39FC0
+#define BMP_BG_STONE_clut 0xC3A7C0
+#define BMP_BATTLE 0xC3A7E0
+#define BMP_BATTLE_clut 0xC402E0
 extern void *explode_sam asm("explode_sam");
 extern void *explode_sam_end asm("explode_sam_end");
 extern void *fight_sam asm("fight_sam");

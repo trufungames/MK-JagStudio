@@ -21,12 +21,14 @@
 static int pad1;
 static int pad2;
 static int ticksPerSec = 60;
-static int lastTicks = 0;
+int lastTicks = 0;
 static int currentScreen = 0;  //0 = Attract Mode, 1 = Choose Your Fighter, 2 = Fight
-static int p1Cursor = 1;
-static int p2Cursor = 2; 
-static bool onScreenChooseFighter = false;
+int p1Cursor = 1;
+int p2Cursor = 2; 
+bool onScreenChooseFighter = false;
+bool onScreenVsBattle = false;
 static int BLACKPAL[128];
+
 
 //Scorpion animation frames
 static SpriteAnimator cageAnimator = {
@@ -523,6 +525,7 @@ static Fighter fighterSonya2 = {
 //               User Prototypes
 // *************************************************
 void switchScreenChooseFighter();
+void switchScreenVsBattle();
 void SetPlayerPalettes();
 
 void basicmain()
@@ -534,6 +537,11 @@ void basicmain()
 		ticksPerSec = 50;
 	}
 	lastTicks = 0;
+	bool enableSFX = false;
+	int myTicks = 0;
+	int p1Selected = -1;
+	int p2Selected = -1;
+	bool chooseFighterDone = false;
 /*
 The formula (C-notation) to get a 16-bit color value from the red/green/blue parts is as follows:
 
@@ -645,46 +653,49 @@ int gameStartTicks = rapTicks;
 
 			bool p1CursorChanged = false;
 
-			if (pad1 & JAGPAD_LEFT)
+			if (p1Selected == -1)
 			{
-				p1CursorChanged = true;
-				p1Cursor--;
+				if (pad1 & JAGPAD_LEFT)
+				{
+					p1CursorChanged = true;
+					p1Cursor--;
 
-				if (p1Cursor < 0)
-					p1Cursor = 3;
-				else if (p1Cursor == 3)
-					p1Cursor = 6;
-			}
-			else if (pad1 & JAGPAD_RIGHT)
-			{
-				p1CursorChanged = true;
-				p1Cursor++;
+					if (p1Cursor < 0)
+						p1Cursor = 3;
+					else if (p1Cursor == 3)
+						p1Cursor = 6;
+				}
+				else if (pad1 & JAGPAD_RIGHT)
+				{
+					p1CursorChanged = true;
+					p1Cursor++;
 
-				if (p1Cursor == 4)
-					p1Cursor = 0;
-				else if (p1Cursor == 7)
-					p1Cursor = 4;
-			}
-			else if (pad1 & JAGPAD_UP)
-			{
-				p1CursorChanged = true;
-				if (p1Cursor == 4)
-					p1Cursor = 1;
-				else if (p1Cursor == 6)
-					p1Cursor = 2;
-			}
-			else if (pad1 & JAGPAD_DOWN)
-			{
-				p1CursorChanged = true;
-				if (p1Cursor == 1)
-					p1Cursor = 4;
-				else if (p1Cursor == 2)
-					p1Cursor = 6;
+					if (p1Cursor == 4)
+						p1Cursor = 0;
+					else if (p1Cursor == 7)
+						p1Cursor = 4;
+				}
+				else if (pad1 & JAGPAD_UP)
+				{
+					p1CursorChanged = true;
+					if (p1Cursor == 4)
+						p1Cursor = 1;
+					else if (p1Cursor == 6)
+						p1Cursor = 2;
+				}
+				else if (pad1 & JAGPAD_DOWN)
+				{
+					p1CursorChanged = true;
+					if (p1Cursor == 1)
+						p1Cursor = 4;
+					else if (p1Cursor == 2)
+						p1Cursor = 6;
+				}
 			}
 
 			if (p1CursorChanged)
 			{
-				sfxSelect();
+				sfxSelect(enableSFX);
 				//cursor changed, so let's move the cursor and show the fighter
 				fighterHide(&fighterCage);
 				fighterHide(&fighterKano);
@@ -733,46 +744,49 @@ int gameStartTicks = rapTicks;
 
 			bool p2CursorChanged = false;
 
-			if (pad2 & JAGPAD_LEFT)
+			if (p2Selected == -1)
 			{
-				p2CursorChanged = true;
-				p2Cursor--;
+				if (pad2 & JAGPAD_LEFT)
+				{
+					p2CursorChanged = true;
+					p2Cursor--;
 
-				if (p2Cursor < 0)
-					p2Cursor = 3;
-				else if (p2Cursor == 3)
-					p2Cursor = 6;
-			}
-			else if (pad2 & JAGPAD_RIGHT)
-			{
-				p2CursorChanged = true;
-				p2Cursor++;
+					if (p2Cursor < 0)
+						p2Cursor = 3;
+					else if (p2Cursor == 3)
+						p2Cursor = 6;
+				}
+				else if (pad2 & JAGPAD_RIGHT)
+				{
+					p2CursorChanged = true;
+					p2Cursor++;
 
-				if (p2Cursor == 4)
-					p2Cursor = 0;
-				else if (p2Cursor == 7)
-					p2Cursor = 4;
-			}
-			else if (pad2 & JAGPAD_UP)
-			{
-				p2CursorChanged = true;
-				if (p2Cursor == 4)
-					p2Cursor = 1;
-				else if (p2Cursor == 6)
-					p2Cursor = 2;
-			}
-			else if (pad2 & JAGPAD_DOWN)
-			{
-				p2CursorChanged = true;
-				if (p2Cursor == 1)
-					p2Cursor = 4;
-				else if (p2Cursor == 2)
-					p2Cursor = 6;
+					if (p2Cursor == 4)
+						p2Cursor = 0;
+					else if (p2Cursor == 7)
+						p2Cursor = 4;
+				}
+				else if (pad2 & JAGPAD_UP)
+				{
+					p2CursorChanged = true;
+					if (p2Cursor == 4)
+						p2Cursor = 1;
+					else if (p2Cursor == 6)
+						p2Cursor = 2;
+				}
+				else if (pad2 & JAGPAD_DOWN)
+				{
+					p2CursorChanged = true;
+					if (p2Cursor == 1)
+						p2Cursor = 4;
+					else if (p2Cursor == 2)
+						p2Cursor = 6;
+				}
 			}
 
 			if (p2CursorChanged)
 			{
-				sfxSelect();
+				sfxSelect(enableSFX);
 				//cursor changed, so let's move the cursor and show the fighter
 				fighterHide(&fighterCage2);
 				fighterHide(&fighterKano2);
@@ -821,59 +835,86 @@ int gameStartTicks = rapTicks;
 
 			if (pad1 & JAGPAD_C || pad1 & JAGPAD_B || pad1 & JAGPAD_A)
 			{
+				p1Selected = p1Cursor;
+				sprite[P1_CURSOR].active = R_is_inactive;
+
 				switch (p1Cursor)
 				{
 					case 0:
-						sfxJohnnyCage();
+						sfxJohnnyCage(enableSFX);
 						break;
 					case 1:
-						sfxKano();
+						sfxKano(enableSFX);
 						break;
 					case 2:
-						sfxSubzero();
+						sfxSubzero(enableSFX);
 						break;
 					case 3:
-						sfxSonya();
+						sfxSonya(enableSFX);
 						break;
 					case 4:
-						sfxRaiden();
+						sfxRaiden(enableSFX);
 						break;
 					case 5:
-						sfxLiuKang();
+						sfxLiuKang(enableSFX);
 						break;
 					case 6:
-						sfxScorpion();
+						sfxScorpion(enableSFX);
 						break;
 				}
 			}
 
 			if (pad2 & JAGPAD_C || pad2 & JAGPAD_B || pad2 & JAGPAD_A)
 			{
+				p2Selected = p2Cursor;
+				sprite[P2_CURSOR].active = R_is_inactive;
+
 				switch (p2Cursor)
 				{
 					case 0:
-						sfxJohnnyCage();
+						sfxJohnnyCage(enableSFX);
 						break;
 					case 1:
-						sfxKano();
+						sfxKano(enableSFX);
 						break;
 					case 2:
-						sfxSubzero();
+						sfxSubzero(enableSFX);
 						break;
 					case 3:
-						sfxSonya();
+						sfxSonya(enableSFX);
 						break;
 					case 4:
-						sfxRaiden();
+						sfxRaiden(enableSFX);
 						break;
 					case 5:
-						sfxLiuKang();
+						sfxLiuKang(enableSFX);
 						break;
 					case 6:
-						sfxScorpion();
+						sfxScorpion(enableSFX);
 						break;
 				}
 			}
+
+			if (!chooseFighterDone && p1Selected > -1 && p2Selected > -1)
+			{
+				chooseFighterDone = true;
+				myTicks = rapTicks;
+			}
+			
+			if (chooseFighterDone && rapTicks > myTicks + 120)
+			{
+				for (int i = 0; i < 60; i++)
+				{
+					rapFadeClut(0,256,BLACKPAL);
+					jsfVsync(0);
+				}
+
+				switchScreenVsBattle();
+			}
+		}
+		else if (onScreenVsBattle)
+		{
+
 		}
 		else if (currentScreen == 2)
 		{
@@ -957,6 +998,15 @@ void switchScreenChooseFighter()
 	rapSetActiveList(1);
 	//currentScreen = 1;
 	onScreenChooseFighter = true;
+}
+
+void switchScreenVsBattle()
+{
+	jsfLoadClut((unsigned short *)(void *)(BMP_BATTLE_clut),0,16);
+	jsfLoadClut((unsigned short *)(void *)(BMP_BG_STONE_clut),2,16);
+	rapSetActiveList(2);
+	onScreenChooseFighter = false;
+	onScreenVsBattle = true;
 }
 
 void SetPlayerPalettes()
