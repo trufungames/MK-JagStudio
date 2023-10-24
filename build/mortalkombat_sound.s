@@ -37,8 +37,8 @@ __Z8sfxShootb:
 	unlk %fp
 	rts
 	.even
-	.globl	__Z9sfxSelectb
-__Z9sfxSelectb:
+	.globl	__Z8sfxFightb
+__Z8sfxFightb:
 	link.w %fp,#0
 	move.l %a2,-(%sp)
 	move.l %d2,-(%sp)
@@ -49,42 +49,6 @@ __Z9sfxSelectb:
 	unlk %fp
 	rts
 .L9:
-	move.l #select_sam_end,%d2
-	sub.l #select_sam-3,%d2
-	moveq #-4,%d0
-	and.l %d0,%d2
-	clr.l -(%sp)
-	pea 5.w
-	move.l %d2,-(%sp)
-	pea select_sam
-	pea 1.w
-	lea zeroPlaySample,%a2
-	jsr (%a2)
-	lea (16,%sp),%sp
-	clr.l (%sp)
-	pea 5.w
-	move.l %d2,-(%sp)
-	pea select_sam
-	pea 2.w
-	jsr (%a2)
-	lea (20,%sp),%sp
-	move.l -8(%fp),%d2
-	move.l -4(%fp),%a2
-	unlk %fp
-	rts
-	.even
-	.globl	__Z8sfxFightb
-__Z8sfxFightb:
-	link.w %fp,#0
-	move.l %a2,-(%sp)
-	move.l %d2,-(%sp)
-	tst.b 11(%fp)
-	jne .L14
-	move.l -8(%fp),%d2
-	move.l -4(%fp),%a2
-	unlk %fp
-	rts
-.L14:
 	move.l #fight_sam_end,%d2
 	sub.l #fight_sam-3,%d2
 	moveq #-4,%d0
@@ -115,12 +79,12 @@ __Z13sfxJohnnyCageb:
 	move.l %a2,-(%sp)
 	move.l %d2,-(%sp)
 	tst.b 11(%fp)
-	jne .L19
+	jne .L14
 	move.l -8(%fp),%d2
 	move.l -4(%fp),%a2
 	unlk %fp
 	rts
-.L19:
+.L14:
 	move.l #johnnycage_sam_end,%d2
 	sub.l #johnnycage_sam-3,%d2
 	moveq #-4,%d0
@@ -151,12 +115,12 @@ __Z7sfxKanob:
 	move.l %a2,-(%sp)
 	move.l %d2,-(%sp)
 	tst.b 11(%fp)
-	jne .L24
+	jne .L19
 	move.l -8(%fp),%d2
 	move.l -4(%fp),%a2
 	unlk %fp
 	rts
-.L24:
+.L19:
 	move.l #kano_sam_end,%d2
 	sub.l #kano_sam-3,%d2
 	moveq #-4,%d0
@@ -187,12 +151,12 @@ __Z9sfxRaidenb:
 	move.l %a2,-(%sp)
 	move.l %d2,-(%sp)
 	tst.b 11(%fp)
-	jne .L29
+	jne .L24
 	move.l -8(%fp),%d2
 	move.l -4(%fp),%a2
 	unlk %fp
 	rts
-.L29:
+.L24:
 	move.l #raiden_sam_end,%d2
 	sub.l #raiden_sam-3,%d2
 	moveq #-4,%d0
@@ -223,12 +187,12 @@ __Z10sfxLiuKangb:
 	move.l %a2,-(%sp)
 	move.l %d2,-(%sp)
 	tst.b 11(%fp)
-	jne .L34
+	jne .L29
 	move.l -8(%fp),%d2
 	move.l -4(%fp),%a2
 	unlk %fp
 	rts
-.L34:
+.L29:
 	move.l #liukang_sam_end,%d2
 	sub.l #liukang_sam-3,%d2
 	moveq #-4,%d0
@@ -259,12 +223,12 @@ __Z11sfxScorpionb:
 	move.l %a2,-(%sp)
 	move.l %d2,-(%sp)
 	tst.b 11(%fp)
-	jne .L39
+	jne .L34
 	move.l -8(%fp),%d2
 	move.l -4(%fp),%a2
 	unlk %fp
 	rts
-.L39:
+.L34:
 	move.l #scorpion_sam_end,%d2
 	sub.l #scorpion_sam-3,%d2
 	moveq #-4,%d0
@@ -295,12 +259,12 @@ __Z10sfxSubzerob:
 	move.l %a2,-(%sp)
 	move.l %d2,-(%sp)
 	tst.b 11(%fp)
-	jne .L44
+	jne .L39
 	move.l -8(%fp),%d2
 	move.l -4(%fp),%a2
 	unlk %fp
 	rts
-.L44:
+.L39:
 	move.l #subzero_sam_end,%d2
 	sub.l #subzero_sam-3,%d2
 	moveq #-4,%d0
@@ -331,12 +295,12 @@ __Z8sfxSonyab:
 	move.l %a2,-(%sp)
 	move.l %d2,-(%sp)
 	tst.b 11(%fp)
-	jne .L49
+	jne .L44
 	move.l -8(%fp),%d2
 	move.l -4(%fp),%a2
 	unlk %fp
 	rts
-.L49:
+.L44:
 	move.l #sonya_sam_end,%d2
 	sub.l #sonya_sam-3,%d2
 	moveq #-4,%d0
@@ -353,6 +317,114 @@ __Z8sfxSonyab:
 	pea 6.w
 	move.l %d2,-(%sp)
 	pea sonya_sam
+	pea 2.w
+	jsr (%a2)
+	lea (20,%sp),%sp
+	move.l -8(%fp),%d2
+	move.l -4(%fp),%a2
+	unlk %fp
+	rts
+	.even
+	.globl	__Z11sfxP1Cursorb
+__Z11sfxP1Cursorb:
+	link.w %fp,#0
+	move.l %a2,-(%sp)
+	move.l %d2,-(%sp)
+	tst.b 11(%fp)
+	jne .L49
+	move.l -8(%fp),%d2
+	move.l -4(%fp),%a2
+	unlk %fp
+	rts
+.L49:
+	move.l #p1cursor_sam_end,%d2
+	sub.l #p1cursor_sam-3,%d2
+	moveq #-4,%d0
+	and.l %d0,%d2
+	clr.l -(%sp)
+	pea 6.w
+	move.l %d2,-(%sp)
+	pea p1cursor_sam
+	pea 1.w
+	lea zeroPlaySample,%a2
+	jsr (%a2)
+	lea (16,%sp),%sp
+	clr.l (%sp)
+	pea 6.w
+	move.l %d2,-(%sp)
+	pea p1cursor_sam
+	pea 2.w
+	jsr (%a2)
+	lea (20,%sp),%sp
+	move.l -8(%fp),%d2
+	move.l -4(%fp),%a2
+	unlk %fp
+	rts
+	.even
+	.globl	__Z11sfxP2Cursorb
+__Z11sfxP2Cursorb:
+	link.w %fp,#0
+	move.l %a2,-(%sp)
+	move.l %d2,-(%sp)
+	tst.b 11(%fp)
+	jne .L54
+	move.l -8(%fp),%d2
+	move.l -4(%fp),%a2
+	unlk %fp
+	rts
+.L54:
+	move.l #p2cursor_sam_end,%d2
+	sub.l #p2cursor_sam-3,%d2
+	moveq #-4,%d0
+	and.l %d0,%d2
+	clr.l -(%sp)
+	pea 6.w
+	move.l %d2,-(%sp)
+	pea p2cursor_sam
+	pea 1.w
+	lea zeroPlaySample,%a2
+	jsr (%a2)
+	lea (16,%sp),%sp
+	clr.l (%sp)
+	pea 6.w
+	move.l %d2,-(%sp)
+	pea p2cursor_sam
+	pea 2.w
+	jsr (%a2)
+	lea (20,%sp),%sp
+	move.l -8(%fp),%d2
+	move.l -4(%fp),%a2
+	unlk %fp
+	rts
+	.even
+	.globl	__Z7sfxGongb
+__Z7sfxGongb:
+	link.w %fp,#0
+	move.l %a2,-(%sp)
+	move.l %d2,-(%sp)
+	tst.b 11(%fp)
+	jne .L59
+	move.l -8(%fp),%d2
+	move.l -4(%fp),%a2
+	unlk %fp
+	rts
+.L59:
+	move.l #gong_sam_end,%d2
+	sub.l #gong_sam-3,%d2
+	moveq #-4,%d0
+	and.l %d0,%d2
+	clr.l -(%sp)
+	pea 6.w
+	move.l %d2,-(%sp)
+	pea gong_sam
+	pea 1.w
+	lea zeroPlaySample,%a2
+	jsr (%a2)
+	lea (16,%sp),%sp
+	clr.l (%sp)
+	pea 6.w
+	move.l %d2,-(%sp)
+	pea gong_sam
 	pea 2.w
 	jsr (%a2)
 	lea (20,%sp),%sp

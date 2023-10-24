@@ -81,10 +81,12 @@ __Z25switchScreenChooseFighterv:
 	unlk %fp
 	rts
 	.even
-	.globl	__Z20switchScreenVsBattlev
-__Z20switchScreenVsBattlev:
+	.globl	__Z20switchScreenVsBattleii
+__Z20switchScreenVsBattleii:
 	link.w %fp,#0
-	move.l %a2,-(%sp)
+	movem.l #12320,-(%sp)
+	move.l 8(%fp),%d3
+	move.l 12(%fp),%d2
 	pea 16.w
 	clr.l -(%sp)
 	move.l #12845792,-(%sp)
@@ -93,17 +95,242 @@ __Z20switchScreenVsBattlev:
 	addq.l #8,%sp
 	moveq #16,%d0
 	move.l %d0,(%sp)
-	pea 2.w
+	pea 1.w
 	move.l #12822464,-(%sp)
 	jsr (%a2)
-	addq.l #8,%sp
-	moveq #2,%d1
-	move.l %d1,(%sp)
+	move.l sprite,%a0
+	moveq #-1,%d0
+	move.l %d0,11908(%a0)
+	move.l %d0,12100(%a0)
+	move.l %d0,12868(%a0)
+	move.l %d0,12484(%a0)
+	move.l %d0,12292(%a0)
+	move.l %d0,13060(%a0)
+	move.l %d0,12676(%a0)
+	move.l %d0,13252(%a0)
+	move.l %d0,13444(%a0)
+	move.l %d0,14212(%a0)
+	move.l %d0,13828(%a0)
+	move.l %d0,13636(%a0)
+	move.l %d0,14404(%a0)
+	move.l %d0,14020(%a0)
+	lea (12,%sp),%sp
+	moveq #6,%d0
+	cmp.l %d3,%d0
+	jcs .L3
+	add.l %d3,%d3
+	move.w .L11(%pc,%d3.l),%d0
+	jmp %pc@(2,%d0:w)
+.L11:
+	.word .L4-.L11
+	.word .L5-.L11
+	.word .L6-.L11
+	.word .L7-.L11
+	.word .L8-.L11
+	.word .L9-.L11
+	.word .L10-.L11
+.L10:
+	pea 16.w
+	pea 4.w
+	move.l #12858752,-(%sp)
+	jsr (%a2)
+	move.l sprite,%a0
+	moveq #1,%d0
+	move.l %d0,13060(%a0)
+	lea (12,%sp),%sp
+.L3:
+	moveq #6,%d0
+	cmp.l %d2,%d0
+	jcs .L12
+	add.l %d2,%d2
+	move.w .L20(%pc,%d2.l),%d0
+	jmp %pc@(2,%d0:w)
+.L20:
+	.word .L13-.L20
+	.word .L14-.L20
+	.word .L15-.L20
+	.word .L16-.L20
+	.word .L17-.L20
+	.word .L18-.L20
+	.word .L19-.L20
+.L19:
+	pea 16.w
+	pea 5.w
+	move.l #12858752,-(%sp)
+	jsr (%a2)
+	move.l sprite,%a0
+	moveq #1,%d0
+	move.l %d0,14404(%a0)
+	lea (12,%sp),%sp
+.L12:
+	pea 2.w
 	jsr rapSetActiveList
 	clr.b _onScreenChooseFighter
 	move.b #1,_onScreenVsBattle
 	addq.l #4,%sp
-	move.l -4(%fp),%a2
+	movem.l -12(%fp),#1036
+	unlk %fp
+	rts
+.L18:
+	pea 16.w
+	pea 5.w
+	move.l #12853568,-(%sp)
+	jsr (%a2)
+	move.l sprite,%a0
+	moveq #1,%d0
+	move.l %d0,14212(%a0)
+	lea (12,%sp),%sp
+	pea 2.w
+	jsr rapSetActiveList
+	clr.b _onScreenChooseFighter
+	move.b #1,_onScreenVsBattle
+	addq.l #4,%sp
+	movem.l -12(%fp),#1036
+	unlk %fp
+	rts
+.L4:
+	pea 16.w
+	pea 4.w
+	move.l #12848384,-(%sp)
+	jsr (%a2)
+	move.l sprite,%a0
+	moveq #1,%d0
+	move.l %d0,11908(%a0)
+	lea (12,%sp),%sp
+	jra .L3
+.L5:
+	pea 16.w
+	pea 4.w
+	move.l #12850976,-(%sp)
+	jsr (%a2)
+	move.l sprite,%a0
+	moveq #1,%d0
+	move.l %d0,12100(%a0)
+	lea (12,%sp),%sp
+	jra .L3
+.L6:
+	pea 16.w
+	pea 4.w
+	move.l #12863936,-(%sp)
+	jsr (%a2)
+	move.l sprite,%a0
+	moveq #1,%d0
+	move.l %d0,12292(%a0)
+	lea (12,%sp),%sp
+	jra .L3
+.L7:
+	pea 16.w
+	pea 4.w
+	move.l #12861344,-(%sp)
+	jsr (%a2)
+	move.l sprite,%a0
+	moveq #1,%d0
+	move.l %d0,12484(%a0)
+	lea (12,%sp),%sp
+	jra .L3
+.L8:
+	pea 16.w
+	pea 4.w
+	move.l #12856160,-(%sp)
+	jsr (%a2)
+	move.l sprite,%a0
+	moveq #1,%d0
+	move.l %d0,12676(%a0)
+	lea (12,%sp),%sp
+	jra .L3
+.L9:
+	pea 16.w
+	pea 4.w
+	move.l #12853568,-(%sp)
+	jsr (%a2)
+	move.l sprite,%a0
+	moveq #1,%d0
+	move.l %d0,12868(%a0)
+	lea (12,%sp),%sp
+	jra .L3
+.L13:
+	pea 16.w
+	pea 5.w
+	move.l #12848384,-(%sp)
+	jsr (%a2)
+	move.l sprite,%a0
+	moveq #1,%d0
+	move.l %d0,13252(%a0)
+	lea (12,%sp),%sp
+	pea 2.w
+	jsr rapSetActiveList
+	clr.b _onScreenChooseFighter
+	move.b #1,_onScreenVsBattle
+	addq.l #4,%sp
+	movem.l -12(%fp),#1036
+	unlk %fp
+	rts
+.L14:
+	pea 16.w
+	pea 5.w
+	move.l #12850976,-(%sp)
+	jsr (%a2)
+	move.l sprite,%a0
+	moveq #1,%d0
+	move.l %d0,13444(%a0)
+	lea (12,%sp),%sp
+	pea 2.w
+	jsr rapSetActiveList
+	clr.b _onScreenChooseFighter
+	move.b #1,_onScreenVsBattle
+	addq.l #4,%sp
+	movem.l -12(%fp),#1036
+	unlk %fp
+	rts
+.L15:
+	pea 16.w
+	pea 5.w
+	move.l #12863936,-(%sp)
+	jsr (%a2)
+	move.l sprite,%a0
+	moveq #1,%d0
+	move.l %d0,13636(%a0)
+	lea (12,%sp),%sp
+	pea 2.w
+	jsr rapSetActiveList
+	clr.b _onScreenChooseFighter
+	move.b #1,_onScreenVsBattle
+	addq.l #4,%sp
+	movem.l -12(%fp),#1036
+	unlk %fp
+	rts
+.L16:
+	pea 16.w
+	pea 5.w
+	move.l #12861344,-(%sp)
+	jsr (%a2)
+	move.l sprite,%a0
+	moveq #1,%d0
+	move.l %d0,13828(%a0)
+	lea (12,%sp),%sp
+	pea 2.w
+	jsr rapSetActiveList
+	clr.b _onScreenChooseFighter
+	move.b #1,_onScreenVsBattle
+	addq.l #4,%sp
+	movem.l -12(%fp),#1036
+	unlk %fp
+	rts
+.L17:
+	pea 16.w
+	pea 5.w
+	move.l #12856160,-(%sp)
+	jsr (%a2)
+	move.l sprite,%a0
+	moveq #1,%d0
+	move.l %d0,14020(%a0)
+	lea (12,%sp),%sp
+	pea 2.w
+	jsr rapSetActiveList
+	clr.b _onScreenChooseFighter
+	move.b #1,_onScreenVsBattle
+	addq.l #4,%sp
+	movem.l -12(%fp),#1036
 	unlk %fp
 	rts
 	.even
@@ -114,27 +341,27 @@ __Z17SetPlayerPalettesv:
 	move.l %d2,-(%sp)
 	moveq #6,%d0
 	cmp.l _p1Cursor.l,%d0
-	jcs .L4
+	jcs .L24
 	move.l _p1Cursor,%d0
 	add.l %d0,%d0
-	move.w .L12(%pc,%d0.l),%d0
+	move.w .L32(%pc,%d0.l),%d0
 	jmp %pc@(2,%d0:w)
-.L12:
-	.word .L5-.L12
-	.word .L6-.L12
-	.word .L7-.L12
-	.word .L8-.L12
-	.word .L9-.L12
-	.word .L10-.L12
-	.word .L11-.L12
-.L11:
+.L32:
+	.word .L25-.L32
+	.word .L26-.L32
+	.word .L27-.L32
+	.word .L28-.L32
+	.word .L29-.L32
+	.word .L30-.L32
+	.word .L31-.L32
+.L31:
 	pea 16.w
 	pea 14.w
 	move.l #11912272,-(%sp)
 	jsr jsfLoadClut
 	addq.l #8,%sp
-	moveq #1,%d2
-	move.l %d2,(%sp)
+	moveq #1,%d1
+	move.l %d1,(%sp)
 	pea __ZL15fighterScorpion
 	jsr __Z21fighterMakeSelectableP7Fighterb
 	addq.l #4,%sp
@@ -144,23 +371,23 @@ __Z17SetPlayerPalettesv:
 	move.w #194,584(%a0)
 	move.w #117,588(%a0)
 	addq.l #4,%sp
-.L4:
+.L24:
 	move.l _p2Cursor,%d0
 	moveq #6,%d1
 	cmp.l %d0,%d1
-	jcs .L13
+	jcs .L33
 	add.l %d0,%d0
-	move.w .L21(%pc,%d0.l),%d0
+	move.w .L41(%pc,%d0.l),%d0
 	jmp %pc@(2,%d0:w)
-.L21:
-	.word .L14-.L21
-	.word .L15-.L21
-	.word .L16-.L21
-	.word .L17-.L21
-	.word .L18-.L21
-	.word .L19-.L21
-	.word .L20-.L21
-.L20:
+.L41:
+	.word .L34-.L41
+	.word .L35-.L41
+	.word .L36-.L41
+	.word .L37-.L41
+	.word .L38-.L41
+	.word .L39-.L41
+	.word .L40-.L41
+.L40:
 	pea 16.w
 	pea 15.w
 	move.l #11912272,-(%sp)
@@ -177,34 +404,34 @@ __Z17SetPlayerPalettesv:
 	move.w #117,396(%a0)
 	move.l _p2Cursor,%d0
 	addq.l #4,%sp
-.L13:
+.L33:
 	cmp.l _p1Cursor.l,%d0
-	jeq .L27
-.L3:
+	jeq .L47
+.L23:
 	move.l -8(%fp),%d2
 	move.l -4(%fp),%a2
 	unlk %fp
 	rts
-.L27:
+.L47:
 	moveq #24,%d2
 	lea rapFadeClut,%a2
-.L23:
+.L43:
 	pea __ZL8BLACKPAL
 	pea 16.w
 	pea 15.w
 	jsr (%a2)
 	subq.l #1,%d2
 	lea (12,%sp),%sp
-	jeq .L3
+	jeq .L23
 	pea __ZL8BLACKPAL
 	pea 16.w
 	pea 15.w
 	jsr (%a2)
 	subq.l #1,%d2
 	lea (12,%sp),%sp
-	jne .L23
-	jra .L3
-.L19:
+	jne .L43
+	jra .L23
+.L39:
 	pea 16.w
 	pea 15.w
 	move.l #9814992,-(%sp)
@@ -222,16 +449,16 @@ __Z17SetPlayerPalettesv:
 	move.l _p2Cursor,%d0
 	addq.l #4,%sp
 	cmp.l _p1Cursor.l,%d0
-	jne .L3
-	jra .L27
-.L5:
+	jne .L23
+	jra .L47
+.L25:
 	pea 16.w
 	pea 14.w
 	move.l #9290672,-(%sp)
 	jsr jsfLoadClut
 	addq.l #8,%sp
-	moveq #1,%d2
-	move.l %d2,(%sp)
+	moveq #1,%d1
+	move.l %d1,(%sp)
 	pea __ZL11fighterCage
 	jsr __Z21fighterMakeSelectableP7Fighterb
 	addq.l #4,%sp
@@ -241,15 +468,15 @@ __Z17SetPlayerPalettesv:
 	move.w #12,584(%a0)
 	move.w #43,588(%a0)
 	addq.l #4,%sp
-	jra .L4
-.L6:
+	jra .L24
+.L26:
 	pea 16.w
 	pea 14.w
 	move.l #12436592,-(%sp)
 	jsr jsfLoadClut
 	addq.l #8,%sp
-	moveq #1,%d1
-	move.l %d1,(%sp)
+	moveq #1,%d0
+	move.l %d0,(%sp)
 	pea __ZL11fighterKano
 	jsr __Z21fighterMakeSelectableP7Fighterb
 	addq.l #4,%sp
@@ -259,15 +486,15 @@ __Z17SetPlayerPalettesv:
 	move.w #73,584(%a0)
 	move.w #43,588(%a0)
 	addq.l #4,%sp
-	jra .L4
-.L7:
+	jra .L24
+.L27:
 	pea 16.w
 	pea 14.w
 	move.l #10863632,-(%sp)
 	jsr jsfLoadClut
 	addq.l #8,%sp
-	moveq #1,%d0
-	move.l %d0,(%sp)
+	moveq #1,%d2
+	move.l %d2,(%sp)
 	pea __ZL14fighterSubzero
 	jsr __Z21fighterMakeSelectableP7Fighterb
 	addq.l #4,%sp
@@ -277,15 +504,15 @@ __Z17SetPlayerPalettesv:
 	move.w #194,584(%a0)
 	move.w #43,588(%a0)
 	addq.l #4,%sp
-	jra .L4
-.L8:
+	jra .L24
+.L28:
 	pea 16.w
 	pea 14.w
 	move.l #11387952,-(%sp)
 	jsr jsfLoadClut
 	addq.l #8,%sp
-	moveq #1,%d2
-	move.l %d2,(%sp)
+	moveq #1,%d1
+	move.l %d1,(%sp)
 	pea __ZL12fighterSonya
 	jsr __Z21fighterMakeSelectableP7Fighterb
 	addq.l #4,%sp
@@ -295,15 +522,15 @@ __Z17SetPlayerPalettesv:
 	move.w #255,584(%a0)
 	move.w #43,588(%a0)
 	addq.l #4,%sp
-	jra .L4
-.L9:
+	jra .L24
+.L29:
 	pea 16.w
 	pea 14.w
 	move.l #10339312,-(%sp)
 	jsr jsfLoadClut
 	addq.l #8,%sp
-	moveq #1,%d1
-	move.l %d1,(%sp)
+	moveq #1,%d0
+	move.l %d0,(%sp)
 	pea __ZL13fighterRaiden
 	jsr __Z21fighterMakeSelectableP7Fighterb
 	addq.l #4,%sp
@@ -315,15 +542,15 @@ __Z17SetPlayerPalettesv:
 	moveq #1,%d1
 	move.l %d1,4036(%a0)
 	addq.l #4,%sp
-	jra .L4
-.L10:
+	jra .L24
+.L30:
 	pea 16.w
 	pea 14.w
 	move.l #9814992,-(%sp)
 	jsr jsfLoadClut
 	addq.l #8,%sp
-	moveq #1,%d0
-	move.l %d0,(%sp)
+	moveq #1,%d2
+	move.l %d2,(%sp)
 	pea __ZL11fighterKang
 	jsr __Z21fighterMakeSelectableP7Fighterb
 	addq.l #4,%sp
@@ -333,8 +560,8 @@ __Z17SetPlayerPalettesv:
 	move.w #134,584(%a0)
 	move.w #117,588(%a0)
 	addq.l #4,%sp
-	jra .L4
-.L14:
+	jra .L24
+.L34:
 	pea 16.w
 	pea 15.w
 	move.l #9290672,-(%sp)
@@ -352,9 +579,9 @@ __Z17SetPlayerPalettesv:
 	move.l _p2Cursor,%d0
 	addq.l #4,%sp
 	cmp.l _p1Cursor.l,%d0
-	jne .L3
-	jra .L27
-.L15:
+	jne .L23
+	jra .L47
+.L35:
 	pea 16.w
 	pea 15.w
 	move.l #12436592,-(%sp)
@@ -372,9 +599,9 @@ __Z17SetPlayerPalettesv:
 	move.l _p2Cursor,%d0
 	addq.l #4,%sp
 	cmp.l _p1Cursor.l,%d0
-	jne .L3
-	jra .L27
-.L16:
+	jne .L23
+	jra .L47
+.L36:
 	pea 16.w
 	pea 15.w
 	move.l #10863632,-(%sp)
@@ -392,9 +619,9 @@ __Z17SetPlayerPalettesv:
 	move.l _p2Cursor,%d0
 	addq.l #4,%sp
 	cmp.l _p1Cursor.l,%d0
-	jne .L3
-	jra .L27
-.L17:
+	jne .L23
+	jra .L47
+.L37:
 	pea 16.w
 	pea 15.w
 	move.l #11387952,-(%sp)
@@ -412,9 +639,9 @@ __Z17SetPlayerPalettesv:
 	move.l _p2Cursor,%d0
 	addq.l #4,%sp
 	cmp.l _p1Cursor.l,%d0
-	jne .L3
-	jra .L27
-.L18:
+	jne .L23
+	jra .L47
+.L38:
 	pea 16.w
 	pea 15.w
 	move.l #10339312,-(%sp)
@@ -434,8 +661,8 @@ __Z17SetPlayerPalettesv:
 	move.l _p2Cursor,%d0
 	addq.l #4,%sp
 	cmp.l _p1Cursor.l,%d0
-	jne .L3
-	jra .L27
+	jne .L23
+	jra .L47
 	.even
 	.globl	__Z9basicmainv
 __Z9basicmainv:
@@ -444,10 +671,10 @@ __Z9basicmainv:
 	clr.l __ZL4pad1
 	clr.l __ZL4pad2
 	tst.w raptor_ntsc_flag
-	jne .L30
+	jne .L50
 	moveq #50,%d0
 	move.l %d0,__ZL11ticksPerSec
-.L30:
+.L50:
 	clr.l _lastTicks
 	move.w #0,15728728
 	pea 20.w
@@ -465,10 +692,18 @@ __Z9basicmainv:
 	move.w #8,raptor_clock_mode
 	lea __ZL8BLACKPAL,%a0
 	addq.l #4,%sp
-.L31:
+.L51:
 	clr.l (%a0)+
 	cmp.l #__ZL8BLACKPAL+512,%a0
-	jne .L31
+	jne .L51
+	move.l #44863,__ZL8WHITEPAL
+	move.l #44863,__ZL8WHITEPAL+4
+	move.l #44863,__ZL8WHITEPAL+8
+	move.l #44863,__ZL8WHITEPAL+12
+	move.l #44863,__ZL8WHITEPAL+16
+	move.l #44863,__ZL8WHITEPAL+20
+	move.l #44863,__ZL8WHITEPAL+24
+	move.l #44863,__ZL8WHITEPAL+28
 	pea 256.w
 	clr.l -(%sp)
 	pea __ZL8BLACKPAL
@@ -491,14 +726,14 @@ __Z9basicmainv:
 	lea jsfGetPadPressed,%a4
 	move.l #rapDebugUpdate,%d6
 	move.l #__Z11fighterHideP7Fighter,%d5
-.L98:
+.L118:
 	move.l %a0,%a5
 	sub.l _lastTicks,%a5
 	move.l %a0,_lastTicks
 	tst.b %d2
-	jne .L32
+	jne .L52
 	moveq #60,%d2
-.L33:
+.L53:
 	move.l #12521104,-(%sp)
 	pea 256.w
 	clr.l -(%sp)
@@ -508,16 +743,16 @@ __Z9basicmainv:
 	jsr (%a2)
 	subq.l #1,%d2
 	addq.l #4,%sp
-	jne .L33
+	jne .L53
 	moveq #1,%d2
-.L32:
+.L52:
 	tst.b %d7
-	jne .L34
+	jne .L54
 	move.w raptor_ticks,%a0
 	cmp.l -10(%fp),%a0
-	jle .L34
+	jle .L54
 	moveq #60,%d7
-.L35:
+.L55:
 	pea __ZL8BLACKPAL
 	pea 256.w
 	clr.l -(%sp)
@@ -527,31 +762,34 @@ __Z9basicmainv:
 	jsr (%a2)
 	subq.l #1,%d7
 	addq.l #4,%sp
-	jne .L35
+	jne .L55
 	jsr __Z25switchScreenChooseFighterv
+	pea 1.w
+	jsr __Z7sfxGongb
+	addq.l #4,%sp
 	moveq #1,%d7
-.L34:
+.L54:
 	tst.b _onScreenChooseFighter
-	jne .L113
-.L36:
+	jne .L133
+.L56:
 	pea 1.w
 	jsr (%a4)
 	move.l %d0,__ZL4pad1
 	move.l %d0,%d1
 	and.l JAGPAD_STAR,%d1
 	addq.l #4,%sp
-	jne .L114
-.L96:
+	jne .L134
+.L116:
 	and.l JAGPAD_HASH,%d0
-	jne .L115
+	jne .L135
 	move.l %d6,%a0
 	jsr (%a0)
 	clr.l -(%sp)
 	jsr (%a2)
 	addq.l #4,%sp
 	move.w raptor_ticks,%a0
-	jra .L98
-.L113:
+	jra .L118
+.L133:
 	pea 1.w
 	jsr (%a4)
 	move.l %d0,__ZL4pad1
@@ -562,25 +800,25 @@ __Z9basicmainv:
 	addq.l #4,%sp
 	moveq #-1,%d0
 	cmp.l %d3,%d0
-	jeq .L116
-.L37:
+	jeq .L136
+.L57:
 	moveq #6,%d1
 	cmp.l _p1Cursor.l,%d1
-	jcs .L46
-.L119:
+	jcs .L66
+.L139:
 	move.l _p1Cursor,%d0
 	add.l %d0,%d0
-	move.w .L54(%pc,%d0.l),%d0
+	move.w .L74(%pc,%d0.l),%d0
 	jmp %pc@(2,%d0:w)
-.L54:
-	.word .L47-.L54
-	.word .L48-.L54
-	.word .L49-.L54
-	.word .L50-.L54
-	.word .L51-.L54
-	.word .L52-.L54
-	.word .L53-.L54
-.L115:
+.L74:
+	.word .L67-.L74
+	.word .L68-.L74
+	.word .L69-.L74
+	.word .L70-.L74
+	.word .L71-.L74
+	.word .L72-.L74
+	.word .L73-.L74
+.L135:
 	move.l sprite,%a0
 	moveq #-1,%d1
 	move.l %d1,6340(%a0)
@@ -598,23 +836,23 @@ __Z9basicmainv:
 	jsr (%a2)
 	addq.l #4,%sp
 	move.w raptor_ticks,%a0
-	jra .L98
-.L116:
+	jra .L118
+.L136:
 	move.l __ZL4pad1,%d0
 	move.l %d0,%d1
 	and.l JAGPAD_LEFT,%d1
-	jeq .L38
+	jeq .L58
 	move.l _p1Cursor,%d0
 	subq.l #1,%d0
 	move.l %d0,_p1Cursor
 	moveq #3,%d1
 	tst.l %d0
-	jlt .L117
+	jlt .L137
 	cmp.l %d0,%d1
-	jeq .L118
-.L40:
-	clr.l -(%sp)
-	jsr __Z9sfxSelectb
+	jeq .L138
+.L60:
+	pea 1.w
+	jsr __Z11sfxP1Cursorb
 	move.l #__ZL11fighterCage,(%sp)
 	move.l %d5,%a1
 	jsr (%a1)
@@ -641,32 +879,32 @@ __Z9basicmainv:
 	move.l %d0,4036(%a0)
 	addq.l #4,%sp
 	jsr __Z17SetPlayerPalettesv
-.L127:
+.L147:
 	moveq #6,%d1
 	cmp.l _p1Cursor.l,%d1
-	jcc .L119
-.L46:
+	jcc .L139
+.L66:
 	moveq #-1,%d0
 	cmp.l %d4,%d0
-	jeq .L120
-.L55:
+	jeq .L140
+.L75:
 	moveq #6,%d1
 	cmp.l _p2Cursor.l,%d1
-	jcs .L64
-.L123:
+	jcs .L84
+.L143:
 	move.l _p2Cursor,%d0
 	add.l %d0,%d0
-	move.w .L72(%pc,%d0.l),%d0
+	move.w .L92(%pc,%d0.l),%d0
 	jmp %pc@(2,%d0:w)
+.L92:
+	.word .L85-.L92
+	.word .L86-.L92
+	.word .L87-.L92
+	.word .L88-.L92
+	.word .L89-.L92
+	.word .L90-.L92
+	.word .L91-.L92
 .L72:
-	.word .L65-.L72
-	.word .L66-.L72
-	.word .L67-.L72
-	.word .L68-.L72
-	.word .L69-.L72
-	.word .L70-.L72
-	.word .L71-.L72
-.L52:
 	pea __ZL14kangIdleFrames
 	pea __ZL12kangAnimator
 	pea __ZL11fighterKang
@@ -677,23 +915,23 @@ __Z9basicmainv:
 	lea (16,%sp),%sp
 	moveq #-1,%d0
 	cmp.l %d4,%d0
-	jne .L55
-.L120:
+	jne .L75
+.L140:
 	move.l __ZL4pad2,%d0
 	move.l %d0,%d1
 	and.l JAGPAD_LEFT,%d1
-	jeq .L56
+	jeq .L76
 	move.l _p2Cursor,%d0
 	subq.l #1,%d0
 	move.l %d0,_p2Cursor
 	moveq #3,%d1
 	tst.l %d0
-	jlt .L121
+	jlt .L141
 	cmp.l %d0,%d1
-	jeq .L122
-.L58:
-	clr.l -(%sp)
-	jsr __Z9sfxSelectb
+	jeq .L142
+.L78:
+	pea 1.w
+	jsr __Z11sfxP2Cursorb
 	move.l #__ZL12fighterCage2,(%sp)
 	move.l %d5,%a0
 	jsr (%a0)
@@ -720,53 +958,53 @@ __Z9basicmainv:
 	move.l %d0,5572(%a0)
 	addq.l #4,%sp
 	jsr __Z17SetPlayerPalettesv
-.L128:
+.L148:
 	moveq #6,%d1
 	cmp.l _p2Cursor.l,%d1
-	jcc .L123
-.L64:
+	jcc .L143
+.L84:
 	move.l __ZL4pad1,%a1
 	move.l JAGPAD_C,%d0
 	move.l %a1,%d1
 	and.l %d0,%d1
-	jne .L73
-.L124:
+	jne .L93
+.L144:
 	move.l %a1,%d1
 	and.l JAGPAD_B,%d1
-	jne .L73
+	jne .L93
 	move.l %a1,%d1
 	and.l JAGPAD_A,%d1
-	jne .L73
-.L74:
+	jne .L93
+.L94:
 	move.l __ZL4pad2,%d1
 	and.l %d1,%d0
-	jne .L83
+	jne .L103
 	move.l %d1,%d0
 	and.l JAGPAD_B,%d0
-	jne .L83
+	jne .L103
 	and.l JAGPAD_A,%d1
-	jeq .L84
-.L83:
+	jeq .L104
+.L103:
 	move.l _p2Cursor,%d4
 	move.l sprite,%a0
 	moveq #-1,%d0
 	move.l %d0,388(%a0)
 	moveq #6,%d1
 	cmp.l %d4,%d1
-	jcs .L84
+	jcs .L104
 	move.l %d4,%d0
 	add.l %d4,%d0
-	move.w .L92(%pc,%d0.l),%d0
+	move.w .L112(%pc,%d0.l),%d0
 	jmp %pc@(2,%d0:w)
-.L92:
-	.word .L85-.L92
-	.word .L86-.L92
-	.word .L87-.L92
-	.word .L88-.L92
-	.word .L89-.L92
-	.word .L90-.L92
-	.word .L91-.L92
-.L51:
+.L112:
+	.word .L105-.L112
+	.word .L106-.L112
+	.word .L107-.L112
+	.word .L108-.L112
+	.word .L109-.L112
+	.word .L110-.L112
+	.word .L111-.L112
+.L71:
 	pea __ZL16raidenIdleFrames
 	pea __ZL14raidenAnimator
 	pea __ZL13fighterRaiden
@@ -784,9 +1022,9 @@ __Z9basicmainv:
 	lea (20,%sp),%sp
 	moveq #-1,%d0
 	cmp.l %d4,%d0
-	jne .L55
-	jra .L120
-.L50:
+	jne .L75
+	jra .L140
+.L70:
 	pea __ZL15sonyaIdleFrames
 	pea __ZL13sonyaAnimator
 	pea __ZL12fighterSonya
@@ -797,9 +1035,9 @@ __Z9basicmainv:
 	lea (16,%sp),%sp
 	moveq #-1,%d0
 	cmp.l %d4,%d0
-	jne .L55
-	jra .L120
-.L49:
+	jne .L75
+	jra .L140
+.L69:
 	pea __ZL17subzeroIdleFrames
 	pea __ZL15subzeroAnimator
 	pea __ZL14fighterSubzero
@@ -810,9 +1048,9 @@ __Z9basicmainv:
 	lea (16,%sp),%sp
 	moveq #-1,%d0
 	cmp.l %d4,%d0
-	jne .L55
-	jra .L120
-.L70:
+	jne .L75
+	jra .L140
+.L90:
 	pea __ZL14kangIdleFrames
 	pea __ZL13kangAnimator2
 	pea __ZL12fighterKang2
@@ -825,43 +1063,43 @@ __Z9basicmainv:
 	move.l JAGPAD_C,%d0
 	move.l %a1,%d1
 	and.l %d0,%d1
-	jeq .L124
-.L73:
+	jeq .L144
+.L93:
 	move.l _p1Cursor,%d3
 	move.l sprite,%a0
 	moveq #-1,%d1
 	move.l %d1,580(%a0)
 	moveq #6,%d1
 	cmp.l %d3,%d1
-	jcs .L74
+	jcs .L94
 	move.l %d3,%d0
 	add.l %d3,%d0
-	move.w .L82(%pc,%d0.l),%d0
+	move.w .L102(%pc,%d0.l),%d0
 	jmp %pc@(2,%d0:w)
-.L82:
-	.word .L75-.L82
-	.word .L76-.L82
-	.word .L77-.L82
-	.word .L78-.L82
-	.word .L79-.L82
-	.word .L80-.L82
-	.word .L81-.L82
-.L91:
-	clr.l -(%sp)
+.L102:
+	.word .L95-.L102
+	.word .L96-.L102
+	.word .L97-.L102
+	.word .L98-.L102
+	.word .L99-.L102
+	.word .L100-.L102
+	.word .L101-.L102
+.L111:
+	pea 1.w
 	jsr __Z11sfxScorpionb
 	addq.l #4,%sp
-.L84:
+.L104:
 	tst.b -1(%fp)
-	jeq .L93
-.L125:
+	jeq .L113
+.L145:
 	move.w raptor_ticks,%a0
 	move.w #120,%a1
 	add.l -6(%fp),%a1
 	cmp.l %a1,%a0
-	jle .L99
-.L126:
+	jle .L119
+.L146:
 	move.w #60,%a5
-.L95:
+.L115:
 	pea __ZL8BLACKPAL
 	pea 256.w
 	clr.l -(%sp)
@@ -872,24 +1110,11 @@ __Z9basicmainv:
 	subq.l #1,%a5
 	addq.l #4,%sp
 	cmp.w #0,%a5
-	jne .L95
-	pea 16.w
-	clr.l -(%sp)
-	move.l #12845792,-(%sp)
-	jsr jsfLoadClut
+	jne .L115
+	move.l _p2Cursor,-(%sp)
+	move.l _p1Cursor,-(%sp)
+	jsr __Z20switchScreenVsBattleii
 	addq.l #8,%sp
-	moveq #16,%d0
-	move.l %d0,(%sp)
-	pea 2.w
-	move.l #12822464,-(%sp)
-	jsr jsfLoadClut
-	addq.l #8,%sp
-	moveq #2,%d1
-	move.l %d1,(%sp)
-	jsr rapSetActiveList
-	clr.b _onScreenChooseFighter
-	move.b #1,_onScreenVsBattle
-	addq.l #4,%sp
 	move.b #1,-1(%fp)
 	pea 1.w
 	jsr (%a4)
@@ -897,8 +1122,8 @@ __Z9basicmainv:
 	move.l %d0,%d1
 	and.l JAGPAD_STAR,%d1
 	addq.l #4,%sp
-	jeq .L96
-.L114:
+	jeq .L116
+.L134:
 	move.l sprite,%a0
 	moveq #1,%d0
 	move.l %d0,6340(%a0)
@@ -916,8 +1141,8 @@ __Z9basicmainv:
 	jsr (%a2)
 	addq.l #4,%sp
 	move.w raptor_ticks,%a0
-	jra .L98
-.L69:
+	jra .L118
+.L89:
 	pea __ZL16raidenIdleFrames
 	pea __ZL15raidenAnimator2
 	pea __ZL14fighterRaiden2
@@ -933,8 +1158,8 @@ __Z9basicmainv:
 	pea __ZL18lightning2Animator
 	jsr __Z20updateSpriteAnimatorP14SpriteAnimatorP14AnimationFrameibb
 	lea (20,%sp),%sp
-	jra .L64
-.L68:
+	jra .L84
+.L88:
 	pea __ZL15sonyaIdleFrames
 	pea __ZL14sonyaAnimator2
 	pea __ZL13fighterSonya2
@@ -943,8 +1168,8 @@ __Z9basicmainv:
 	move.l %d0,(%sp)
 	jsr __Z17fighterUpdateIdlefP7FighterP14SpriteAnimatorP14AnimationFrame
 	lea (16,%sp),%sp
-	jra .L64
-.L67:
+	jra .L84
+.L87:
 	pea __ZL17subzeroIdleFrames
 	pea __ZL16subzeroAnimator2
 	pea __ZL15fighterSubzero2
@@ -953,8 +1178,8 @@ __Z9basicmainv:
 	move.l %d0,(%sp)
 	jsr __Z17fighterUpdateIdlefP7FighterP14SpriteAnimatorP14AnimationFrame
 	lea (16,%sp),%sp
-	jra .L64
-.L66:
+	jra .L84
+.L86:
 	pea __ZL14kanoIdleFrames
 	pea __ZL13kanoAnimator2
 	pea __ZL12fighterKano2
@@ -963,8 +1188,8 @@ __Z9basicmainv:
 	move.l %d0,(%sp)
 	jsr __Z17fighterUpdateIdlefP7FighterP14SpriteAnimatorP14AnimationFrame
 	lea (16,%sp),%sp
-	jra .L64
-.L71:
+	jra .L84
+.L91:
 	pea __ZL18scorpionIdleFrames
 	pea __ZL17scorpionAnimator2
 	pea __ZL16fighterScorpion2
@@ -973,8 +1198,8 @@ __Z9basicmainv:
 	move.l %d0,(%sp)
 	jsr __Z17fighterUpdateIdlefP7FighterP14SpriteAnimatorP14AnimationFrame
 	lea (16,%sp),%sp
-	jra .L64
-.L65:
+	jra .L84
+.L85:
 	pea __ZL14cageIdleFrames
 	pea __ZL13cageAnimator2
 	pea __ZL12fighterCage2
@@ -983,8 +1208,8 @@ __Z9basicmainv:
 	move.l %d0,(%sp)
 	jsr __Z17fighterUpdateIdlefP7FighterP14SpriteAnimatorP14AnimationFrame
 	lea (16,%sp),%sp
-	jra .L64
-.L48:
+	jra .L84
+.L68:
 	pea __ZL14kanoIdleFrames
 	pea __ZL12kanoAnimator
 	pea __ZL11fighterKano
@@ -995,9 +1220,9 @@ __Z9basicmainv:
 	lea (16,%sp),%sp
 	moveq #-1,%d0
 	cmp.l %d4,%d0
-	jne .L55
-	jra .L120
-.L53:
+	jne .L75
+	jra .L140
+.L73:
 	pea __ZL18scorpionIdleFrames
 	pea __ZL16scorpionAnimator
 	pea __ZL15fighterScorpion
@@ -1008,9 +1233,9 @@ __Z9basicmainv:
 	lea (16,%sp),%sp
 	moveq #-1,%d0
 	cmp.l %d4,%d0
-	jne .L55
-	jra .L120
-.L47:
+	jne .L75
+	jra .L140
+.L67:
 	pea __ZL14cageIdleFrames
 	pea __ZL12cageAnimator
 	pea __ZL11fighterCage
@@ -1021,99 +1246,99 @@ __Z9basicmainv:
 	lea (16,%sp),%sp
 	moveq #-1,%d0
 	cmp.l %d4,%d0
-	jne .L55
-	jra .L120
-.L90:
-	clr.l -(%sp)
+	jne .L75
+	jra .L140
+.L110:
+	pea 1.w
 	jsr __Z10sfxLiuKangb
 	addq.l #4,%sp
 	tst.b -1(%fp)
-	jne .L125
-.L93:
+	jne .L145
+.L113:
 	tst.l %d3
-	jlt .L36
+	jlt .L56
 	tst.l %d4
-	jlt .L36
+	jlt .L56
 	move.w raptor_ticks,%a0
 	move.l %a0,-6(%fp)
 	move.w #120,%a1
 	add.l -6(%fp),%a1
 	cmp.l %a1,%a0
-	jgt .L126
-.L99:
+	jgt .L146
+.L119:
 	move.b #1,-1(%fp)
-	jra .L36
-.L89:
-	clr.l -(%sp)
+	jra .L56
+.L109:
+	pea 1.w
 	jsr __Z9sfxRaidenb
 	addq.l #4,%sp
-	jra .L84
-.L88:
-	clr.l -(%sp)
+	jra .L104
+.L108:
+	pea 1.w
 	jsr __Z8sfxSonyab
 	addq.l #4,%sp
-	jra .L84
-.L87:
-	clr.l -(%sp)
+	jra .L104
+.L107:
+	pea 1.w
 	jsr __Z10sfxSubzerob
 	addq.l #4,%sp
-	jra .L84
-.L86:
-	clr.l -(%sp)
+	jra .L104
+.L106:
+	pea 1.w
 	jsr __Z7sfxKanob
 	addq.l #4,%sp
-	jra .L84
-.L85:
-	clr.l -(%sp)
+	jra .L104
+.L105:
+	pea 1.w
 	jsr __Z13sfxJohnnyCageb
 	addq.l #4,%sp
-	jra .L84
-.L80:
-	clr.l -(%sp)
+	jra .L104
+.L100:
+	pea 1.w
 	jsr __Z10sfxLiuKangb
 	move.l JAGPAD_C,%d0
 	addq.l #4,%sp
-	jra .L74
-.L79:
-	clr.l -(%sp)
+	jra .L94
+.L99:
+	pea 1.w
 	jsr __Z9sfxRaidenb
 	move.l JAGPAD_C,%d0
 	addq.l #4,%sp
-	jra .L74
-.L78:
-	clr.l -(%sp)
+	jra .L94
+.L98:
+	pea 1.w
 	jsr __Z8sfxSonyab
 	move.l JAGPAD_C,%d0
 	addq.l #4,%sp
-	jra .L74
-.L77:
-	clr.l -(%sp)
+	jra .L94
+.L97:
+	pea 1.w
 	jsr __Z10sfxSubzerob
 	move.l JAGPAD_C,%d0
 	addq.l #4,%sp
-	jra .L74
-.L76:
-	clr.l -(%sp)
+	jra .L94
+.L96:
+	pea 1.w
 	jsr __Z7sfxKanob
 	move.l JAGPAD_C,%d0
 	addq.l #4,%sp
-	jra .L74
-.L75:
-	clr.l -(%sp)
+	jra .L94
+.L95:
+	pea 1.w
 	jsr __Z13sfxJohnnyCageb
 	move.l JAGPAD_C,%d0
 	addq.l #4,%sp
-	jra .L74
-.L81:
-	clr.l -(%sp)
+	jra .L94
+.L101:
+	pea 1.w
 	jsr __Z11sfxScorpionb
 	move.l JAGPAD_C,%d0
 	addq.l #4,%sp
-	jra .L74
-.L117:
+	jra .L94
+.L137:
 	move.l %d1,_p1Cursor
-	clr.l -(%sp)
-	jsr __Z9sfxSelectb
+	pea 1.w
+	jsr __Z11sfxP1Cursorb
 	move.l #__ZL11fighterCage,(%sp)
 	move.l %d5,%a1
 	jsr (%a1)
@@ -1140,11 +1365,11 @@ __Z9basicmainv:
 	move.l %d0,4036(%a0)
 	addq.l #4,%sp
 	jsr __Z17SetPlayerPalettesv
-	jra .L127
-.L121:
+	jra .L147
+.L141:
 	move.l %d1,_p2Cursor
-	clr.l -(%sp)
-	jsr __Z9sfxSelectb
+	pea 1.w
+	jsr __Z11sfxP2Cursorb
 	move.l #__ZL12fighterCage2,(%sp)
 	move.l %d5,%a0
 	jsr (%a0)
@@ -1171,12 +1396,12 @@ __Z9basicmainv:
 	move.l %d0,5572(%a0)
 	addq.l #4,%sp
 	jsr __Z17SetPlayerPalettesv
-	jra .L128
-.L122:
+	jra .L148
+.L142:
 	moveq #6,%d0
 	move.l %d0,_p2Cursor
-	clr.l -(%sp)
-	jsr __Z9sfxSelectb
+	pea 1.w
+	jsr __Z11sfxP2Cursorb
 	move.l #__ZL12fighterCage2,(%sp)
 	move.l %d5,%a0
 	jsr (%a0)
@@ -1203,12 +1428,12 @@ __Z9basicmainv:
 	move.l %d0,5572(%a0)
 	addq.l #4,%sp
 	jsr __Z17SetPlayerPalettesv
-	jra .L128
-.L118:
+	jra .L148
+.L138:
 	moveq #6,%d0
 	move.l %d0,_p1Cursor
-	clr.l -(%sp)
-	jsr __Z9sfxSelectb
+	pea 1.w
+	jsr __Z11sfxP1Cursorb
 	move.l #__ZL11fighterCage,(%sp)
 	move.l %d5,%a1
 	jsr (%a1)
@@ -1235,25 +1460,25 @@ __Z9basicmainv:
 	move.l %d0,4036(%a0)
 	addq.l #4,%sp
 	jsr __Z17SetPlayerPalettesv
-	jra .L127
-.L56:
+	jra .L147
+.L76:
 	move.l %d0,%d1
 	and.l JAGPAD_RIGHT,%d1
-	jeq .L59
+	jeq .L79
 	move.l _p2Cursor,%d0
 	addq.l #1,%d0
 	move.l %d0,_p2Cursor
 	moveq #4,%d1
 	cmp.l %d0,%d1
-	jeq .L129
+	jeq .L149
 	moveq #7,%d1
 	cmp.l %d0,%d1
-	jne .L58
-.L107:
+	jne .L78
+.L127:
 	moveq #4,%d0
 	move.l %d0,_p2Cursor
-	clr.l -(%sp)
-	jsr __Z9sfxSelectb
+	pea 1.w
+	jsr __Z11sfxP2Cursorb
 	move.l #__ZL12fighterCage2,(%sp)
 	move.l %d5,%a0
 	jsr (%a0)
@@ -1280,109 +1505,109 @@ __Z9basicmainv:
 	move.l %d0,5572(%a0)
 	addq.l #4,%sp
 	jsr __Z17SetPlayerPalettesv
-	jra .L128
-.L38:
+	jra .L148
+.L58:
 	move.l %d0,%d1
 	and.l JAGPAD_RIGHT,%d1
-	jeq .L41
-	move.l _p1Cursor,%d0
-	addq.l #1,%d0
-	move.l %d0,_p1Cursor
-	moveq #4,%d1
-	cmp.l %d0,%d1
-	jeq .L130
-	moveq #7,%d1
-	cmp.l %d0,%d1
-	jne .L40
-.L105:
-	moveq #4,%d0
-	move.l %d0,_p1Cursor
-	clr.l -(%sp)
-	jsr __Z9sfxSelectb
-	move.l #__ZL11fighterCage,(%sp)
-	move.l %d5,%a1
-	jsr (%a1)
-	move.l #__ZL11fighterKano,(%sp)
-	move.l %d5,%a0
-	jsr (%a0)
-	move.l #__ZL14fighterSubzero,(%sp)
-	move.l %d5,%a1
-	jsr (%a1)
-	move.l #__ZL12fighterSonya,(%sp)
-	move.l %d5,%a0
-	jsr (%a0)
-	move.l #__ZL13fighterRaiden,(%sp)
-	move.l %d5,%a1
-	jsr (%a1)
-	move.l #__ZL11fighterKang,(%sp)
-	move.l %d5,%a0
-	jsr (%a0)
-	move.l #__ZL15fighterScorpion,(%sp)
-	move.l %d5,%a1
-	jsr (%a1)
-	move.l sprite,%a0
-	moveq #-1,%d0
-	move.l %d0,4036(%a0)
-	addq.l #4,%sp
-	jsr __Z17SetPlayerPalettesv
-	jra .L127
-.L41:
-	move.l %d0,%d1
-	and.l JAGPAD_UP,%d1
-	jeq .L43
-	move.l _p1Cursor,%d0
-	moveq #4,%d1
-	cmp.l %d0,%d1
-	jeq .L131
-	moveq #6,%d1
-	cmp.l %d0,%d1
-	jne .L40
-	moveq #2,%d0
-	move.l %d0,_p1Cursor
-	clr.l -(%sp)
-	jsr __Z9sfxSelectb
-	move.l #__ZL11fighterCage,(%sp)
-	move.l %d5,%a1
-	jsr (%a1)
-	move.l #__ZL11fighterKano,(%sp)
-	move.l %d5,%a0
-	jsr (%a0)
-	move.l #__ZL14fighterSubzero,(%sp)
-	move.l %d5,%a1
-	jsr (%a1)
-	move.l #__ZL12fighterSonya,(%sp)
-	move.l %d5,%a0
-	jsr (%a0)
-	move.l #__ZL13fighterRaiden,(%sp)
-	move.l %d5,%a1
-	jsr (%a1)
-	move.l #__ZL11fighterKang,(%sp)
-	move.l %d5,%a0
-	jsr (%a0)
-	move.l #__ZL15fighterScorpion,(%sp)
-	move.l %d5,%a1
-	jsr (%a1)
-	move.l sprite,%a0
-	moveq #-1,%d0
-	move.l %d0,4036(%a0)
-	addq.l #4,%sp
-	jsr __Z17SetPlayerPalettesv
-	jra .L127
-.L59:
-	move.l %d0,%d1
-	and.l JAGPAD_UP,%d1
 	jeq .L61
+	move.l _p1Cursor,%d0
+	addq.l #1,%d0
+	move.l %d0,_p1Cursor
+	moveq #4,%d1
+	cmp.l %d0,%d1
+	jeq .L150
+	moveq #7,%d1
+	cmp.l %d0,%d1
+	jne .L60
+.L125:
+	moveq #4,%d0
+	move.l %d0,_p1Cursor
+	pea 1.w
+	jsr __Z11sfxP1Cursorb
+	move.l #__ZL11fighterCage,(%sp)
+	move.l %d5,%a1
+	jsr (%a1)
+	move.l #__ZL11fighterKano,(%sp)
+	move.l %d5,%a0
+	jsr (%a0)
+	move.l #__ZL14fighterSubzero,(%sp)
+	move.l %d5,%a1
+	jsr (%a1)
+	move.l #__ZL12fighterSonya,(%sp)
+	move.l %d5,%a0
+	jsr (%a0)
+	move.l #__ZL13fighterRaiden,(%sp)
+	move.l %d5,%a1
+	jsr (%a1)
+	move.l #__ZL11fighterKang,(%sp)
+	move.l %d5,%a0
+	jsr (%a0)
+	move.l #__ZL15fighterScorpion,(%sp)
+	move.l %d5,%a1
+	jsr (%a1)
+	move.l sprite,%a0
+	moveq #-1,%d0
+	move.l %d0,4036(%a0)
+	addq.l #4,%sp
+	jsr __Z17SetPlayerPalettesv
+	jra .L147
+.L61:
+	move.l %d0,%d1
+	and.l JAGPAD_UP,%d1
+	jeq .L63
+	move.l _p1Cursor,%d0
+	moveq #4,%d1
+	cmp.l %d0,%d1
+	jeq .L151
+	moveq #6,%d1
+	cmp.l %d0,%d1
+	jne .L60
+	moveq #2,%d0
+	move.l %d0,_p1Cursor
+	pea 1.w
+	jsr __Z11sfxP1Cursorb
+	move.l #__ZL11fighterCage,(%sp)
+	move.l %d5,%a1
+	jsr (%a1)
+	move.l #__ZL11fighterKano,(%sp)
+	move.l %d5,%a0
+	jsr (%a0)
+	move.l #__ZL14fighterSubzero,(%sp)
+	move.l %d5,%a1
+	jsr (%a1)
+	move.l #__ZL12fighterSonya,(%sp)
+	move.l %d5,%a0
+	jsr (%a0)
+	move.l #__ZL13fighterRaiden,(%sp)
+	move.l %d5,%a1
+	jsr (%a1)
+	move.l #__ZL11fighterKang,(%sp)
+	move.l %d5,%a0
+	jsr (%a0)
+	move.l #__ZL15fighterScorpion,(%sp)
+	move.l %d5,%a1
+	jsr (%a1)
+	move.l sprite,%a0
+	moveq #-1,%d0
+	move.l %d0,4036(%a0)
+	addq.l #4,%sp
+	jsr __Z17SetPlayerPalettesv
+	jra .L147
+.L79:
+	move.l %d0,%d1
+	and.l JAGPAD_UP,%d1
+	jeq .L81
 	move.l _p2Cursor,%d0
 	moveq #4,%d1
 	cmp.l %d0,%d1
-	jeq .L132
+	jeq .L152
 	moveq #6,%d1
 	cmp.l %d0,%d1
-	jne .L58
+	jne .L78
 	moveq #2,%d0
 	move.l %d0,_p2Cursor
-	clr.l -(%sp)
-	jsr __Z9sfxSelectb
+	pea 1.w
+	jsr __Z11sfxP2Cursorb
 	move.l #__ZL12fighterCage2,(%sp)
 	move.l %d5,%a0
 	jsr (%a0)
@@ -1409,33 +1634,33 @@ __Z9basicmainv:
 	move.l %d0,5572(%a0)
 	addq.l #4,%sp
 	jsr __Z17SetPlayerPalettesv
-	jra .L128
-.L61:
+	jra .L148
+.L81:
 	and.l JAGPAD_DOWN,%d0
-	jeq .L55
+	jeq .L75
 	move.l _p2Cursor,%d0
 	moveq #1,%d1
 	cmp.l %d0,%d1
-	jeq .L107
+	jeq .L127
 	moveq #2,%d1
 	cmp.l %d0,%d1
-	jne .L58
-	jra .L122
-.L43:
+	jne .L78
+	jra .L142
+.L63:
 	and.l JAGPAD_DOWN,%d0
-	jeq .L37
+	jeq .L57
 	move.l _p1Cursor,%d0
 	moveq #1,%d1
 	cmp.l %d0,%d1
-	jeq .L105
+	jeq .L125
 	moveq #2,%d1
 	cmp.l %d0,%d1
-	jne .L40
-	jra .L118
-.L130:
+	jne .L60
+	jra .L138
+.L150:
 	clr.l _p1Cursor
-	clr.l -(%sp)
-	jsr __Z9sfxSelectb
+	pea 1.w
+	jsr __Z11sfxP1Cursorb
 	move.l #__ZL11fighterCage,(%sp)
 	move.l %d5,%a1
 	jsr (%a1)
@@ -1462,11 +1687,11 @@ __Z9basicmainv:
 	move.l %d0,4036(%a0)
 	addq.l #4,%sp
 	jsr __Z17SetPlayerPalettesv
-	jra .L127
-.L129:
+	jra .L147
+.L149:
 	clr.l _p2Cursor
-	clr.l -(%sp)
-	jsr __Z9sfxSelectb
+	pea 1.w
+	jsr __Z11sfxP2Cursorb
 	move.l #__ZL12fighterCage2,(%sp)
 	move.l %d5,%a0
 	jsr (%a0)
@@ -1493,12 +1718,12 @@ __Z9basicmainv:
 	move.l %d0,5572(%a0)
 	addq.l #4,%sp
 	jsr __Z17SetPlayerPalettesv
-	jra .L128
-.L132:
+	jra .L148
+.L152:
 	moveq #1,%d0
 	move.l %d0,_p2Cursor
-	clr.l -(%sp)
-	jsr __Z9sfxSelectb
+	pea 1.w
+	jsr __Z11sfxP2Cursorb
 	move.l #__ZL12fighterCage2,(%sp)
 	move.l %d5,%a0
 	jsr (%a0)
@@ -1525,12 +1750,12 @@ __Z9basicmainv:
 	move.l %d0,5572(%a0)
 	addq.l #4,%sp
 	jsr __Z17SetPlayerPalettesv
-	jra .L128
-.L131:
+	jra .L148
+.L151:
 	moveq #1,%d0
 	move.l %d0,_p1Cursor
-	clr.l -(%sp)
-	jsr __Z9sfxSelectb
+	pea 1.w
+	jsr __Z11sfxP1Cursorb
 	move.l #__ZL11fighterCage,(%sp)
 	move.l %d5,%a1
 	jsr (%a1)
@@ -1557,7 +1782,7 @@ __Z9basicmainv:
 	move.l %d0,4036(%a0)
 	addq.l #4,%sp
 	jsr __Z17SetPlayerPalettesv
-	jra .L127
+	jra .L147
 	.globl	_onScreenVsBattle
 	.bss
 _onScreenVsBattle:
@@ -1594,6 +1819,7 @@ sprite:
 __ZL11ticksPerSec:
 	.long	60
 .lcomm __ZL8BLACKPAL,512
+.lcomm __ZL8WHITEPAL,32
 	.even
 __ZL11fighterCage:
 	.long	18

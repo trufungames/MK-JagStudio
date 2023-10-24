@@ -39,12 +39,24 @@
 #define BMP_BG_STONE_clut 0xC3A7C0
 #define BMP_BATTLE 0xC3A7E0
 #define BMP_BATTLE_clut 0xC402E0
+#define BMP_PT_CAGE 0xC40300
+#define BMP_PT_CAGE_clut 0xC40D00
+#define BMP_PT_KANO 0xC40D20
+#define BMP_PT_KANO_clut 0xC41720
+#define BMP_PT_KANG 0xC41740
+#define BMP_PT_KANG_clut 0xC42140
+#define BMP_PT_RAIDEN 0xC42160
+#define BMP_PT_RAIDEN_clut 0xC42B60
+#define BMP_PT_SCORPION 0xC42B80
+#define BMP_PT_SCORPION_clut 0xC43580
+#define BMP_PT_SONYA 0xC435A0
+#define BMP_PT_SONYA_clut 0xC43FA0
+#define BMP_PT_SUBZERO 0xC43FC0
+#define BMP_PT_SUBZERO_clut 0xC449C0
 extern void *explode_sam asm("explode_sam");
 extern void *explode_sam_end asm("explode_sam_end");
 extern void *fight_sam asm("fight_sam");
 extern void *fight_sam_end asm("fight_sam_end");
-extern void *select_sam asm("select_sam");
-extern void *select_sam_end asm("select_sam_end");
 extern void *johnnycage_sam asm("johnnycage_sam");
 extern void *johnnycage_sam_end asm("johnnycage_sam_end");
 extern void *kano_sam asm("kano_sam");
@@ -59,3 +71,9 @@ extern void *subzero_sam asm("subzero_sam");
 extern void *subzero_sam_end asm("subzero_sam_end");
 extern void *sonya_sam asm("sonya_sam");
 extern void *sonya_sam_end asm("sonya_sam_end");
+extern void *p1cursor_sam asm("p1cursor_sam");
+extern void *p1cursor_sam_end asm("p1cursor_sam_end");
+extern void *p2cursor_sam asm("p2cursor_sam");
+extern void *p2cursor_sam_end asm("p2cursor_sam_end");
+extern void *gong_sam asm("gong_sam");
+extern void *gong_sam_end asm("gong_sam_end");

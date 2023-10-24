@@ -12,15 +12,6 @@ void sfxShoot(bool enableSFX)
 	zeroPlaySample(2,STRPTR(fight_sam),(STRPTR(fight_sam_end)-STRPTR(fight_sam)+3) & 0xfffffffc,(46168/16000),Zero_Audio_8bit_Signed);
 }
 
-void sfxSelect(bool enableSFX)
-{
-	if (!enableSFX)
-		return;
-		
-	zeroPlaySample(1,STRPTR(select_sam),(STRPTR(select_sam_end)-STRPTR(select_sam)+3) & 0xfffffffc,(46168/8000),Zero_Audio_8bit_Signed);
-	zeroPlaySample(2,STRPTR(select_sam),(STRPTR(select_sam_end)-STRPTR(select_sam)+3) & 0xfffffffc,(46168/8000),Zero_Audio_8bit_Signed);
-}
-
 void sfxFight(bool enableSFX)
 {
 	if (!enableSFX)
@@ -91,4 +82,31 @@ void sfxSonya(bool enableSFX)
 
 	zeroPlaySample(1,STRPTR(sonya_sam),(STRPTR(sonya_sam_end)-STRPTR(sonya_sam)+3) & 0xfffffffc,(46168/7000),Zero_Audio_8bit_Signed);
 	zeroPlaySample(2,STRPTR(sonya_sam),(STRPTR(sonya_sam_end)-STRPTR(sonya_sam)+3) & 0xfffffffc,(46168/7000),Zero_Audio_8bit_Signed);
+}
+
+void sfxP1Cursor(bool enableSFX)
+{
+	if (!enableSFX)
+		return;
+
+	zeroPlaySample(1,STRPTR(p1cursor_sam),(STRPTR(p1cursor_sam_end)-STRPTR(p1cursor_sam)+3) & 0xfffffffc,(46168/7000),Zero_Audio_8bit_Signed);
+	zeroPlaySample(2,STRPTR(p1cursor_sam),(STRPTR(p1cursor_sam_end)-STRPTR(p1cursor_sam)+3) & 0xfffffffc,(46168/7000),Zero_Audio_8bit_Signed);
+}
+
+void sfxP2Cursor(bool enableSFX)
+{
+	if (!enableSFX)
+		return;
+
+	zeroPlaySample(1,STRPTR(p2cursor_sam),(STRPTR(p2cursor_sam_end)-STRPTR(p2cursor_sam)+3) & 0xfffffffc,(46168/7000),Zero_Audio_8bit_Signed);
+	zeroPlaySample(2,STRPTR(p2cursor_sam),(STRPTR(p2cursor_sam_end)-STRPTR(p2cursor_sam)+3) & 0xfffffffc,(46168/7000),Zero_Audio_8bit_Signed);
+}
+
+void sfxGong(bool enableSFX)
+{
+	if (!enableSFX)
+		return;
+
+	zeroPlaySample(1,STRPTR(gong_sam),(STRPTR(gong_sam_end)-STRPTR(gong_sam)+3) & 0xfffffffc,(46168/7000),Zero_Audio_8bit_Signed);
+	zeroPlaySample(2,STRPTR(gong_sam),(STRPTR(gong_sam_end)-STRPTR(gong_sam)+3) & 0xfffffffc,(46168/7000),Zero_Audio_8bit_Signed);
 }

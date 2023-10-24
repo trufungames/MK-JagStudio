@@ -11,12 +11,6 @@ fight_sam_end:
 .extern fight_sam
 .extern fight_sam_end
 .dphrase
-select_sam: incbin "build/select.wav.raw"
-.dc.b 0,0,0
-select_sam_end:
-.extern select_sam
-.extern select_sam_end
-.dphrase
 johnnycage_sam: incbin "build/johnnycage.wav.raw"
 .dc.b 0,0,0
 johnnycage_sam_end:
@@ -58,4 +52,22 @@ sonya_sam: incbin "build/sonya.wav.raw"
 sonya_sam_end:
 .extern sonya_sam
 .extern sonya_sam_end
+.dphrase
+p1cursor_sam: incbin "build/p1cursor.wav.raw"
+.dc.b 0,0,0
+p1cursor_sam_end:
+.extern p1cursor_sam
+.extern p1cursor_sam_end
+.dphrase
+p2cursor_sam: incbin "build/p2cursor.wav.raw"
+.dc.b 0,0,0
+p2cursor_sam_end:
+.extern p2cursor_sam
+.extern p2cursor_sam_end
+.dphrase
+gong_sam: incbin "build/gong.wav.raw"
+.dc.b 0,0,0
+gong_sam_end:
+.extern gong_sam
+.extern gong_sam_end
 .dphrase

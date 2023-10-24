@@ -28,7 +28,7 @@ int p2Cursor = 2;
 bool onScreenChooseFighter = false;
 bool onScreenVsBattle = false;
 static int BLACKPAL[128];
-
+static int WHITEPAL[8];
 
 //Scorpion animation frames
 static SpriteAnimator cageAnimator = {
@@ -525,7 +525,7 @@ static Fighter fighterSonya2 = {
 //               User Prototypes
 // *************************************************
 void switchScreenChooseFighter();
-void switchScreenVsBattle();
+void switchScreenVsBattle(int p1Cursor, int p2Cursor);
 void SetPlayerPalettes();
 
 void basicmain()
@@ -537,7 +537,7 @@ void basicmain()
 		ticksPerSec = 50;
 	}
 	lastTicks = 0;
-	bool enableSFX = false;
+	bool enableSFX = true;
 	int myTicks = 0;
 	int p1Selected = -1;
 	int p2Selected = -1;
@@ -575,6 +575,11 @@ rapClockMode = Clock_Countup;
 for (int i = 0; i < 128; i++)
 {
 	BLACKPAL[i] = 0;
+}
+
+for (int i = 0; i < 8; i++)
+{
+	WHITEPAL[i] = (21 << 11) + (57 << 5) + 31;
 }
 
 jsfLoadClut((unsigned short *)(void *)(BLACKPAL),0,256);
@@ -638,6 +643,7 @@ int gameStartTicks = rapTicks;
 
 					fadedOut = true;
 					switchScreenChooseFighter();
+					sfxGong(enableSFX);
 				}
 			}
 		}
@@ -695,7 +701,7 @@ int gameStartTicks = rapTicks;
 
 			if (p1CursorChanged)
 			{
-				sfxSelect(enableSFX);
+				sfxP1Cursor(enableSFX);
 				//cursor changed, so let's move the cursor and show the fighter
 				fighterHide(&fighterCage);
 				fighterHide(&fighterKano);
@@ -786,7 +792,7 @@ int gameStartTicks = rapTicks;
 
 			if (p2CursorChanged)
 			{
-				sfxSelect(enableSFX);
+				sfxP2Cursor(enableSFX);
 				//cursor changed, so let's move the cursor and show the fighter
 				fighterHide(&fighterCage2);
 				fighterHide(&fighterKano2);
@@ -909,7 +915,7 @@ int gameStartTicks = rapTicks;
 					jsfVsync(0);
 				}
 
-				switchScreenVsBattle();
+				switchScreenVsBattle(p1Cursor, p2Cursor);
 			}
 		}
 		else if (onScreenVsBattle)
@@ -1000,10 +1006,91 @@ void switchScreenChooseFighter()
 	onScreenChooseFighter = true;
 }
 
-void switchScreenVsBattle()
+void switchScreenVsBattle(int p1Cursor, int p2Cursor)
 {
 	jsfLoadClut((unsigned short *)(void *)(BMP_BATTLE_clut),0,16);
-	jsfLoadClut((unsigned short *)(void *)(BMP_BG_STONE_clut),2,16);
+	jsfLoadClut((unsigned short *)(void *)(BMP_BG_STONE_clut),1,16);
+
+	//hide all of the portraits
+	sprite[P1_PT_CAGE].active = R_is_inactive;
+	sprite[P1_PT_KANO].active = R_is_inactive;
+	sprite[P1_PT_KANG].active = R_is_inactive;
+	sprite[P1_PT_SONYA].active = R_is_inactive;
+	sprite[P1_PT_SUBZERO].active = R_is_inactive;
+	sprite[P1_PT_SCORPION].active = R_is_inactive;
+	sprite[P1_PT_RAIDEN].active = R_is_inactive;
+	sprite[P2_PT_CAGE].active = R_is_inactive;
+	sprite[P2_PT_KANO].active = R_is_inactive;
+	sprite[P2_PT_KANG].active = R_is_inactive;
+	sprite[P2_PT_SONYA].active = R_is_inactive;
+	sprite[P2_PT_SUBZERO].active = R_is_inactive;
+	sprite[P2_PT_SCORPION].active = R_is_inactive;
+	sprite[P2_PT_RAIDEN].active = R_is_inactive;
+
+	switch (p1Cursor)
+	{
+		case 0:
+			jsfLoadClut((unsigned short *)(void *)(BMP_PT_CAGE_clut),4,16);
+			sprite[P1_PT_CAGE].active = R_is_active;
+			break;
+		case 1:
+			jsfLoadClut((unsigned short *)(void *)(BMP_PT_KANO_clut),4,16);
+			sprite[P1_PT_KANO].active = R_is_active;
+			break;
+		case 2:
+			jsfLoadClut((unsigned short *)(void *)(BMP_PT_SUBZERO_clut),4,16);
+			sprite[P1_PT_SUBZERO].active = R_is_active;
+			break;
+		case 3:
+			jsfLoadClut((unsigned short *)(void *)(BMP_PT_SONYA_clut),4,16);
+			sprite[P1_PT_SONYA].active = R_is_active;
+			break;
+		case 4:
+			jsfLoadClut((unsigned short *)(void *)(BMP_PT_RAIDEN_clut),4,16);
+			sprite[P1_PT_RAIDEN].active = R_is_active;
+			break;
+		case 5:
+			jsfLoadClut((unsigned short *)(void *)(BMP_PT_KANG_clut),4,16);
+			sprite[P1_PT_KANG].active = R_is_active;
+			break;
+		case 6:
+			jsfLoadClut((unsigned short *)(void *)(BMP_PT_SCORPION_clut),4,16);
+			sprite[P1_PT_SCORPION].active = R_is_active;
+			break;
+	}
+
+	switch (p2Cursor)
+	{
+		case 0:
+			jsfLoadClut((unsigned short *)(void *)(BMP_PT_CAGE_clut),5,16);
+			sprite[P2_PT_CAGE].active = R_is_active;
+			break;
+		case 1:
+			jsfLoadClut((unsigned short *)(void *)(BMP_PT_KANO_clut),5,16);
+			sprite[P2_PT_KANO].active = R_is_active;
+			break;
+		case 2:
+			jsfLoadClut((unsigned short *)(void *)(BMP_PT_SUBZERO_clut),5,16);
+			sprite[P2_PT_SUBZERO].active = R_is_active;
+			break;
+		case 3:
+			jsfLoadClut((unsigned short *)(void *)(BMP_PT_SONYA_clut),5,16);
+			sprite[P2_PT_SONYA].active = R_is_active;
+			break;
+		case 4:
+			jsfLoadClut((unsigned short *)(void *)(BMP_PT_RAIDEN_clut),5,16);
+			sprite[P2_PT_RAIDEN].active = R_is_active;
+			break;
+		case 5:
+			jsfLoadClut((unsigned short *)(void *)(BMP_PT_KANG_clut),5,16);
+			sprite[P2_PT_KANG].active = R_is_active;
+			break;
+		case 6:
+			jsfLoadClut((unsigned short *)(void *)(BMP_PT_SCORPION_clut),5,16);
+			sprite[P2_PT_SCORPION].active = R_is_active;
+			break;
+	}
+	
 	rapSetActiveList(2);
 	onScreenChooseFighter = false;
 	onScreenVsBattle = true;
