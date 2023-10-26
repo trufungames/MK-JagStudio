@@ -50,6 +50,7 @@ void fighterInitialize(struct Fighter *fighter, bool isPlayer1)
         fighter->HB_BODY = P1_HB_BODY;
         fighter->HB_DUCK = P1_HB_DUCK;
         fighter->PAD = LEFT_PAD;
+        sprite[fighter->spriteIndex].x_ = 50;
     }
     else
     {
@@ -57,6 +58,7 @@ void fighterInitialize(struct Fighter *fighter, bool isPlayer1)
         fighter->HB_BODY = P2_HB_BODY;
         fighter->HB_DUCK = P2_HB_DUCK;
         fighter->PAD = RIGHT_PAD;
+        sprite[fighter->spriteIndex].x_ = 210;
     }
 }
 

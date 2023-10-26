@@ -22,11 +22,12 @@ static int pad1;
 static int pad2;
 static int ticksPerSec = 60;
 int lastTicks = 0;
-static int currentScreen = 0;  //0 = Attract Mode, 1 = Choose Your Fighter, 2 = Fight
 int p1Cursor = 1;
 int p2Cursor = 2; 
+bool onTitleScreen = true;
 bool onScreenChooseFighter = false;
 bool onScreenVsBattle = false;
+bool onScreenFight = false;
 static int BLACKPAL[128];
 static int WHITEPAL[8];
 
@@ -354,36 +355,72 @@ static SpriteAnimator lightning2Animator = {
 };
 
 static AnimationFrame lightningFrames[] = {
-	{ 80, 144, 0, 0, 5 },
-	{ 80, 144, 80, 0, 5 },
-	{ 80, 144, 160, 0, 5 },
-	{ 80, 144, 240, 0, 5 },
-	{ 80, 144, 320, 0, 5 },
-	{ 80, 144, 400, 0, 5 },
-	{ 80, 144, 480, 0, 5 },
-	{ 80, 144, 560, 0, 5 },
-	{ 80, 144, 640, 0, 5 },
-	{ 80, 144, 720, 0, 5 },
-	{ 80, 144, 0, 144, 5 },
-	{ 80, 144, 80, 144, 5 },
-	{ 80, 144, 160, 144, 5 },
-	{ 80, 144, 240, 144, 5 },
-	{ 80, 144, 320, 144, 5 },
-	{ 80, 144, 400, 144, 5 },
-	{ 80, 144, 480, 144, 5 },
-	{ 80, 144, 560, 144, 5 },
-	{ 80, 144, 640, 144, 5 },
-	{ 80, 144, 720, 144, 5 },
-	{ 80, 144, 0, 288, 5 },
-	{ 80, 144, 80, 288, 5 },
-	{ 80, 144, 160, 288, 5 },
-	{ 80, 144, 240, 288, 5 },
-	{ 80, 144, 320, 288, 5 },
-	{ 80, 144, 400, 288, 5 },
-	{ 80, 144, 480, 288, 5 },
-	{ 80, 144, 560, 288, 5 },
-	{ 80, 144, 640, 288, 5 },
-	{ 80, 144, 720, 288, 5 }
+	{ 80, 144, 0, 0, 4 },
+	{ 80, 144, 80, 0, 4 },
+	{ 80, 144, 160, 0, 4 },
+	{ 80, 144, 240, 0, 4 },
+	{ 80, 144, 320, 0, 4 },
+	{ 80, 144, 400, 0, 4 },
+	{ 80, 144, 480, 0, 4 },
+	{ 80, 144, 560, 0, 4 },
+	{ 80, 144, 640, 0, 4 },
+	{ 80, 144, 720, 0, 4 },
+	{ 80, 144, 0, 144, 4 },
+	{ 80, 144, 80, 144, 4 },
+	{ 80, 144, 160, 144, 4 },
+	{ 80, 144, 240, 144, 4 },
+	{ 80, 144, 320, 144, 4 },
+	{ 80, 144, 400, 144, 4 },
+	{ 80, 144, 480, 144, 4 },
+	{ 80, 144, 560, 144, 4 },
+	{ 80, 144, 640, 144, 4 },
+	{ 80, 144, 720, 144, 4 },
+	{ 80, 144, 0, 288, 4 },
+	{ 80, 144, 80, 288, 4 },
+	{ 80, 144, 160, 288, 4 },
+	{ 80, 144, 240, 288, 4 },
+	{ 80, 144, 320, 288, 4 },
+	{ 80, 144, 400, 288, 4 },
+	{ 80, 144, 480, 288, 4 },
+	{ 80, 144, 560, 288, 4 },
+	{ 80, 144, 640, 288, 4 },
+	{ 80, 144, 720, 288, 4 }
+};
+
+static SpriteAnimator shutter1Animator = {
+	SHUTTER_1, 0.5f, BMP_SHUTTER, 0, 0
+};
+
+static SpriteAnimator shutter2Animator = {
+	SHUTTER_2, 0.5f, BMP_SHUTTER, 0, 0
+};
+
+static SpriteAnimator shutter3Animator = {
+	SHUTTER_3, 0.5f, BMP_SHUTTER, 0, 0
+};
+
+static SpriteAnimator shutter4Animator = {
+	SHUTTER_4, 0.5f, BMP_SHUTTER, 0, 0
+};
+
+static SpriteAnimator shutter5Animator = {
+	SHUTTER_5, 0.5f, BMP_SHUTTER, 0, 0
+};
+
+static AnimationFrame shutterFrames[] = {
+	{ 48, 48, 0, 0, 3 },
+	{ 48, 48, 48, 0, 3 },
+	{ 48, 48, 96, 0, 3 },
+	{ 48, 48, 144, 0, 3 },
+	{ 48, 48, 192, 0, 3 },
+	{ 48, 48, 240, 0, 3 },
+	{ 48, 48, 288, 0, 3 },
+	{ 48, 48, 336, 0, 3 },
+	{ 48, 48, 384, 0, 3 },
+	{ 48, 48, 432, 0, 3 },
+	{ 48, 48, 480, 0, 3 },
+	{ 48, 48, 528, 0, 3 },
+	{ 48, 48, 576, 0, 3 }
 };
 
 ///////////////////////////////
@@ -526,6 +563,7 @@ static Fighter fighterSonya2 = {
 // *************************************************
 void switchScreenChooseFighter();
 void switchScreenVsBattle(int p1Cursor, int p2Cursor);
+void switchScreenFight(int p1Cursor, int P2Cursor);
 void SetPlayerPalettes();
 
 void basicmain()
@@ -537,11 +575,12 @@ void basicmain()
 		ticksPerSec = 50;
 	}
 	lastTicks = 0;
-	bool enableSFX = true;
+	bool enableSFX = false;
 	int myTicks = 0;
 	int p1Selected = -1;
 	int p2Selected = -1;
 	bool chooseFighterDone = false;
+	int shutterTicks = 0;
 /*
 The formula (C-notation) to get a 16-bit color value from the red/green/blue parts is as follows:
 
@@ -551,14 +590,7 @@ where red and blue has a range of 0…31 and green has a range of 0…63, the ma
 */
 	unsigned short bg_color = 0;
 	
-	if (currentScreen == 0 || currentScreen == 1)
-	{
-		bg_color = 0;
-	}
-	else if (currentScreen == 2)
-	{
-		bg_color = (21 << 11) + (57 << 5) + 31;  //(red << 11) + (green << 5) + blue
-	}
+	//bg_color = (21 << 11) + (57 << 5) + 31;  //(red << 11) + (green << 5) + blue7
 
 	*(volatile unsigned short*)(BG)=(volatile unsigned short)bg_color;		// Set Background colour.
 
@@ -615,7 +647,7 @@ int gameStartTicks = rapTicks;
 		int delta = rapTicks - lastTicks;
 		lastTicks = rapTicks;
 
-		if (currentScreen == 0)
+		if (onTitleScreen)
 		{
 			/////////////////////////////////////////
 			// Attract Mode
@@ -629,11 +661,13 @@ int gameStartTicks = rapTicks;
 					rapFadeClut(0,256,(int *)(void *)(BMP_TITLESCREEN_clut));
 					jsfVsync(0);
 				}
+
+				sfxIntro(enableSFX);
 			}
 
 			if (fadedIn && !fadedOut)
 			{
-				if (rapTicks > gameStartTicks + 120)
+				if (rapTicks > gameStartTicks + 240)
 				{
 					for (int i = 0; i < 60; i++)
 					{
@@ -647,12 +681,45 @@ int gameStartTicks = rapTicks;
 				}
 			}
 		}
-		
-		if (onScreenChooseFighter)//(currentScreen == 1)
+		else if (onScreenChooseFighter)//(currentScreen == 1)
 		{
 			/////////////////////////////////////////
 			// Choose Your Fighter
 			/////////////////////////////////////////
+
+			//Animated shutter effect
+			if (shutterTicks == 0)
+			{
+				shutterTicks = rapTicks;
+			}
+
+			if (shutterTicks > 0)
+			{
+				if (rapTicks >= shutterTicks + 0 + 0)
+				{
+					updateSpriteAnimator(&shutter1Animator, shutterFrames, 13, true, false);
+				}
+
+				if (rapTicks >= shutterTicks + 0 + 5)
+				{
+					updateSpriteAnimator(&shutter2Animator, shutterFrames, 13, true, false);
+				}
+				
+				if (rapTicks >= shutterTicks + 0 + 10)
+				{
+					updateSpriteAnimator(&shutter3Animator, shutterFrames, 13, true, false);
+				}	
+
+				if (rapTicks >= shutterTicks + 0 + 15)
+				{
+					updateSpriteAnimator(&shutter4Animator, shutterFrames, 13, true, false);
+				}
+					
+				if (rapTicks >= shutterTicks + 0 + 20)
+				{
+					updateSpriteAnimator(&shutter5Animator, shutterFrames, 13, true, false);
+				}
+			}
 
 			pad1 = jsfGetPadPressed(LEFT_PAD);
 			pad2 = jsfGetPadPressed(RIGHT_PAD);
@@ -916,13 +983,24 @@ int gameStartTicks = rapTicks;
 				}
 
 				switchScreenVsBattle(p1Cursor, p2Cursor);
+				sfxIntro(enableSFX);
+				myTicks = rapTicks;
 			}
 		}
 		else if (onScreenVsBattle)
 		{
+			if (rapTicks > myTicks + 240)
+			{
+				for (int i = 0; i < 60; i++)
+				{
+					rapFadeClut(0,256,BLACKPAL);
+					jsfVsync(0);
+				}
 
+				switchScreenFight(p1Cursor, p2Cursor);
+			}
 		}
-		else if (currentScreen == 2)
+		else if (onScreenFight)
 		{
 			/////////////////////////////////////////
 			// Fight!
@@ -930,15 +1008,73 @@ int gameStartTicks = rapTicks;
 			pad1=jsfGetPad(LEFT_PAD);
 			pad2=jsfGetPad(RIGHT_PAD);
 
-
-
-			fighterUpdate(delta, &fighterScorpion, &scorpionAnimator, scorpionIdleFrames, scorpionWalkFrames, scorpionDuckFrames, scorpionBlockFrames, scorpionBlockDuckFrames, false);
-			//fighterUpdate(&fighterCage, &cageAnimator, cageIdleFrames, cageWalkFrames, cageDuckFrames, cageBlockFrames, cageBlockDuckFrames, false);
-			//fighterUpdate(&fighterKang, &kangAnimator, kangIdleFrames, kangWalkFrames, kangDuckFrames, kangBlockFrames, kangBlockDuckFrames, false);
-			//fighterUpdate(&fighterRaiden, &raidenAnimator, raidenIdleFrames, raidenWalkFrames, raidenDuckFrames, raidenBlockFrames, raidenBlockDuckFrames, false);
-			//fighterUpdate(&fighterSubzero, &subzeroAnimator, subzeroIdleFrames, subzeroWalkFrames, subzeroDuckFrames, subzeroBlockFrames, subzeroBlockDuckFrames, false);
-			//fighterUpdate(&fighterSonya, &sonyaAnimator, sonyaIdleFrames, sonyaWalkFrames, sonyaDuckFrames, sonyaBlockFrames, sonyaBlockDuckFrames, false);
-			fighterUpdate(delta, &fighterKano, &kanoAnimator, kanoIdleFrames, kanoWalkFrames, kanoDuckFrames, kanoBlockFrames, kanoBlockDuckFrames, true);
+			switch (p1Cursor)
+			{
+				case 0:
+					//Johnny Cage
+					fighterUpdate(delta, &fighterCage, &cageAnimator, cageIdleFrames, cageWalkFrames, cageDuckFrames, cageBlockFrames, cageBlockDuckFrames, false);
+					break;
+				case 1:
+					//Kano
+					fighterUpdate(delta, &fighterKano, &kanoAnimator, kanoIdleFrames, kanoWalkFrames, kanoDuckFrames, kanoBlockFrames, kanoBlockDuckFrames, true);
+					break;
+				case 2:
+					//Sub-Zero
+					fighterUpdate(delta, &fighterSubzero, &subzeroAnimator, subzeroIdleFrames, subzeroWalkFrames, subzeroDuckFrames, subzeroBlockFrames, subzeroBlockDuckFrames, false);
+					break;
+				case 3:
+					//Sonya
+					fighterUpdate(delta, &fighterSonya, &sonyaAnimator, sonyaIdleFrames, sonyaWalkFrames, sonyaDuckFrames, sonyaBlockFrames, sonyaBlockDuckFrames, false);
+					break;
+				case 4:
+					//Raiden
+					sprite[LIGHTNING].x_ = sprite[RAIDEN].x_;
+					fighterUpdate(delta, &fighterRaiden, &raidenAnimator, raidenIdleFrames, raidenWalkFrames, raidenDuckFrames, raidenBlockFrames, raidenBlockDuckFrames, false);
+					updateSpriteAnimator(&lightningAnimator, lightningFrames, 30, true, true);
+					break;
+				case 5:
+					//Liu Kang
+					fighterUpdate(delta, &fighterKang, &kangAnimator, kangIdleFrames, kangWalkFrames, kangDuckFrames, kangBlockFrames, kangBlockDuckFrames, false);
+					break;
+				case 6:
+					//Scorpion
+					fighterUpdate(delta, &fighterScorpion, &scorpionAnimator, scorpionIdleFrames, scorpionWalkFrames, scorpionDuckFrames, scorpionBlockFrames, scorpionBlockDuckFrames, false);
+					break;
+			}
+			
+			switch (p2Cursor)
+			{
+				case 0:
+					//Johnny Cage
+					fighterUpdate(delta, &fighterCage2, &cageAnimator2, cageIdleFrames, cageWalkFrames, cageDuckFrames, cageBlockFrames, cageBlockDuckFrames, false);
+					break;
+				case 1:
+					//Kano
+					fighterUpdate(delta, &fighterKano2, &kanoAnimator2, kanoIdleFrames, kanoWalkFrames, kanoDuckFrames, kanoBlockFrames, kanoBlockDuckFrames, true);
+					break;
+				case 2:
+					//Sub-Zero
+					fighterUpdate(delta, &fighterSubzero2, &subzeroAnimator2, subzeroIdleFrames, subzeroWalkFrames, subzeroDuckFrames, subzeroBlockFrames, subzeroBlockDuckFrames, false);
+					break;
+				case 3:
+					//Sonya
+					fighterUpdate(delta, &fighterSonya2, &sonyaAnimator2, sonyaIdleFrames, sonyaWalkFrames, sonyaDuckFrames, sonyaBlockFrames, sonyaBlockDuckFrames, false);
+					break;
+				case 4:
+					//Raiden
+					sprite[LIGHTNING2].x_ = sprite[RAIDEN2].x_;
+					fighterUpdate(delta, &fighterRaiden2, &raidenAnimator2, raidenIdleFrames, raidenWalkFrames, raidenDuckFrames, raidenBlockFrames, raidenBlockDuckFrames, false);
+					updateSpriteAnimator(&lightning2Animator, lightningFrames, 30, true, true);
+					break;
+				case 5:
+					//Liu Kang
+					fighterUpdate(delta, &fighterKang2, &kangAnimator2, kangIdleFrames, kangWalkFrames, kangDuckFrames, kangBlockFrames, kangBlockDuckFrames, false);
+					break;
+				case 6:
+					//Scorpion
+					fighterUpdate(delta, &fighterScorpion2, &scorpionAnimator2, scorpionIdleFrames, scorpionWalkFrames, scorpionDuckFrames, scorpionBlockFrames, scorpionBlockDuckFrames, false);
+					break;
+			}
 		}
 		
 		pad1=jsfGetPadPressed(LEFT_PAD);
@@ -951,7 +1087,7 @@ int gameStartTicks = rapTicks;
 			sprite[P2_HB_BODY].active = R_is_active;
 			sprite[P2_HB_DUCK].active = R_is_active;
 			sprite[P2_HB_ATTACK].active = R_is_active;
-			rapDebugSetVisible(DEBUG_SHOW);
+			//rapDebugSetVisible(DEBUG_SHOW);
 		}
 		else if (pad1 & JAGPAD_HASH)
 		{
@@ -961,7 +1097,7 @@ int gameStartTicks = rapTicks;
 			sprite[P2_HB_BODY].active = R_is_inactive;
 			sprite[P2_HB_DUCK].active = R_is_inactive;
 			sprite[P2_HB_ATTACK].active = R_is_inactive;
-			rapDebugSetVisible(DEBUG_HIDE);
+			//rapDebugSetVisible(DEBUG_HIDE);
 		}
 
 		rapDebugUpdate();
@@ -1003,6 +1139,7 @@ void switchScreenChooseFighter()
 	fighterMakeSelectable(&fighterSubzero2, false);
 	rapSetActiveList(1);
 	//currentScreen = 1;
+	onTitleScreen = false;
 	onScreenChooseFighter = true;
 }
 
@@ -1091,9 +1228,129 @@ void switchScreenVsBattle(int p1Cursor, int p2Cursor)
 			break;
 	}
 	
+	//sprite[TITLE_SCREEN].active = R_is_inactive;
 	rapSetActiveList(2);
 	onScreenChooseFighter = false;
 	onScreenVsBattle = true;
+}
+
+void switchScreenFight(int p1Cursor, int p2Cursor)
+{
+	unsigned short bg = (21 << 11) + (57 << 5) + 31;  //(red << 11) + (green << 5) + blue=
+	*(volatile unsigned short*)(BG)=(volatile unsigned short)bg;
+
+	jsfLoadClut((unsigned short *)(void *)(BMP_PG_0_clut),0,112);
+	jsfLoadClut((unsigned short *)(void *)(BMP_LIGHTNING_clut),13,3);
+
+	switch (p1Cursor)
+	{
+		case 0:
+			//Johnny Cage
+			jsfLoadClut((unsigned short *)(void *)(BMPCAGE_clut),14,16);
+			fighterInitialize(&fighterCage, true);
+			fighterShow(&fighterCage);
+			break;
+		case 1:
+			//Kano
+			jsfLoadClut((unsigned short *)(void *)(BMPKANO_clut),14,16);
+			fighterInitialize(&fighterKano, true);
+			fighterShow(&fighterKano);
+			break;
+		case 2:
+			//Sub-Zero
+			jsfLoadClut((unsigned short *)(void *)(BMPSUBZERO_clut),14,16);
+			fighterInitialize(&fighterSubzero, true);
+			fighterShow(&fighterSubzero);
+			break;
+		case 3:
+			//Sonya
+			jsfLoadClut((unsigned short *)(void *)(BMPSONYA_clut),14,16);
+			fighterInitialize(&fighterSonya, true);
+			fighterShow(&fighterSonya);
+			break;
+		case 4:
+			//Raiden
+			jsfLoadClut((unsigned short *)(void *)(BMPRAIDEN_clut),14,16);
+			fighterInitialize(&fighterRaiden, true);
+			fighterShow(&fighterRaiden);
+			sprite[LIGHTNING].active = R_is_active;
+			break;
+		case 5:
+			//Liu Kang
+			jsfLoadClut((unsigned short *)(void *)(BMPKANG_clut),14,16);
+			fighterInitialize(&fighterKang, true);
+			fighterShow(&fighterKang);
+			break;
+		case 6:
+			//Scorpion
+			jsfLoadClut((unsigned short *)(void *)(BMPSCORPION_clut),14,16);
+			fighterInitialize(&fighterScorpion, true);
+			fighterShow(&fighterScorpion);
+			break;
+	}
+
+	switch (p2Cursor)
+	{
+		case 0:
+			//Johnny Cage
+			jsfLoadClut((unsigned short *)(void *)(BMPCAGE_clut),15,16);
+			fighterInitialize(&fighterCage2, false);
+			fighterShow(&fighterCage2);
+			break;
+		case 1:
+			//Kano
+			jsfLoadClut((unsigned short *)(void *)(BMPKANO_clut),15,16);
+			fighterInitialize(&fighterKano2, false);
+			fighterShow(&fighterKano2);
+			break;
+		case 2:
+			//Sub-Zero
+			jsfLoadClut((unsigned short *)(void *)(BMPSUBZERO_clut),15,16);
+			fighterInitialize(&fighterSubzero2, false);
+			fighterShow(&fighterSubzero2);
+			break;
+		case 3:
+			//Sonya
+			jsfLoadClut((unsigned short *)(void *)(BMPSONYA_clut),15,16);
+			fighterInitialize(&fighterSonya2, false);
+			fighterShow(&fighterSonya2);
+			break;
+		case 4:
+			//Raiden
+			jsfLoadClut((unsigned short *)(void *)(BMPRAIDEN_clut),15,16);
+			fighterInitialize(&fighterRaiden2, false);
+			fighterShow(&fighterRaiden2);
+			sprite[LIGHTNING2].active = R_is_active;
+			break;
+		case 5:
+			//Liu Kang
+			jsfLoadClut((unsigned short *)(void *)(BMPKANG_clut),15,16);
+			fighterInitialize(&fighterKang2, false);
+			fighterShow(&fighterKang2);
+			break;
+		case 6:
+			//Scorpion
+			jsfLoadClut((unsigned short *)(void *)(BMPSCORPION_clut),15,16);
+			fighterInitialize(&fighterScorpion2, false);
+			fighterShow(&fighterScorpion2);
+			break;
+	}
+
+	sprite[CHOOSE_FIGHTER_SCREEN].active = R_is_inactive;
+	sprite[BG1_BACKDROP].active = R_is_active;
+	sprite[BG1_TEMPLE_LEFT].active = R_is_active;
+	sprite[BG1_TEMPLE_RIGHT].active = R_is_active;
+	sprite[BG1_FLAME1].active = R_is_active;
+	sprite[BG1_FLAME2].active = R_is_active;
+	sprite[HUD].active = R_is_active;
+	sprite[HEALTHBAR_P1].active = R_is_active;
+	sprite[HEALTHBAR_P2].active = R_is_active;
+	sprite[NAME_SCORPION_P1].active = R_is_active;
+	sprite[NAME_KANO_P2].active = R_is_active;
+
+	rapSetActiveList(1);
+	onScreenVsBattle = false;
+	onScreenFight = true;
 }
 
 void SetPlayerPalettes()

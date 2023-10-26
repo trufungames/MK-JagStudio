@@ -12,3 +12,4 @@ void sfxSonya(bool enableSFX);
 void sfxP1Cursor(bool enableSFX);
 void sfxP2Cursor(bool enableSFX);
 void sfxGong(bool enableSFX);
+void sfxIntro(bool enableSFX);

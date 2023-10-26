@@ -53,6 +53,7 @@
 #define BMP_PT_SONYA_clut 0xC43FA0
 #define BMP_PT_SUBZERO 0xC43FC0
 #define BMP_PT_SUBZERO_clut 0xC449C0
+#define BMP_SHUTTER 0xC449E0
 extern void *explode_sam asm("explode_sam");
 extern void *explode_sam_end asm("explode_sam_end");
 extern void *fight_sam asm("fight_sam");
@@ -77,3 +78,5 @@ extern void *p2cursor_sam asm("p2cursor_sam");
 extern void *p2cursor_sam_end asm("p2cursor_sam_end");
 extern void *gong_sam asm("gong_sam");
 extern void *gong_sam_end asm("gong_sam_end");
+extern void *intro_sam asm("intro_sam");
+extern void *intro_sam_end asm("intro_sam_end");

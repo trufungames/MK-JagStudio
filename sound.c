@@ -110,3 +110,12 @@ void sfxGong(bool enableSFX)
 	zeroPlaySample(1,STRPTR(gong_sam),(STRPTR(gong_sam_end)-STRPTR(gong_sam)+3) & 0xfffffffc,(46168/7000),Zero_Audio_8bit_Signed);
 	zeroPlaySample(2,STRPTR(gong_sam),(STRPTR(gong_sam_end)-STRPTR(gong_sam)+3) & 0xfffffffc,(46168/7000),Zero_Audio_8bit_Signed);
 }
+
+void sfxIntro(bool enableSFX)
+{
+	if (!enableSFX)
+		return;
+
+	zeroPlaySample(1,STRPTR(intro_sam),(STRPTR(intro_sam_end)-STRPTR(intro_sam)+3) & 0xfffffffc,(46168/7000),Zero_Audio_8bit_Signed);
+	zeroPlaySample(2,STRPTR(intro_sam),(STRPTR(intro_sam_end)-STRPTR(intro_sam)+3) & 0xfffffffc,(46168/7000),Zero_Audio_8bit_Signed);
+}

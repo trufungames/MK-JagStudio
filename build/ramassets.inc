@@ -71,3 +71,9 @@ gong_sam_end:
 .extern gong_sam
 .extern gong_sam_end
 .dphrase
+intro_sam: incbin "build/intro.wav.raw"
+.dc.b 0,0,0
+intro_sam_end:
+.extern intro_sam
+.extern intro_sam_end
+.dphrase

@@ -2,20 +2,32 @@
 #include "jstudio.h"
 #include "romassets.h"
 
-#define P1_CURSOR 3
-#define P2_CURSOR 2
-#define BG1_TEMPLE_LEFT 8
+#define TITLE_SCREEN 0
+#define CHOOSE_FIGHTER_SCREEN 2
+#define P1_CURSOR 4
+#define P2_CURSOR 3
+#define BG1_TEMPLE_LEFT 9
 #define BG1_TEMPLE_RIGHT BG1_TEMPLE_LEFT + 1
 #define BG1_BACKDROP BG1_TEMPLE_RIGHT + 1
 #define BG1_FLAME1 BG1_BACKDROP + 1
 #define BG1_FLAME2 BG1_FLAME1 + 1
+#define HUD BG1_FLAME2 + 1
+#define HEALTHBAR_P1 HUD + 1
+#define HEALTHBAR_P2 HEALTHBAR_P1 + 1
 #define P1_HB_BODY 33
 #define P1_HB_DUCK P1_HB_BODY + 1
 #define P1_HB_ATTACK P1_HB_DUCK + 1
 #define P2_HB_BODY P1_HB_ATTACK + 1
 #define P2_HB_DUCK P2_HB_BODY + 1
 #define P2_HB_ATTACK P2_HB_DUCK + 1
-#define SCORPION 16
+#define NAME_SCORPION_P1 P2_HB_ATTACK + 1
+#define NAME_KANO_P2 NAME_SCORPION_P1 + 1
+#define SHUTTER_1 41
+#define SHUTTER_2 SHUTTER_1 + 1
+#define SHUTTER_3 SHUTTER_2 + 1
+#define SHUTTER_4 SHUTTER_3 + 1
+#define SHUTTER_5 SHUTTER_4 + 1
+#define SCORPION 17
 #define KANO SCORPION + 1
 #define CAGE KANO + 1
 #define KANG CAGE + 1
@@ -31,7 +43,7 @@
 #define LIGHTNING2 RAIDEN2 + 1
 #define SUBZERO2 LIGHTNING2 + 1
 #define SONYA2 SUBZERO2 + 1
-#define P1_PT_CAGE 62
+#define P1_PT_CAGE 68
 #define P1_PT_KANO P1_PT_CAGE + 1
 #define P1_PT_SUBZERO P1_PT_KANO + 1
 #define P1_PT_SONYA P1_PT_SUBZERO + 1
