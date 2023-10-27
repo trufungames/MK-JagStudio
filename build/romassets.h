@@ -54,6 +54,10 @@
 #define BMP_PT_SUBZERO 0xC43FC0
 #define BMP_PT_SUBZERO_clut 0xC449C0
 #define BMP_SHUTTER 0xC449E0
+#define BMP_ROUND1 0xC48460
+#define BMP_ROUND1_clut 0xC48820
+#define BMP_FIGHT 0xC48840
+#define BMP_FIGHT_clut 0xC4A640
 extern void *explode_sam asm("explode_sam");
 extern void *explode_sam_end asm("explode_sam_end");
 extern void *fight_sam asm("fight_sam");

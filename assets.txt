@@ -66,6 +66,11 @@ ROM,BMP_PT_SCORPION,gfx_clut,ASSETS\GFX\pt_scorpion.BMP
 ROM,BMP_PT_SONYA,gfx_clut,ASSETS\GFX\pt_sonya.BMP
 ROM,BMP_PT_SUBZERO,gfx_clut,ASSETS\GFX\pt_subzero.BMP
 ROM,BMP_SHUTTER,gfx_clut16,ASSETS\GFX\shutter.BMP
+ROM,BMP_ROUND1,gfx_clut,ASSETS\GFX\round1.BMP
+ROM,BMP_FIGHT,gfx_clut,ASSETS\GFX\fight.BMP
+
+;ABS,MK_TITLE,modfile1,ASSETS\Music\mk_title.mod
+;ROM,MOD_TITLE,modmusic,ASSETS\Music\mk_title.mod
 
 ABS,explode_sam,sfx_raw8000,ASSETS\SFX\explosion.wav
 ABS,fight_sam,sfx_raw8000,ASSETS\SFX\fight.wav
@@ -80,5 +85,6 @@ ABS,p1cursor_sam,sfx_raw8000,ASSETS\SFX\p1cursor.wav
 ABS,p2cursor_sam,sfx_raw8000,ASSETS\SFX\p2cursor.wav
 ABS,gong_sam,sfx_raw8000,ASSETS\SFX\gong.wav
 ABS,intro_sam,sfx_raw8000,ASSETS\SFX\intro.wav
-' End of file.
 
+
+' End of file.

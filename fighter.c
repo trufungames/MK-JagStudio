@@ -36,8 +36,8 @@ void fighterMakeSelectable(struct Fighter* fighter, bool isPlayer1)
 void fighterInitialize(struct Fighter *fighter, bool isPlayer1)
 {
     fighter->pad = 0;
-    fighter->playerMoveForwardSpeed = 4000;
-    fighter->playerMoveBackwardSpeed = 4000;
+    fighter->playerMoveForwardSpeed = 2;
+    fighter->playerMoveBackwardSpeed = 2;
 
     fighter->playerWasWalking = false;
     fighter->playerWasDucking = false;
