@@ -45,7 +45,7 @@ __Z21fighterMakeSelectableP7Fighterb:
 	move.l sprite,%a0
 	add.l %d1,%a0
 	move.w #243,8(%a0)
-	moveq #29,%d1
+	moveq #33,%d1
 	cmp.l %d0,%d1
 	jeq .L9
 	moveq #-1,%d0
@@ -91,11 +91,11 @@ __Z17fighterInitializeP7Fighterb:
 	move.l %d0,4(%a1)
 	tst.b 15(%fp)
 	jne .L15
-	moveq #40,%d0
+	moveq #44,%d0
 	move.l %d0,40(%a0)
-	move.b #38,%d0
+	move.b #42,%d0
 	move.l %d0,32(%a0)
-	move.b #39,%d0
+	move.b #43,%d0
 	move.l %d0,36(%a0)
 	move.b #2,%d0
 	move.l %d0,48(%a0)
@@ -103,11 +103,11 @@ __Z17fighterInitializeP7Fighterb:
 	unlk %fp
 	rts
 .L15:
-	move.b #37,%d0
+	move.b #41,%d0
 	move.l %d0,40(%a0)
-	move.b #35,%d0
+	move.b #39,%d0
 	move.l %d0,32(%a0)
-	move.b #36,%d0
+	move.b #40,%d0
 	move.l %d0,36(%a0)
 	move.b #1,%d0
 	move.l %d0,48(%a0)

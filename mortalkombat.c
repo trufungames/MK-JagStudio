@@ -590,13 +590,14 @@ void basicmain()
 		ticksPerSec = 50;
 	}
 	lastTicks = 0;
-	bool enableSFX = true;
+	bool enableSFX = false;
 	int myTicks = 0;
 	int p1Selected = -1;
 	int p2Selected = -1;
 	bool chooseFighterDone = false;
 	int shutterTicks = 0;
 	bool roundFightSequenceComplete = false;
+	int fightScale = 0;
 /*
 The formula (C-notation) to get a 16-bit color value from the red/green/blue parts is as follows:
 
@@ -1038,18 +1039,22 @@ int gameStartTicks = rapTicks;
 					sprite[ROUND1].active = R_is_inactive;
 					sprite[FIGHT].active = R_is_active;
 
-					for (int k = 0; k <= 32; k += 2)
+					if (fightScale <= 32)
 					{
-						sprite[FIGHT].scale_x = k;
-						sprite[FIGHT].scale_y = k;
+						sprite[FIGHT].scale_x = fightScale;
+						sprite[FIGHT].scale_y = fightScale;
 						sprite[FIGHT].x_ -= 4;
 						sprite[FIGHT].y_ -= 2;
-						jsfVsync(0);
-					}
 
-					sfxFight(enableSFX);
-					roundFightSequenceComplete = true;
-					myTicks = rapTicks;
+						fightScale += 2;
+					}
+					else
+					{
+						sfxFight(enableSFX);
+						roundFightSequenceComplete = true;
+						myTicks = rapTicks;
+						fightScale = 32;
+					}
 				}
 			}
 
@@ -1059,28 +1064,33 @@ int gameStartTicks = rapTicks;
 
 				if (rapTicks >= myTicks + ticksPerSec)
 				{
+					fightAnimator.currentFrame = 0;
+
 					updateSpriteAnimator(&fightAnimator, fightIdleFrames, 1, true, true);
 
-					for (int k = 32; k > 0; k -= 2)
+					if (fightScale > 0)
 					{
-						sprite[FIGHT].scale_x = k;
-						sprite[FIGHT].scale_y = k;
+						sprite[FIGHT].scale_x = fightScale;
+						sprite[FIGHT].scale_y = fightScale;
 						sprite[FIGHT].x_ += 4;
 						sprite[FIGHT].y_ += 2;
-						jsfVsync(0);
+						fightScale -= 2;
 					}
-
-					sprite[FIGHT].active = R_is_inactive;
+					else
+					{
+						sprite[FIGHT].active = R_is_inactive;
+					}
 				}
 			}
 
-			//TODO animate FIGHT!, then hide
-
+			//////////////////////////////////////
+			// Player 1 fighter
+			/////////////////////////////////////
 			switch (p1Cursor)
 			{
 				case 0:
 					//Johnny Cage
-					fighterUpdate(delta, &fighterCage, &cageAnimator, cageIdleFrames, cageWalkFrames, cageDuckFrames, cageBlockFrames, cageBlockDuckFrames, true);
+					fighterUpdate(delta, &fighterCage, &cageAnimator, cageIdleFrames, cageWalkFrames, cageDuckFrames, cageBlockFrames, cageBlockDuckFrames, false);
 					break;
 				case 1:
 					//Kano
@@ -1088,28 +1098,31 @@ int gameStartTicks = rapTicks;
 					break;
 				case 2:
 					//Sub-Zero
-					fighterUpdate(delta, &fighterSubzero, &subzeroAnimator, subzeroIdleFrames, subzeroWalkFrames, subzeroDuckFrames, subzeroBlockFrames, subzeroBlockDuckFrames, true);
+					fighterUpdate(delta, &fighterSubzero, &subzeroAnimator, subzeroIdleFrames, subzeroWalkFrames, subzeroDuckFrames, subzeroBlockFrames, subzeroBlockDuckFrames, false);
 					break;
 				case 3:
 					//Sonya
-					fighterUpdate(delta, &fighterSonya, &sonyaAnimator, sonyaIdleFrames, sonyaWalkFrames, sonyaDuckFrames, sonyaBlockFrames, sonyaBlockDuckFrames, true);
+					fighterUpdate(delta, &fighterSonya, &sonyaAnimator, sonyaIdleFrames, sonyaWalkFrames, sonyaDuckFrames, sonyaBlockFrames, sonyaBlockDuckFrames, false);
 					break;
 				case 4:
 					//Raiden
 					sprite[LIGHTNING].x_ = sprite[RAIDEN].x_;
-					fighterUpdate(delta, &fighterRaiden, &raidenAnimator, raidenIdleFrames, raidenWalkFrames, raidenDuckFrames, raidenBlockFrames, raidenBlockDuckFrames, true);
+					fighterUpdate(delta, &fighterRaiden, &raidenAnimator, raidenIdleFrames, raidenWalkFrames, raidenDuckFrames, raidenBlockFrames, raidenBlockDuckFrames, false);
 					updateSpriteAnimator(&lightningAnimator, lightningFrames, 30, true, true);
 					break;
 				case 5:
 					//Liu Kang
-					fighterUpdate(delta, &fighterKang, &kangAnimator, kangIdleFrames, kangWalkFrames, kangDuckFrames, kangBlockFrames, kangBlockDuckFrames, true);
+					fighterUpdate(delta, &fighterKang, &kangAnimator, kangIdleFrames, kangWalkFrames, kangDuckFrames, kangBlockFrames, kangBlockDuckFrames, false);
 					break;
 				case 6:
 					//Scorpion
-					fighterUpdate(delta, &fighterScorpion, &scorpionAnimator, scorpionIdleFrames, scorpionWalkFrames, scorpionDuckFrames, scorpionBlockFrames, scorpionBlockDuckFrames, true);
+					fighterUpdate(delta, &fighterScorpion, &scorpionAnimator, scorpionIdleFrames, scorpionWalkFrames, scorpionDuckFrames, scorpionBlockFrames, scorpionBlockDuckFrames, false);
 					break;
 			}
 			
+			//////////////////////////////////////
+			// Player 2 fighter
+			/////////////////////////////////////
 			switch (p2Cursor)
 			{
 				case 0:
@@ -1118,7 +1131,7 @@ int gameStartTicks = rapTicks;
 					break;
 				case 1:
 					//Kano
-					fighterUpdate(delta, &fighterKano2, &kanoAnimator2, kanoIdleFrames, kanoWalkFrames, kanoDuckFrames, kanoBlockFrames, kanoBlockDuckFrames, false);
+					fighterUpdate(delta, &fighterKano2, &kanoAnimator2, kanoIdleFrames, kanoWalkFrames, kanoDuckFrames, kanoBlockFrames, kanoBlockDuckFrames, true);
 					break;
 				case 2:
 					//Sub-Zero
@@ -1309,7 +1322,12 @@ void switchScreenFight(int p1Cursor, int p2Cursor)
 	*(volatile unsigned short*)(BG)=(volatile unsigned short)bg;
 
 	jsfLoadClut((unsigned short *)(void *)(BMP_PG_0_clut),0,112);
-	jsfLoadClut((unsigned short *)(void *)(BMP_ROUND1_clut),10,16);
+	jsfLoadClut((unsigned short *)(void *)(BMP_FLAME_clut),7,16);
+	jsfLoadClut((unsigned short *)(void *)(BMP_CLOUD1_clut),8,16);
+	jsfLoadClut((unsigned short *)(void *)(BMP_TEMPLE_clut),9,16);
+	jsfLoadClut((unsigned short *)(void *)(BMP_MOUNTAINS_clut),10,16);
+	jsfLoadClut((unsigned short *)(void *)(BMP_BUSH_clut),11,16);
+	jsfLoadClut((unsigned short *)(void *)(BMP_ROUND1_clut),12,16);
 	jsfLoadClut((unsigned short *)(void *)(BMP_LIGHTNING_clut),13,3);
 
 	switch (p1Cursor)
@@ -1414,6 +1432,10 @@ void switchScreenFight(int p1Cursor, int p2Cursor)
 	sprite[BG1_CLOUD3].active = R_is_active;
 	sprite[BG1_TEMPLE_LEFT].active = R_is_active;
 	sprite[BG1_TEMPLE_RIGHT].active = R_is_active;
+	sprite[BG1_BUSH_1].active = R_is_active;
+	sprite[BG1_BUSH_2].active = R_is_active;
+	sprite[BG1_BUSH_3].active = R_is_active;
+	sprite[BG1_BUSH_4].active = R_is_active;
 	sprite[BG1_FLAME1].active = R_is_active;
 	sprite[BG1_FLAME2].active = R_is_active;
 	sprite[ROUND1].active = R_is_active;
