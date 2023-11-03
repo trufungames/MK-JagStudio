@@ -41,38 +41,38 @@ static SpriteAnimator cageAnimator2 = {
 };
 
 static AnimationFrame cageIdleFrames[] = {
-	{ 96, 144, 0, 0, 6 },
-	{ 96, 144, 96, 0, 6 },
-	{ 96, 144, 192, 0, 6 },
-	{ 96, 144, 288, 0, 6 },
-	{ 96, 144, 384, 0, 6 },
-	{ 96, 144, 480, 0, 6 },
-	{ 96, 144, 576, 0, 6 }
+	{ 96, 144, 0, 0, 0, 0, 6 },
+	{ 96, 144, 96, 0, 0, 0, 6 },
+	{ 96, 144, 192, 0, 0, 0, 6 },
+	{ 96, 144, 288, 0, 0, 0, 6 },
+	{ 96, 144, 384, 0, 0, 0, 6 },
+	{ 96, 144, 480, 0, 0, 0, 6 },
+	{ 96, 144, 576, 0, 0, 0, 6 }
 };
 static AnimationFrame cageWalkFrames[] = {
-	{ 96, 144, 672, 0, 6 },
-	{ 96, 144, 768, 0, 6 },
-	{ 96, 144, 864, 0, 6 },
-	{ 96, 144, 0, 144, 6 },
-	{ 96, 144, 96, 144, 6 },
-	{ 96, 144, 192, 144, 6 },
-	{ 96, 144, 288, 144, 6 },
-	{ 96, 144, 384, 144, 6 },
-	{ 96, 144, 480, 144, 6 }
+	{ 96, 144, 672, 0, 0, 0, 6 },
+	{ 96, 144, 768, 0, 0, 0, 6 },
+	{ 96, 144, 864, 0, 0, 0, 6 },
+	{ 96, 144, 0, 144, 0, 0, 6 },
+	{ 96, 144, 96, 144, 0, 0, 6 },
+	{ 96, 144, 192, 144, 0, 0, 6 },
+	{ 96, 144, 288, 144, 0, 0, 6 },
+	{ 96, 144, 384, 144, 0, 0, 6 },
+	{ 96, 144, 480, 144, 0, 0, 6 }
 };
 static AnimationFrame cageDuckFrames[] = {
-	{ 96, 144, 576, 144, 3 },
-	{ 96, 144, 672, 144, 3 },
-	{ 96, 144, 768, 144, 3 }
+	{ 96, 144, 576, 144, 0, 0, 3 },
+	{ 96, 144, 672, 144, 0, 0, 3 },
+	{ 96, 144, 768, 144, 0, 0, 3 }
 };
 static AnimationFrame cageBlockFrames[] = {
-	{ 96, 144, 864, 144, 3 },
-	{ 96, 144, 0, 288, 3 },
-	{ 96, 144, 96, 288, 3 }
+	{ 96, 144, 864, 144, 0, 0, 3 },
+	{ 96, 144, 0, 288, 0, 0, 3 },
+	{ 96, 144, 96, 288, 0, 0, 3 }
 };
 static AnimationFrame cageBlockDuckFrames[] = {
-	{ 80, 144, 192, 288, 3 },
-	{ 80, 144, 288, 288, 3 }
+	{ 80, 144, 192, 288, 0, 0, 3 },
+	{ 80, 144, 288, 288, 0, 0, 3 }
 };
 
 //Liu Kang animation frames
@@ -85,39 +85,39 @@ static SpriteAnimator kangAnimator2 = {
 };
 
 static AnimationFrame kangIdleFrames[] = {
-	{ 80, 144, 0, 0, 7 },
-	{ 80, 144, 80, 0, 7 },
-	{ 80, 144, 160, 0, 7 },
-	{ 80, 144, 240, 0, 7 },
-	{ 80, 144, 320, 0, 7 },
-	{ 80, 144, 400, 0, 7 },
-	{ 80, 144, 480, 0, 7 },
-	{ 80, 144, 560, 0, 7 }
+	{ 80, 144, 0, 0, 0, 0, 7 },
+	{ 80, 144, 80, 0, 0, 0, 7 },
+	{ 80, 144, 160, 0, 0, 0, 7 },
+	{ 80, 144, 240, 0, 0, 0, 7 },
+	{ 80, 144, 320, 0, 0, 0, 7 },
+	{ 80, 144, 400, 0, 0, 0, 7 },
+	{ 80, 144, 480, 0, 0, 0, 7 },
+	{ 80, 144, 560, 0, 0, 0, 7 }
 };
 static AnimationFrame kangWalkFrames[] = {
-	{ 80, 144, 640, 0, 6 },
-	{ 80, 144, 720, 0, 6 },
-	{ 80, 144, 800, 0, 6 },
-	{ 80, 144, 880, 0, 6 },
-	{ 80, 144, 0, 144, 6 },
-	{ 80, 144, 80, 144, 6 },
-	{ 80, 144, 160, 144, 6 },
-	{ 80, 144, 240, 144, 6 },
-	{ 80, 144, 320, 144, 6 }
+	{ 80, 144, 640, 0, 0, 0, 6 },
+	{ 80, 144, 720, 0, 0, 0, 6 },
+	{ 80, 144, 800, 0, 0, 0, 6 },
+	{ 80, 144, 880, 0, 0, 0, 6 },
+	{ 80, 144, 0, 144, 0, 0, 6 },
+	{ 80, 144, 80, 144, 0, 0, 6 },
+	{ 80, 144, 160, 144, 0, 0, 6 },
+	{ 80, 144, 240, 144, 0, 0, 6 },
+	{ 80, 144, 320, 144, 0, 0, 6 }
 };
 static AnimationFrame kangDuckFrames[] = {
-	{ 80, 144, 400, 144, 3 },
-	{ 80, 144, 480, 144, 3 },
-	{ 80, 144, 560, 144, 3 }
+	{ 80, 144, 400, 144, 0, 0, 3 },
+	{ 80, 144, 480, 144, 0, 0, 3 },
+	{ 80, 144, 560, 144, 0, 0, 3 }
 };
 static AnimationFrame kangBlockFrames[] = {
-	{ 80, 144, 640, 144, 3 },
-	{ 80, 144, 720, 144, 3 },
-	{ 80, 144, 800, 144, 3 }
+	{ 80, 144, 640, 144, 0, 0, 3 },
+	{ 80, 144, 720, 144, 0, 0, 3 },
+	{ 80, 144, 800, 144, 0, 0, 3 }
 };
 static AnimationFrame kangBlockDuckFrames[] = {
-	{ 80, 144, 880, 144, 3 },
-	{ 80, 144, 0, 288, 3 }
+	{ 80, 144, 880, 144, 0, 0, 3 },
+	{ 80, 144, 0, 288, 0, 0, 3 }
 };
 
 //Raiden animation frames
@@ -130,41 +130,41 @@ static SpriteAnimator raidenAnimator2 = {
 };
 
 static AnimationFrame raidenIdleFrames[] = {
-	{ 80, 144, 0, 0, 6 },
-	{ 80, 144, 80, 0, 6 },
-	{ 80, 144, 160, 0, 6 },
-	{ 80, 144, 240, 0, 6 },
-	{ 80, 144, 320, 0, 6 },
-	{ 80, 144, 400, 0, 6 },
-	{ 80, 144, 480, 0, 6 },
-	{ 80, 144, 560, 0, 6 },
-	{ 80, 144, 640, 0, 6 },
-	{ 80, 144, 720, 0, 6 }
+	{ 80, 144, 0, 0, 0, 0, 6 },
+	{ 80, 144, 80, 0, 0, 0, 6 },
+	{ 80, 144, 160, 0, 0, 0, 6 },
+	{ 80, 144, 240, 0, 0, 0, 6 },
+	{ 80, 144, 320, 0, 0, 0, 6 },
+	{ 80, 144, 400, 0, 0, 0, 6 },
+	{ 80, 144, 480, 0, 0, 0, 6 },
+	{ 80, 144, 560, 0, 0, 0, 6 },
+	{ 80, 144, 640, 0, 0, 0, 6 },
+	{ 80, 144, 720, 0, 0, 0, 6 }
 };
 static AnimationFrame raidenWalkFrames[] = {
-	{ 80, 144, 800, 0, 6 },
-	{ 80, 144, 880, 0, 6 },
-	{ 80, 144, 0, 144, 6 },
-	{ 80, 144, 80, 144, 6 },
-	{ 80, 144, 160, 144, 6 },
-	{ 80, 144, 240, 144, 6 },
-	{ 80, 144, 320, 144, 6 },
-	{ 80, 144, 400, 144, 6 },
-	{ 80, 144, 480, 144, 6 }
+	{ 80, 144, 800, 0, 0, 0, 6 },
+	{ 80, 144, 880, 0, 0, 0, 6 },
+	{ 80, 144, 0, 144, 0, 0, 6 },
+	{ 80, 144, 80, 144, 0, 0, 6 },
+	{ 80, 144, 160, 144, 0, 0, 6 },
+	{ 80, 144, 240, 144, 0, 0, 6 },
+	{ 80, 144, 320, 144, 0, 0, 6 },
+	{ 80, 144, 400, 144, 0, 0, 6 },
+	{ 80, 144, 480, 144, 0, 0, 6 }
 };
 static AnimationFrame raidenDuckFrames[] = {
-	{ 80, 144, 560, 144, 3 },
-	{ 80, 144, 640, 144, 3 },
-	{ 80, 144, 720, 144, 3 }
+	{ 80, 144, 560, 144, 0, 0, 3 },
+	{ 80, 144, 640, 144, 0, 0, 3 },
+	{ 80, 144, 720, 144, 0, 0, 3 }
 };
 static AnimationFrame raidenBlockFrames[] = {
-	{ 80, 144, 800, 144, 3 },
-	{ 80, 144, 880, 144, 3 },
-	{ 80, 144, 0, 288, 3 }
+	{ 80, 144, 800, 144, 0, 0, 3 },
+	{ 80, 144, 880, 144, 0, 0, 3 },
+	{ 80, 144, 0, 288, 0, 0, 3 }
 };
 static AnimationFrame raidenBlockDuckFrames[] = {
-	{ 80, 144, 80, 288, 3 },
-	{ 80, 144, 160, 288, 3 }
+	{ 80, 144, 80, 288, 0, 0, 3 },
+	{ 80, 144, 160, 288, 0, 0, 3 }
 };
 
 //Subzero animation frames
@@ -177,43 +177,43 @@ static SpriteAnimator subzeroAnimator2 = {
 };
 
 static AnimationFrame subzeroIdleFrames[] = {
-	{ 80, 144, 0, 0, 6 },
-	{ 80, 144, 80, 0, 6 },
-	{ 80, 144, 160, 0, 6 },
-	{ 80, 144, 240, 0, 6 },
-	{ 80, 144, 320, 0, 6 },
-	{ 80, 144, 400, 0, 6 },
-	{ 80, 144, 480, 0, 6 },
-	{ 80, 144, 560, 0, 6 },
-	{ 80, 144, 640, 0, 6 },
-	{ 80, 144, 720, 0, 6 },
-	{ 80, 144, 800, 0, 6 },
-	{ 80, 144, 880, 0, 6 }
+	{ 80, 144, 0, 0, 0, 0, 6 },
+	{ 80, 144, 80, 0, 0, 0, 6 },
+	{ 80, 144, 160, 0, 0, 0, 6 },
+	{ 80, 144, 240, 0, 0, 0, 6 },
+	{ 80, 144, 320, 0, 0, 0, 6 },
+	{ 80, 144, 400, 0, 0, 0, 6 },
+	{ 80, 144, 480, 0, 0, 0, 6 },
+	{ 80, 144, 560, 0, 0, 0, 6 },
+	{ 80, 144, 640, 0, 0, 0, 6 },
+	{ 80, 144, 720, 0, 0, 0, 6 },
+	{ 80, 144, 800, 0, 0, 0, 6 },
+	{ 80, 144, 880, 0, 0, 0, 6 }
 };
 static AnimationFrame subzeroWalkFrames[] = {
-	{ 80, 144, 0, 144, 6 },
-	{ 80, 144, 80, 144, 6 },
-	{ 80, 144, 160, 144, 6 },
-	{ 80, 144, 240, 144, 6 },
-	{ 80, 144, 320, 144, 6 },
-	{ 80, 144, 400, 144, 6 },
-	{ 80, 144, 480, 144, 6 },
-	{ 80, 144, 560, 144, 6 },
-	{ 80, 144, 640, 144, 6 }
+	{ 80, 144, 0, 144, 0, 0, 6 },
+	{ 80, 144, 80, 144, 0, 0, 6 },
+	{ 80, 144, 160, 144, 0, 0, 6 },
+	{ 80, 144, 240, 144, 0, 0, 6 },
+	{ 80, 144, 320, 144, 0, 0, 6 },
+	{ 80, 144, 400, 144, 0, 0, 6 },
+	{ 80, 144, 480, 144, 0, 0, 6 },
+	{ 80, 144, 560, 144, 0, 0, 6 },
+	{ 80, 144, 640, 144, 0, 0, 6 }
 };
 static AnimationFrame subzeroDuckFrames[] = {
-	{ 80, 144, 720, 144, 3 },
-	{ 80, 144, 800, 144, 3 },
-	{ 80, 144, 880, 144, 3 }
+	{ 80, 144, 720, 144, 0, 0, 3 },
+	{ 80, 144, 800, 144, 0, 0, 3 },
+	{ 80, 144, 880, 144, 0, 0, 3 }
 };
 static AnimationFrame subzeroBlockFrames[] = {
-	{ 80, 144, 0, 288, 3 },
-	{ 80, 144, 80, 288, 3 },
-	{ 80, 144, 160, 288, 3 }
+	{ 80, 144, 0, 288, 0, 0, 3 },
+	{ 80, 144, 80, 288, 0, 0, 3 },
+	{ 80, 144, 160, 288, 0, 0, 3 }
 };
 static AnimationFrame subzeroBlockDuckFrames[] = {
-	{ 80, 144, 240, 288, 3 },
-	{ 80, 144, 320, 288, 3 }
+	{ 80, 144, 240, 288, 0, 0, 3 },
+	{ 80, 144, 320, 288, 0, 0, 3 }
 };
 
 //Sonya animation frames
@@ -226,35 +226,40 @@ static SpriteAnimator sonyaAnimator2 = {
 };
 
 static AnimationFrame sonyaIdleFrames[] = {
-	{ 80, 144, 0, 0, 6 },
-	{ 80, 144, 80, 0, 6 },
-	{ 80, 144, 160, 0, 6 },
-	{ 80, 144, 240, 0, 6 },
-	{ 80, 144, 320, 0, 6 },
-	{ 80, 144, 400, 0, 6 },
-	{ 80, 144, 480, 0, 6 }
+	{ 80, 144, 0, 0, 0, 0, 6 },
+	{ 80, 144, 80, 0, 0, 0, 6 },
+	{ 80, 144, 160, 0, 0, 0, 6 },
+	{ 80, 144, 240, 0, 0, 0, 6 },
+	{ 80, 144, 320, 0, 0, 0, 6 },
+	{ 80, 144, 400, 0, 0, 0, 6 },
+	{ 80, 144, 480, 0, 0, 0, 6 }
 };
 static AnimationFrame sonyaWalkFrames[] = {
-	{ 80, 144, 560, 0, 6 },
-	{ 80, 144, 640, 0, 6 },
-	{ 80, 144, 720, 0, 6 },
-	{ 80, 144, 800, 0, 6 },
-	{ 80, 144, 880, 0, 6 },
-	{ 80, 144, 0, 144, 6 },
-	{ 80, 144, 80, 144, 6 }
+	{ 80, 144, 560, 0, 0, 0, 6 },
+	{ 80, 144, 640, 0, 0, 0, 6 },
+	{ 80, 144, 720, 0, 0, 0, 6 },
+	{ 80, 144, 800, 0, 0, 0, 6 },
+	{ 80, 144, 880, 0, 0, 0, 6 },
+	{ 80, 144, 0, 144, 0, 0, 6 },
+	{ 80, 144, 80, 144, 0, 0, 6 }
 };
 static AnimationFrame sonyaDuckFrames[] = {
-	{ 80, 144, 160, 144, 3 },
-	{ 80, 144, 240, 144, 3 }
+	{ 80, 144, 160, 144, 0, 0, 3 },
+	{ 80, 144, 240, 144, 0, 0, 3 }
 };
 static AnimationFrame sonyaBlockFrames[] = {
-	{ 80, 144, 320, 144, 3 },
-	{ 80, 144, 400, 144, 3 },
-	{ 80, 144, 480, 144, 3 }
+	{ 80, 144, 320, 144, 0, 0, 3 },
+	{ 80, 144, 400, 144, 0, 0, 3 },
+	{ 80, 144, 480, 144, 0, 0, 3 }
 };
 static AnimationFrame sonyaBlockDuckFrames[] = {
-	{ 80, 144, 560, 144, 3 },
-	{ 80, 144, 640, 144, 3 }
+	{ 80, 144, 560, 144, 0, 0, 3 },
+	{ 80, 144, 640, 144, 0, 0, 3 }
+};
+static AnimationFrame sonyaPunchLowFrames[] = {
+	{ 80, 144, 720, 144, 8, 0, 3 },
+	{ 80, 144, 800, 144, 8, 0, 3 },
+	{ 112, 144, 880, 144, 11, 0, 3 }
 };
 
 //Scorpion animation frames
@@ -267,39 +272,39 @@ static SpriteAnimator scorpionAnimator2 = {
 };
 
 static AnimationFrame scorpionIdleFrames[] = {
-	{ 80, 144, 0, 0, 6 },
-	{ 80, 144, 80, 0, 6 },
-	{ 80, 144, 160, 0, 6 },
-	{ 80, 144, 240, 0, 6 },
-	{ 80, 144, 320, 0, 6 },
-	{ 80, 144, 400, 0, 6 },
-	{ 80, 144, 480, 0, 6 }
+	{ 80, 144, 0, 0, 0, 0, 6 },
+	{ 80, 144, 80, 0, 0, 0, 6 },
+	{ 80, 144, 160, 0, 0, 0, 6 },
+	{ 80, 144, 240, 0, 0, 0, 6 },
+	{ 80, 144, 320, 0, 0, 0, 6 },
+	{ 80, 144, 400, 0, 0, 0, 6 },
+	{ 80, 144, 480, 0, 0, 0, 6 }
 };
 static AnimationFrame scorpionWalkFrames[] = {
-	{ 80, 144, 560, 0, 6 },
-	{ 80, 144, 640, 0, 6 },
-	{ 80, 144, 720, 0, 6 },
-	{ 80, 144, 800, 0, 6 },
-	{ 80, 144, 880, 0, 6 },
-	{ 80, 144, 0, 144, 6 },
-	{ 80, 144, 80, 144, 6 },
-	{ 80, 144, 160, 144, 6 },
-	{ 80, 144, 240, 144, 6 },
-	{ 80, 144, 320, 144, 6 }
+	{ 80, 144, 560, 0, 0, 0, 6 },
+	{ 80, 144, 640, 0, 0, 0, 6 },
+	{ 80, 144, 720, 0, 0, 0, 6 },
+	{ 80, 144, 800, 0, 0, 0, 6 },
+	{ 80, 144, 880, 0, 0, 0, 6 },
+	{ 80, 144, 0, 144, 0, 0, 6 },
+	{ 80, 144, 80, 144, 0, 0, 6 },
+	{ 80, 144, 160, 144, 0, 0, 6 },
+	{ 80, 144, 240, 144, 0, 0, 6 },
+	{ 80, 144, 320, 144, 0, 0, 6 }
 };
 static AnimationFrame scorpionDuckFrames[] = {
-	{ 80, 144, 400, 144, 3 },
-	{ 80, 144, 480, 144, 3 },
-	{ 80, 144, 560, 144, 3 }
+	{ 80, 144, 400, 144, 0, 0, 3 },
+	{ 80, 144, 480, 144, 0, 0, 3 },
+	{ 80, 144, 560, 144, 0, 0, 3 }
 };
 static AnimationFrame scorpionBlockFrames[] = {
-	{ 80, 144, 640, 144, 3 },
-	{ 80, 144, 720, 144, 3 },
-	{ 80, 144, 800, 144, 3 }
+	{ 80, 144, 640, 144, 0, 0, 3 },
+	{ 80, 144, 720, 144, 0, 0, 3 },
+	{ 80, 144, 800, 144, 0, 0, 3 }
 };
 static AnimationFrame scorpionBlockDuckFrames[] = {
-	{ 80, 144, 880, 144, 3 },
-	{ 80, 144, 0, 288, 3 }
+	{ 80, 144, 880, 144, 0, 0, 3 },
+	{ 80, 144, 0, 288, 0, 0, 3 }
 };
 
 //Kano animation frames
@@ -312,38 +317,38 @@ static SpriteAnimator kanoAnimator2 = {
 };
 
 static AnimationFrame kanoIdleFrames[] = {
-	{ 80, 144, 0, 0, 5 },
-	{ 80, 144, 80, 0, 5 },
-	{ 80, 144, 160, 0, 5 },
-	{ 80, 144, 240, 0, 5 },
-	{ 80, 144, 320, 0, 5 },
-	{ 80, 144, 400, 0, 5 },
-	{ 80, 144, 480, 0, 5 }
+	{ 80, 144, 0, 0, 0, 0, 5 },
+	{ 80, 144, 80, 0, 0, 0, 5 },
+	{ 80, 144, 160, 0, 0, 0, 5 },
+	{ 80, 144, 240, 0, 0, 0, 5 },
+	{ 80, 144, 320, 0, 0, 0, 5 },
+	{ 80, 144, 400, 0, 0, 0, 5 },
+	{ 80, 144, 480, 0, 0, 0, 5 }
 };
 static AnimationFrame kanoWalkFrames[] = {
-	{ 80, 144, 560, 0, 6 },
-	{ 80, 144, 640, 0, 6 },
-	{ 80, 144, 720, 0, 6 },
-	{ 80, 144, 800, 0, 6 },
-	{ 80, 144, 880, 0, 6 },
-	{ 80, 144, 0, 144, 6 },
-	{ 80, 144, 80, 144, 6 },
-	{ 80, 144, 160, 144, 6 },
-	{ 80, 144, 240, 144, 6 }
+	{ 80, 144, 560, 0, 0, 0, 6 },
+	{ 80, 144, 640, 0, 0, 0, 6 },
+	{ 80, 144, 720, 0, 0, 0, 6 },
+	{ 80, 144, 800, 0, 0, 0, 6 },
+	{ 80, 144, 880, 0, 0, 0, 6 },
+	{ 80, 144, 0, 144, 0, 0, 6 },
+	{ 80, 144, 80, 144, 0, 0, 6 },
+	{ 80, 144, 160, 144, 0, 0, 6 },
+	{ 80, 144, 240, 144, 0, 0, 6 }
 };
 static AnimationFrame kanoDuckFrames[] = {
-	{ 80, 144, 320, 144, 3 },
-	{ 80, 144, 400, 144, 3 },
-	{ 80, 144, 480, 144, 3 }
+	{ 80, 144, 320, 144, 0, 0, 3 },
+	{ 80, 144, 400, 144, 0, 0, 3 },
+	{ 80, 144, 480, 144, 0, 0, 3 }
 };
 static AnimationFrame kanoBlockFrames[] = {
-	{ 80, 144, 560, 144, 3 },
-	{ 80, 144, 640, 144, 3 },
-	{ 80, 144, 720, 144, 3 }
+	{ 80, 144, 560, 144, 0, 0, 3 },
+	{ 80, 144, 640, 144, 0, 0, 3 },
+	{ 80, 144, 720, 144, 0, 0, 3 }
 };
 static AnimationFrame kanoBlockDuckFrames[] = {
-	{ 80, 144, 800, 144, 3 },
-	{ 80, 144, 880, 144, 3 }
+	{ 80, 144, 800, 144, 0, 0, 3 },
+	{ 80, 144, 880, 144, 0, 0, 3 }
 };
 
 static SpriteAnimator lightningAnimator = {
@@ -355,36 +360,36 @@ static SpriteAnimator lightning2Animator = {
 };
 
 static AnimationFrame lightningFrames[] = {
-	{ 80, 144, 0, 0, 4 },
-	{ 80, 144, 80, 0, 4 },
-	{ 80, 144, 160, 0, 4 },
-	{ 80, 144, 240, 0, 4 },
-	{ 80, 144, 320, 0, 4 },
-	{ 80, 144, 400, 0, 4 },
-	{ 80, 144, 480, 0, 4 },
-	{ 80, 144, 560, 0, 4 },
-	{ 80, 144, 640, 0, 4 },
-	{ 80, 144, 720, 0, 4 },
-	{ 80, 144, 0, 144, 4 },
-	{ 80, 144, 80, 144, 4 },
-	{ 80, 144, 160, 144, 4 },
-	{ 80, 144, 240, 144, 4 },
-	{ 80, 144, 320, 144, 4 },
-	{ 80, 144, 400, 144, 4 },
-	{ 80, 144, 480, 144, 4 },
-	{ 80, 144, 560, 144, 4 },
-	{ 80, 144, 640, 144, 4 },
-	{ 80, 144, 720, 144, 4 },
-	{ 80, 144, 0, 288, 4 },
-	{ 80, 144, 80, 288, 4 },
-	{ 80, 144, 160, 288, 4 },
-	{ 80, 144, 240, 288, 4 },
-	{ 80, 144, 320, 288, 4 },
-	{ 80, 144, 400, 288, 4 },
-	{ 80, 144, 480, 288, 4 },
-	{ 80, 144, 560, 288, 4 },
-	{ 80, 144, 640, 288, 4 },
-	{ 80, 144, 720, 288, 4 }
+	{ 80, 144, 0, 0, 0, 0, 4 },
+	{ 80, 144, 80, 0, 0, 0, 4 },
+	{ 80, 144, 160, 0, 0, 0, 4 },
+	{ 80, 144, 240, 0, 0, 0, 4 },
+	{ 80, 144, 320, 0, 0, 0, 4 },
+	{ 80, 144, 400, 0, 0, 0, 4 },
+	{ 80, 144, 480, 0, 0, 0, 4 },
+	{ 80, 144, 560, 0, 0, 0, 4 },
+	{ 80, 144, 640, 0, 0, 0, 4 },
+	{ 80, 144, 720, 0, 0, 0, 4 },
+	{ 80, 144, 0, 144, 0, 0, 4 },
+	{ 80, 144, 80, 144, 0, 0, 4 },
+	{ 80, 144, 160, 144, 0, 0, 4 },
+	{ 80, 144, 240, 144, 0, 0, 4 },
+	{ 80, 144, 320, 144, 0, 0, 4 },
+	{ 80, 144, 400, 144, 0, 0, 4 },
+	{ 80, 144, 480, 144, 0, 0, 4 },
+	{ 80, 144, 560, 144, 0, 0, 4 },
+	{ 80, 144, 640, 144, 0, 0, 4 },
+	{ 80, 144, 720, 144, 0, 0, 4 },
+	{ 80, 144, 0, 288, 0, 0, 4 },
+	{ 80, 144, 80, 288, 0, 0, 4 },
+	{ 80, 144, 160, 288, 0, 0, 4 },
+	{ 80, 144, 240, 288, 0, 0, 4 },
+	{ 80, 144, 320, 288, 0, 0, 4 },
+	{ 80, 144, 400, 288, 0, 0, 4 },
+	{ 80, 144, 480, 288, 0, 0, 4 },
+	{ 80, 144, 560, 288, 0, 0, 4 },
+	{ 80, 144, 640, 288, 0, 0, 4 },
+	{ 80, 144, 720, 288, 0, 0, 4 }
 };
 
 static SpriteAnimator shutter1Animator = {
@@ -408,21 +413,21 @@ static SpriteAnimator shutter5Animator = {
 };
 
 static AnimationFrame shutterFrames[] = {
-	{ 48, 48, 0, 0, 3 },
-	{ 48, 48, 0, 0, 3 },
-	{ 48, 48, 0, 0, 3 },
-	{ 48, 48, 48, 0, 3 },
-	{ 48, 48, 96, 0, 3 },
-	{ 48, 48, 144, 0, 3 },
-	{ 48, 48, 192, 0, 3 },
-	{ 48, 48, 240, 0, 3 },
-	{ 48, 48, 288, 0, 3 },
-	{ 48, 48, 336, 0, 3 },
-	{ 48, 48, 384, 0, 3 },
-	{ 48, 48, 432, 0, 3 },
-	{ 48, 48, 480, 0, 3 },
-	{ 48, 48, 528, 0, 3 },
-	{ 48, 48, 576, 0, 3 }
+	{ 48, 48, 0, 0, 0, 0, 3 },
+	{ 48, 48, 0, 0, 0, 0, 3 },
+	{ 48, 48, 0, 0, 0, 0, 3 },
+	{ 48, 48, 48, 0, 0, 0, 3 },
+	{ 48, 48, 96, 0, 0, 0, 3 },
+	{ 48, 48, 144, 0, 0, 0, 3 },
+	{ 48, 48, 192, 0, 0, 0, 3 },
+	{ 48, 48, 240, 0, 0, 0, 3 },
+	{ 48, 48, 288, 0, 0, 0, 3 },
+	{ 48, 48, 336, 0, 0, 0, 3 },
+	{ 48, 48, 384, 0, 0, 0, 3 },
+	{ 48, 48, 432, 0, 0, 0, 3 },
+	{ 48, 48, 480, 0, 0, 0, 3 },
+	{ 48, 48, 528, 0, 0, 0, 3 },
+	{ 48, 48, 576, 0, 0, 0, 3 }
 };
 
 static SpriteAnimator fightAnimator = {
@@ -430,12 +435,12 @@ static SpriteAnimator fightAnimator = {
 };
 
 static AnimationFrame fightIdleFrames[] = {
-	{ 160, 48, 0, 0, 3 }
+	{ 160, 48, 0, 0, 0, 0, 3 }
 };
 
 static AnimationFrame fightFlashFrames[] = {
-	{ 160, 48, 0, 0, 3 },
-	{ 160, 48, 0, 48, 3 }
+	{ 160, 48, 0, 0, 0, 0, 3 },
+	{ 160, 48, 0, 48, 0, 0, 3 }
 };
 
 ///////////////////////////////
@@ -590,7 +595,7 @@ void basicmain()
 		ticksPerSec = 50;
 	}
 	lastTicks = 0;
-	bool enableSFX = false;
+	bool enableSFX = true;
 	int myTicks = 0;
 	int p1Selected = -1;
 	int p2Selected = -1;
@@ -1090,33 +1095,33 @@ int gameStartTicks = rapTicks;
 			{
 				case 0:
 					//Johnny Cage
-					fighterUpdate(delta, &fighterCage, &cageAnimator, cageIdleFrames, cageWalkFrames, cageDuckFrames, cageBlockFrames, cageBlockDuckFrames, false);
+					fighterUpdate(delta, &fighterCage, &cageAnimator, cageIdleFrames, cageWalkFrames, cageDuckFrames, cageBlockFrames, cageBlockDuckFrames, sonyaPunchLowFrames, false);
 					break;
 				case 1:
 					//Kano
-					fighterUpdate(delta, &fighterKano, &kanoAnimator, kanoIdleFrames, kanoWalkFrames, kanoDuckFrames, kanoBlockFrames, kanoBlockDuckFrames, false);
+					fighterUpdate(delta, &fighterKano, &kanoAnimator, kanoIdleFrames, kanoWalkFrames, kanoDuckFrames, kanoBlockFrames, kanoBlockDuckFrames, sonyaPunchLowFrames, false);
 					break;
 				case 2:
 					//Sub-Zero
-					fighterUpdate(delta, &fighterSubzero, &subzeroAnimator, subzeroIdleFrames, subzeroWalkFrames, subzeroDuckFrames, subzeroBlockFrames, subzeroBlockDuckFrames, false);
+					fighterUpdate(delta, &fighterSubzero, &subzeroAnimator, subzeroIdleFrames, subzeroWalkFrames, subzeroDuckFrames, subzeroBlockFrames, subzeroBlockDuckFrames, sonyaPunchLowFrames, false);
 					break;
 				case 3:
 					//Sonya
-					fighterUpdate(delta, &fighterSonya, &sonyaAnimator, sonyaIdleFrames, sonyaWalkFrames, sonyaDuckFrames, sonyaBlockFrames, sonyaBlockDuckFrames, false);
+					fighterUpdate(delta, &fighterSonya, &sonyaAnimator, sonyaIdleFrames, sonyaWalkFrames, sonyaDuckFrames, sonyaBlockFrames, sonyaBlockDuckFrames, sonyaPunchLowFrames, false);
 					break;
 				case 4:
 					//Raiden
 					sprite[LIGHTNING].x_ = sprite[RAIDEN].x_;
-					fighterUpdate(delta, &fighterRaiden, &raidenAnimator, raidenIdleFrames, raidenWalkFrames, raidenDuckFrames, raidenBlockFrames, raidenBlockDuckFrames, false);
+					fighterUpdate(delta, &fighterRaiden, &raidenAnimator, raidenIdleFrames, raidenWalkFrames, raidenDuckFrames, raidenBlockFrames, raidenBlockDuckFrames, sonyaPunchLowFrames, false);
 					updateSpriteAnimator(&lightningAnimator, lightningFrames, 30, true, true);
 					break;
 				case 5:
 					//Liu Kang
-					fighterUpdate(delta, &fighterKang, &kangAnimator, kangIdleFrames, kangWalkFrames, kangDuckFrames, kangBlockFrames, kangBlockDuckFrames, false);
+					fighterUpdate(delta, &fighterKang, &kangAnimator, kangIdleFrames, kangWalkFrames, kangDuckFrames, kangBlockFrames, kangBlockDuckFrames, sonyaPunchLowFrames, false);
 					break;
 				case 6:
 					//Scorpion
-					fighterUpdate(delta, &fighterScorpion, &scorpionAnimator, scorpionIdleFrames, scorpionWalkFrames, scorpionDuckFrames, scorpionBlockFrames, scorpionBlockDuckFrames, false);
+					fighterUpdate(delta, &fighterScorpion, &scorpionAnimator, scorpionIdleFrames, scorpionWalkFrames, scorpionDuckFrames, scorpionBlockFrames, scorpionBlockDuckFrames, sonyaPunchLowFrames, false);
 					break;
 			}
 			
@@ -1127,33 +1132,33 @@ int gameStartTicks = rapTicks;
 			{
 				case 0:
 					//Johnny Cage
-					fighterUpdate(delta, &fighterCage2, &cageAnimator2, cageIdleFrames, cageWalkFrames, cageDuckFrames, cageBlockFrames, cageBlockDuckFrames, true);
+					fighterUpdate(delta, &fighterCage2, &cageAnimator2, cageIdleFrames, cageWalkFrames, cageDuckFrames, cageBlockFrames, cageBlockDuckFrames, sonyaPunchLowFrames, true);
 					break;
 				case 1:
 					//Kano
-					fighterUpdate(delta, &fighterKano2, &kanoAnimator2, kanoIdleFrames, kanoWalkFrames, kanoDuckFrames, kanoBlockFrames, kanoBlockDuckFrames, true);
+					fighterUpdate(delta, &fighterKano2, &kanoAnimator2, kanoIdleFrames, kanoWalkFrames, kanoDuckFrames, kanoBlockFrames, kanoBlockDuckFrames, sonyaPunchLowFrames, true);
 					break;
 				case 2:
 					//Sub-Zero
-					fighterUpdate(delta, &fighterSubzero2, &subzeroAnimator2, subzeroIdleFrames, subzeroWalkFrames, subzeroDuckFrames, subzeroBlockFrames, subzeroBlockDuckFrames, true);
+					fighterUpdate(delta, &fighterSubzero2, &subzeroAnimator2, subzeroIdleFrames, subzeroWalkFrames, subzeroDuckFrames, subzeroBlockFrames, subzeroBlockDuckFrames, sonyaPunchLowFrames, true);
 					break;
 				case 3:
 					//Sonya
-					fighterUpdate(delta, &fighterSonya2, &sonyaAnimator2, sonyaIdleFrames, sonyaWalkFrames, sonyaDuckFrames, sonyaBlockFrames, sonyaBlockDuckFrames, true);
+					fighterUpdate(delta, &fighterSonya2, &sonyaAnimator2, sonyaIdleFrames, sonyaWalkFrames, sonyaDuckFrames, sonyaBlockFrames, sonyaBlockDuckFrames, sonyaPunchLowFrames, true);
 					break;
 				case 4:
 					//Raiden
 					sprite[LIGHTNING2].x_ = sprite[RAIDEN2].x_;
-					fighterUpdate(delta, &fighterRaiden2, &raidenAnimator2, raidenIdleFrames, raidenWalkFrames, raidenDuckFrames, raidenBlockFrames, raidenBlockDuckFrames, true);
+					fighterUpdate(delta, &fighterRaiden2, &raidenAnimator2, raidenIdleFrames, raidenWalkFrames, raidenDuckFrames, raidenBlockFrames, raidenBlockDuckFrames, sonyaPunchLowFrames, true);
 					updateSpriteAnimator(&lightning2Animator, lightningFrames, 30, true, true);
 					break;
 				case 5:
 					//Liu Kang
-					fighterUpdate(delta, &fighterKang2, &kangAnimator2, kangIdleFrames, kangWalkFrames, kangDuckFrames, kangBlockFrames, kangBlockDuckFrames, true);
+					fighterUpdate(delta, &fighterKang2, &kangAnimator2, kangIdleFrames, kangWalkFrames, kangDuckFrames, kangBlockFrames, kangBlockDuckFrames, sonyaPunchLowFrames, true);
 					break;
 				case 6:
 					//Scorpion
-					fighterUpdate(delta, &fighterScorpion2, &scorpionAnimator2, scorpionIdleFrames, scorpionWalkFrames, scorpionDuckFrames, scorpionBlockFrames, scorpionBlockDuckFrames, true);
+					fighterUpdate(delta, &fighterScorpion2, &scorpionAnimator2, scorpionIdleFrames, scorpionWalkFrames, scorpionDuckFrames, scorpionBlockFrames, scorpionBlockDuckFrames, sonyaPunchLowFrames, true);
 					break;
 			}
 		}

@@ -67,7 +67,7 @@ void fighterUpdateIdle(float delta, struct Fighter *fighter, struct SpriteAnimat
     updateSpriteAnimator(animator, idleFrames, fighter->IDLE_FRAME_COUNT, true, true);
 }
 
-void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* animator, struct AnimationFrame idleFrames[], struct AnimationFrame walkFrames[], struct AnimationFrame duckFrames[], struct AnimationFrame blockFrames[], struct AnimationFrame blockDuckFrames[], bool walkForward)
+void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* animator, struct AnimationFrame idleFrames[], struct AnimationFrame walkFrames[], struct AnimationFrame duckFrames[], struct AnimationFrame blockFrames[], struct AnimationFrame blockDuckFrames[], struct AnimationFrame punchLowFrames[], bool walkForward)
 {
     fighter->pad = jsfGetPad(fighter->PAD);
     

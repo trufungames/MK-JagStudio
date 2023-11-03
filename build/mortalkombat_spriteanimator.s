@@ -5,22 +5,22 @@
 __Z12animateFramejjP14AnimationFramefj:
 	link.w %fp,#0
 	movem.l #15932,-(%sp)
-	move.l 8(%fp),%d1
-	move.l 12(%fp),%d0
+	move.l 8(%fp),%d0
+	move.l 12(%fp),%d1
 	move.l 20(%fp),%d2
-	move.l %d1,%a2
-	add.l %d1,%a2
-	add.l %a2,%d1
-	lsl.l #6,%d1
+	move.l %d0,%a2
+	add.l %d0,%a2
+	add.l %a2,%d0
+	lsl.l #6,%d0
 	move.l sprite,%a2
-	add.l %d1,%a2
-	move.l %d0,%a4
+	add.l %d0,%a2
+	add.l %d1,%d1
+	add.l %d1,%d1
+	move.l %d1,%d0
+	lsl.l #3,%d0
+	sub.l %d1,%d0
+	move.l 16(%fp),%a4
 	add.l %d0,%a4
-	add.l %a4,%a4
-	add.l %d0,%a4
-	add.l %a4,%a4
-	add.l %a4,%a4
-	add.l 16(%fp),%a4
 	move.l (%a4),%d3
 	move.l %d3,28(%a2)
 	move.l 4(%a4),%d6
@@ -91,12 +91,12 @@ __Z12animateFramejjP14AnimationFramefj:
 	.globl	__Z20updateSpriteAnimatorP14SpriteAnimatorP14AnimationFrameibb
 __Z20updateSpriteAnimatorP14SpriteAnimatorP14AnimationFrameibb:
 	link.w %fp,#0
-	movem.l #14384,-(%sp)
+	movem.l #15408,-(%sp)
 	move.l 8(%fp),%a2
 	move.l 12(%fp),%a3
-	move.l 16(%fp),%d3
-	move.b 23(%fp),%d2
-	move.b 27(%fp),%d4
+	move.l 16(%fp),%d4
+	move.b 23(%fp),%d3
+	move.b 27(%fp),%d5
 	move.l 8(%a2),-(%sp)
 	move.l 4(%a2),-(%sp)
 	move.l %a3,-(%sp)
@@ -104,47 +104,47 @@ __Z20updateSpriteAnimatorP14SpriteAnimatorP14AnimationFrameibb:
 	move.l (%a2),-(%sp)
 	jsr __Z12animateFramejjP14AnimationFramefj
 	move.w raptor_ticks,%a0
-	move.l 16(%a2),%d0
+	move.l 16(%a2),%d1
 	move.w %a0,%a1
-	move.l %d0,%d1
-	add.l %d0,%d1
-	add.l %d1,%d1
-	add.l %d0,%d1
-	add.l %d1,%d1
-	add.l %d1,%d1
-	move.l 16(%a3,%d1.l),%d1
-	add.l 12(%a2),%d1
+	move.l %d1,%d2
+	add.l %d1,%d2
+	add.l %d2,%d2
+	move.l %d2,%d0
+	lsl.l #3,%d0
+	sub.l %d2,%d0
+	move.l 24(%a3,%d0.l),%d0
+	add.l 12(%a2),%d0
 	lea (20,%sp),%sp
-	cmp.l %a1,%d1
+	cmp.l %a1,%d0
 	jhi .L2
-	tst.b %d2
+	tst.b %d3
 	jne .L4
-	subq.l #1,%d0
-	move.l %d0,16(%a2)
+	subq.l #1,%d1
+	move.l %d1,16(%a2)
 	jlt .L10
 .L5:
 	move.w %a0,%a0
 	move.l %a0,12(%a2)
 .L2:
-	movem.l -20(%fp),#3100
+	movem.l -24(%fp),#3132
 	unlk %fp
 	rts
 .L4:
-	addq.l #1,%d0
-	move.l %d0,16(%a2)
-	cmp.l %d3,%d0
+	addq.l #1,%d1
+	move.l %d1,16(%a2)
+	cmp.l %d4,%d1
 	jlt .L5
-	tst.b %d4
+	tst.b %d5
 	jne .L8
-	move.l %d3,16(%a2)
+	move.l %d4,16(%a2)
 	move.w %a0,%a0
 	move.l %a0,12(%a2)
 	jra .L2
 .L10:
-	tst.b %d4
+	tst.b %d5
 	jeq .L8
-	subq.l #1,%d3
-	move.l %d3,16(%a2)
+	subq.l #1,%d4
+	move.l %d4,16(%a2)
 	move.w %a0,%a0
 	move.l %a0,12(%a2)
 	jra .L2

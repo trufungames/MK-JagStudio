@@ -129,8 +129,8 @@ __Z17fighterUpdateIdlefP7FighterP14SpriteAnimatorP14AnimationFrame:
 	unlk %fp
 	rts
 	.even
-	.globl	__Z13fighterUpdatefP7FighterP14SpriteAnimatorP14AnimationFrameS4_S4_S4_S4_b
-__Z13fighterUpdatefP7FighterP14SpriteAnimatorP14AnimationFrameS4_S4_S4_S4_b:
+	.globl	__Z13fighterUpdatefP7FighterP14SpriteAnimatorP14AnimationFrameS4_S4_S4_S4_S4_b
+__Z13fighterUpdatefP7FighterP14SpriteAnimatorP14AnimationFrameS4_S4_S4_S4_S4_b:
 	link.w %fp,#0
 	movem.l #16188,-(%sp)
 	move.l 8(%fp),%d4
@@ -141,7 +141,7 @@ __Z13fighterUpdatefP7FighterP14SpriteAnimatorP14AnimationFrameS4_S4_S4_S4_b:
 	move.l 28(%fp),%d7
 	move.l 32(%fp),%d2
 	move.l 36(%fp),%d3
-	move.b 43(%fp),%d6
+	move.b 47(%fp),%d6
 	move.l 48(%a2),-(%sp)
 	jsr jsfGetPad
 	move.l %d0,44(%a2)

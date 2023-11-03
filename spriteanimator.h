@@ -3,6 +3,8 @@ struct AnimationFrame {
     unsigned int height;
     unsigned int x;
     unsigned int y;
+    unsigned int offsetX;
+    unsigned int offsetY;
     unsigned int ticks;
 };
 
