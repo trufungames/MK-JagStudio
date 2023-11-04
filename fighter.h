@@ -6,10 +6,12 @@ struct Fighter {
     unsigned int DUCK_FRAME_COUNT;
     unsigned int BLOCK_FRAME_COUNT;
     unsigned int BLOCK_DUCK_FRAME_COUNT;
+    unsigned int LOW_PUNCH_FRAME_COUNT;
 
-    bool playerWasWalking;
-    bool playerWasDucking;
-    bool playerWasBlocking;
+    bool playerIsWalking;
+    bool playerIsDucking;
+    bool playerIsBlocking;
+    bool playerIsLowPunching;
     unsigned int HB_BODY;
     unsigned int HB_DUCK;
     unsigned int HB_ATTACK;
@@ -17,6 +19,8 @@ struct Fighter {
     unsigned int PAD;
     int playerMoveForwardSpeed;
     int playerMoveBackwardSpeed;
+    int positionX;
+    int positionY;
 };
 
 void fighterHide(struct Fighter* fighter);

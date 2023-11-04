@@ -3010,7 +3010,8 @@ __ZL11fighterCage:
 	.long	2
 	.long	2
 	.long	1
-	.skip 32
+	.long	3
+	.skip 40
 	.even
 __ZL11fighterKano:
 	.long	24
@@ -3020,7 +3021,8 @@ __ZL11fighterKano:
 	.long	2
 	.long	2
 	.long	1
-	.skip 32
+	.long	3
+	.skip 40
 	.even
 __ZL14fighterSubzero:
 	.long	29
@@ -3030,7 +3032,8 @@ __ZL14fighterSubzero:
 	.long	2
 	.long	2
 	.long	1
-	.skip 32
+	.long	3
+	.skip 40
 	.even
 __ZL12fighterSonya:
 	.long	30
@@ -3040,7 +3043,8 @@ __ZL12fighterSonya:
 	.long	1
 	.long	2
 	.long	1
-	.skip 32
+	.long	5
+	.skip 40
 	.even
 __ZL13fighterRaiden:
 	.long	27
@@ -3050,7 +3054,8 @@ __ZL13fighterRaiden:
 	.long	2
 	.long	2
 	.long	1
-	.skip 32
+	.long	3
+	.skip 40
 	.even
 __ZL11fighterKang:
 	.long	26
@@ -3060,7 +3065,8 @@ __ZL11fighterKang:
 	.long	2
 	.long	2
 	.long	1
-	.skip 32
+	.long	3
+	.skip 40
 	.even
 __ZL15fighterScorpion:
 	.long	23
@@ -3070,7 +3076,8 @@ __ZL15fighterScorpion:
 	.long	2
 	.long	2
 	.long	1
-	.skip 32
+	.long	3
+	.skip 40
 	.even
 __ZL12cageAnimator:
 	.long	25
@@ -3768,7 +3775,8 @@ __ZL12fighterCage2:
 	.long	2
 	.long	2
 	.long	1
-	.skip 32
+	.long	3
+	.skip 40
 	.even
 __ZL12fighterKano2:
 	.long	32
@@ -3778,7 +3786,8 @@ __ZL12fighterKano2:
 	.long	2
 	.long	2
 	.long	1
-	.skip 32
+	.long	3
+	.skip 40
 	.even
 __ZL15fighterSubzero2:
 	.long	37
@@ -3788,7 +3797,8 @@ __ZL15fighterSubzero2:
 	.long	2
 	.long	2
 	.long	1
-	.skip 32
+	.long	3
+	.skip 40
 	.even
 __ZL13fighterSonya2:
 	.long	38
@@ -3798,7 +3808,8 @@ __ZL13fighterSonya2:
 	.long	1
 	.long	2
 	.long	1
-	.skip 32
+	.long	5
+	.skip 40
 	.even
 __ZL14fighterRaiden2:
 	.long	35
@@ -3808,7 +3819,8 @@ __ZL14fighterRaiden2:
 	.long	2
 	.long	2
 	.long	1
-	.skip 32
+	.long	3
+	.skip 40
 	.even
 __ZL12fighterKang2:
 	.long	34
@@ -3818,7 +3830,8 @@ __ZL12fighterKang2:
 	.long	2
 	.long	2
 	.long	1
-	.skip 32
+	.long	3
+	.skip 40
 	.even
 __ZL16fighterScorpion2:
 	.long	31
@@ -3828,7 +3841,8 @@ __ZL16fighterScorpion2:
 	.long	2
 	.long	2
 	.long	1
-	.skip 32
+	.long	3
+	.skip 40
 	.even
 __ZL13cageAnimator2:
 	.long	33
@@ -4052,21 +4066,35 @@ __ZL19sonyaPunchLowFrames:
 	.long	144
 	.long	8
 	.long	0
-	.long	3
+	.long	5
 	.long	80
 	.long	144
 	.long	800
 	.long	144
 	.long	8
 	.long	0
-	.long	3
+	.long	5
 	.long	112
 	.long	144
 	.long	880
 	.long	144
 	.long	11
 	.long	0
-	.long	3
+	.long	12
+	.long	80
+	.long	144
+	.long	800
+	.long	144
+	.long	8
+	.long	0
+	.long	5
+	.long	80
+	.long	144
+	.long	720
+	.long	144
+	.long	8
+	.long	0
+	.long	5
 	.even
 __ZL14kanoWalkFrames:
 	.long	80
