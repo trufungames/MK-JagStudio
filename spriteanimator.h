@@ -20,6 +20,8 @@ struct SpriteAnimator {
     int currentFrame;
 };
 
+bool animationIsComplete(struct SpriteAnimator *animator, int totalFrames);
+
 void updateSpriteAnimator(struct SpriteAnimator *animator, struct AnimationFrame animationFrames[], int totalFrames, bool playForward, bool loop);
 
 void updateSpriteAnimator(struct SpriteAnimator *animator, struct AnimationFrame animationFrames[], int totalFrames, bool playForward, bool loop, int positionX, int positionY);

@@ -8,10 +8,11 @@ struct Fighter {
     unsigned int BLOCK_DUCK_FRAME_COUNT;
     unsigned int LOW_PUNCH_FRAME_COUNT;
 
-    bool playerIsWalking;
-    bool playerIsDucking;
-    bool playerIsBlocking;
-    bool playerIsLowPunching;
+    bool IsWalking;
+    bool IsDucking;
+    bool IsBlocking;
+    bool IsLowPunching;
+    bool ButtonReleased;
     unsigned int HB_BODY;
     unsigned int HB_DUCK;
     unsigned int HB_ATTACK;

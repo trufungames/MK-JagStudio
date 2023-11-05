@@ -1293,7 +1293,7 @@ __Z9basicmainv:
 	subq.l #1,%d7
 	addq.l #4,%sp
 	jne .L77
-	pea 1.w
+	clr.l -(%sp)
 	jsr __Z8sfxIntrob
 	addq.l #4,%sp
 	moveq #1,%d7
@@ -1317,7 +1317,7 @@ __Z9basicmainv:
 	cmp.w #0,%a4
 	jne .L79
 	jsr __Z25switchScreenChooseFighterv
-	pea 1.w
+	clr.l -(%sp)
 	jsr __Z7sfxGongb
 	addq.l #4,%sp
 	move.b #1,-1(%fp)
@@ -1441,7 +1441,7 @@ __Z9basicmainv:
 	cmp.l %d0,%d1
 	jeq .L199
 .L90:
-	pea 1.w
+	clr.l -(%sp)
 	jsr __Z11sfxP1Cursorb
 	move.l #__ZL11fighterCage,(%sp)
 	move.l %d6,%a1
@@ -1594,7 +1594,7 @@ __Z9basicmainv:
 	cmp.l %d0,%d1
 	jeq .L203
 .L108:
-	pea 1.w
+	clr.l -(%sp)
 	jsr __Z11sfxP2Cursorb
 	move.l #__ZL12fighterCage2,(%sp)
 	move.l %d6,%a0
@@ -1742,7 +1742,7 @@ __Z9basicmainv:
 	.word .L130-.L132
 	.word .L131-.L132
 .L141:
-	pea 1.w
+	clr.l -(%sp)
 	jsr __Z11sfxScorpionb
 	addq.l #4,%sp
 .L134:
@@ -1771,8 +1771,8 @@ __Z9basicmainv:
 	move.l _p2Cursor,-(%sp)
 	move.l _p1Cursor,-(%sp)
 	jsr __Z20switchScreenVsBattleii
-	addq.l #8,%sp
-	pea 1.w
+	addq.l #4,%sp
+	clr.l (%sp)
 	jsr __Z8sfxIntrob
 	move.w raptor_ticks,%a1
 	move.l %a1,-6(%fp)
@@ -1893,7 +1893,7 @@ __Z9basicmainv:
 	jne .L105
 	jra .L201
 .L140:
-	pea 1.w
+	clr.l -(%sp)
 	jsr __Z10sfxLiuKangb
 	addq.l #4,%sp
 	tst.b -2(%fp)
@@ -1913,75 +1913,75 @@ __Z9basicmainv:
 	move.b #1,-2(%fp)
 	jra .L78
 .L139:
-	pea 1.w
+	clr.l -(%sp)
 	jsr __Z9sfxRaidenb
 	addq.l #4,%sp
 	jra .L134
 .L138:
-	pea 1.w
+	clr.l -(%sp)
 	jsr __Z8sfxSonyab
 	addq.l #4,%sp
 	jra .L134
 .L137:
-	pea 1.w
+	clr.l -(%sp)
 	jsr __Z10sfxSubzerob
 	addq.l #4,%sp
 	jra .L134
 .L136:
-	pea 1.w
+	clr.l -(%sp)
 	jsr __Z7sfxKanob
 	addq.l #4,%sp
 	jra .L134
 .L135:
-	pea 1.w
+	clr.l -(%sp)
 	jsr __Z13sfxJohnnyCageb
 	addq.l #4,%sp
 	jra .L134
 .L130:
-	pea 1.w
+	clr.l -(%sp)
 	jsr __Z10sfxLiuKangb
 	move.l JAGPAD_C,%d0
 	addq.l #4,%sp
 	jra .L124
 .L129:
-	pea 1.w
+	clr.l -(%sp)
 	jsr __Z9sfxRaidenb
 	move.l JAGPAD_C,%d0
 	addq.l #4,%sp
 	jra .L124
 .L128:
-	pea 1.w
+	clr.l -(%sp)
 	jsr __Z8sfxSonyab
 	move.l JAGPAD_C,%d0
 	addq.l #4,%sp
 	jra .L124
 .L127:
-	pea 1.w
+	clr.l -(%sp)
 	jsr __Z10sfxSubzerob
 	move.l JAGPAD_C,%d0
 	addq.l #4,%sp
 	jra .L124
 .L126:
-	pea 1.w
+	clr.l -(%sp)
 	jsr __Z7sfxKanob
 	move.l JAGPAD_C,%d0
 	addq.l #4,%sp
 	jra .L124
 .L125:
-	pea 1.w
+	clr.l -(%sp)
 	jsr __Z13sfxJohnnyCageb
 	move.l JAGPAD_C,%d0
 	addq.l #4,%sp
 	jra .L124
 .L131:
-	pea 1.w
+	clr.l -(%sp)
 	jsr __Z11sfxScorpionb
 	move.l JAGPAD_C,%d0
 	addq.l #4,%sp
 	jra .L124
 .L198:
 	move.l %d1,_p1Cursor
-	pea 1.w
+	clr.l -(%sp)
 	jsr __Z11sfxP1Cursorb
 	move.l #__ZL11fighterCage,(%sp)
 	move.l %d6,%a1
@@ -2012,7 +2012,7 @@ __Z9basicmainv:
 	jra .L208
 .L202:
 	move.l %d1,_p2Cursor
-	pea 1.w
+	clr.l -(%sp)
 	jsr __Z11sfxP2Cursorb
 	move.l #__ZL12fighterCage2,(%sp)
 	move.l %d6,%a0
@@ -2044,7 +2044,7 @@ __Z9basicmainv:
 .L203:
 	moveq #6,%d0
 	move.l %d0,_p2Cursor
-	pea 1.w
+	clr.l -(%sp)
 	jsr __Z11sfxP2Cursorb
 	move.l #__ZL12fighterCage2,(%sp)
 	move.l %d6,%a0
@@ -2076,7 +2076,7 @@ __Z9basicmainv:
 .L199:
 	moveq #6,%d0
 	move.l %d0,_p1Cursor
-	pea 1.w
+	clr.l -(%sp)
 	jsr __Z11sfxP1Cursorb
 	move.l #__ZL11fighterCage,(%sp)
 	move.l %d6,%a1
@@ -2453,7 +2453,7 @@ __Z9basicmainv:
 .L184:
 	moveq #4,%d0
 	move.l %d0,_p2Cursor
-	pea 1.w
+	clr.l -(%sp)
 	jsr __Z11sfxP2Cursorb
 	move.l #__ZL12fighterCage2,(%sp)
 	move.l %d6,%a0
@@ -2498,7 +2498,7 @@ __Z9basicmainv:
 .L182:
 	moveq #4,%d0
 	move.l %d0,_p1Cursor
-	pea 1.w
+	clr.l -(%sp)
 	jsr __Z11sfxP1Cursorb
 	move.l #__ZL11fighterCage,(%sp)
 	move.l %d6,%a1
@@ -2578,7 +2578,7 @@ __Z9basicmainv:
 	jne .L90
 	moveq #2,%d0
 	move.l %d0,_p1Cursor
-	pea 1.w
+	clr.l -(%sp)
 	jsr __Z11sfxP1Cursorb
 	move.l #__ZL11fighterCage,(%sp)
 	move.l %d6,%a1
@@ -2620,7 +2620,7 @@ __Z9basicmainv:
 	jne .L108
 	moveq #2,%d0
 	move.l %d0,_p2Cursor
-	pea 1.w
+	clr.l -(%sp)
 	jsr __Z11sfxP2Cursorb
 	move.l #__ZL12fighterCage2,(%sp)
 	move.l %d6,%a0
@@ -2673,7 +2673,7 @@ __Z9basicmainv:
 	jra .L199
 .L210:
 	clr.l _p2Cursor
-	pea 1.w
+	clr.l -(%sp)
 	jsr __Z11sfxP2Cursorb
 	move.l #__ZL12fighterCage2,(%sp)
 	move.l %d6,%a0
@@ -2704,7 +2704,7 @@ __Z9basicmainv:
 	jra .L209
 .L211:
 	clr.l _p1Cursor
-	pea 1.w
+	clr.l -(%sp)
 	jsr __Z11sfxP1Cursorb
 	move.l #__ZL11fighterCage,(%sp)
 	move.l %d6,%a1
@@ -2736,7 +2736,7 @@ __Z9basicmainv:
 .L212:
 	moveq #1,%d0
 	move.l %d0,_p1Cursor
-	pea 1.w
+	clr.l -(%sp)
 	jsr __Z11sfxP1Cursorb
 	move.l #__ZL11fighterCage,(%sp)
 	move.l %d6,%a1
@@ -2768,7 +2768,7 @@ __Z9basicmainv:
 .L213:
 	moveq #1,%d0
 	move.l %d0,_p2Cursor
-	pea 1.w
+	clr.l -(%sp)
 	jsr __Z11sfxP2Cursorb
 	move.l #__ZL12fighterCage2,(%sp)
 	move.l %d6,%a0
@@ -2798,7 +2798,7 @@ __Z9basicmainv:
 	jsr __Z17SetPlayerPalettesv
 	jra .L209
 .L151:
-	pea 1.w
+	clr.l -(%sp)
 	jsr __Z8sfxFightb
 	move.w raptor_ticks,%a0
 	move.l %a0,-6(%fp)
@@ -3011,7 +3011,7 @@ __ZL11fighterCage:
 	.long	2
 	.long	1
 	.long	3
-	.skip 40
+	.skip 42
 	.even
 __ZL11fighterKano:
 	.long	24
@@ -3022,7 +3022,7 @@ __ZL11fighterKano:
 	.long	2
 	.long	1
 	.long	3
-	.skip 40
+	.skip 42
 	.even
 __ZL14fighterSubzero:
 	.long	29
@@ -3033,7 +3033,7 @@ __ZL14fighterSubzero:
 	.long	2
 	.long	1
 	.long	3
-	.skip 40
+	.skip 42
 	.even
 __ZL12fighterSonya:
 	.long	30
@@ -3044,7 +3044,7 @@ __ZL12fighterSonya:
 	.long	2
 	.long	1
 	.long	5
-	.skip 40
+	.skip 42
 	.even
 __ZL13fighterRaiden:
 	.long	27
@@ -3055,7 +3055,7 @@ __ZL13fighterRaiden:
 	.long	2
 	.long	1
 	.long	3
-	.skip 40
+	.skip 42
 	.even
 __ZL11fighterKang:
 	.long	26
@@ -3066,7 +3066,7 @@ __ZL11fighterKang:
 	.long	2
 	.long	1
 	.long	3
-	.skip 40
+	.skip 42
 	.even
 __ZL15fighterScorpion:
 	.long	23
@@ -3077,7 +3077,7 @@ __ZL15fighterScorpion:
 	.long	2
 	.long	1
 	.long	3
-	.skip 40
+	.skip 42
 	.even
 __ZL12cageAnimator:
 	.long	25
@@ -3776,7 +3776,7 @@ __ZL12fighterCage2:
 	.long	2
 	.long	1
 	.long	3
-	.skip 40
+	.skip 42
 	.even
 __ZL12fighterKano2:
 	.long	32
@@ -3787,7 +3787,7 @@ __ZL12fighterKano2:
 	.long	2
 	.long	1
 	.long	3
-	.skip 40
+	.skip 42
 	.even
 __ZL15fighterSubzero2:
 	.long	37
@@ -3798,7 +3798,7 @@ __ZL15fighterSubzero2:
 	.long	2
 	.long	1
 	.long	3
-	.skip 40
+	.skip 42
 	.even
 __ZL13fighterSonya2:
 	.long	38
@@ -3809,7 +3809,7 @@ __ZL13fighterSonya2:
 	.long	2
 	.long	1
 	.long	5
-	.skip 40
+	.skip 42
 	.even
 __ZL14fighterRaiden2:
 	.long	35
@@ -3820,7 +3820,7 @@ __ZL14fighterRaiden2:
 	.long	2
 	.long	1
 	.long	3
-	.skip 40
+	.skip 42
 	.even
 __ZL12fighterKang2:
 	.long	34
@@ -3831,7 +3831,7 @@ __ZL12fighterKang2:
 	.long	2
 	.long	1
 	.long	3
-	.skip 40
+	.skip 42
 	.even
 __ZL16fighterScorpion2:
 	.long	31
@@ -3842,7 +3842,7 @@ __ZL16fighterScorpion2:
 	.long	2
 	.long	1
 	.long	3
-	.skip 40
+	.skip 42
 	.even
 __ZL13cageAnimator2:
 	.long	33

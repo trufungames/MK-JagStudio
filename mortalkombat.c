@@ -611,7 +611,7 @@ void basicmain()
 		ticksPerSec = 50;
 	}
 	lastTicks = 0;
-	bool enableSFX = true;
+	bool enableSFX = false;
 	int myTicks = 0;
 	int p1Selected = -1;
 	int p2Selected = -1;

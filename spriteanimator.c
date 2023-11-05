@@ -27,6 +27,14 @@ void animateFrame(unsigned int spriteIndex, unsigned int frame, struct Animation
     sprite[spriteIndex].y_ = positionY + animationFrames[frame].offsetY;
 }
 
+bool animationIsComplete(struct SpriteAnimator *animator, int totalFrames)
+{
+    if (animator->currentFrame >= totalFrames - 1)
+        return true;
+    else
+        return false;
+}
+
 void updateSpriteAnimator(struct SpriteAnimator *animator, struct AnimationFrame animationFrames[], int totalFrames, bool playForward, bool loop)
 {
     updateSpriteAnimator(animator, animationFrames, totalFrames, playForward, loop, 0, 0);

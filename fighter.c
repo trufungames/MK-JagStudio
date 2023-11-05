@@ -39,10 +39,11 @@ void fighterInitialize(struct Fighter *fighter, bool isPlayer1)
     fighter->playerMoveForwardSpeed = 2;
     fighter->playerMoveBackwardSpeed = 2;
 
-    fighter->playerIsWalking = false;
-    fighter->playerIsDucking = false;
-    fighter->playerIsBlocking = false;
-    fighter->playerIsLowPunching = false;
+    fighter->IsWalking = false;
+    fighter->IsDucking = false;
+    fighter->IsBlocking = false;
+    fighter->IsLowPunching = false;
+    fighter->ButtonReleased = true;
     sprite[fighter->spriteIndex].active = R_is_active;
 
     if (isPlayer1)
@@ -71,30 +72,36 @@ void fighterUpdateIdle(float delta, struct Fighter *fighter, struct SpriteAnimat
 void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* animator, struct AnimationFrame idleFrames[], struct AnimationFrame walkFrames[], struct AnimationFrame duckFrames[], struct AnimationFrame blockFrames[], struct AnimationFrame blockDuckFrames[], struct AnimationFrame punchLowFrames[], bool walkForward)
 {
     fighter->pad = jsfGetPad(fighter->PAD);
-    
-    if (fighter->pad & JAGPAD_C)
+
+    if (fighter->pad & JAGPAD_C || fighter->IsLowPunching)
     {
-        if (!fighter->playerIsLowPunching)
+        if (!fighter->IsLowPunching && fighter->ButtonReleased)
         {
-            fighter->playerIsLowPunching = true;
+            fighter->ButtonReleased = false;
+            fighter->IsLowPunching = true;
             animator->currentFrame = 0;
         }
 
         updateSpriteAnimator(animator, punchLowFrames, fighter->LOW_PUNCH_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY);
+
+        if (animationIsComplete(animator, fighter->LOW_PUNCH_FRAME_COUNT))
+        {
+            fighter->IsLowPunching = false;
+        }
     }
     else if (fighter->pad & JAGPAD_B)
     {
-        if (!fighter->playerIsBlocking)
+        if (!fighter->IsBlocking)
         {
-            fighter->playerIsBlocking = true;
+            fighter->IsBlocking = true;
             animator->currentFrame = 0;
         }
 
         if (fighter->pad & JAGPAD_DOWN)
         {
-            if (!fighter->playerIsDucking)
+            if (!fighter->IsDucking)
             {
-                fighter->playerIsDucking = true;
+                fighter->IsDucking = true;
                 animator->currentFrame = 0;
             }
 
@@ -102,9 +109,9 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
         }
         else
         {
-            if (fighter->playerIsDucking)
+            if (fighter->IsDucking)
             {
-                fighter->playerIsDucking = false;
+                fighter->IsDucking = false;
             }
             
             updateSpriteAnimator(animator, blockFrames, fighter->BLOCK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY);
@@ -113,10 +120,10 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
     else if(fighter->pad & JAGPAD_LEFT)
     {
         updateSpriteAnimator(animator, walkFrames, fighter->WALK_FRAME_COUNT, walkForward, true, fighter->positionX, fighter->positionY);
-        fighter->playerIsWalking = true;
-        fighter->playerIsDucking = false;
-        fighter->playerIsBlocking  = false;
-        
+        fighter->IsWalking = true;
+        fighter->IsDucking = false;
+        fighter->IsBlocking  = false;
+        fighter->IsLowPunching = false;
 
         if (sprite[fighter->spriteIndex].x_ > 0)
         {
@@ -136,9 +143,10 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
     else if(fighter->pad & JAGPAD_RIGHT)
     {
         updateSpriteAnimator(animator, walkFrames, fighter->WALK_FRAME_COUNT, !walkForward, true, fighter->positionX, fighter->positionY);
-        fighter->playerIsWalking = true;
-        fighter->playerIsDucking = false;
-        fighter->playerIsBlocking = false;
+        fighter->IsWalking = true;
+        fighter->IsDucking = false;
+        fighter->IsBlocking = false;
+        fighter->IsLowPunching = false;
         
         if (sprite[fighter->spriteIndex].x_ < 260)
         {
@@ -157,9 +165,9 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
     }
     else if (fighter->pad & JAGPAD_DOWN)
     {
-        if (!fighter->playerIsDucking)
+        if (!fighter->IsDucking)
         {
-            fighter->playerIsDucking = true;
+            fighter->IsDucking = true;
             animator->currentFrame = 0;
         }
         updateSpriteAnimator(animator, duckFrames, fighter->DUCK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY);
@@ -167,13 +175,13 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
     }
     else
     {
-        if (fighter->playerIsDucking)
+        if (fighter->IsDucking)
         {
             updateSpriteAnimator(animator, duckFrames, fighter->DUCK_FRAME_COUNT, false, false, fighter->positionX, fighter->positionY);
             
             if (animator->currentFrame == 0)
             {
-                fighter->playerIsDucking = false;
+                fighter->IsDucking = false;
 
                 if (sprite[fighter->HB_DUCK].active == R_is_active)
                 {
@@ -181,26 +189,32 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
                 }
             }
         }
-        else if (fighter->playerIsBlocking)
+        else if (fighter->IsBlocking)
         {
             updateSpriteAnimator(animator, blockFrames, fighter->BLOCK_FRAME_COUNT, false, false, fighter->positionX, fighter->positionY);
             
             if (animator->currentFrame == 0)
             {
-                fighter->playerIsBlocking = false;
+                fighter->IsBlocking = false;
             }
         }
         else
         {
-            if (fighter->playerIsWalking)
+            if (fighter->IsWalking)
             {
-                fighter->playerIsWalking = false;
+                fighter->IsWalking = false;
                 animator->currentFrame = 0;
             }
+
             updateSpriteAnimator(animator, idleFrames, fighter->IDLE_FRAME_COUNT, true, true, fighter->positionX, fighter->positionY);
 
            fighter->positionX = sprite[fighter->spriteIndex].x_;
            fighter->positionY = sprite[fighter->spriteIndex].y_;
         }
+    }
+
+    if (!(fighter->pad & JAGPAD_C))
+    {
+        fighter->ButtonReleased = true;
     }
 }
