@@ -77,3 +77,51 @@ intro_sam_end:
 .extern intro_sam
 .extern intro_sam_end
 .dphrase
+hiya_female1_sam: incbin "build/hiya_female1.wav.raw"
+.dc.b 0,0,0
+hiya_female1_sam_end:
+.extern hiya_female1_sam
+.extern hiya_female1_sam_end
+.dphrase
+hiya_female2_sam: incbin "build/hiya_female2.wav.raw"
+.dc.b 0,0,0
+hiya_female2_sam_end:
+.extern hiya_female2_sam
+.extern hiya_female2_sam_end
+.dphrase
+hiya_male1_sam: incbin "build/hiya_male1.wav.raw"
+.dc.b 0,0,0
+hiya_male1_sam_end:
+.extern hiya_male1_sam
+.extern hiya_male1_sam_end
+.dphrase
+hiya_male2_sam: incbin "build/hiya_male2.wav.raw"
+.dc.b 0,0,0
+hiya_male2_sam_end:
+.extern hiya_male2_sam
+.extern hiya_male2_sam_end
+.dphrase
+hiya_kang1_sam: incbin "build/hiya_kang1.wav.raw"
+.dc.b 0,0,0
+hiya_kang1_sam_end:
+.extern hiya_kang1_sam
+.extern hiya_kang1_sam_end
+.dphrase
+hiya_kang2_sam: incbin "build/hiya_kang2.wav.raw"
+.dc.b 0,0,0
+hiya_kang2_sam_end:
+.extern hiya_kang2_sam
+.extern hiya_kang2_sam_end
+.dphrase
+hiya_ninja1_sam: incbin "build/hiya_ninja1.wav.raw"
+.dc.b 0,0,0
+hiya_ninja1_sam_end:
+.extern hiya_ninja1_sam
+.extern hiya_ninja1_sam_end
+.dphrase
+hiya_ninja2_sam: incbin "build/hiya_ninja2.wav.raw"
+.dc.b 0,0,0
+hiya_ninja2_sam_end:
+.extern hiya_ninja2_sam
+.extern hiya_ninja2_sam_end
+.dphrase

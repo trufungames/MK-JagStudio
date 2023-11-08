@@ -1,5 +1,6 @@
 #include "common.h"
 #include "fighter.h"
+#include "sound.h"
 #include "spriteanimator.h"
 #include "spritemovements.h"
 
@@ -33,8 +34,9 @@ void fighterMakeSelectable(struct Fighter* fighter, bool isPlayer1)
     }
 }
 
-void fighterInitialize(struct Fighter *fighter, bool isPlayer1)
+void fighterInitialize(struct Fighter *fighter, bool isPlayer1, struct SoundHandler* soundHandler)
 {
+    fighter->soundHandler = soundHandler;
     fighter->pad = 0;
     fighter->playerMoveForwardSpeed = 2;
     fighter->playerMoveBackwardSpeed = 2;
@@ -43,7 +45,11 @@ void fighterInitialize(struct Fighter *fighter, bool isPlayer1)
     fighter->IsDucking = false;
     fighter->IsBlocking = false;
     fighter->IsLowPunching = false;
+    fighter->IsHighPunching = false;
+    fighter->IsLowKicking = false;
+    fighter->IsHighKicking = false;
     fighter->ButtonReleased = true;
+    fighter->isPlayer1 = isPlayer1;
     sprite[fighter->spriteIndex].active = R_is_active;
 
     if (isPlayer1)
@@ -53,6 +59,7 @@ void fighterInitialize(struct Fighter *fighter, bool isPlayer1)
         fighter->HB_DUCK = P1_HB_DUCK;
         fighter->PAD = LEFT_PAD;
         sprite[fighter->spriteIndex].x_ = 50;
+        fighter->direction = 1;
     }
     else
     {
@@ -61,6 +68,7 @@ void fighterInitialize(struct Fighter *fighter, bool isPlayer1)
         fighter->HB_DUCK = P2_HB_DUCK;
         fighter->PAD = RIGHT_PAD;
         sprite[fighter->spriteIndex].x_ = 210;
+        fighter->direction = -1;
     }
 }
 
@@ -69,24 +77,76 @@ void fighterUpdateIdle(float delta, struct Fighter *fighter, struct SpriteAnimat
     updateSpriteAnimator(animator, idleFrames, fighter->IDLE_FRAME_COUNT, true, true);
 }
 
-void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* animator, struct AnimationFrame idleFrames[], struct AnimationFrame walkFrames[], struct AnimationFrame duckFrames[], struct AnimationFrame blockFrames[], struct AnimationFrame blockDuckFrames[], struct AnimationFrame punchLowFrames[], bool walkForward)
+void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* animator, struct AnimationFrame idleFrames[], struct AnimationFrame walkFrames[], struct AnimationFrame duckFrames[], struct AnimationFrame blockFrames[], struct AnimationFrame blockDuckFrames[], struct AnimationFrame punchLowFrames[], struct AnimationFrame punchHighFrames[], struct AnimationFrame kickLowFrames[], struct AnimationFrame kickHighFrames[], bool walkForward)
 {
     fighter->pad = jsfGetPad(fighter->PAD);
 
-    if (fighter->pad & JAGPAD_C || fighter->IsLowPunching)
+    if (fighter->pad & JAGPAD_C && fighter->ButtonReleased || fighter->IsLowPunching)
     {
         if (!fighter->IsLowPunching && fighter->ButtonReleased)
         {
             fighter->ButtonReleased = false;
             fighter->IsLowPunching = true;
             animator->currentFrame = 0;
+            fighterPlayHiya(fighter->spriteIndex, fighter->soundHandler, fighter->isPlayer1);
         }
 
-        updateSpriteAnimator(animator, punchLowFrames, fighter->LOW_PUNCH_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY);
+        updateSpriteAnimator(animator, punchLowFrames, fighter->LOW_PUNCH_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
 
         if (animationIsComplete(animator, fighter->LOW_PUNCH_FRAME_COUNT))
         {
             fighter->IsLowPunching = false;
+        }
+    }
+    else if (fighter->pad & JAGPAD_9 && fighter->ButtonReleased || fighter->IsHighPunching)
+    {
+        if (!fighter->IsHighPunching && fighter->ButtonReleased)
+        {
+            fighter->ButtonReleased = false;
+            fighter->IsHighPunching = true;
+            animator->currentFrame = 0;
+            fighterPlayHiya(fighter->spriteIndex, fighter->soundHandler, fighter->isPlayer1);
+        }
+
+        updateSpriteAnimator(animator, punchHighFrames, fighter->HIGH_PUNCH_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
+
+        if (animationIsComplete(animator, fighter->HIGH_PUNCH_FRAME_COUNT))
+        {
+            fighter->IsHighPunching = false;
+        }
+    }
+    else if (fighter->pad & JAGPAD_A && fighter->ButtonReleased || fighter->IsLowKicking)
+    {
+        if (!fighter->IsLowKicking && fighter->ButtonReleased)
+        {
+            fighter->ButtonReleased = false;
+            fighter->IsLowKicking = true;
+            animator->currentFrame = 0;
+            fighterPlayHiya(fighter->spriteIndex, fighter->soundHandler, fighter->isPlayer1);
+        }
+
+        updateSpriteAnimator(animator, kickLowFrames, fighter->LOW_KICK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
+
+        if (animationIsComplete(animator, fighter->LOW_KICK_FRAME_COUNT))
+        {
+            fighter->IsLowKicking = false;
+        }
+    }
+    else if (fighter->pad & JAGPAD_7 && fighter->ButtonReleased || fighter->IsHighKicking)
+    {
+        if (!fighter->IsHighKicking && fighter->ButtonReleased)
+        {
+            fighter->ButtonReleased = false;
+            fighter->IsHighKicking = true;
+            animator->currentFrame = 0;
+            fighterPlayHiya(fighter->spriteIndex, fighter->soundHandler, fighter->isPlayer1);
+        }
+
+        updateSpriteAnimator(animator, kickHighFrames, fighter->HIGH_KICK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
+
+        if (animationIsComplete(animator, fighter->HIGH_KICK_FRAME_COUNT))
+        {
+            fighter->IsHighKicking = false;
         }
     }
     else if (fighter->pad & JAGPAD_B)
@@ -105,7 +165,7 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
                 animator->currentFrame = 0;
             }
 
-            updateSpriteAnimator(animator, blockDuckFrames, fighter->BLOCK_DUCK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY);
+            updateSpriteAnimator(animator, blockDuckFrames, fighter->BLOCK_DUCK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
         }
         else
         {
@@ -114,16 +174,17 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
                 fighter->IsDucking = false;
             }
             
-            updateSpriteAnimator(animator, blockFrames, fighter->BLOCK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY);
+            updateSpriteAnimator(animator, blockFrames, fighter->BLOCK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
         }
     }
     else if(fighter->pad & JAGPAD_LEFT)
     {
-        updateSpriteAnimator(animator, walkFrames, fighter->WALK_FRAME_COUNT, walkForward, true, fighter->positionX, fighter->positionY);
+        updateSpriteAnimator(animator, walkFrames, fighter->WALK_FRAME_COUNT, walkForward, true, fighter->positionX, fighter->positionY, fighter->direction);
         fighter->IsWalking = true;
         fighter->IsDucking = false;
         fighter->IsBlocking  = false;
         fighter->IsLowPunching = false;
+        fighter->IsHighPunching = false;
 
         if (sprite[fighter->spriteIndex].x_ > 0)
         {
@@ -142,11 +203,12 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
     }
     else if(fighter->pad & JAGPAD_RIGHT)
     {
-        updateSpriteAnimator(animator, walkFrames, fighter->WALK_FRAME_COUNT, !walkForward, true, fighter->positionX, fighter->positionY);
+        updateSpriteAnimator(animator, walkFrames, fighter->WALK_FRAME_COUNT, !walkForward, true, fighter->positionX, fighter->positionY, fighter->direction);
         fighter->IsWalking = true;
         fighter->IsDucking = false;
         fighter->IsBlocking = false;
         fighter->IsLowPunching = false;
+        fighter->IsHighPunching = false;
         
         if (sprite[fighter->spriteIndex].x_ < 260)
         {
@@ -170,14 +232,14 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
             fighter->IsDucking = true;
             animator->currentFrame = 0;
         }
-        updateSpriteAnimator(animator, duckFrames, fighter->DUCK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY);
+        updateSpriteAnimator(animator, duckFrames, fighter->DUCK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
         sprite[fighter->HB_BODY].active = R_is_inactive;
     }
     else
     {
         if (fighter->IsDucking)
         {
-            updateSpriteAnimator(animator, duckFrames, fighter->DUCK_FRAME_COUNT, false, false, fighter->positionX, fighter->positionY);
+            updateSpriteAnimator(animator, duckFrames, fighter->DUCK_FRAME_COUNT, false, false, fighter->positionX, fighter->positionY, fighter->direction);
             
             if (animator->currentFrame == 0)
             {
@@ -191,7 +253,7 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
         }
         else if (fighter->IsBlocking)
         {
-            updateSpriteAnimator(animator, blockFrames, fighter->BLOCK_FRAME_COUNT, false, false, fighter->positionX, fighter->positionY);
+            updateSpriteAnimator(animator, blockFrames, fighter->BLOCK_FRAME_COUNT, false, false, fighter->positionX, fighter->positionY, fighter->direction);
             
             if (animator->currentFrame == 0)
             {
@@ -206,15 +268,37 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
                 animator->currentFrame = 0;
             }
 
-            updateSpriteAnimator(animator, idleFrames, fighter->IDLE_FRAME_COUNT, true, true, fighter->positionX, fighter->positionY);
+            updateSpriteAnimator(animator, idleFrames, fighter->IDLE_FRAME_COUNT, true, true, fighter->positionX, fighter->positionY, fighter->direction);
 
            fighter->positionX = sprite[fighter->spriteIndex].x_;
            fighter->positionY = sprite[fighter->spriteIndex].y_;
         }
     }
 
-    if (!(fighter->pad & JAGPAD_C))
+    if (!(fighter->pad & JAGPAD_C)
+        && !(fighter->pad & JAGPAD_9)
+        && !(fighter->pad & JAGPAD_A)
+        && !(fighter->pad & JAGPAD_7))
     {
         fighter->ButtonReleased = true;
+    }
+}
+
+void fighterPlayHiya(int fighter, struct SoundHandler* soundHandler, bool isPlayer1)
+{
+    switch (fighter)
+    {
+        case SONYA:
+            sfxHiyaFemale(soundHandler, isPlayer1);
+            break;
+        case SCORPION:
+        case SUBZERO:
+            sfxHiyaNinja(soundHandler, isPlayer1);
+            break;
+        case KANG:
+            sfxHiyaKang(soundHandler, isPlayer1);
+            break;
+        default:
+            sfxHiyaMale(soundHandler, isPlayer1);
     }
 }

@@ -3,10 +3,10 @@
 
 void animateFrame(unsigned int spriteIndex, unsigned int frame, struct AnimationFrame animationFrames[], float mulFactor, unsigned int base)
 {
-    animateFrame(spriteIndex, frame, animationFrames, mulFactor, base, 0, 0);
+    animateFrame(spriteIndex, frame, animationFrames, mulFactor, base, 0, 0, 1);
 }
 
-void animateFrame(unsigned int spriteIndex, unsigned int frame, struct AnimationFrame animationFrames[], float mulFactor, unsigned int base, int positionX, int positionY) {
+void animateFrame(unsigned int spriteIndex, unsigned int frame, struct AnimationFrame animationFrames[], float mulFactor, unsigned int base, int positionX, int positionY, int direction) {
 
     if (positionX == 0)
     {
@@ -23,8 +23,8 @@ void animateFrame(unsigned int spriteIndex, unsigned int frame, struct Animation
     sprite[spriteIndex].bytewid = animationFrames[frame].width * mulFactor;
     sprite[spriteIndex].framesz = animationFrames[frame].width * animationFrames[frame].height * mulFactor;
     sprite[spriteIndex].gfxbase = base + (animationFrames[frame].x * mulFactor) + (animationFrames[frame].y * sprite[spriteIndex].gwidth );
-    sprite[spriteIndex].x_ = positionX + animationFrames[frame].offsetX;
-    sprite[spriteIndex].y_ = positionY + animationFrames[frame].offsetY;
+    sprite[spriteIndex].x_ = positionX + (animationFrames[frame].offsetX * direction);
+    sprite[spriteIndex].y_ = positionY + (animationFrames[frame].offsetY * direction);
 }
 
 bool animationIsComplete(struct SpriteAnimator *animator, int totalFrames)
@@ -37,12 +37,12 @@ bool animationIsComplete(struct SpriteAnimator *animator, int totalFrames)
 
 void updateSpriteAnimator(struct SpriteAnimator *animator, struct AnimationFrame animationFrames[], int totalFrames, bool playForward, bool loop)
 {
-    updateSpriteAnimator(animator, animationFrames, totalFrames, playForward, loop, 0, 0);
+    updateSpriteAnimator(animator, animationFrames, totalFrames, playForward, loop, 0, 0, 1);
 }
 
-void updateSpriteAnimator(struct SpriteAnimator *animator, struct AnimationFrame animationFrames[], int totalFrames, bool playForward, bool loop, int positionX, int positionY)
+void updateSpriteAnimator(struct SpriteAnimator *animator, struct AnimationFrame animationFrames[], int totalFrames, bool playForward, bool loop, int positionX, int positionY, int direction)
 {
-    animateFrame(animator->spriteIndex, animator->currentFrame, animationFrames, animator->mulFactor, animator->base, positionX, positionY);
+    animateFrame(animator->spriteIndex, animator->currentFrame, animationFrames, animator->mulFactor, animator->base, positionX, positionY, direction);
 
     if (rapTicks >= animator->lastTick + animationFrames[animator->currentFrame].ticks)
     {

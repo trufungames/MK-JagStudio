@@ -1,473 +1,539 @@
 #NO_APP
 	.text
 	.even
-	.globl	__Z8sfxShootb
-__Z8sfxShootb:
+	.globl	__Z8sfxFightP12SoundHandler
+__Z8sfxFightP12SoundHandler:
 	link.w %fp,#0
-	move.l %a2,-(%sp)
-	move.l %d2,-(%sp)
-	tst.b 11(%fp)
+	move.l 8(%fp),%a0
+	tst.b (%a0)
 	jne .L4
-	move.l -8(%fp),%d2
-	move.l -4(%fp),%a2
 	unlk %fp
 	rts
 .L4:
-	move.l #fight_sam_end,%d2
-	sub.l #fight_sam-3,%d2
-	moveq #-4,%d0
-	and.l %d0,%d2
 	clr.l -(%sp)
-	pea 2.w
-	move.l %d2,-(%sp)
+	pea 6.w
+	move.l #fight_sam_end,%d0
+	sub.l #fight_sam-3,%d0
+	moveq #-4,%d1
+	and.l %d0,%d1
+	move.l %d1,-(%sp)
 	pea fight_sam
-	pea 1.w
-	lea zeroPlaySample,%a2
-	jsr (%a2)
-	lea (16,%sp),%sp
-	clr.l (%sp)
-	pea 2.w
-	move.l %d2,-(%sp)
-	pea fight_sam
-	pea 2.w
-	jsr (%a2)
+	pea 3.w
+	jsr zeroPlaySample
 	lea (20,%sp),%sp
-	move.l -8(%fp),%d2
-	move.l -4(%fp),%a2
 	unlk %fp
 	rts
 	.even
-	.globl	__Z8sfxFightb
-__Z8sfxFightb:
+	.globl	__Z13sfxJohnnyCageP12SoundHandlerb
+__Z13sfxJohnnyCageP12SoundHandlerb:
 	link.w %fp,#0
-	move.l %a2,-(%sp)
 	move.l %d2,-(%sp)
-	tst.b 11(%fp)
-	jne .L9
-	move.l -8(%fp),%d2
-	move.l -4(%fp),%a2
-	unlk %fp
-	rts
-.L9:
-	move.l #fight_sam_end,%d2
-	sub.l #fight_sam-3,%d2
-	moveq #-4,%d0
-	and.l %d0,%d2
+	move.b 15(%fp),%d0
+	move.l 8(%fp),%a0
+	tst.b (%a0)
+	jeq .L6
+	tst.b %d0
+	seq %d0
+	ext.w %d0
 	clr.l -(%sp)
 	pea 6.w
-	move.l %d2,-(%sp)
-	pea fight_sam
-	pea 1.w
-	lea zeroPlaySample,%a2
-	jsr (%a2)
-	lea (16,%sp),%sp
-	clr.l (%sp)
-	pea 6.w
-	move.l %d2,-(%sp)
-	pea fight_sam
-	pea 2.w
-	jsr (%a2)
-	lea (20,%sp),%sp
-	move.l -8(%fp),%d2
-	move.l -4(%fp),%a2
-	unlk %fp
-	rts
-	.even
-	.globl	__Z13sfxJohnnyCageb
-__Z13sfxJohnnyCageb:
-	link.w %fp,#0
-	move.l %a2,-(%sp)
-	move.l %d2,-(%sp)
-	tst.b 11(%fp)
-	jne .L14
-	move.l -8(%fp),%d2
-	move.l -4(%fp),%a2
-	unlk %fp
-	rts
-.L14:
-	move.l #johnnycage_sam_end,%d2
-	sub.l #johnnycage_sam-3,%d2
-	moveq #-4,%d0
-	and.l %d0,%d2
-	clr.l -(%sp)
-	pea 6.w
+	move.l #johnnycage_sam_end,%d1
+	sub.l #johnnycage_sam-3,%d1
+	moveq #-4,%d2
+	and.l %d1,%d2
 	move.l %d2,-(%sp)
 	pea johnnycage_sam
-	pea 1.w
-	lea zeroPlaySample,%a2
-	jsr (%a2)
-	lea (16,%sp),%sp
-	clr.l (%sp)
-	pea 6.w
-	move.l %d2,-(%sp)
-	pea johnnycage_sam
-	pea 2.w
-	jsr (%a2)
+	move.w #1,%a0
+	sub.w %d0,%a0
+	move.l %a0,-(%sp)
+	jsr zeroPlaySample
 	lea (20,%sp),%sp
-	move.l -8(%fp),%d2
-	move.l -4(%fp),%a2
+.L6:
+	move.l -4(%fp),%d2
 	unlk %fp
 	rts
 	.even
-	.globl	__Z7sfxKanob
-__Z7sfxKanob:
+	.globl	__Z7sfxKanoP12SoundHandlerb
+__Z7sfxKanoP12SoundHandlerb:
 	link.w %fp,#0
-	move.l %a2,-(%sp)
 	move.l %d2,-(%sp)
-	tst.b 11(%fp)
-	jne .L19
-	move.l -8(%fp),%d2
-	move.l -4(%fp),%a2
-	unlk %fp
-	rts
-.L19:
-	move.l #kano_sam_end,%d2
-	sub.l #kano_sam-3,%d2
-	moveq #-4,%d0
-	and.l %d0,%d2
+	move.b 15(%fp),%d0
+	move.l 8(%fp),%a0
+	tst.b (%a0)
+	jeq .L12
+	tst.b %d0
+	seq %d0
+	ext.w %d0
 	clr.l -(%sp)
 	pea 6.w
+	move.l #kano_sam_end,%d1
+	sub.l #kano_sam-3,%d1
+	moveq #-4,%d2
+	and.l %d1,%d2
 	move.l %d2,-(%sp)
 	pea kano_sam
-	pea 1.w
-	lea zeroPlaySample,%a2
-	jsr (%a2)
-	lea (16,%sp),%sp
-	clr.l (%sp)
-	pea 6.w
-	move.l %d2,-(%sp)
-	pea kano_sam
-	pea 2.w
-	jsr (%a2)
+	move.w #1,%a0
+	sub.w %d0,%a0
+	move.l %a0,-(%sp)
+	jsr zeroPlaySample
 	lea (20,%sp),%sp
-	move.l -8(%fp),%d2
-	move.l -4(%fp),%a2
+.L12:
+	move.l -4(%fp),%d2
 	unlk %fp
 	rts
 	.even
-	.globl	__Z9sfxRaidenb
-__Z9sfxRaidenb:
+	.globl	__Z9sfxRaidenP12SoundHandlerb
+__Z9sfxRaidenP12SoundHandlerb:
 	link.w %fp,#0
-	move.l %a2,-(%sp)
 	move.l %d2,-(%sp)
-	tst.b 11(%fp)
-	jne .L24
-	move.l -8(%fp),%d2
-	move.l -4(%fp),%a2
+	move.b 15(%fp),%d0
+	move.l 8(%fp),%a0
+	tst.b (%a0)
+	jeq .L18
+	tst.b %d0
+	seq %d0
+	ext.w %d0
+	clr.l -(%sp)
+	pea 6.w
+	move.l #raiden_sam_end,%d1
+	sub.l #raiden_sam-3,%d1
+	moveq #-4,%d2
+	and.l %d1,%d2
+	move.l %d2,-(%sp)
+	pea raiden_sam
+	move.w #1,%a0
+	sub.w %d0,%a0
+	move.l %a0,-(%sp)
+	jsr zeroPlaySample
+	lea (20,%sp),%sp
+.L18:
+	move.l -4(%fp),%d2
 	unlk %fp
 	rts
+	.even
+	.globl	__Z10sfxLiuKangP12SoundHandlerb
+__Z10sfxLiuKangP12SoundHandlerb:
+	link.w %fp,#0
+	move.l %d2,-(%sp)
+	move.b 15(%fp),%d0
+	move.l 8(%fp),%a0
+	tst.b (%a0)
+	jeq .L24
+	tst.b %d0
+	seq %d0
+	ext.w %d0
+	clr.l -(%sp)
+	pea 6.w
+	move.l #liukang_sam_end,%d1
+	sub.l #liukang_sam-3,%d1
+	moveq #-4,%d2
+	and.l %d1,%d2
+	move.l %d2,-(%sp)
+	pea liukang_sam
+	move.w #1,%a0
+	sub.w %d0,%a0
+	move.l %a0,-(%sp)
+	jsr zeroPlaySample
+	lea (20,%sp),%sp
 .L24:
-	move.l #raiden_sam_end,%d2
-	sub.l #raiden_sam-3,%d2
-	moveq #-4,%d0
-	and.l %d0,%d2
-	clr.l -(%sp)
-	pea 6.w
-	move.l %d2,-(%sp)
-	pea raiden_sam
-	pea 1.w
-	lea zeroPlaySample,%a2
-	jsr (%a2)
-	lea (16,%sp),%sp
-	clr.l (%sp)
-	pea 6.w
-	move.l %d2,-(%sp)
-	pea raiden_sam
-	pea 2.w
-	jsr (%a2)
-	lea (20,%sp),%sp
-	move.l -8(%fp),%d2
-	move.l -4(%fp),%a2
+	move.l -4(%fp),%d2
 	unlk %fp
 	rts
 	.even
-	.globl	__Z10sfxLiuKangb
-__Z10sfxLiuKangb:
+	.globl	__Z11sfxScorpionP12SoundHandlerb
+__Z11sfxScorpionP12SoundHandlerb:
 	link.w %fp,#0
-	move.l %a2,-(%sp)
 	move.l %d2,-(%sp)
-	tst.b 11(%fp)
-	jne .L29
-	move.l -8(%fp),%d2
-	move.l -4(%fp),%a2
-	unlk %fp
-	rts
-.L29:
-	move.l #liukang_sam_end,%d2
-	sub.l #liukang_sam-3,%d2
-	moveq #-4,%d0
-	and.l %d0,%d2
+	move.b 15(%fp),%d0
+	move.l 8(%fp),%a0
+	tst.b (%a0)
+	jeq .L30
+	tst.b %d0
+	seq %d0
+	ext.w %d0
 	clr.l -(%sp)
 	pea 6.w
-	move.l %d2,-(%sp)
-	pea liukang_sam
-	pea 1.w
-	lea zeroPlaySample,%a2
-	jsr (%a2)
-	lea (16,%sp),%sp
-	clr.l (%sp)
-	pea 6.w
-	move.l %d2,-(%sp)
-	pea liukang_sam
-	pea 2.w
-	jsr (%a2)
-	lea (20,%sp),%sp
-	move.l -8(%fp),%d2
-	move.l -4(%fp),%a2
-	unlk %fp
-	rts
-	.even
-	.globl	__Z11sfxScorpionb
-__Z11sfxScorpionb:
-	link.w %fp,#0
-	move.l %a2,-(%sp)
-	move.l %d2,-(%sp)
-	tst.b 11(%fp)
-	jne .L34
-	move.l -8(%fp),%d2
-	move.l -4(%fp),%a2
-	unlk %fp
-	rts
-.L34:
-	move.l #scorpion_sam_end,%d2
-	sub.l #scorpion_sam-3,%d2
-	moveq #-4,%d0
-	and.l %d0,%d2
-	clr.l -(%sp)
-	pea 6.w
+	move.l #scorpion_sam_end,%d1
+	sub.l #scorpion_sam-3,%d1
+	moveq #-4,%d2
+	and.l %d1,%d2
 	move.l %d2,-(%sp)
 	pea scorpion_sam
-	pea 1.w
-	lea zeroPlaySample,%a2
-	jsr (%a2)
-	lea (16,%sp),%sp
-	clr.l (%sp)
-	pea 6.w
-	move.l %d2,-(%sp)
-	pea scorpion_sam
-	pea 2.w
-	jsr (%a2)
+	move.w #1,%a0
+	sub.w %d0,%a0
+	move.l %a0,-(%sp)
+	jsr zeroPlaySample
 	lea (20,%sp),%sp
-	move.l -8(%fp),%d2
-	move.l -4(%fp),%a2
+.L30:
+	move.l -4(%fp),%d2
 	unlk %fp
 	rts
 	.even
-	.globl	__Z10sfxSubzerob
-__Z10sfxSubzerob:
+	.globl	__Z10sfxSubzeroP12SoundHandlerb
+__Z10sfxSubzeroP12SoundHandlerb:
 	link.w %fp,#0
-	move.l %a2,-(%sp)
 	move.l %d2,-(%sp)
-	tst.b 11(%fp)
-	jne .L39
-	move.l -8(%fp),%d2
-	move.l -4(%fp),%a2
-	unlk %fp
-	rts
-.L39:
-	move.l #subzero_sam_end,%d2
-	sub.l #subzero_sam-3,%d2
-	moveq #-4,%d0
-	and.l %d0,%d2
+	move.b 15(%fp),%d0
+	move.l 8(%fp),%a0
+	tst.b (%a0)
+	jeq .L36
+	tst.b %d0
+	seq %d0
+	ext.w %d0
 	clr.l -(%sp)
 	pea 6.w
+	move.l #subzero_sam_end,%d1
+	sub.l #subzero_sam-3,%d1
+	moveq #-4,%d2
+	and.l %d1,%d2
 	move.l %d2,-(%sp)
 	pea subzero_sam
-	pea 1.w
-	lea zeroPlaySample,%a2
-	jsr (%a2)
-	lea (16,%sp),%sp
-	clr.l (%sp)
-	pea 6.w
-	move.l %d2,-(%sp)
-	pea subzero_sam
-	pea 2.w
-	jsr (%a2)
+	move.w #1,%a0
+	sub.w %d0,%a0
+	move.l %a0,-(%sp)
+	jsr zeroPlaySample
 	lea (20,%sp),%sp
-	move.l -8(%fp),%d2
-	move.l -4(%fp),%a2
+.L36:
+	move.l -4(%fp),%d2
 	unlk %fp
 	rts
 	.even
-	.globl	__Z8sfxSonyab
-__Z8sfxSonyab:
+	.globl	__Z8sfxSonyaP12SoundHandlerb
+__Z8sfxSonyaP12SoundHandlerb:
 	link.w %fp,#0
-	move.l %a2,-(%sp)
 	move.l %d2,-(%sp)
-	tst.b 11(%fp)
-	jne .L44
-	move.l -8(%fp),%d2
-	move.l -4(%fp),%a2
-	unlk %fp
-	rts
-.L44:
-	move.l #sonya_sam_end,%d2
-	sub.l #sonya_sam-3,%d2
-	moveq #-4,%d0
-	and.l %d0,%d2
+	move.b 15(%fp),%d0
+	move.l 8(%fp),%a0
+	tst.b (%a0)
+	jeq .L42
+	tst.b %d0
+	seq %d0
+	ext.w %d0
 	clr.l -(%sp)
 	pea 6.w
+	move.l #sonya_sam_end,%d1
+	sub.l #sonya_sam-3,%d1
+	moveq #-4,%d2
+	and.l %d1,%d2
 	move.l %d2,-(%sp)
 	pea sonya_sam
-	pea 1.w
-	lea zeroPlaySample,%a2
-	jsr (%a2)
-	lea (16,%sp),%sp
-	clr.l (%sp)
-	pea 6.w
-	move.l %d2,-(%sp)
-	pea sonya_sam
-	pea 2.w
-	jsr (%a2)
+	move.w #1,%a0
+	sub.w %d0,%a0
+	move.l %a0,-(%sp)
+	jsr zeroPlaySample
 	lea (20,%sp),%sp
-	move.l -8(%fp),%d2
-	move.l -4(%fp),%a2
+.L42:
+	move.l -4(%fp),%d2
 	unlk %fp
 	rts
 	.even
-	.globl	__Z11sfxP1Cursorb
-__Z11sfxP1Cursorb:
+	.globl	__Z11sfxP1CursorP12SoundHandler
+__Z11sfxP1CursorP12SoundHandler:
 	link.w %fp,#0
-	move.l %a2,-(%sp)
-	move.l %d2,-(%sp)
-	tst.b 11(%fp)
-	jne .L49
-	move.l -8(%fp),%d2
-	move.l -4(%fp),%a2
+	move.l 8(%fp),%a0
+	tst.b (%a0)
+	jne .L51
 	unlk %fp
 	rts
-.L49:
-	move.l #p1cursor_sam_end,%d2
-	sub.l #p1cursor_sam-3,%d2
-	moveq #-4,%d0
-	and.l %d0,%d2
+.L51:
 	clr.l -(%sp)
 	pea 6.w
-	move.l %d2,-(%sp)
+	move.l #p1cursor_sam_end,%d0
+	sub.l #p1cursor_sam-3,%d0
+	moveq #-4,%d1
+	and.l %d0,%d1
+	move.l %d1,-(%sp)
 	pea p1cursor_sam
 	pea 1.w
-	lea zeroPlaySample,%a2
-	jsr (%a2)
-	lea (16,%sp),%sp
-	clr.l (%sp)
-	pea 6.w
-	move.l %d2,-(%sp)
-	pea p1cursor_sam
-	pea 2.w
-	jsr (%a2)
+	jsr zeroPlaySample
 	lea (20,%sp),%sp
-	move.l -8(%fp),%d2
-	move.l -4(%fp),%a2
 	unlk %fp
 	rts
 	.even
-	.globl	__Z11sfxP2Cursorb
-__Z11sfxP2Cursorb:
+	.globl	__Z11sfxP2CursorP12SoundHandler
+__Z11sfxP2CursorP12SoundHandler:
 	link.w %fp,#0
-	move.l %a2,-(%sp)
-	move.l %d2,-(%sp)
-	tst.b 11(%fp)
-	jne .L54
-	move.l -8(%fp),%d2
-	move.l -4(%fp),%a2
+	move.l 8(%fp),%a0
+	tst.b (%a0)
+	jne .L56
 	unlk %fp
 	rts
-.L54:
-	move.l #p2cursor_sam_end,%d2
-	sub.l #p2cursor_sam-3,%d2
-	moveq #-4,%d0
-	and.l %d0,%d2
+.L56:
 	clr.l -(%sp)
 	pea 6.w
-	move.l %d2,-(%sp)
-	pea p2cursor_sam
-	pea 1.w
-	lea zeroPlaySample,%a2
-	jsr (%a2)
-	lea (16,%sp),%sp
-	clr.l (%sp)
-	pea 6.w
-	move.l %d2,-(%sp)
+	move.l #p2cursor_sam_end,%d0
+	sub.l #p2cursor_sam-3,%d0
+	moveq #-4,%d1
+	and.l %d0,%d1
+	move.l %d1,-(%sp)
 	pea p2cursor_sam
 	pea 2.w
-	jsr (%a2)
+	jsr zeroPlaySample
 	lea (20,%sp),%sp
-	move.l -8(%fp),%d2
-	move.l -4(%fp),%a2
 	unlk %fp
 	rts
 	.even
-	.globl	__Z7sfxGongb
-__Z7sfxGongb:
+	.globl	__Z7sfxGongP12SoundHandler
+__Z7sfxGongP12SoundHandler:
 	link.w %fp,#0
-	move.l %a2,-(%sp)
-	move.l %d2,-(%sp)
-	tst.b 11(%fp)
-	jne .L59
-	move.l -8(%fp),%d2
-	move.l -4(%fp),%a2
+	move.l 8(%fp),%a0
+	tst.b (%a0)
+	jne .L61
 	unlk %fp
 	rts
-.L59:
-	move.l #gong_sam_end,%d2
-	sub.l #gong_sam-3,%d2
-	moveq #-4,%d0
-	and.l %d0,%d2
+.L61:
 	clr.l -(%sp)
 	pea 6.w
-	move.l %d2,-(%sp)
+	move.l #gong_sam_end,%d0
+	sub.l #gong_sam-3,%d0
+	moveq #-4,%d1
+	and.l %d0,%d1
+	move.l %d1,-(%sp)
 	pea gong_sam
-	pea 1.w
-	lea zeroPlaySample,%a2
-	jsr (%a2)
-	lea (16,%sp),%sp
-	clr.l (%sp)
-	pea 6.w
-	move.l %d2,-(%sp)
-	pea gong_sam
-	pea 2.w
-	jsr (%a2)
+	pea 4.w
+	jsr zeroPlaySample
 	lea (20,%sp),%sp
-	move.l -8(%fp),%d2
-	move.l -4(%fp),%a2
 	unlk %fp
 	rts
 	.even
-	.globl	__Z8sfxIntrob
-__Z8sfxIntrob:
+	.globl	__Z8sfxIntroP12SoundHandler
+__Z8sfxIntroP12SoundHandler:
 	link.w %fp,#0
-	move.l %a2,-(%sp)
-	move.l %d2,-(%sp)
-	tst.b 11(%fp)
-	jne .L64
-	move.l -8(%fp),%d2
-	move.l -4(%fp),%a2
+	move.l 8(%fp),%a0
+	tst.b (%a0)
+	jne .L66
 	unlk %fp
 	rts
-.L64:
-	move.l #intro_sam_end,%d2
-	sub.l #intro_sam-3,%d2
-	moveq #-4,%d0
-	and.l %d0,%d2
+.L66:
 	clr.l -(%sp)
 	pea 6.w
-	move.l %d2,-(%sp)
+	move.l #intro_sam_end,%d0
+	sub.l #intro_sam-3,%d0
+	moveq #-4,%d1
+	and.l %d0,%d1
+	move.l %d1,-(%sp)
 	pea intro_sam
-	pea 1.w
-	lea zeroPlaySample,%a2
-	jsr (%a2)
-	lea (16,%sp),%sp
-	clr.l (%sp)
-	pea 6.w
-	move.l %d2,-(%sp)
-	pea intro_sam
-	pea 2.w
-	jsr (%a2)
+	pea 4.w
+	jsr zeroPlaySample
 	lea (20,%sp),%sp
-	move.l -8(%fp),%d2
-	move.l -4(%fp),%a2
 	unlk %fp
 	rts
+	.even
+	.globl	__Z11sfxHiyaMaleP12SoundHandlerb
+__Z11sfxHiyaMaleP12SoundHandlerb:
+	link.w %fp,#0
+	move.l %d2,-(%sp)
+	move.b 15(%fp),%d2
+	move.l 8(%fp),%a0
+	tst.b (%a0)
+	jne .L77
+	move.l -4(%fp),%d2
+	unlk %fp
+	rts
+.L77:
+	jsr RAPTOR_random
+	btst #0,%d0
+	jeq .L70
+	tst.b %d2
+	seq %d0
+	ext.w %d0
+	clr.l -(%sp)
+	pea 6.w
+	move.l #hiya_male1_sam_end,%d1
+	sub.l #hiya_male1_sam-3,%d1
+	moveq #-4,%d2
+	and.l %d1,%d2
+	move.l %d2,-(%sp)
+	pea hiya_male1_sam
+	move.w #1,%a0
+	sub.w %d0,%a0
+	move.l %a0,-(%sp)
+	jsr zeroPlaySample
+	lea (20,%sp),%sp
+.L78:
+	move.l -4(%fp),%d2
+	unlk %fp
+	rts
+.L70:
+	tst.b %d2
+	seq %d0
+	ext.w %d0
+	clr.l -(%sp)
+	pea 6.w
+	move.l #hiya_male2_sam_end,%d1
+	sub.l #hiya_male2_sam-3,%d1
+	moveq #-4,%d2
+	and.l %d1,%d2
+	move.l %d2,-(%sp)
+	pea hiya_male2_sam
+	move.w #1,%a0
+	sub.w %d0,%a0
+	move.l %a0,-(%sp)
+	jsr zeroPlaySample
+	lea (20,%sp),%sp
+	jra .L78
+	.even
+	.globl	__Z13sfxHiyaFemaleP12SoundHandlerb
+__Z13sfxHiyaFemaleP12SoundHandlerb:
+	link.w %fp,#0
+	move.l %d2,-(%sp)
+	move.b 15(%fp),%d2
+	move.l 8(%fp),%a0
+	tst.b (%a0)
+	jne .L89
+	move.l -4(%fp),%d2
+	unlk %fp
+	rts
+.L89:
+	jsr RAPTOR_random
+	btst #0,%d0
+	jeq .L82
+	tst.b %d2
+	seq %d0
+	ext.w %d0
+	clr.l -(%sp)
+	pea 6.w
+	move.l #hiya_female1_sam_end,%d1
+	sub.l #hiya_female1_sam-3,%d1
+	moveq #-4,%d2
+	and.l %d1,%d2
+	move.l %d2,-(%sp)
+	pea hiya_female1_sam
+	move.w #1,%a0
+	sub.w %d0,%a0
+	move.l %a0,-(%sp)
+	jsr zeroPlaySample
+	lea (20,%sp),%sp
+.L90:
+	move.l -4(%fp),%d2
+	unlk %fp
+	rts
+.L82:
+	tst.b %d2
+	seq %d0
+	ext.w %d0
+	clr.l -(%sp)
+	pea 6.w
+	move.l #hiya_female2_sam_end,%d1
+	sub.l #hiya_female2_sam-3,%d1
+	moveq #-4,%d2
+	and.l %d1,%d2
+	move.l %d2,-(%sp)
+	pea hiya_female2_sam
+	move.w #1,%a0
+	sub.w %d0,%a0
+	move.l %a0,-(%sp)
+	jsr zeroPlaySample
+	lea (20,%sp),%sp
+	jra .L90
+	.even
+	.globl	__Z11sfxHiyaKangP12SoundHandlerb
+__Z11sfxHiyaKangP12SoundHandlerb:
+	link.w %fp,#0
+	move.l %d2,-(%sp)
+	move.b 15(%fp),%d2
+	move.l 8(%fp),%a0
+	tst.b (%a0)
+	jne .L101
+	move.l -4(%fp),%d2
+	unlk %fp
+	rts
+.L101:
+	jsr RAPTOR_random
+	btst #0,%d0
+	jeq .L94
+	tst.b %d2
+	seq %d0
+	ext.w %d0
+	clr.l -(%sp)
+	pea 6.w
+	move.l #hiya_kang1_sam_end,%d1
+	sub.l #hiya_kang1_sam-3,%d1
+	moveq #-4,%d2
+	and.l %d1,%d2
+	move.l %d2,-(%sp)
+	pea hiya_kang1_sam
+	move.w #1,%a0
+	sub.w %d0,%a0
+	move.l %a0,-(%sp)
+	jsr zeroPlaySample
+	lea (20,%sp),%sp
+.L102:
+	move.l -4(%fp),%d2
+	unlk %fp
+	rts
+.L94:
+	tst.b %d2
+	seq %d0
+	ext.w %d0
+	clr.l -(%sp)
+	pea 6.w
+	move.l #hiya_kang2_sam_end,%d1
+	sub.l #hiya_kang2_sam-3,%d1
+	moveq #-4,%d2
+	and.l %d1,%d2
+	move.l %d2,-(%sp)
+	pea hiya_kang2_sam
+	move.w #1,%a0
+	sub.w %d0,%a0
+	move.l %a0,-(%sp)
+	jsr zeroPlaySample
+	lea (20,%sp),%sp
+	jra .L102
+	.even
+	.globl	__Z12sfxHiyaNinjaP12SoundHandlerb
+__Z12sfxHiyaNinjaP12SoundHandlerb:
+	link.w %fp,#0
+	move.l %d2,-(%sp)
+	move.b 15(%fp),%d2
+	move.l 8(%fp),%a0
+	tst.b (%a0)
+	jne .L113
+	move.l -4(%fp),%d2
+	unlk %fp
+	rts
+.L113:
+	jsr RAPTOR_random
+	btst #0,%d0
+	jeq .L106
+	tst.b %d2
+	seq %d0
+	ext.w %d0
+	clr.l -(%sp)
+	pea 6.w
+	move.l #hiya_ninja1_sam_end,%d1
+	sub.l #hiya_ninja1_sam-3,%d1
+	moveq #-4,%d2
+	and.l %d1,%d2
+	move.l %d2,-(%sp)
+	pea hiya_ninja1_sam
+	move.w #1,%a0
+	sub.w %d0,%a0
+	move.l %a0,-(%sp)
+	jsr zeroPlaySample
+	lea (20,%sp),%sp
+.L114:
+	move.l -4(%fp),%d2
+	unlk %fp
+	rts
+.L106:
+	tst.b %d2
+	seq %d0
+	ext.w %d0
+	clr.l -(%sp)
+	pea 6.w
+	move.l #hiya_ninja2_sam_end,%d1
+	sub.l #hiya_ninja2_sam-3,%d1
+	moveq #-4,%d2
+	and.l %d1,%d2
+	move.l %d2,-(%sp)
+	pea hiya_ninja2_sam
+	move.w #1,%a0
+	sub.w %d0,%a0
+	move.l %a0,-(%sp)
+	jsr zeroPlaySample
+	lea (20,%sp),%sp
+	jra .L114
 	.globl	colliders
 	.data
 	.even

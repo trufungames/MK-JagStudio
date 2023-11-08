@@ -86,6 +86,12 @@ ABS,p1cursor_sam,sfx_raw8000,ASSETS\SFX\p1cursor.wav
 ABS,p2cursor_sam,sfx_raw8000,ASSETS\SFX\p2cursor.wav
 ABS,gong_sam,sfx_raw8000,ASSETS\SFX\gong.wav
 ABS,intro_sam,sfx_raw8000,ASSETS\SFX\intro.wav
-
-
+ABS,hiya_female1_sam,sfx_raw8000,ASSETS\SFX\hiya_female1.wav
+ABS,hiya_female2_sam,sfx_raw8000,ASSETS\SFX\hiya_female2.wav
+ABS,hiya_male1_sam,sfx_raw8000,ASSETS\SFX\hiya_male1.wav
+ABS,hiya_male2_sam,sfx_raw8000,ASSETS\SFX\hiya_male2.wav
+ABS,hiya_kang1_sam,sfx_raw8000,ASSETS\SFX\hiya_kang1.wav
+ABS,hiya_kang2_sam,sfx_raw8000,ASSETS\SFX\hiya_kang2.wav
+ABS,hiya_ninja1_sam,sfx_raw8000,ASSETS\SFX\hiya_ninja1.wav
+ABS,hiya_ninja2_sam,sfx_raw8000,ASSETS\SFX\hiya_ninja2.wav
 ' End of file.

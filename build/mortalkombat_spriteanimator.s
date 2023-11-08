@@ -1,7 +1,7 @@
 #NO_APP
 	.text
 	.even
-__Z12animateFramejjP14AnimationFramefjii.constprop.1:
+__Z12animateFramejjP14AnimationFramefjiii.constprop.1:
 	link.w %fp,#-4
 	movem.l #16188,-(%sp)
 	move.l 8(%fp),%d0
@@ -101,10 +101,10 @@ __Z12animateFramejjP14AnimationFramefjii.constprop.1:
 __Z12animateFramejjP14AnimationFramefj:
 	link.w %fp,#0
 	unlk %fp
-	jra (__Z12animateFramejjP14AnimationFramefjii.constprop.1)
+	jra (__Z12animateFramejjP14AnimationFramefjiii.constprop.1)
 	.even
-	.globl	__Z12animateFramejjP14AnimationFramefjii
-__Z12animateFramejjP14AnimationFramefjii:
+	.globl	__Z12animateFramejjP14AnimationFramefjiii
+__Z12animateFramejjP14AnimationFramefjiii:
 	link.w %fp,#-4
 	movem.l #16188,-(%sp)
 	move.l 8(%fp),%d0
@@ -200,12 +200,14 @@ __Z12animateFramejjP14AnimationFramefjii:
 	jsr ___fixunssfsi
 	addq.l #4,%sp
 	move.l %d0,44(%a2)
-	move.w 18(%a3),%d0
-	add.w %d5,%d0
-	move.w %d0,8(%a2)
-	move.w 22(%a3),%a3
-	add.w %d4,%a3
-	move.w %a3,12(%a2)
+	move.w 38(%fp),%d0
+	move.w %d0,%d1
+	muls.w 18(%a3),%d1
+	add.w %d5,%d1
+	move.w %d1,8(%a2)
+	muls.w 22(%a3),%d0
+	add.w %d4,%d0
+	move.w %d0,12(%a2)
 	movem.l -44(%fp),#15612
 	unlk %fp
 	rts
@@ -236,7 +238,7 @@ __Z20updateSpriteAnimatorP14SpriteAnimatorP14AnimationFrameibb:
 	move.l %a3,-(%sp)
 	move.l 16(%a2),-(%sp)
 	move.l (%a2),-(%sp)
-	jsr (__Z12animateFramejjP14AnimationFramefjii.constprop.1)
+	jsr (__Z12animateFramejjP14AnimationFramefjiii.constprop.1)
 	move.w raptor_ticks,%a0
 	move.l 16(%a2),%d1
 	move.w %a0,%a1
@@ -288,8 +290,8 @@ __Z20updateSpriteAnimatorP14SpriteAnimatorP14AnimationFrameibb:
 	move.l %a0,12(%a2)
 	jra .L10
 	.even
-	.globl	__Z20updateSpriteAnimatorP14SpriteAnimatorP14AnimationFrameibbii
-__Z20updateSpriteAnimatorP14SpriteAnimatorP14AnimationFrameibbii:
+	.globl	__Z20updateSpriteAnimatorP14SpriteAnimatorP14AnimationFrameibbiii
+__Z20updateSpriteAnimatorP14SpriteAnimatorP14AnimationFrameibbiii:
 	link.w %fp,#0
 	movem.l #15408,-(%sp)
 	move.l 8(%fp),%a2
@@ -297,6 +299,7 @@ __Z20updateSpriteAnimatorP14SpriteAnimatorP14AnimationFrameibbii:
 	move.l 16(%fp),%d4
 	move.b 23(%fp),%d3
 	move.b 27(%fp),%d5
+	move.l 36(%fp),-(%sp)
 	move.l 32(%fp),-(%sp)
 	move.l 28(%fp),-(%sp)
 	move.l 8(%a2),-(%sp)
@@ -304,7 +307,7 @@ __Z20updateSpriteAnimatorP14SpriteAnimatorP14AnimationFrameibbii:
 	move.l %a3,-(%sp)
 	move.l 16(%a2),-(%sp)
 	move.l (%a2),-(%sp)
-	jsr __Z12animateFramejjP14AnimationFramefjii
+	jsr __Z12animateFramejjP14AnimationFramefjiii
 	move.w raptor_ticks,%a0
 	move.l 16(%a2),%d1
 	move.w %a0,%a1
@@ -316,7 +319,7 @@ __Z20updateSpriteAnimatorP14SpriteAnimatorP14AnimationFrameibbii:
 	sub.l %d2,%d0
 	move.l 24(%a3,%d0.l),%d0
 	add.l 12(%a2),%d0
-	lea (28,%sp),%sp
+	lea (32,%sp),%sp
 	cmp.l %a1,%d0
 	jhi .L20
 	tst.b %d3
