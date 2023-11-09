@@ -381,18 +381,50 @@ static AnimationFrame scorpionWalkFrames[] = {
 	{ 80, 144, 320, 144, 0, 0, 6 }
 };
 static AnimationFrame scorpionDuckFrames[] = {
-	{ 80, 144, 400, 144, 0, 0, 3 },
-	{ 80, 144, 480, 144, 0, 0, 3 },
-	{ 80, 144, 560, 144, 0, 0, 3 }
+	{ 64, 144, 320, 144, 13, 0, 3 },
+	{ 64, 144, 384, 144, 13, 0, 3 },
+	{ 64, 144, 448, 144, 13, 0, 3 }
 };
 static AnimationFrame scorpionBlockFrames[] = {
-	{ 80, 144, 640, 144, 0, 0, 3 },
-	{ 80, 144, 720, 144, 0, 0, 3 },
-	{ 80, 144, 800, 144, 0, 0, 3 }
+	{ 64, 144, 512, 144, 15, 0, 3 },
+	{ 64, 144, 576, 144, 15, 0, 3 },
+	{ 64, 144, 640, 144, 15, 0, 3 }
 };
 static AnimationFrame scorpionBlockDuckFrames[] = {
-	{ 80, 144, 880, 144, 0, 0, 3 },
-	{ 80, 144, 0, 288, 0, 0, 3 }
+	{ 64, 144, 704, 144, 10, 0, 3 },
+	{ 64, 144, 768, 144, 10, 0, 3 }
+};
+static AnimationFrame scorpionPunchLowFrames[] = {
+	{ 80, 144, 832, 144, 7, 0, 4 },
+	{ 96, 144, 912, 144, 12, 0, 5 },
+	{ 112, 144, 0, 288, 12, 0, 12 },
+	{ 96, 144, 912, 144, 12, 0, 5 },
+	{ 80, 144, 832, 144, 7, 0, 4 }
+};
+static AnimationFrame scorpionPunchHighFrames[] = {
+	{ 80, 144, 832, 144, 7, 0, 4 },
+	{ 96, 144, 912, 144, 12, 0, 5 },
+	{ 112, 144, 384, 288, 12, 0, 12 },
+	{ 96, 144, 912, 144, 12, 0, 5 },
+	{ 80, 144, 832, 144, 7, 0, 4 }
+};
+static AnimationFrame scorpionKickLowFrames[] = {
+	{ 80, 144, 0, 432, 0, 0, 5 },
+	{ 80, 144, 80, 432, 0, 0, 5 },
+	{ 112, 144, 160, 432, 0, 0, 5 },
+	{ 112, 144, 880, 288, 0, 0, 12 },
+	{ 80, 144, 160, 432, 0, 0, 5 },
+	{ 80, 144, 80, 432, 0, 0, 5 },
+	{ 80, 144, 0, 432, 0, 0, 5 }
+};
+static AnimationFrame scorpionKickHighFrames[] = {
+	{ 80, 144, 0, 432, 0, 0, 5 },
+	{ 80, 144, 80, 432, 0, 0, 5 },
+	{ 112, 144, 160, 432, 0, 0, 5 },
+	{ 112, 144, 272, 432, 0, 0, 12 },
+	{ 80, 144, 160, 432, 0, 0, 5 },
+	{ 80, 144, 80, 432, 0, 0, 5 },
+	{ 80, 144, 0, 432, 0, 0, 5 }
 };
 
 //Kano animation frames
@@ -1296,7 +1328,7 @@ int gameStartTicks = rapTicks;
 					break;
 				case 6:
 					//Scorpion
-					fighterUpdate(delta, &fighterScorpion, &scorpionAnimator, scorpionIdleFrames, scorpionWalkFrames, scorpionDuckFrames, scorpionBlockFrames, scorpionBlockDuckFrames, sonyaPunchLowFrames, sonyaPunchHighFrames, sonyaKickLowFrames, sonyaKickHighFrames, false);
+					fighterUpdate(delta, &fighterScorpion, &scorpionAnimator, scorpionIdleFrames, scorpionWalkFrames, scorpionDuckFrames, scorpionBlockFrames, scorpionBlockDuckFrames, scorpionPunchLowFrames, scorpionPunchHighFrames, scorpionKickLowFrames, scorpionKickHighFrames, false);
 					break;
 			}
 			
@@ -1333,7 +1365,7 @@ int gameStartTicks = rapTicks;
 					break;
 				case 6:
 					//Scorpion
-					fighterUpdate(delta, &fighterScorpion2, &scorpionAnimator2, scorpionIdleFrames, scorpionWalkFrames, scorpionDuckFrames, scorpionBlockFrames, scorpionBlockDuckFrames, sonyaPunchLowFrames, sonyaPunchHighFrames, sonyaKickLowFrames, sonyaKickHighFrames, true);
+					fighterUpdate(delta, &fighterScorpion2, &scorpionAnimator2, scorpionIdleFrames, scorpionWalkFrames, scorpionDuckFrames, scorpionBlockFrames, scorpionBlockDuckFrames, scorpionPunchLowFrames, scorpionPunchHighFrames, scorpionKickLowFrames, scorpionKickHighFrames, true);
 					break;
 			}
 		}

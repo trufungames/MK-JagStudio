@@ -541,22 +541,22 @@ ee_printf G  00059DEC   eeUpdateChecksum G  00059F3A   eeValidateChecksum G  000
 
 DATA-SEGMENT RELOCATABLE SYMBOLS
 
-_DATA_E  G  0005CA80   sprite   G  0005A064   colliders G  0005A060   
+_DATA_E  G  0005CD20   sprite   G  0005A064   colliders G  0005A060   
 _onTitleScreen G  0005A080   _p1Cursor G  0005A086   _p2Cursor G  0005A082   
-__fpCCR  G  0005CA20   _xcpt    G  0005CA40   
+__fpCCR  G  0005CCC0   _xcpt    G  0005CCE0   
 
 BSS-SEGMENT RELOCATABLE SYMBOLS
 
-_BSS_E   G  00082CE0   RAPTOR_particle_gfx G  00060A90   RAPTOR_sprite_table G  0006A090   
-_trashram G  00082930   _onScreenChooseFighter G  00082942   _onScreenVsBattle G  00082941   
-_onScreenFight G  00082940   _lastTicks G  00082944   _js_r_textbuffer G  00082BA0   
-zero_left_pad G  00082BB8   zero_right_pad G  00082BBC   _pad1    G  00082B9C   
-_pad1Last G  00082B94   _pad1Prev G  00082B8C   _pad2    G  00082B98   
-_pad2Last G  00082B90   _pad2Prev G  00082B88   _plot_colour G  00082BCC   
-rapAngle_xAdd G  00082B84   rapAngle_yAdd G  00082B80   _js_r_xpos G  00082BDA   
-_js_r_ypos G  00082BD6   _jsfFontSize G  00082BD2   _jsfFontIndx G  00082BCE   
-_yt2     G  00082BA4   _y       G  00082BAC   _errno   G  00082BB4   
-zero_mousex_delta G  00082BC0   zero_mousey_delta G  00082BC4   zero_rotary_delta G  00082BC8   
+_BSS_E   G  00082F80   RAPTOR_particle_gfx G  00060D30   RAPTOR_sprite_table G  0006A330   
+_trashram G  00082BD0   _onScreenChooseFighter G  00082BE2   _onScreenVsBattle G  00082BE1   
+_onScreenFight G  00082BE0   _lastTicks G  00082BE4   _js_r_textbuffer G  00082E40   
+zero_left_pad G  00082E58   zero_right_pad G  00082E5C   _pad1    G  00082E3C   
+_pad1Last G  00082E34   _pad1Prev G  00082E2C   _pad2    G  00082E38   
+_pad2Last G  00082E30   _pad2Prev G  00082E28   _plot_colour G  00082E6C   
+rapAngle_xAdd G  00082E24   rapAngle_yAdd G  00082E20   _js_r_xpos G  00082E7A   
+_js_r_ypos G  00082E76   _jsfFontSize G  00082E72   _jsfFontIndx G  00082E6E   
+_yt2     G  00082E44   _y       G  00082E4C   _errno   G  00082E54   
+zero_mousex_delta G  00082E60   zero_mousey_delta G  00082E64   zero_rotary_delta G  00082E68   
 
 
 LOAD MAP
@@ -745,22 +745,22 @@ ee_printf G  00059DEC   eeUpdateChecksum G  00059F3A   eeValidateChecksum G  000
 
 DATA-SEGMENT RELOCATABLE SYMBOLS
 
-_DATA_E  G  0005CA80   sprite   G  0005A064   colliders G  0005A060   
+_DATA_E  G  0005CD20   sprite   G  0005A064   colliders G  0005A060   
 _onTitleScreen G  0005A080   _p1Cursor G  0005A086   _p2Cursor G  0005A082   
-__fpCCR  G  0005CA20   _xcpt    G  0005CA40   
+__fpCCR  G  0005CCC0   _xcpt    G  0005CCE0   
 
 BSS-SEGMENT RELOCATABLE SYMBOLS
 
-_BSS_E   G  00082CE0   RAPTOR_particle_gfx G  00060A90   RAPTOR_sprite_table G  0006A090   
-_trashram G  00082930   _onScreenChooseFighter G  00082942   _onScreenVsBattle G  00082941   
-_onScreenFight G  00082940   _lastTicks G  00082944   _js_r_textbuffer G  00082BA0   
-zero_left_pad G  00082BB8   zero_right_pad G  00082BBC   _pad1    G  00082B9C   
-_pad1Last G  00082B94   _pad1Prev G  00082B8C   _pad2    G  00082B98   
-_pad2Last G  00082B90   _pad2Prev G  00082B88   _plot_colour G  00082BCC   
-rapAngle_xAdd G  00082B84   rapAngle_yAdd G  00082B80   _js_r_xpos G  00082BDA   
-_js_r_ypos G  00082BD6   _jsfFontSize G  00082BD2   _jsfFontIndx G  00082BCE   
-_yt2     G  00082BA4   _y       G  00082BAC   _errno   G  00082BB4   
-zero_mousex_delta G  00082BC0   zero_mousey_delta G  00082BC4   zero_rotary_delta G  00082BC8   
+_BSS_E   G  00082F80   RAPTOR_particle_gfx G  00060D30   RAPTOR_sprite_table G  0006A330   
+_trashram G  00082BD0   _onScreenChooseFighter G  00082BE2   _onScreenVsBattle G  00082BE1   
+_onScreenFight G  00082BE0   _lastTicks G  00082BE4   _js_r_textbuffer G  00082E40   
+zero_left_pad G  00082E58   zero_right_pad G  00082E5C   _pad1    G  00082E3C   
+_pad1Last G  00082E34   _pad1Prev G  00082E2C   _pad2    G  00082E38   
+_pad2Last G  00082E30   _pad2Prev G  00082E28   _plot_colour G  00082E6C   
+rapAngle_xAdd G  00082E24   rapAngle_yAdd G  00082E20   _js_r_xpos G  00082E7A   
+_js_r_ypos G  00082E76   _jsfFontSize G  00082E72   _jsfFontIndx G  00082E6E   
+_yt2     G  00082E44   _y       G  00082E4C   _errno   G  00082E54   
+zero_mousex_delta G  00082E60   zero_mousey_delta G  00082E64   zero_rotary_delta G  00082E68   
 
 
  

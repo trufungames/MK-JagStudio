@@ -2360,10 +2360,10 @@ __Z9basicmainv:
 	jra .L78
 .L169:
 	pea 1.w
-	pea __ZL19sonyaKickHighFrames
-	pea __ZL18sonyaKickLowFrames
-	pea __ZL20sonyaPunchHighFrames
-	pea __ZL19sonyaPunchLowFrames
+	pea __ZL22scorpionKickHighFrames
+	pea __ZL21scorpionKickLowFrames
+	pea __ZL23scorpionPunchHighFrames
+	pea __ZL22scorpionPunchLowFrames
 	pea __ZL23scorpionBlockDuckFrames
 	pea __ZL19scorpionBlockFrames
 	pea __ZL18scorpionDuckFrames
@@ -2407,10 +2407,10 @@ __Z9basicmainv:
 	jra .L154
 .L161:
 	clr.l -(%sp)
-	pea __ZL19sonyaKickHighFrames
-	pea __ZL18sonyaKickLowFrames
-	pea __ZL20sonyaPunchHighFrames
-	pea __ZL19sonyaPunchLowFrames
+	pea __ZL22scorpionKickHighFrames
+	pea __ZL21scorpionKickLowFrames
+	pea __ZL23scorpionPunchHighFrames
+	pea __ZL22scorpionPunchLowFrames
 	pea __ZL23scorpionBlockDuckFrames
 	pea __ZL19scorpionBlockFrames
 	pea __ZL18scorpionDuckFrames
@@ -3163,10 +3163,10 @@ __ZL15fighterScorpion:
 	.long	2
 	.long	2
 	.long	1
-	.long	3
-	.long	3
-	.long	3
-	.long	4
+	.long	5
+	.long	5
+	.long	7
+	.long	7
 	.skip 54
 	.even
 __ZL12cageAnimator:
@@ -3949,10 +3949,10 @@ __ZL16fighterScorpion2:
 	.long	2
 	.long	2
 	.long	1
-	.long	3
-	.long	3
-	.long	3
-	.long	4
+	.long	5
+	.long	5
+	.long	7
+	.long	7
 	.skip 54
 	.even
 __ZL13cageAnimator2:
@@ -5505,63 +5505,239 @@ __ZL18scorpionWalkFrames:
 	.long	6
 	.even
 __ZL18scorpionDuckFrames:
-	.long	80
+	.long	64
 	.long	144
-	.long	400
+	.long	320
 	.long	144
-	.long	0
-	.long	0
-	.long	3
-	.long	80
-	.long	144
-	.long	480
-	.long	144
-	.long	0
+	.long	13
 	.long	0
 	.long	3
-	.long	80
+	.long	64
 	.long	144
-	.long	560
+	.long	384
 	.long	144
+	.long	13
 	.long	0
+	.long	3
+	.long	64
+	.long	144
+	.long	448
+	.long	144
+	.long	13
 	.long	0
 	.long	3
 	.even
 __ZL19scorpionBlockFrames:
-	.long	80
+	.long	64
+	.long	144
+	.long	512
+	.long	144
+	.long	15
+	.long	0
+	.long	3
+	.long	64
+	.long	144
+	.long	576
+	.long	144
+	.long	15
+	.long	0
+	.long	3
+	.long	64
 	.long	144
 	.long	640
 	.long	144
-	.long	0
-	.long	0
-	.long	3
-	.long	80
-	.long	144
-	.long	720
-	.long	144
-	.long	0
-	.long	0
-	.long	3
-	.long	80
-	.long	144
-	.long	800
-	.long	144
-	.long	0
+	.long	15
 	.long	0
 	.long	3
 	.even
 __ZL23scorpionBlockDuckFrames:
-	.long	80
+	.long	64
 	.long	144
-	.long	880
+	.long	704
 	.long	144
-	.long	0
+	.long	10
 	.long	0
 	.long	3
+	.long	64
+	.long	144
+	.long	768
+	.long	144
+	.long	10
+	.long	0
+	.long	3
+	.even
+__ZL22scorpionPunchLowFrames:
 	.long	80
+	.long	144
+	.long	832
+	.long	144
+	.long	7
+	.long	0
+	.long	4
+	.long	96
+	.long	144
+	.long	912
+	.long	144
+	.long	12
+	.long	0
+	.long	5
+	.long	112
 	.long	144
 	.long	0
 	.long	288
+	.long	12
+	.long	0
+	.long	12
+	.long	96
+	.long	144
+	.long	912
+	.long	144
+	.long	12
+	.long	0
+	.long	5
+	.long	80
+	.long	144
+	.long	832
+	.long	144
+	.long	7
+	.long	0
+	.long	4
+	.even
+__ZL23scorpionPunchHighFrames:
+	.long	80
+	.long	144
+	.long	832
+	.long	144
+	.long	7
+	.long	0
+	.long	4
+	.long	96
+	.long	144
+	.long	912
+	.long	144
+	.long	12
+	.long	0
+	.long	5
+	.long	112
+	.long	144
+	.long	384
+	.long	288
+	.long	12
+	.long	0
+	.long	12
+	.long	96
+	.long	144
+	.long	912
+	.long	144
+	.long	12
+	.long	0
+	.long	5
+	.long	80
+	.long	144
+	.long	832
+	.long	144
+	.long	7
+	.long	0
+	.long	4
+	.even
+__ZL21scorpionKickLowFrames:
+	.long	80
+	.long	144
+	.long	0
+	.long	432
 	.long	0
 	.long	0
-	.long	3
+	.long	5
+	.long	80
+	.long	144
+	.long	80
+	.long	432
+	.long	0
+	.long	0
+	.long	5
+	.long	112
+	.long	144
+	.long	160
+	.long	432
+	.long	0
+	.long	0
+	.long	5
+	.long	112
+	.long	144
+	.long	880
+	.long	288
+	.long	0
+	.long	0
+	.long	12
+	.long	80
+	.long	144
+	.long	160
+	.long	432
+	.long	0
+	.long	0
+	.long	5
+	.long	80
+	.long	144
+	.long	80
+	.long	432
+	.long	0
+	.long	0
+	.long	5
+	.long	80
+	.long	144
+	.long	0
+	.long	432
+	.long	0
+	.long	0
+	.long	5
+	.even
+__ZL22scorpionKickHighFrames:
+	.long	80
+	.long	144
+	.long	0
+	.long	432
+	.long	0
+	.long	0
+	.long	5
+	.long	80
+	.long	144
+	.long	80
+	.long	432
+	.long	0
+	.long	0
+	.long	5
+	.long	112
+	.long	144
+	.long	160
+	.long	432
+	.long	0
+	.long	0
+	.long	5
+	.long	112
+	.long	144
+	.long	272
+	.long	432
+	.long	0
+	.long	0
+	.long	12
+	.long	80
+	.long	144
+	.long	160
+	.long	432
+	.long	0
+	.long	0
+	.long	5
+	.long	80
+	.long	144
+	.long	80
+	.long	432
+	.long	0
+	.long	0
+	.long	5
+	.long	80
+	.long	144
+	.long	0
+	.long	432
+	.long	0
+	.long	0
+	.long	5
