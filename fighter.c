@@ -20,6 +20,7 @@ void fighterMakeSelectable(struct Fighter* fighter, bool isPlayer1)
     {
         sprite[fighter->spriteIndex].x_ = 4;
         sprite[fighter->spriteIndex].flip = R_is_normal;
+        fighter->direction = 1;
     }
     else
     {
@@ -31,7 +32,11 @@ void fighterMakeSelectable(struct Fighter* fighter, bool isPlayer1)
         }
 
         sprite[fighter->spriteIndex].flip = R_is_flipped;
+        fighter->direction = -1;
     }
+
+    fighter->positionX = sprite[fighter->spriteIndex].x_;
+    fighter->positionY = sprite[fighter->spriteIndex].y_;
 }
 
 void fighterInitialize(struct Fighter *fighter, bool isPlayer1, struct SoundHandler* soundHandler)
@@ -70,11 +75,14 @@ void fighterInitialize(struct Fighter *fighter, bool isPlayer1, struct SoundHand
         sprite[fighter->spriteIndex].x_ = 210;
         fighter->direction = -1;
     }
+
+    fighter->positionX = sprite[fighter->spriteIndex].x_;
+    fighter->positionY = sprite[fighter->spriteIndex].y_;
 }
 
 void fighterUpdateIdle(float delta, struct Fighter *fighter, struct SpriteAnimator* animator, struct AnimationFrame idleFrames[])
 {
-    updateSpriteAnimator(animator, idleFrames, fighter->IDLE_FRAME_COUNT, true, true);
+    updateSpriteAnimator(animator, idleFrames, fighter->IDLE_FRAME_COUNT, true, true, fighter->positionX, fighter->positionY, fighter->direction);
 }
 
 void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* animator, struct AnimationFrame idleFrames[], struct AnimationFrame walkFrames[], struct AnimationFrame duckFrames[], struct AnimationFrame blockFrames[], struct AnimationFrame blockDuckFrames[], struct AnimationFrame punchLowFrames[], struct AnimationFrame punchHighFrames[], struct AnimationFrame kickLowFrames[], struct AnimationFrame kickHighFrames[], bool walkForward)
@@ -270,8 +278,8 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
 
             updateSpriteAnimator(animator, idleFrames, fighter->IDLE_FRAME_COUNT, true, true, fighter->positionX, fighter->positionY, fighter->direction);
 
-           fighter->positionX = sprite[fighter->spriteIndex].x_;
-           fighter->positionY = sprite[fighter->spriteIndex].y_;
+           //fighter->positionX = sprite[fighter->spriteIndex].x_;
+           //fighter->positionY = sprite[fighter->spriteIndex].y_;
         }
     }
 

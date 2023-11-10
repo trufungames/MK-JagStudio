@@ -137,11 +137,6 @@ Checking if assets.txt is newer than any of the build folder files....
         File is 1024 pixels wide, 1024 pixels high and is 4 bits/pixel
         Adding to the linkfile as ROM...
     Reading assets.txt line
-        Processing ASSETS\GFX\scorpion.BMP
-        Converting BMP internally into gfxdata/clut...
-        File is 1024 pixels wide, 1024 pixels high and is 4 bits/pixel
-        Adding to the linkfile as ROM...
-    Reading assets.txt line
         Processing ASSETS\GFX\kano.BMP
         Converting BMP internally into gfxdata/clut...
         File is 1024 pixels wide, 1024 pixels high and is 4 bits/pixel
@@ -238,7 +233,7 @@ Checking if assets.txt is newer than any of the build folder files....
         Adding to the linkfile as ROM...
     Reading assets.txt line
     Reading assets.txt line
-        Processing ASSETS\GFX\pal_scorpion.BMP
+        Processing ASSETS\GFX\scorzero.BMP
         Converting BMP internally into gfxdata/clut...
         File is 4 pixels wide, 4 pixels high and is 4 bits/pixel
         Adding to the linkfile as ROM...
@@ -374,7 +369,7 @@ NON-RELOCATABLE SYMBOLS
 
 TEXT-SEGMENT RELOCATABLE SYMBOLS
 
-_TEXT_E  G  0005A020   Audio_Play G  000041E2   Input_ReadPads G  00004330   
+_TEXT_E  G  0005A060   Audio_Play G  000041E2   Input_ReadPads G  00004330   
 Input_SetJoyPort1 G  00004372   Input_SetJoyPort2 G  00004380   Input_SetNormalPadMode G  0000438E   
 Input_SetRotaryMode G  0000439C   Input_SetAtariMouseMode G  000043BC   Input_SetAmigaMouseMode G  000043CA   
 Input_Read G  000043D8   jsfVsyncFlag G  000055BC   RAPTOR_PRE_Object_List G  000055C0   
@@ -415,7 +410,7 @@ raptor_MTwork G  000465A4   raptor_mtapp G  000465B8   raptor_mtfn G  000465BC
 raptor_vidmode G  00046538   raptor_videnable G  0004653C   raptor_varmod G  00046540   
 raptor_top_of_bss G  00046580   raptor_trashram G  00046584   raptor_uvbi_jmp G  00046588   
 raptor_poobjl G  0004658C   raptor_probjl G  00046590   raptor_inittab G  000465C0   
-__Z9basicmainv G  00048498   RAPTOR_Version G  00039E20   RAPTOR_random G  00039E3A   
+__Z9basicmainv G  000484D8   RAPTOR_Version G  00039E20   RAPTOR_random G  00039E3A   
 RAPTOR_Install G  00039E4C   RAPTOR_usepartipal G  00039EEE   RAPTOR_use8x8fontpal G  00039EFC   
 RAPTOR_use8x16fontpal G  00039F0A   RAPTOR_use16x16fontpal G  00039F18   raptor_font8x8_pal G  0003A058   
 raptor_font8x16_pal G  0003A078   raptor_font16x16_pal G  0003A098   RAPTOR_ERROR G  0003A572   
@@ -459,115 +454,115 @@ raptor_console_visible G  0003F4FA   raptor_console_monitors G  0003F54A   RAPTO
 RAPTOR_console_update_registers G  000453C8   RAPTOR_console_update_usermonitors G  0004542C   RAPTOR_console_update_textline G  000454A2   
 raptor_mapindex G  00046564   raptor_ang_search G  000465C4   raptor_col_user G  000465C8   
 __Z11fighterHideP7Fighter G  000465E0   __Z11fighterShowP7Fighter G  00046602   __Z21fighterMakeSelectableP7Fighterb G  00046624   
-__Z17fighterInitializeP7FighterbP12SoundHandler G  00046684   __Z17fighterUpdateIdlefP7FighterP14SpriteAnimatorP14AnimationFrame G  00046742   __Z20updateSpriteAnimatorP14SpriteAnimatorP14AnimationFrameibb G  0004A576   
-__Z13fighterUpdatefP7FighterP14SpriteAnimatorP14AnimationFrameS4_S4_S4_S4_S4_S4_S4_S4_b G  0004676C   jsfGetPad G  00056D84   __Z11sfxHiyaMaleP12SoundHandlerb G  0004A0B0   
-__Z20updateSpriteAnimatorP14SpriteAnimatorP14AnimationFrameibbiii G  0004A622   __Z19animationIsCompleteP14SpriteAnimatori G  0004A55C   __Z12sfxHiyaNinjaP12SoundHandlerb G  0004A284   
-__Z13sfxHiyaFemaleP12SoundHandlerb G  0004A14C   __Z11sfxHiyaKangP12SoundHandlerb G  0004A1E8   ___floatsisf G  00056ABE   
-___mulsf3 G  0005633E   ___subsf3 G  000560A8   ___fixsfsi G  00056CFA   
-___addsf3 G  000560AE   __Z13bgScrollRightf G  0004A6F0   __Z12bgScrollLeftf G  0004A830   
-__Z15fighterPlayHiyaiP12SoundHandlerb G  0004720A   __Z25switchScreenChooseFighterv G  000472A0   jsfLoadClut G  000575BE   
-rapSetActiveList G  000579F6   __Z20switchScreenVsBattleii G  000473C0   __Z17switchScreenFightii G  0004774A   
-__Z17SetPlayerPalettesv G  00047F72   rapFadeClut G  000579D4   rapDebugSetXY G  000578AE   
-rapDebugSetMonitor G  0005785C   rapSetClock G  00057B6E   _jsfVsync G  00057246   
-jsfGetPadPressed G  00056F4E   rapDebugUpdate G  0005789A   __Z8sfxIntroP12SoundHandler G  0004A070   
-__Z7sfxGongP12SoundHandler G  0004A030   __Z11sfxP1CursorP12SoundHandler G  00049FB0   __Z11sfxP2CursorP12SoundHandler G  00049FF0   
-__Z11sfxScorpionP12SoundHandlerb G  00049EC0   __Z10sfxLiuKangP12SoundHandlerb G  00049E70   __Z9sfxRaidenP12SoundHandlerb G  00049E20   
-__Z8sfxSonyaP12SoundHandlerb G  00049F60   __Z10sfxSubzeroP12SoundHandlerb G  00049F10   __Z7sfxKanoP12SoundHandlerb G  00049DD0   
-__Z13sfxJohnnyCageP12SoundHandlerb G  00049D80   __Z8sfxFightP12SoundHandler G  00049D40   zeroPlaySample G  0005833E   
-___floatunsisf G  00056AAA   ___mulsi3 G  00055F00   ___fixunssfsi G  000568A0   
-__Z12animateFramejjP14AnimationFramefj G  0004A42C   __Z12animateFramejjP14AnimationFramefjiii G  0004A436   __Z6moveUpv G  0004A6E0   
-__Z8moveDownv G  0004A6E8   ___gesf2 G  00056840   ___lesf2 G  00056880   
-RAPTOR_mt_init G  0004A980   RAPTOR_mt_load G  0004A9CC   RAPTOR_mt_save G  0004AAC8   
-raptor_mt_present G  0004C8D4   RAPTOR_MTtrash G  0004CAF0   RAPTOR_U235SilenceChannels G  00050B00   
-RAPTOR_U235ChangeReplayFrq G  00050B64   RAPTOR_U235setpad1 G  00050B72   RAPTOR_U235setpad2 G  00050B7E   
-RAPTOR_U235setrot1 G  00050B8A   RAPTOR_U235setrot2 G  00050BA2   RAPTOR_U235init G  00050BBA   
-RAPTOR_U235stopDSP G  00050C36   RAPTOR_U235playsample G  00050C5C   RAPTOR_U235queuesample G  00050C92   
-RAPTOR_U235playqueue G  00050CB0   RAPTOR_U235resetqueue G  00050CDC   RAPTOR_U235setmodule G  00050D0C   
-RAPTOR_U235gomodule_mono G  00050D1C   RAPTOR_U235gomodule_stereo G  00050D3A   RAPTOR_U235stopmodule G  00050D58   
-raptor_samplebank_ptr G  00050EB0   modinit  G  00053648   U235SE_initNTSC G  00053604   
-U235SE_initPAL G  00053616   RAPTOR_LSP_onoff G  00051B48   RAPTOR_LSP_stopmusic G  00051B50   
-RAPTOR_LSP_startmusic G  00051B66   RAPTOR_LSP_playmodule G  00051B7C   RAPTOR_LSP_Sample G  00051BB2   
-RAPTOR_LSP_Init G  00051C54   RAPTOR_LSP_StartDSP G  00051C68   silence  G  00051DD0   
-fin_silence G  00051DD4   RAPTOR_GD_Init G  00051E6E   RAPTOR_GD_BIOSVersion G  00051F44   
-RAPTOR_GD_ROMWriteEnable G  00051F6C   RAPTOR_GD_GetCartSerial G  00051F94   RAPTOR_GD_GetCardSerial G  00052030   
-RAPTOR_GD_CardIn G  0005205E   RAPTOR_GD_Reset G  00052092   RAPTOR_GD_DebugString G  000520B2   
-RAPTOR_GD_SetLED G  000520DA   RAPTOR_GD_DirOpen G  00052114   RAPTOR_GD_DirRead G  0005213C   
-RAPTOR_GD_DirClose G  00052176   RAPTOR_GD_FileOpen G  000521AA   RAPTOR_GD_FileRead G  000521D8   
-RAPTOR_GD_FileWrite G  00052206   RAPTOR_GD_FileClose G  00052234   RAPTOR_GD_FileSeek G  00052262   
-RAPTOR_GD_FileTell G  00052290   RAPTOR_GD_FileSize G  000522BE   RAPTOR_GD_FileInfo G  000522EC   
-RAPTOR_ftime_to_ascii G  0005231A   RAPTOR_fdate_to_ascii G  00052376   RAPTOR_GD_LoadFile G  000523D6   
-RAPTOR_GD_SaveFile G  00052420   raptor_GD_detect G  00052470   raptor_GD_SERIAL G  00052472   
-raptor_GD_ASERIAL G  00052482   raptor_SD_SERIAL G  0005249E   raptor_GD_LEDstate G  000524AE   
-raptor_GD_cardstat G  000524B0   raptor_fileinfo G  000524B2   raptor_fsize G  000524B2   
-raptor_fdate G  000524B6   raptor_ftime G  000524B8   raptor_fattr G  000524BA   
-raptor_fshort G  000524BB   raptor_flong G  000524C8   U235SE_modinit G  00053648   
-modinitpos G  0005364A   U235SE_modinitpos G  0005364A   dspcode  G  00053EF0   
-___udivsi3 G  00055F40   ___divsi3 G  00055FA0   ___umodsi3 G  00055FE0   
-___modsi3 G  00056020   $_exception_handler G  000567AE   ___divsf3 G  0005646A   
-___negsf2 G  00056630   ___cmpsf2 G  0005671E   ___cmpsf2_internal G  00056682   
-___clear_sticky_bit G  000567A0   ___eqsf2 G  00056820   ___ltsf2 G  00056860   
-___unordsf2 G  00056900   ___unorddf2 G  00056944   ___floatunsidf G  000569B6   
-___floatsidf G  00056A1A   ___truncdfsf2 G  00056B4A   ___extendsfdf2 G  00056AD2   
-___fixdfsi G  00056C80   _jsfDebugMessage G  00056D20   _jsfDebugMessageHalt G  00056D50   
-__Z17jsfGetPadPressed1v G  00056E3A   __Z17jsfGetPadPressed2v G  00056EC4   rapUnpack G  00056F7A   
-jsfUnpack68k G  00056FA6   jsfSprlistFieldSetvalOffset G  00057062   jsfSprlistFieldModOffset G  000570AA   
-jsfSprlistFieldSetOffset G  000570F4   jsfSprlistFieldSetval G  0005713C   jsfSprlistFieldMod G  0005717A   
-jsfSprlistFieldSet G  000571BA   _cls     G  000571F8   _jsfPlot G  00057204   
-jsfDelay G  000572B2   jsfEEPROMFullRead G  000572FC   eeReadBank G  00059EBE   
-jsfEEPROMWordRead G  0005731A   eeReadWord G  00059E02   jsfEEPROMBoardRead G  00057334   
-eeReadSingleBank G  00059E46   jsfEEPROMFullWrite G  000573E8   eeWriteBank G  00059E6E   
-jsfEEPROMWordWrite G  00057406   eeWriteWord G  00059DE0   jsfEEPROMBoardWrite G  00057424   
-eeWriteSingleBank G  00059E08   jsfEEPROMUserDataRead G  000574D8   jsfEEPROMUserDataWrite G  00057506   
-jsfEEPROM G  00057534   jsfEEPROMWord G  00057560   jsfEEPROMBoard G  0005758E   
-jsfClearBuffer G  00057660   jsfSort  G  00057680   rapInitCalcAngle G  000577F2   
-rapCalcAngle G  0005780C   rapAngleVector G  00057832   _rapDebugPrint G  0005787E   
-rapDebugSetVisible G  000578C6   rapHiscoreSort G  000578E8   rapBlitlist G  00057906   
-rapNumToStr G  00057936   rapHexToStr G  00057956   RBRA     G  0005797C   
-rapHiscoreCheck G  00057998   rapFadeSingle G  000579BA   rapCollide G  00057A10   
-rapParticleInject G  00057A5A   rapSetMapLoc G  00057A82   _rapPrint G  00057AA8   
-_rapPrintCont G  00057ADC   rapLocate G  00057B04   rapUpdateOffscreenList G  00057B1C   
-rapSpriteShift G  00057B36   rapAddClock G  00057B84   rapSubClock G  00057B9E   
-rapSortSprites G  00057BB8   rapFlashCheck G  00057BF0   rapGDGetCartSerial G  00057BFE   
-rapGDCardInserted G  00057C0C   rapGDSetLEDOn G  00057C2A   rapGDSetLEDOff G  00057C42   
-rapGDReset G  00057C5A   rapGDGetCardSerial G  00057C74   rapGDDebugPrint G  00057C82   
-rapGDLoadFile G  00057C9E   rapGDSaveFile G  00057CBC   rapGDBIOSVersion G  00057CDE   
-rapGDROMWriteEnable G  00057CEC   rapGDDirOpen G  00057CFE   rapGDDirRead G  00057D18   
-rapGDDirClose G  00057D2A   rapGDFileOpen G  00057D3C   rapGDFileRead G  00057D5A   
-rapGDFileWrite G  00057D80   rapGDFileClose G  00057DA2   rapGDFileSeek G  00057DB4   
-rapGDFileTell G  00057DD6   rapGDFileSize G  00057DE8   rapGDFileInfo G  00057DFA   
-rapGDFTimeToASCII G  00057E1C   rapGDFDateToASCII G  00057E32   rapUseParticlePalette G  00057E48   
-rapUse8x8fontPalette G  00057E5A   rapUse8x16fontPalette G  00057E6C   rapUse16x16fontPalette G  00057E7E   
-u235PlaySample G  00057E90   u235PlaySampleFreq G  00057EE6   u235ChannelFreq G  00057F50   
-u235KillChannel G  00057FAA   u235ChannelVol G  00057FF0   _u235GetPad G  00058046   
-__Z14u235PlayModuleis G  0005807C   __Z14u235StopModulev G  000580E6   __Z11u235Silencev G  00058108   
-u235ChangeReplayFrq G  0005812A   _u235ModuleVol G  00058170   _u235SampleVol G  00058180   
-u235StopDSP G  00058190   u235Init G  000581B6   u235Restart G  000581FC   
-zeroGetPad G  000582DE   zeroPlay G  0005839E   zeroClearChannel G  0005840E   
-LSPGetPad G  00058466   LSPPlayModule G  0005849C   LSPStartMusic G  000584CA   
-LSPStopMusic G  000584E8   LSPMusicToggle G  00058506   LSPStartDSP G  00058524   
-LSPPlaySampleLoop G  00058542   LSPPlaySample G  00058586   rapCheckTTExists G  000585CE   
-rapGetTTState G  0005861E   rapGetTTPad G  0005869E   __Z10ee_sprintfPcPKcz G  00059D90   
-ee_printf G  00059DAC   eeUpdateChecksum G  00059EFA   eeValidateChecksum G  00059F24   
+__Z17fighterInitializeP7FighterbP12SoundHandler G  000466BC   __Z17fighterUpdateIdlefP7FighterP14SpriteAnimatorP14AnimationFrame G  0004679A   __Z20updateSpriteAnimatorP14SpriteAnimatorP14AnimationFrameibbiii G  0004A662   
+__Z13fighterUpdatefP7FighterP14SpriteAnimatorP14AnimationFrameS4_S4_S4_S4_S4_S4_S4_S4_b G  000467D0   jsfGetPad G  00056DC4   __Z11sfxHiyaMaleP12SoundHandlerb G  0004A0F0   
+__Z19animationIsCompleteP14SpriteAnimatori G  0004A59C   __Z12sfxHiyaNinjaP12SoundHandlerb G  0004A2C4   __Z13sfxHiyaFemaleP12SoundHandlerb G  0004A18C   
+__Z11sfxHiyaKangP12SoundHandlerb G  0004A228   ___floatsisf G  00056AFE   ___mulsf3 G  0005637E   
+___subsf3 G  000560E8   ___fixsfsi G  00056D3A   ___addsf3 G  000560EE   
+__Z13bgScrollRightf G  0004A730   __Z12bgScrollLeftf G  0004A870   __Z15fighterPlayHiyaiP12SoundHandlerb G  0004724C   
+__Z25switchScreenChooseFighterv G  000472E0   jsfLoadClut G  000575FE   rapSetActiveList G  00057A36   
+__Z20switchScreenVsBattleii G  00047400   __Z17switchScreenFightii G  0004778A   __Z17SetPlayerPalettesv G  00047FB2   
+rapFadeClut G  00057A14   rapDebugSetXY G  000578EE   rapDebugSetMonitor G  0005789C   
+rapSetClock G  00057BAE   _jsfVsync G  00057286   jsfGetPadPressed G  00056F8E   
+rapDebugUpdate G  000578DA   __Z8sfxIntroP12SoundHandler G  0004A0B0   __Z7sfxGongP12SoundHandler G  0004A070   
+__Z11sfxP1CursorP12SoundHandler G  00049FF0   __Z20updateSpriteAnimatorP14SpriteAnimatorP14AnimationFrameibb G  0004A5B6   __Z11sfxP2CursorP12SoundHandler G  0004A030   
+__Z11sfxScorpionP12SoundHandlerb G  00049F00   __Z10sfxLiuKangP12SoundHandlerb G  00049EB0   __Z9sfxRaidenP12SoundHandlerb G  00049E60   
+__Z8sfxSonyaP12SoundHandlerb G  00049FA0   __Z10sfxSubzeroP12SoundHandlerb G  00049F50   __Z7sfxKanoP12SoundHandlerb G  00049E10   
+__Z13sfxJohnnyCageP12SoundHandlerb G  00049DC0   __Z8sfxFightP12SoundHandler G  00049D80   zeroPlaySample G  0005837E   
+___floatunsisf G  00056AEA   ___mulsi3 G  00055F40   ___fixunssfsi G  000568E0   
+__Z12animateFramejjP14AnimationFramefj G  0004A46C   __Z12animateFramejjP14AnimationFramefjiii G  0004A476   __Z6moveUpv G  0004A720   
+__Z8moveDownv G  0004A728   ___gesf2 G  00056880   ___lesf2 G  000568C0   
+RAPTOR_mt_init G  0004A9C0   RAPTOR_mt_load G  0004AA0C   RAPTOR_mt_save G  0004AB08   
+raptor_mt_present G  0004C914   RAPTOR_MTtrash G  0004CB30   RAPTOR_U235SilenceChannels G  00050B40   
+RAPTOR_U235ChangeReplayFrq G  00050BA4   RAPTOR_U235setpad1 G  00050BB2   RAPTOR_U235setpad2 G  00050BBE   
+RAPTOR_U235setrot1 G  00050BCA   RAPTOR_U235setrot2 G  00050BE2   RAPTOR_U235init G  00050BFA   
+RAPTOR_U235stopDSP G  00050C76   RAPTOR_U235playsample G  00050C9C   RAPTOR_U235queuesample G  00050CD2   
+RAPTOR_U235playqueue G  00050CF0   RAPTOR_U235resetqueue G  00050D1C   RAPTOR_U235setmodule G  00050D4C   
+RAPTOR_U235gomodule_mono G  00050D5C   RAPTOR_U235gomodule_stereo G  00050D7A   RAPTOR_U235stopmodule G  00050D98   
+raptor_samplebank_ptr G  00050EF0   modinit  G  00053688   U235SE_initNTSC G  00053644   
+U235SE_initPAL G  00053656   RAPTOR_LSP_onoff G  00051B88   RAPTOR_LSP_stopmusic G  00051B90   
+RAPTOR_LSP_startmusic G  00051BA6   RAPTOR_LSP_playmodule G  00051BBC   RAPTOR_LSP_Sample G  00051BF2   
+RAPTOR_LSP_Init G  00051C94   RAPTOR_LSP_StartDSP G  00051CA8   silence  G  00051E10   
+fin_silence G  00051E14   RAPTOR_GD_Init G  00051EAE   RAPTOR_GD_BIOSVersion G  00051F84   
+RAPTOR_GD_ROMWriteEnable G  00051FAC   RAPTOR_GD_GetCartSerial G  00051FD4   RAPTOR_GD_GetCardSerial G  00052070   
+RAPTOR_GD_CardIn G  0005209E   RAPTOR_GD_Reset G  000520D2   RAPTOR_GD_DebugString G  000520F2   
+RAPTOR_GD_SetLED G  0005211A   RAPTOR_GD_DirOpen G  00052154   RAPTOR_GD_DirRead G  0005217C   
+RAPTOR_GD_DirClose G  000521B6   RAPTOR_GD_FileOpen G  000521EA   RAPTOR_GD_FileRead G  00052218   
+RAPTOR_GD_FileWrite G  00052246   RAPTOR_GD_FileClose G  00052274   RAPTOR_GD_FileSeek G  000522A2   
+RAPTOR_GD_FileTell G  000522D0   RAPTOR_GD_FileSize G  000522FE   RAPTOR_GD_FileInfo G  0005232C   
+RAPTOR_ftime_to_ascii G  0005235A   RAPTOR_fdate_to_ascii G  000523B6   RAPTOR_GD_LoadFile G  00052416   
+RAPTOR_GD_SaveFile G  00052460   raptor_GD_detect G  000524B0   raptor_GD_SERIAL G  000524B2   
+raptor_GD_ASERIAL G  000524C2   raptor_SD_SERIAL G  000524DE   raptor_GD_LEDstate G  000524EE   
+raptor_GD_cardstat G  000524F0   raptor_fileinfo G  000524F2   raptor_fsize G  000524F2   
+raptor_fdate G  000524F6   raptor_ftime G  000524F8   raptor_fattr G  000524FA   
+raptor_fshort G  000524FB   raptor_flong G  00052508   U235SE_modinit G  00053688   
+modinitpos G  0005368A   U235SE_modinitpos G  0005368A   dspcode  G  00053F30   
+___udivsi3 G  00055F80   ___divsi3 G  00055FE0   ___umodsi3 G  00056020   
+___modsi3 G  00056060   $_exception_handler G  000567EE   ___divsf3 G  000564AA   
+___negsf2 G  00056670   ___cmpsf2 G  0005675E   ___cmpsf2_internal G  000566C2   
+___clear_sticky_bit G  000567E0   ___eqsf2 G  00056860   ___ltsf2 G  000568A0   
+___unordsf2 G  00056940   ___unorddf2 G  00056984   ___floatunsidf G  000569F6   
+___floatsidf G  00056A5A   ___truncdfsf2 G  00056B8A   ___extendsfdf2 G  00056B12   
+___fixdfsi G  00056CC0   _jsfDebugMessage G  00056D60   _jsfDebugMessageHalt G  00056D90   
+__Z17jsfGetPadPressed1v G  00056E7A   __Z17jsfGetPadPressed2v G  00056F04   rapUnpack G  00056FBA   
+jsfUnpack68k G  00056FE6   jsfSprlistFieldSetvalOffset G  000570A2   jsfSprlistFieldModOffset G  000570EA   
+jsfSprlistFieldSetOffset G  00057134   jsfSprlistFieldSetval G  0005717C   jsfSprlistFieldMod G  000571BA   
+jsfSprlistFieldSet G  000571FA   _cls     G  00057238   _jsfPlot G  00057244   
+jsfDelay G  000572F2   jsfEEPROMFullRead G  0005733C   eeReadBank G  00059EFE   
+jsfEEPROMWordRead G  0005735A   eeReadWord G  00059E42   jsfEEPROMBoardRead G  00057374   
+eeReadSingleBank G  00059E86   jsfEEPROMFullWrite G  00057428   eeWriteBank G  00059EAE   
+jsfEEPROMWordWrite G  00057446   eeWriteWord G  00059E20   jsfEEPROMBoardWrite G  00057464   
+eeWriteSingleBank G  00059E48   jsfEEPROMUserDataRead G  00057518   jsfEEPROMUserDataWrite G  00057546   
+jsfEEPROM G  00057574   jsfEEPROMWord G  000575A0   jsfEEPROMBoard G  000575CE   
+jsfClearBuffer G  000576A0   jsfSort  G  000576C0   rapInitCalcAngle G  00057832   
+rapCalcAngle G  0005784C   rapAngleVector G  00057872   _rapDebugPrint G  000578BE   
+rapDebugSetVisible G  00057906   rapHiscoreSort G  00057928   rapBlitlist G  00057946   
+rapNumToStr G  00057976   rapHexToStr G  00057996   RBRA     G  000579BC   
+rapHiscoreCheck G  000579D8   rapFadeSingle G  000579FA   rapCollide G  00057A50   
+rapParticleInject G  00057A9A   rapSetMapLoc G  00057AC2   _rapPrint G  00057AE8   
+_rapPrintCont G  00057B1C   rapLocate G  00057B44   rapUpdateOffscreenList G  00057B5C   
+rapSpriteShift G  00057B76   rapAddClock G  00057BC4   rapSubClock G  00057BDE   
+rapSortSprites G  00057BF8   rapFlashCheck G  00057C30   rapGDGetCartSerial G  00057C3E   
+rapGDCardInserted G  00057C4C   rapGDSetLEDOn G  00057C6A   rapGDSetLEDOff G  00057C82   
+rapGDReset G  00057C9A   rapGDGetCardSerial G  00057CB4   rapGDDebugPrint G  00057CC2   
+rapGDLoadFile G  00057CDE   rapGDSaveFile G  00057CFC   rapGDBIOSVersion G  00057D1E   
+rapGDROMWriteEnable G  00057D2C   rapGDDirOpen G  00057D3E   rapGDDirRead G  00057D58   
+rapGDDirClose G  00057D6A   rapGDFileOpen G  00057D7C   rapGDFileRead G  00057D9A   
+rapGDFileWrite G  00057DC0   rapGDFileClose G  00057DE2   rapGDFileSeek G  00057DF4   
+rapGDFileTell G  00057E16   rapGDFileSize G  00057E28   rapGDFileInfo G  00057E3A   
+rapGDFTimeToASCII G  00057E5C   rapGDFDateToASCII G  00057E72   rapUseParticlePalette G  00057E88   
+rapUse8x8fontPalette G  00057E9A   rapUse8x16fontPalette G  00057EAC   rapUse16x16fontPalette G  00057EBE   
+u235PlaySample G  00057ED0   u235PlaySampleFreq G  00057F26   u235ChannelFreq G  00057F90   
+u235KillChannel G  00057FEA   u235ChannelVol G  00058030   _u235GetPad G  00058086   
+__Z14u235PlayModuleis G  000580BC   __Z14u235StopModulev G  00058126   __Z11u235Silencev G  00058148   
+u235ChangeReplayFrq G  0005816A   _u235ModuleVol G  000581B0   _u235SampleVol G  000581C0   
+u235StopDSP G  000581D0   u235Init G  000581F6   u235Restart G  0005823C   
+zeroGetPad G  0005831E   zeroPlay G  000583DE   zeroClearChannel G  0005844E   
+LSPGetPad G  000584A6   LSPPlayModule G  000584DC   LSPStartMusic G  0005850A   
+LSPStopMusic G  00058528   LSPMusicToggle G  00058546   LSPStartDSP G  00058564   
+LSPPlaySampleLoop G  00058582   LSPPlaySample G  000585C6   rapCheckTTExists G  0005860E   
+rapGetTTState G  0005865E   rapGetTTPad G  000586DE   __Z10ee_sprintfPcPKcz G  00059DD0   
+ee_printf G  00059DEC   eeUpdateChecksum G  00059F3A   eeValidateChecksum G  00059F64   
 
 
 DATA-SEGMENT RELOCATABLE SYMBOLS
 
-_DATA_E  G  0005CD20   sprite   G  0005A024   colliders G  0005A020   
-_onTitleScreen G  0005A040   _p1Cursor G  0005A046   _p2Cursor G  0005A042   
-__fpCCR  G  0005CCC0   _xcpt    G  0005CCE0   
+_DATA_E  G  0005CD60   sprite   G  0005A064   colliders G  0005A060   
+_onTitleScreen G  0005A080   _p1Cursor G  0005A086   _p2Cursor G  0005A082   
+__fpCCR  G  0005CD00   _xcpt    G  0005CD20   
 
 BSS-SEGMENT RELOCATABLE SYMBOLS
 
-_BSS_E   G  00082F80   RAPTOR_particle_gfx G  00060D30   RAPTOR_sprite_table G  0006A330   
-_trashram G  00082BD0   _onScreenChooseFighter G  00082BE2   _onScreenVsBattle G  00082BE1   
-_onScreenFight G  00082BE0   _lastTicks G  00082BE4   _js_r_textbuffer G  00082E40   
-zero_left_pad G  00082E58   zero_right_pad G  00082E5C   _pad1    G  00082E3C   
-_pad1Last G  00082E34   _pad1Prev G  00082E2C   _pad2    G  00082E38   
-_pad2Last G  00082E30   _pad2Prev G  00082E28   _plot_colour G  00082E6C   
-rapAngle_xAdd G  00082E24   rapAngle_yAdd G  00082E20   _js_r_xpos G  00082E7A   
-_js_r_ypos G  00082E76   _jsfFontSize G  00082E72   _jsfFontIndx G  00082E6E   
-_yt2     G  00082E44   _y       G  00082E4C   _errno   G  00082E54   
-zero_mousex_delta G  00082E60   zero_mousey_delta G  00082E64   zero_rotary_delta G  00082E68   
+_BSS_E   G  00082FC0   RAPTOR_particle_gfx G  00060D70   RAPTOR_sprite_table G  0006A370   
+_trashram G  00082C10   _onScreenChooseFighter G  00082C22   _onScreenVsBattle G  00082C21   
+_onScreenFight G  00082C20   _lastTicks G  00082C24   _js_r_textbuffer G  00082E80   
+zero_left_pad G  00082E98   zero_right_pad G  00082E9C   _pad1    G  00082E7C   
+_pad1Last G  00082E74   _pad1Prev G  00082E6C   _pad2    G  00082E78   
+_pad2Last G  00082E70   _pad2Prev G  00082E68   _plot_colour G  00082EAC   
+rapAngle_xAdd G  00082E64   rapAngle_yAdd G  00082E60   _js_r_xpos G  00082EBA   
+_js_r_ypos G  00082EB6   _jsfFontSize G  00082EB2   _jsfFontIndx G  00082EAE   
+_yt2     G  00082E84   _y       G  00082E8C   _errno   G  00082E94   
+zero_mousex_delta G  00082EA0   zero_mousey_delta G  00082EA4   zero_rotary_delta G  00082EA8   
 
 
 LOAD MAP
@@ -578,7 +573,7 @@ NON-RELOCATABLE SYMBOLS
 
 TEXT-SEGMENT RELOCATABLE SYMBOLS
 
-_TEXT_E  G  0005A020   Audio_Play G  000041E2   Input_ReadPads G  00004330   
+_TEXT_E  G  0005A060   Audio_Play G  000041E2   Input_ReadPads G  00004330   
 Input_SetJoyPort1 G  00004372   Input_SetJoyPort2 G  00004380   Input_SetNormalPadMode G  0000438E   
 Input_SetRotaryMode G  0000439C   Input_SetAtariMouseMode G  000043BC   Input_SetAmigaMouseMode G  000043CA   
 Input_Read G  000043D8   jsfVsyncFlag G  000055BC   RAPTOR_PRE_Object_List G  000055C0   
@@ -619,7 +614,7 @@ raptor_MTwork G  000465A4   raptor_mtapp G  000465B8   raptor_mtfn G  000465BC
 raptor_vidmode G  00046538   raptor_videnable G  0004653C   raptor_varmod G  00046540   
 raptor_top_of_bss G  00046580   raptor_trashram G  00046584   raptor_uvbi_jmp G  00046588   
 raptor_poobjl G  0004658C   raptor_probjl G  00046590   raptor_inittab G  000465C0   
-__Z9basicmainv G  00048498   RAPTOR_Version G  00039E20   RAPTOR_random G  00039E3A   
+__Z9basicmainv G  000484D8   RAPTOR_Version G  00039E20   RAPTOR_random G  00039E3A   
 RAPTOR_Install G  00039E4C   RAPTOR_usepartipal G  00039EEE   RAPTOR_use8x8fontpal G  00039EFC   
 RAPTOR_use8x16fontpal G  00039F0A   RAPTOR_use16x16fontpal G  00039F18   raptor_font8x8_pal G  0003A058   
 raptor_font8x16_pal G  0003A078   raptor_font16x16_pal G  0003A098   RAPTOR_ERROR G  0003A572   
@@ -663,115 +658,115 @@ raptor_console_visible G  0003F4FA   raptor_console_monitors G  0003F54A   RAPTO
 RAPTOR_console_update_registers G  000453C8   RAPTOR_console_update_usermonitors G  0004542C   RAPTOR_console_update_textline G  000454A2   
 raptor_mapindex G  00046564   raptor_ang_search G  000465C4   raptor_col_user G  000465C8   
 __Z11fighterHideP7Fighter G  000465E0   __Z11fighterShowP7Fighter G  00046602   __Z21fighterMakeSelectableP7Fighterb G  00046624   
-__Z17fighterInitializeP7FighterbP12SoundHandler G  00046684   __Z17fighterUpdateIdlefP7FighterP14SpriteAnimatorP14AnimationFrame G  00046742   __Z20updateSpriteAnimatorP14SpriteAnimatorP14AnimationFrameibb G  0004A576   
-__Z13fighterUpdatefP7FighterP14SpriteAnimatorP14AnimationFrameS4_S4_S4_S4_S4_S4_S4_S4_b G  0004676C   jsfGetPad G  00056D84   __Z11sfxHiyaMaleP12SoundHandlerb G  0004A0B0   
-__Z20updateSpriteAnimatorP14SpriteAnimatorP14AnimationFrameibbiii G  0004A622   __Z19animationIsCompleteP14SpriteAnimatori G  0004A55C   __Z12sfxHiyaNinjaP12SoundHandlerb G  0004A284   
-__Z13sfxHiyaFemaleP12SoundHandlerb G  0004A14C   __Z11sfxHiyaKangP12SoundHandlerb G  0004A1E8   ___floatsisf G  00056ABE   
-___mulsf3 G  0005633E   ___subsf3 G  000560A8   ___fixsfsi G  00056CFA   
-___addsf3 G  000560AE   __Z13bgScrollRightf G  0004A6F0   __Z12bgScrollLeftf G  0004A830   
-__Z15fighterPlayHiyaiP12SoundHandlerb G  0004720A   __Z25switchScreenChooseFighterv G  000472A0   jsfLoadClut G  000575BE   
-rapSetActiveList G  000579F6   __Z20switchScreenVsBattleii G  000473C0   __Z17switchScreenFightii G  0004774A   
-__Z17SetPlayerPalettesv G  00047F72   rapFadeClut G  000579D4   rapDebugSetXY G  000578AE   
-rapDebugSetMonitor G  0005785C   rapSetClock G  00057B6E   _jsfVsync G  00057246   
-jsfGetPadPressed G  00056F4E   rapDebugUpdate G  0005789A   __Z8sfxIntroP12SoundHandler G  0004A070   
-__Z7sfxGongP12SoundHandler G  0004A030   __Z11sfxP1CursorP12SoundHandler G  00049FB0   __Z11sfxP2CursorP12SoundHandler G  00049FF0   
-__Z11sfxScorpionP12SoundHandlerb G  00049EC0   __Z10sfxLiuKangP12SoundHandlerb G  00049E70   __Z9sfxRaidenP12SoundHandlerb G  00049E20   
-__Z8sfxSonyaP12SoundHandlerb G  00049F60   __Z10sfxSubzeroP12SoundHandlerb G  00049F10   __Z7sfxKanoP12SoundHandlerb G  00049DD0   
-__Z13sfxJohnnyCageP12SoundHandlerb G  00049D80   __Z8sfxFightP12SoundHandler G  00049D40   zeroPlaySample G  0005833E   
-___floatunsisf G  00056AAA   ___mulsi3 G  00055F00   ___fixunssfsi G  000568A0   
-__Z12animateFramejjP14AnimationFramefj G  0004A42C   __Z12animateFramejjP14AnimationFramefjiii G  0004A436   __Z6moveUpv G  0004A6E0   
-__Z8moveDownv G  0004A6E8   ___gesf2 G  00056840   ___lesf2 G  00056880   
-RAPTOR_mt_init G  0004A980   RAPTOR_mt_load G  0004A9CC   RAPTOR_mt_save G  0004AAC8   
-raptor_mt_present G  0004C8D4   RAPTOR_MTtrash G  0004CAF0   RAPTOR_U235SilenceChannels G  00050B00   
-RAPTOR_U235ChangeReplayFrq G  00050B64   RAPTOR_U235setpad1 G  00050B72   RAPTOR_U235setpad2 G  00050B7E   
-RAPTOR_U235setrot1 G  00050B8A   RAPTOR_U235setrot2 G  00050BA2   RAPTOR_U235init G  00050BBA   
-RAPTOR_U235stopDSP G  00050C36   RAPTOR_U235playsample G  00050C5C   RAPTOR_U235queuesample G  00050C92   
-RAPTOR_U235playqueue G  00050CB0   RAPTOR_U235resetqueue G  00050CDC   RAPTOR_U235setmodule G  00050D0C   
-RAPTOR_U235gomodule_mono G  00050D1C   RAPTOR_U235gomodule_stereo G  00050D3A   RAPTOR_U235stopmodule G  00050D58   
-raptor_samplebank_ptr G  00050EB0   modinit  G  00053648   U235SE_initNTSC G  00053604   
-U235SE_initPAL G  00053616   RAPTOR_LSP_onoff G  00051B48   RAPTOR_LSP_stopmusic G  00051B50   
-RAPTOR_LSP_startmusic G  00051B66   RAPTOR_LSP_playmodule G  00051B7C   RAPTOR_LSP_Sample G  00051BB2   
-RAPTOR_LSP_Init G  00051C54   RAPTOR_LSP_StartDSP G  00051C68   silence  G  00051DD0   
-fin_silence G  00051DD4   RAPTOR_GD_Init G  00051E6E   RAPTOR_GD_BIOSVersion G  00051F44   
-RAPTOR_GD_ROMWriteEnable G  00051F6C   RAPTOR_GD_GetCartSerial G  00051F94   RAPTOR_GD_GetCardSerial G  00052030   
-RAPTOR_GD_CardIn G  0005205E   RAPTOR_GD_Reset G  00052092   RAPTOR_GD_DebugString G  000520B2   
-RAPTOR_GD_SetLED G  000520DA   RAPTOR_GD_DirOpen G  00052114   RAPTOR_GD_DirRead G  0005213C   
-RAPTOR_GD_DirClose G  00052176   RAPTOR_GD_FileOpen G  000521AA   RAPTOR_GD_FileRead G  000521D8   
-RAPTOR_GD_FileWrite G  00052206   RAPTOR_GD_FileClose G  00052234   RAPTOR_GD_FileSeek G  00052262   
-RAPTOR_GD_FileTell G  00052290   RAPTOR_GD_FileSize G  000522BE   RAPTOR_GD_FileInfo G  000522EC   
-RAPTOR_ftime_to_ascii G  0005231A   RAPTOR_fdate_to_ascii G  00052376   RAPTOR_GD_LoadFile G  000523D6   
-RAPTOR_GD_SaveFile G  00052420   raptor_GD_detect G  00052470   raptor_GD_SERIAL G  00052472   
-raptor_GD_ASERIAL G  00052482   raptor_SD_SERIAL G  0005249E   raptor_GD_LEDstate G  000524AE   
-raptor_GD_cardstat G  000524B0   raptor_fileinfo G  000524B2   raptor_fsize G  000524B2   
-raptor_fdate G  000524B6   raptor_ftime G  000524B8   raptor_fattr G  000524BA   
-raptor_fshort G  000524BB   raptor_flong G  000524C8   U235SE_modinit G  00053648   
-modinitpos G  0005364A   U235SE_modinitpos G  0005364A   dspcode  G  00053EF0   
-___udivsi3 G  00055F40   ___divsi3 G  00055FA0   ___umodsi3 G  00055FE0   
-___modsi3 G  00056020   $_exception_handler G  000567AE   ___divsf3 G  0005646A   
-___negsf2 G  00056630   ___cmpsf2 G  0005671E   ___cmpsf2_internal G  00056682   
-___clear_sticky_bit G  000567A0   ___eqsf2 G  00056820   ___ltsf2 G  00056860   
-___unordsf2 G  00056900   ___unorddf2 G  00056944   ___floatunsidf G  000569B6   
-___floatsidf G  00056A1A   ___truncdfsf2 G  00056B4A   ___extendsfdf2 G  00056AD2   
-___fixdfsi G  00056C80   _jsfDebugMessage G  00056D20   _jsfDebugMessageHalt G  00056D50   
-__Z17jsfGetPadPressed1v G  00056E3A   __Z17jsfGetPadPressed2v G  00056EC4   rapUnpack G  00056F7A   
-jsfUnpack68k G  00056FA6   jsfSprlistFieldSetvalOffset G  00057062   jsfSprlistFieldModOffset G  000570AA   
-jsfSprlistFieldSetOffset G  000570F4   jsfSprlistFieldSetval G  0005713C   jsfSprlistFieldMod G  0005717A   
-jsfSprlistFieldSet G  000571BA   _cls     G  000571F8   _jsfPlot G  00057204   
-jsfDelay G  000572B2   jsfEEPROMFullRead G  000572FC   eeReadBank G  00059EBE   
-jsfEEPROMWordRead G  0005731A   eeReadWord G  00059E02   jsfEEPROMBoardRead G  00057334   
-eeReadSingleBank G  00059E46   jsfEEPROMFullWrite G  000573E8   eeWriteBank G  00059E6E   
-jsfEEPROMWordWrite G  00057406   eeWriteWord G  00059DE0   jsfEEPROMBoardWrite G  00057424   
-eeWriteSingleBank G  00059E08   jsfEEPROMUserDataRead G  000574D8   jsfEEPROMUserDataWrite G  00057506   
-jsfEEPROM G  00057534   jsfEEPROMWord G  00057560   jsfEEPROMBoard G  0005758E   
-jsfClearBuffer G  00057660   jsfSort  G  00057680   rapInitCalcAngle G  000577F2   
-rapCalcAngle G  0005780C   rapAngleVector G  00057832   _rapDebugPrint G  0005787E   
-rapDebugSetVisible G  000578C6   rapHiscoreSort G  000578E8   rapBlitlist G  00057906   
-rapNumToStr G  00057936   rapHexToStr G  00057956   RBRA     G  0005797C   
-rapHiscoreCheck G  00057998   rapFadeSingle G  000579BA   rapCollide G  00057A10   
-rapParticleInject G  00057A5A   rapSetMapLoc G  00057A82   _rapPrint G  00057AA8   
-_rapPrintCont G  00057ADC   rapLocate G  00057B04   rapUpdateOffscreenList G  00057B1C   
-rapSpriteShift G  00057B36   rapAddClock G  00057B84   rapSubClock G  00057B9E   
-rapSortSprites G  00057BB8   rapFlashCheck G  00057BF0   rapGDGetCartSerial G  00057BFE   
-rapGDCardInserted G  00057C0C   rapGDSetLEDOn G  00057C2A   rapGDSetLEDOff G  00057C42   
-rapGDReset G  00057C5A   rapGDGetCardSerial G  00057C74   rapGDDebugPrint G  00057C82   
-rapGDLoadFile G  00057C9E   rapGDSaveFile G  00057CBC   rapGDBIOSVersion G  00057CDE   
-rapGDROMWriteEnable G  00057CEC   rapGDDirOpen G  00057CFE   rapGDDirRead G  00057D18   
-rapGDDirClose G  00057D2A   rapGDFileOpen G  00057D3C   rapGDFileRead G  00057D5A   
-rapGDFileWrite G  00057D80   rapGDFileClose G  00057DA2   rapGDFileSeek G  00057DB4   
-rapGDFileTell G  00057DD6   rapGDFileSize G  00057DE8   rapGDFileInfo G  00057DFA   
-rapGDFTimeToASCII G  00057E1C   rapGDFDateToASCII G  00057E32   rapUseParticlePalette G  00057E48   
-rapUse8x8fontPalette G  00057E5A   rapUse8x16fontPalette G  00057E6C   rapUse16x16fontPalette G  00057E7E   
-u235PlaySample G  00057E90   u235PlaySampleFreq G  00057EE6   u235ChannelFreq G  00057F50   
-u235KillChannel G  00057FAA   u235ChannelVol G  00057FF0   _u235GetPad G  00058046   
-__Z14u235PlayModuleis G  0005807C   __Z14u235StopModulev G  000580E6   __Z11u235Silencev G  00058108   
-u235ChangeReplayFrq G  0005812A   _u235ModuleVol G  00058170   _u235SampleVol G  00058180   
-u235StopDSP G  00058190   u235Init G  000581B6   u235Restart G  000581FC   
-zeroGetPad G  000582DE   zeroPlay G  0005839E   zeroClearChannel G  0005840E   
-LSPGetPad G  00058466   LSPPlayModule G  0005849C   LSPStartMusic G  000584CA   
-LSPStopMusic G  000584E8   LSPMusicToggle G  00058506   LSPStartDSP G  00058524   
-LSPPlaySampleLoop G  00058542   LSPPlaySample G  00058586   rapCheckTTExists G  000585CE   
-rapGetTTState G  0005861E   rapGetTTPad G  0005869E   __Z10ee_sprintfPcPKcz G  00059D90   
-ee_printf G  00059DAC   eeUpdateChecksum G  00059EFA   eeValidateChecksum G  00059F24   
+__Z17fighterInitializeP7FighterbP12SoundHandler G  000466BC   __Z17fighterUpdateIdlefP7FighterP14SpriteAnimatorP14AnimationFrame G  0004679A   __Z20updateSpriteAnimatorP14SpriteAnimatorP14AnimationFrameibbiii G  0004A662   
+__Z13fighterUpdatefP7FighterP14SpriteAnimatorP14AnimationFrameS4_S4_S4_S4_S4_S4_S4_S4_b G  000467D0   jsfGetPad G  00056DC4   __Z11sfxHiyaMaleP12SoundHandlerb G  0004A0F0   
+__Z19animationIsCompleteP14SpriteAnimatori G  0004A59C   __Z12sfxHiyaNinjaP12SoundHandlerb G  0004A2C4   __Z13sfxHiyaFemaleP12SoundHandlerb G  0004A18C   
+__Z11sfxHiyaKangP12SoundHandlerb G  0004A228   ___floatsisf G  00056AFE   ___mulsf3 G  0005637E   
+___subsf3 G  000560E8   ___fixsfsi G  00056D3A   ___addsf3 G  000560EE   
+__Z13bgScrollRightf G  0004A730   __Z12bgScrollLeftf G  0004A870   __Z15fighterPlayHiyaiP12SoundHandlerb G  0004724C   
+__Z25switchScreenChooseFighterv G  000472E0   jsfLoadClut G  000575FE   rapSetActiveList G  00057A36   
+__Z20switchScreenVsBattleii G  00047400   __Z17switchScreenFightii G  0004778A   __Z17SetPlayerPalettesv G  00047FB2   
+rapFadeClut G  00057A14   rapDebugSetXY G  000578EE   rapDebugSetMonitor G  0005789C   
+rapSetClock G  00057BAE   _jsfVsync G  00057286   jsfGetPadPressed G  00056F8E   
+rapDebugUpdate G  000578DA   __Z8sfxIntroP12SoundHandler G  0004A0B0   __Z7sfxGongP12SoundHandler G  0004A070   
+__Z11sfxP1CursorP12SoundHandler G  00049FF0   __Z20updateSpriteAnimatorP14SpriteAnimatorP14AnimationFrameibb G  0004A5B6   __Z11sfxP2CursorP12SoundHandler G  0004A030   
+__Z11sfxScorpionP12SoundHandlerb G  00049F00   __Z10sfxLiuKangP12SoundHandlerb G  00049EB0   __Z9sfxRaidenP12SoundHandlerb G  00049E60   
+__Z8sfxSonyaP12SoundHandlerb G  00049FA0   __Z10sfxSubzeroP12SoundHandlerb G  00049F50   __Z7sfxKanoP12SoundHandlerb G  00049E10   
+__Z13sfxJohnnyCageP12SoundHandlerb G  00049DC0   __Z8sfxFightP12SoundHandler G  00049D80   zeroPlaySample G  0005837E   
+___floatunsisf G  00056AEA   ___mulsi3 G  00055F40   ___fixunssfsi G  000568E0   
+__Z12animateFramejjP14AnimationFramefj G  0004A46C   __Z12animateFramejjP14AnimationFramefjiii G  0004A476   __Z6moveUpv G  0004A720   
+__Z8moveDownv G  0004A728   ___gesf2 G  00056880   ___lesf2 G  000568C0   
+RAPTOR_mt_init G  0004A9C0   RAPTOR_mt_load G  0004AA0C   RAPTOR_mt_save G  0004AB08   
+raptor_mt_present G  0004C914   RAPTOR_MTtrash G  0004CB30   RAPTOR_U235SilenceChannels G  00050B40   
+RAPTOR_U235ChangeReplayFrq G  00050BA4   RAPTOR_U235setpad1 G  00050BB2   RAPTOR_U235setpad2 G  00050BBE   
+RAPTOR_U235setrot1 G  00050BCA   RAPTOR_U235setrot2 G  00050BE2   RAPTOR_U235init G  00050BFA   
+RAPTOR_U235stopDSP G  00050C76   RAPTOR_U235playsample G  00050C9C   RAPTOR_U235queuesample G  00050CD2   
+RAPTOR_U235playqueue G  00050CF0   RAPTOR_U235resetqueue G  00050D1C   RAPTOR_U235setmodule G  00050D4C   
+RAPTOR_U235gomodule_mono G  00050D5C   RAPTOR_U235gomodule_stereo G  00050D7A   RAPTOR_U235stopmodule G  00050D98   
+raptor_samplebank_ptr G  00050EF0   modinit  G  00053688   U235SE_initNTSC G  00053644   
+U235SE_initPAL G  00053656   RAPTOR_LSP_onoff G  00051B88   RAPTOR_LSP_stopmusic G  00051B90   
+RAPTOR_LSP_startmusic G  00051BA6   RAPTOR_LSP_playmodule G  00051BBC   RAPTOR_LSP_Sample G  00051BF2   
+RAPTOR_LSP_Init G  00051C94   RAPTOR_LSP_StartDSP G  00051CA8   silence  G  00051E10   
+fin_silence G  00051E14   RAPTOR_GD_Init G  00051EAE   RAPTOR_GD_BIOSVersion G  00051F84   
+RAPTOR_GD_ROMWriteEnable G  00051FAC   RAPTOR_GD_GetCartSerial G  00051FD4   RAPTOR_GD_GetCardSerial G  00052070   
+RAPTOR_GD_CardIn G  0005209E   RAPTOR_GD_Reset G  000520D2   RAPTOR_GD_DebugString G  000520F2   
+RAPTOR_GD_SetLED G  0005211A   RAPTOR_GD_DirOpen G  00052154   RAPTOR_GD_DirRead G  0005217C   
+RAPTOR_GD_DirClose G  000521B6   RAPTOR_GD_FileOpen G  000521EA   RAPTOR_GD_FileRead G  00052218   
+RAPTOR_GD_FileWrite G  00052246   RAPTOR_GD_FileClose G  00052274   RAPTOR_GD_FileSeek G  000522A2   
+RAPTOR_GD_FileTell G  000522D0   RAPTOR_GD_FileSize G  000522FE   RAPTOR_GD_FileInfo G  0005232C   
+RAPTOR_ftime_to_ascii G  0005235A   RAPTOR_fdate_to_ascii G  000523B6   RAPTOR_GD_LoadFile G  00052416   
+RAPTOR_GD_SaveFile G  00052460   raptor_GD_detect G  000524B0   raptor_GD_SERIAL G  000524B2   
+raptor_GD_ASERIAL G  000524C2   raptor_SD_SERIAL G  000524DE   raptor_GD_LEDstate G  000524EE   
+raptor_GD_cardstat G  000524F0   raptor_fileinfo G  000524F2   raptor_fsize G  000524F2   
+raptor_fdate G  000524F6   raptor_ftime G  000524F8   raptor_fattr G  000524FA   
+raptor_fshort G  000524FB   raptor_flong G  00052508   U235SE_modinit G  00053688   
+modinitpos G  0005368A   U235SE_modinitpos G  0005368A   dspcode  G  00053F30   
+___udivsi3 G  00055F80   ___divsi3 G  00055FE0   ___umodsi3 G  00056020   
+___modsi3 G  00056060   $_exception_handler G  000567EE   ___divsf3 G  000564AA   
+___negsf2 G  00056670   ___cmpsf2 G  0005675E   ___cmpsf2_internal G  000566C2   
+___clear_sticky_bit G  000567E0   ___eqsf2 G  00056860   ___ltsf2 G  000568A0   
+___unordsf2 G  00056940   ___unorddf2 G  00056984   ___floatunsidf G  000569F6   
+___floatsidf G  00056A5A   ___truncdfsf2 G  00056B8A   ___extendsfdf2 G  00056B12   
+___fixdfsi G  00056CC0   _jsfDebugMessage G  00056D60   _jsfDebugMessageHalt G  00056D90   
+__Z17jsfGetPadPressed1v G  00056E7A   __Z17jsfGetPadPressed2v G  00056F04   rapUnpack G  00056FBA   
+jsfUnpack68k G  00056FE6   jsfSprlistFieldSetvalOffset G  000570A2   jsfSprlistFieldModOffset G  000570EA   
+jsfSprlistFieldSetOffset G  00057134   jsfSprlistFieldSetval G  0005717C   jsfSprlistFieldMod G  000571BA   
+jsfSprlistFieldSet G  000571FA   _cls     G  00057238   _jsfPlot G  00057244   
+jsfDelay G  000572F2   jsfEEPROMFullRead G  0005733C   eeReadBank G  00059EFE   
+jsfEEPROMWordRead G  0005735A   eeReadWord G  00059E42   jsfEEPROMBoardRead G  00057374   
+eeReadSingleBank G  00059E86   jsfEEPROMFullWrite G  00057428   eeWriteBank G  00059EAE   
+jsfEEPROMWordWrite G  00057446   eeWriteWord G  00059E20   jsfEEPROMBoardWrite G  00057464   
+eeWriteSingleBank G  00059E48   jsfEEPROMUserDataRead G  00057518   jsfEEPROMUserDataWrite G  00057546   
+jsfEEPROM G  00057574   jsfEEPROMWord G  000575A0   jsfEEPROMBoard G  000575CE   
+jsfClearBuffer G  000576A0   jsfSort  G  000576C0   rapInitCalcAngle G  00057832   
+rapCalcAngle G  0005784C   rapAngleVector G  00057872   _rapDebugPrint G  000578BE   
+rapDebugSetVisible G  00057906   rapHiscoreSort G  00057928   rapBlitlist G  00057946   
+rapNumToStr G  00057976   rapHexToStr G  00057996   RBRA     G  000579BC   
+rapHiscoreCheck G  000579D8   rapFadeSingle G  000579FA   rapCollide G  00057A50   
+rapParticleInject G  00057A9A   rapSetMapLoc G  00057AC2   _rapPrint G  00057AE8   
+_rapPrintCont G  00057B1C   rapLocate G  00057B44   rapUpdateOffscreenList G  00057B5C   
+rapSpriteShift G  00057B76   rapAddClock G  00057BC4   rapSubClock G  00057BDE   
+rapSortSprites G  00057BF8   rapFlashCheck G  00057C30   rapGDGetCartSerial G  00057C3E   
+rapGDCardInserted G  00057C4C   rapGDSetLEDOn G  00057C6A   rapGDSetLEDOff G  00057C82   
+rapGDReset G  00057C9A   rapGDGetCardSerial G  00057CB4   rapGDDebugPrint G  00057CC2   
+rapGDLoadFile G  00057CDE   rapGDSaveFile G  00057CFC   rapGDBIOSVersion G  00057D1E   
+rapGDROMWriteEnable G  00057D2C   rapGDDirOpen G  00057D3E   rapGDDirRead G  00057D58   
+rapGDDirClose G  00057D6A   rapGDFileOpen G  00057D7C   rapGDFileRead G  00057D9A   
+rapGDFileWrite G  00057DC0   rapGDFileClose G  00057DE2   rapGDFileSeek G  00057DF4   
+rapGDFileTell G  00057E16   rapGDFileSize G  00057E28   rapGDFileInfo G  00057E3A   
+rapGDFTimeToASCII G  00057E5C   rapGDFDateToASCII G  00057E72   rapUseParticlePalette G  00057E88   
+rapUse8x8fontPalette G  00057E9A   rapUse8x16fontPalette G  00057EAC   rapUse16x16fontPalette G  00057EBE   
+u235PlaySample G  00057ED0   u235PlaySampleFreq G  00057F26   u235ChannelFreq G  00057F90   
+u235KillChannel G  00057FEA   u235ChannelVol G  00058030   _u235GetPad G  00058086   
+__Z14u235PlayModuleis G  000580BC   __Z14u235StopModulev G  00058126   __Z11u235Silencev G  00058148   
+u235ChangeReplayFrq G  0005816A   _u235ModuleVol G  000581B0   _u235SampleVol G  000581C0   
+u235StopDSP G  000581D0   u235Init G  000581F6   u235Restart G  0005823C   
+zeroGetPad G  0005831E   zeroPlay G  000583DE   zeroClearChannel G  0005844E   
+LSPGetPad G  000584A6   LSPPlayModule G  000584DC   LSPStartMusic G  0005850A   
+LSPStopMusic G  00058528   LSPMusicToggle G  00058546   LSPStartDSP G  00058564   
+LSPPlaySampleLoop G  00058582   LSPPlaySample G  000585C6   rapCheckTTExists G  0005860E   
+rapGetTTState G  0005865E   rapGetTTPad G  000586DE   __Z10ee_sprintfPcPKcz G  00059DD0   
+ee_printf G  00059DEC   eeUpdateChecksum G  00059F3A   eeValidateChecksum G  00059F64   
 
 
 DATA-SEGMENT RELOCATABLE SYMBOLS
 
-_DATA_E  G  0005CD20   sprite   G  0005A024   colliders G  0005A020   
-_onTitleScreen G  0005A040   _p1Cursor G  0005A046   _p2Cursor G  0005A042   
-__fpCCR  G  0005CCC0   _xcpt    G  0005CCE0   
+_DATA_E  G  0005CD60   sprite   G  0005A064   colliders G  0005A060   
+_onTitleScreen G  0005A080   _p1Cursor G  0005A086   _p2Cursor G  0005A082   
+__fpCCR  G  0005CD00   _xcpt    G  0005CD20   
 
 BSS-SEGMENT RELOCATABLE SYMBOLS
 
-_BSS_E   G  00082F80   RAPTOR_particle_gfx G  00060D30   RAPTOR_sprite_table G  0006A330   
-_trashram G  00082BD0   _onScreenChooseFighter G  00082BE2   _onScreenVsBattle G  00082BE1   
-_onScreenFight G  00082BE0   _lastTicks G  00082BE4   _js_r_textbuffer G  00082E40   
-zero_left_pad G  00082E58   zero_right_pad G  00082E5C   _pad1    G  00082E3C   
-_pad1Last G  00082E34   _pad1Prev G  00082E2C   _pad2    G  00082E38   
-_pad2Last G  00082E30   _pad2Prev G  00082E28   _plot_colour G  00082E6C   
-rapAngle_xAdd G  00082E24   rapAngle_yAdd G  00082E20   _js_r_xpos G  00082E7A   
-_js_r_ypos G  00082E76   _jsfFontSize G  00082E72   _jsfFontIndx G  00082E6E   
-_yt2     G  00082E44   _y       G  00082E4C   _errno   G  00082E54   
-zero_mousex_delta G  00082E60   zero_mousey_delta G  00082E64   zero_rotary_delta G  00082E68   
+_BSS_E   G  00082FC0   RAPTOR_particle_gfx G  00060D70   RAPTOR_sprite_table G  0006A370   
+_trashram G  00082C10   _onScreenChooseFighter G  00082C22   _onScreenVsBattle G  00082C21   
+_onScreenFight G  00082C20   _lastTicks G  00082C24   _js_r_textbuffer G  00082E80   
+zero_left_pad G  00082E98   zero_right_pad G  00082E9C   _pad1    G  00082E7C   
+_pad1Last G  00082E74   _pad1Prev G  00082E6C   _pad2    G  00082E78   
+_pad2Last G  00082E70   _pad2Prev G  00082E68   _plot_colour G  00082EAC   
+rapAngle_xAdd G  00082E64   rapAngle_yAdd G  00082E60   _js_r_xpos G  00082EBA   
+_js_r_ypos G  00082EB6   _jsfFontSize G  00082EB2   _jsfFontIndx G  00082EAE   
+_yt2     G  00082E84   _y       G  00082E8C   _errno   G  00082E94   
+zero_mousex_delta G  00082EA0   zero_mousey_delta G  00082EA4   zero_rotary_delta G  00082EA8   
 
 
  

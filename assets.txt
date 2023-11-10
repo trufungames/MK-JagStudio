@@ -49,7 +49,6 @@ ROM,BMPKANG,gfx_clut,ASSETS\GFX\liukang.BMP
 ROM,BMPRAIDEN,gfx_clut,ASSETS\GFX\raiden.BMP
 ROM,BMPSUBZERO,gfx_clut,ASSETS\GFX\subzero.BMP
 ROM,BMPSONYA,gfx_clut,ASSETS\GFX\sonya.BMP
-ROM,BMPSCORPION,gfx_clut,ASSETS\GFX\scorpion.BMP
 ROM,BMPKANO,gfx_clut,ASSETS\GFX\kano.BMP
 ROM,BMP_TITLESCREEN,gfx_clut,ASSETS\GFX\title_screen.BMP
 ROM,BMP_CHOOSEFIGHTER,gfx_clut,ASSETS\GFX\choose_your_fighter.BMP
@@ -70,7 +69,7 @@ ROM,BMP_SHUTTER,gfx_clut16,ASSETS\GFX\shutter.BMP
 ROM,BMP_ROUND1,gfx_clut,ASSETS\GFX\round1.BMP
 ROM,BMP_FIGHT,gfx_clut,ASSETS\GFX\fight.BMP
 
-ROM,PAL_SCORPION,gfx_clut,ASSETS\GFX\pal_scorpion.BMP
+ROM,PAL_SCORPION,gfx_clut,ASSETS\GFX\scorzero.BMP
 ROM,PAL_REPTILE,gfx_clut,ASSETS\GFX\pal_reptile.BMP
 
 ;ABS,MK_TITLE,modfile1,ASSETS\Music\mk_title.mod

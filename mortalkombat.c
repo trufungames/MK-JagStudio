@@ -238,29 +238,29 @@ static SpriteAnimator subzeroAnimator2 = {
 };
 
 static AnimationFrame subzeroIdleFrames[] = {
-	{ 80, 144, 0, 0, 0, 0, 6 },
-	{ 80, 144, 80, 0, 0, 0, 6 },
-	{ 80, 144, 160, 0, 0, 0, 6 },
-	{ 80, 144, 240, 0, 0, 0, 6 },
-	{ 80, 144, 320, 0, 0, 0, 6 },
-	{ 80, 144, 400, 0, 0, 0, 6 },
-	{ 80, 144, 480, 0, 0, 0, 6 },
-	{ 80, 144, 560, 0, 0, 0, 6 },
-	{ 80, 144, 640, 0, 0, 0, 6 },
-	{ 80, 144, 720, 0, 0, 0, 6 },
-	{ 80, 144, 800, 0, 0, 0, 6 },
-	{ 80, 144, 880, 0, 0, 0, 6 }
+	{ 64, 144, 0, 0, 10, 0, 6 },
+	{ 64, 144, 64, 0, 11, 0, 6 },
+	{ 64, 144, 128, 0, 13, 0, 6 },
+	{ 64, 144, 192, 0, 13, 0, 6 },
+	{ 64, 144, 256, 0, 12, 0, 6 },
+	{ 64, 144, 320, 0, 12, 0, 6 },
+	{ 64, 144, 384, 0, 12, 0, 6 },
+	{ 64, 144, 448, 0, 12, 0, 6 },
+	{ 64, 144, 512, 0, 12, 0, 6 },
+	{ 64, 144, 576, 0, 12, 0, 6 },
+	{ 64, 144, 640, 0, 12, 0, 6 },
+	{ 64, 144, 704, 0, 11, 0, 6 }
 };
 static AnimationFrame subzeroWalkFrames[] = {
+	{ 80, 144, 768, 0, 0, 0, 6 },
+	{ 80, 144, 848, 0, 0, 0, 6 },
+	{ 80, 144, 928, 0, 0, 0, 6 },
 	{ 80, 144, 0, 144, 0, 0, 6 },
 	{ 80, 144, 80, 144, 0, 0, 6 },
 	{ 80, 144, 160, 144, 0, 0, 6 },
 	{ 80, 144, 240, 144, 0, 0, 6 },
 	{ 80, 144, 320, 144, 0, 0, 6 },
-	{ 80, 144, 400, 144, 0, 0, 6 },
-	{ 80, 144, 480, 144, 0, 0, 6 },
-	{ 80, 144, 560, 144, 0, 0, 6 },
-	{ 80, 144, 640, 144, 0, 0, 6 }
+	{ 80, 144, 400, 144, 0, 0, 6 }
 };
 static AnimationFrame subzeroDuckFrames[] = {
 	{ 80, 144, 720, 144, 0, 0, 3 },
@@ -352,21 +352,21 @@ static AnimationFrame sonyaKickHighFrames[] = {
 
 //Scorpion animation frames
 static SpriteAnimator scorpionAnimator = {
-	SCORPION, 0.5f, BMPSCORPION, 0, 0
+	SCORPION, 0.5f, BMPSUBZERO, 0, 0
 };
 
 static SpriteAnimator scorpionAnimator2 = {
-	SCORPION2, 0.5f, BMPSCORPION, 0, 0
+	SCORPION2, 0.5f, BMPSUBZERO, 0, 0
 };
 
 static AnimationFrame scorpionIdleFrames[] = {
-	{ 80, 144, 0, 0, 0, 0, 6 },
-	{ 80, 144, 80, 0, 0, 0, 6 },
-	{ 80, 144, 160, 0, 0, 0, 6 },
-	{ 80, 144, 240, 0, 0, 0, 6 },
-	{ 80, 144, 320, 0, 0, 0, 6 },
-	{ 80, 144, 400, 0, 0, 0, 6 },
-	{ 80, 144, 480, 0, 0, 0, 6 }
+	{ 80, 144, 0, 736, 0, 0, 6 },
+	{ 80, 144, 80, 736, 0, 0, 6 },
+	{ 80, 144, 160, 736, 0, 0, 6 },
+	{ 80, 144, 240, 736, 0, 0, 6 },
+	{ 80, 144, 320, 736, 0, 0, 6 },
+	{ 80, 144, 400, 736, 0, 0, 6 },
+	{ 80, 144, 480, 736, 0, 0, 6 }
 };
 static AnimationFrame scorpionWalkFrames[] = {
 	{ 80, 144, 560, 0, 0, 0, 6 },
@@ -601,7 +601,7 @@ static AnimationFrame fightFlashFrames[] = {
 // Player 1 Fighters
 ///////////////////////////////
 static Fighter fighterScorpion = {
-	SCORPION, BMPSCORPION,
+	SCORPION, BMPSUBZERO,
 	SCORPION_IDLE_FRAME_COUNT,
 	SCORPION_WALK_FRAME_COUNT,
 	SCORPION_DUCK_FRAME_COUNT,
@@ -695,7 +695,7 @@ static Fighter fighterSonya = {
 // Player 2 Fighters
 ///////////////////////////////
 static Fighter fighterScorpion2 = {
-	SCORPION2, BMPSCORPION,
+	SCORPION2, BMPSUBZERO,
 	SCORPION_IDLE_FRAME_COUNT,
 	SCORPION_WALK_FRAME_COUNT,
 	SCORPION_DUCK_FRAME_COUNT,
@@ -1560,8 +1560,7 @@ void switchScreenFight(int p1Cursor, int p2Cursor)
 			break;
 		case 2:
 			//Sub-Zero
-			//jsfLoadClut((unsigned short *)(void *)(BMPSUBZERO_clut),14,16);
-			jsfLoadClut((unsigned short *)(void *)(PAL_REPTILE_clut),14,16);
+			jsfLoadClut((unsigned short *)(void *)(BMPSUBZERO_clut),14,16);
 			fighterInitialize(&fighterSubzero, true, &soundHandler);
 			fighterShow(&fighterSubzero);
 			break;
@@ -1586,8 +1585,7 @@ void switchScreenFight(int p1Cursor, int p2Cursor)
 			break;
 		case 6:
 			//Scorpion
-			//jsfLoadClut((unsigned short *)(void *)(BMPSUBZERO_clut),14,16);
-			jsfLoadClut((unsigned short *)(void *)(BMPSCORPION_clut),14,16);
+			jsfLoadClut((unsigned short *)(void *)(PAL_SCORPION_clut),14,16);
 			fighterInitialize(&fighterScorpion, true, &soundHandler);
 			fighterShow(&fighterScorpion);
 			break;
@@ -1609,8 +1607,7 @@ void switchScreenFight(int p1Cursor, int p2Cursor)
 			break;
 		case 2:
 			//Sub-Zero
-			jsfLoadClut((unsigned short *)(void *)(PAL_SCORPION_clut),15,16);
-			//jsfLoadClut((unsigned short *)(void *)(BMPSUBZERO_clut),15,16);
+			jsfLoadClut((unsigned short *)(void *)(BMPSUBZERO_clut),15,16);
 			fighterInitialize(&fighterSubzero2, false, &soundHandler);
 			fighterShow(&fighterSubzero2);
 			break;
@@ -1635,7 +1632,7 @@ void switchScreenFight(int p1Cursor, int p2Cursor)
 			break;
 		case 6:
 			//Scorpion
-			jsfLoadClut((unsigned short *)(void *)(BMPSCORPION_clut),15,16);
+			jsfLoadClut((unsigned short *)(void *)(PAL_SCORPION_clut),15,16);
 			fighterInitialize(&fighterScorpion2, false, &soundHandler);
 			fighterShow(&fighterScorpion2);
 			break;
@@ -1723,7 +1720,7 @@ void SetPlayerPalettes()
 			break;
 		case 6:
 			//Scorpion
-			jsfLoadClut((unsigned short *)(void *)(BMPSCORPION_clut),14,16);
+			jsfLoadClut((unsigned short *)(void *)(PAL_SCORPION_clut),14,16);
 			fighterMakeSelectable(&fighterScorpion, true);
 			fighterShow(&fighterScorpion);
 			sprite[P1_CURSOR].x_ = 194;
@@ -1784,7 +1781,7 @@ void SetPlayerPalettes()
 			break;
 		case 6:
 			//Scorpion
-			jsfLoadClut((unsigned short *)(void *)(BMPSCORPION_clut),15,16);
+			jsfLoadClut((unsigned short *)(void *)(PAL_SCORPION_clut),15,16);
 			fighterMakeSelectable(&fighterScorpion2, false);
 			fighterShow(&fighterScorpion2);
 			sprite[P2_CURSOR].x_ = 194;
