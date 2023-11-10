@@ -65,6 +65,10 @@
 #define BMP_ROUND1_clut 0xC394A0
 #define BMP_FIGHT 0xC394C0
 #define BMP_FIGHT_clut 0xC3B2C0
+#define PAL_SCORPION 0xC3B2E0
+#define PAL_SCORPION_clut 0xC3B2F0
+#define PAL_REPTILE 0xC3B310
+#define PAL_REPTILE_clut 0xC3B320
 extern void *explode_sam asm("explode_sam");
 extern void *explode_sam_end asm("explode_sam_end");
 extern void *fight_sam asm("fight_sam");

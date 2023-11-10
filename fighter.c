@@ -291,7 +291,6 @@ void fighterPlayHiya(int fighter, struct SoundHandler* soundHandler, bool isPlay
         case SONYA:
             sfxHiyaFemale(soundHandler, isPlayer1);
             break;
-        case SCORPION:
         case SUBZERO:
             sfxHiyaNinja(soundHandler, isPlayer1);
             break;

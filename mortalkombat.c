@@ -395,36 +395,38 @@ static AnimationFrame scorpionBlockDuckFrames[] = {
 	{ 64, 144, 768, 144, 10, 0, 3 }
 };
 static AnimationFrame scorpionPunchLowFrames[] = {
-	{ 80, 144, 832, 144, 7, 0, 4 },
-	{ 96, 144, 912, 144, 12, 0, 5 },
-	{ 112, 144, 0, 288, 12, 0, 12 },
-	{ 96, 144, 912, 144, 12, 0, 5 },
-	{ 80, 144, 832, 144, 7, 0, 4 }
+	{ 80, 144, 832, 144, 7, 0, 3 },
+	{ 96, 144, 912, 144, 12, 0, 4 },
+	{ 112, 144, 0, 288, 12, 0, 8 },
+	{ 96, 144, 912, 144, 12, 0, 4 },
+	{ 80, 144, 832, 144, 7, 0, 3 }
 };
 static AnimationFrame scorpionPunchHighFrames[] = {
-	{ 80, 144, 832, 144, 7, 0, 4 },
-	{ 96, 144, 912, 144, 12, 0, 5 },
-	{ 112, 144, 384, 288, 12, 0, 12 },
-	{ 96, 144, 912, 144, 12, 0, 5 },
-	{ 80, 144, 832, 144, 7, 0, 4 }
+	{ 80, 144, 832, 144, 7, 0, 3 },
+	{ 96, 144, 912, 144, 12, 0, 4 },
+	{ 112, 144, 384, 288, 12, 0, 8 },
+	{ 96, 144, 912, 144, 12, 0, 4 },
+	{ 80, 144, 832, 144, 7, 0, 3 }
 };
 static AnimationFrame scorpionKickLowFrames[] = {
-	{ 80, 144, 0, 432, 0, 0, 5 },
-	{ 80, 144, 80, 432, 0, 0, 5 },
-	{ 112, 144, 160, 432, 0, 0, 5 },
-	{ 112, 144, 880, 288, 0, 0, 12 },
-	{ 80, 144, 160, 432, 0, 0, 5 },
-	{ 80, 144, 80, 432, 0, 0, 5 },
-	{ 80, 144, 0, 432, 0, 0, 5 }
+	{ 64, 144, 512, 144, 15, 0, 3 },
+	{ 80, 144, 608, 288, 16, 0, 4 },
+	{ 80, 144, 688, 288, 16, 0, 4 },
+	{ 112, 144, 768, 288, 16, 0, 8 },
+	{ 80, 144, 688, 288, 16, 0, 4 },
+	{ 80, 144, 608, 288, 16, 0, 4 },
+	{ 64, 144, 512, 144, 15, 0, 3 }
 };
 static AnimationFrame scorpionKickHighFrames[] = {
-	{ 80, 144, 0, 432, 0, 0, 5 },
-	{ 80, 144, 80, 432, 0, 0, 5 },
-	{ 112, 144, 160, 432, 0, 0, 5 },
-	{ 112, 144, 272, 432, 0, 0, 12 },
-	{ 80, 144, 160, 432, 0, 0, 5 },
-	{ 80, 144, 80, 432, 0, 0, 5 },
-	{ 80, 144, 0, 432, 0, 0, 5 }
+	{ 64, 144, 512, 144, 15, 0, 3 },
+	{ 80, 144, 608, 288, 16, 0, 4 },
+	{ 64, 144, 960, 7, 18, 0, 4 },
+	{ 80, 144, 688, 288, 16, 0, 4 },
+	{ 112, 144, 880, 288, 12, 0, 8 },
+	{ 80, 144, 688, 288, 16, 0, 4 },
+	{ 64, 144, 960, 7, 18, 0, 4 },
+	{ 80, 144, 608, 288, 16, 0, 4 },
+	{ 64, 144, 512, 144, 15, 0, 3 }
 };
 
 //Kano animation frames
@@ -1558,7 +1560,8 @@ void switchScreenFight(int p1Cursor, int p2Cursor)
 			break;
 		case 2:
 			//Sub-Zero
-			jsfLoadClut((unsigned short *)(void *)(BMPSUBZERO_clut),14,16);
+			//jsfLoadClut((unsigned short *)(void *)(BMPSUBZERO_clut),14,16);
+			jsfLoadClut((unsigned short *)(void *)(PAL_REPTILE_clut),14,16);
 			fighterInitialize(&fighterSubzero, true, &soundHandler);
 			fighterShow(&fighterSubzero);
 			break;
@@ -1583,6 +1586,7 @@ void switchScreenFight(int p1Cursor, int p2Cursor)
 			break;
 		case 6:
 			//Scorpion
+			//jsfLoadClut((unsigned short *)(void *)(BMPSUBZERO_clut),14,16);
 			jsfLoadClut((unsigned short *)(void *)(BMPSCORPION_clut),14,16);
 			fighterInitialize(&fighterScorpion, true, &soundHandler);
 			fighterShow(&fighterScorpion);
@@ -1605,7 +1609,8 @@ void switchScreenFight(int p1Cursor, int p2Cursor)
 			break;
 		case 2:
 			//Sub-Zero
-			jsfLoadClut((unsigned short *)(void *)(BMPSUBZERO_clut),15,16);
+			jsfLoadClut((unsigned short *)(void *)(PAL_SCORPION_clut),15,16);
+			//jsfLoadClut((unsigned short *)(void *)(BMPSUBZERO_clut),15,16);
 			fighterInitialize(&fighterSubzero2, false, &soundHandler);
 			fighterShow(&fighterSubzero2);
 			break;

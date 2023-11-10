@@ -70,6 +70,9 @@ ROM,BMP_SHUTTER,gfx_clut16,ASSETS\GFX\shutter.BMP
 ROM,BMP_ROUND1,gfx_clut,ASSETS\GFX\round1.BMP
 ROM,BMP_FIGHT,gfx_clut,ASSETS\GFX\fight.BMP
 
+ROM,PAL_SCORPION,gfx_clut,ASSETS\GFX\pal_scorpion.BMP
+ROM,PAL_REPTILE,gfx_clut,ASSETS\GFX\pal_reptile.BMP
+
 ;ABS,MK_TITLE,modfile1,ASSETS\Music\mk_title.mod
 ;ROM,MOD_TITLE,modmusic,ASSETS\Music\mk_title.mod
 
