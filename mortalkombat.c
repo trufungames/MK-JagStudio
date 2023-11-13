@@ -12,7 +12,7 @@
 #include "spriteanimator.h"
 #include "fighter.h"
 #include "sound.h"
-
+#include "impactFrame.h"
 
 
 // *************************************************
@@ -32,8 +32,8 @@ static int BLACKPAL[128];
 static int WHITEPAL[8];
 
 static	SoundHandler soundHandler = {
-		1,  //sound on/off
-		1,  //music on/off
+		true,  //sound on/off
+		false,  //music on/off
 		1,  //sound volume
 		1   //music volume
 	};
@@ -46,6 +46,25 @@ static SpriteAnimator cageAnimator2 = {
 	CAGE2, 0.5f, BMPCAGE, 0, 0
 };
 
+struct ImpactFrame cageImpactFrameLowPunch = {
+	2, 95, 25
+};
+struct ImpactFrame cageImpactFrameHighPunch = {
+	2, 85, 7
+};
+struct ImpactFrame cageImpactFrameLowKick = {
+	2, 102, 32
+};
+struct ImpactFrame cageImpactFrameHighKick = {
+	3, 90, 12
+};
+
+static AnimationFrame cageHitLowFrames[] = {
+	{ 80, 144, 288, 432, 11 , 0, 6 },
+	{ 80, 144, 368, 432, 8, 0, 6 },
+	{ 80, 144, 448, 432, 16, 0, 6 },
+	{ 80, 144, 368, 432, 8, 0, 6 }
+};
 static AnimationFrame cageIdleFrames[] = {
 	{ 96, 144, 0, 0, 0, 0, 6 },
 	{ 96, 144, 96, 0, 0, 0, 6 },
@@ -67,21 +86,64 @@ static AnimationFrame cageWalkFrames[] = {
 	{ 96, 144, 480, 144, 0, 0, 6 }
 };
 static AnimationFrame cageDuckFrames[] = {
-	{ 96, 144, 576, 144, 0, 0, 3 },
-	{ 96, 144, 672, 144, 0, 0, 3 },
-	{ 96, 144, 768, 144, 0, 0, 3 }
+	{ 96, 144, 576, 144, 6, 0, 3 },
+	{ 80, 144, 672, 144, 6, 0, 3 },
+	{ 80, 144, 752, 144, 6, 0, 3 }
 };
 static AnimationFrame cageBlockFrames[] = {
-	{ 96, 144, 864, 144, 0, 0, 3 },
-	{ 96, 144, 0, 288, 0, 0, 3 },
-	{ 96, 144, 96, 288, 0, 0, 3 }
+	{ 80, 144, 832, 144, 0, 0, 3 },
+	{ 80, 144, 912, 144, 0, 0, 3 },
+	{ 80, 144, 0, 288, 0, 0, 3 }
 };
 static AnimationFrame cageBlockDuckFrames[] = {
-	{ 80, 144, 192, 288, 0, 0, 3 },
-	{ 80, 144, 288, 288, 0, 0, 3 }
+	{ 80, 144, 80, 288, 6, 0, 3 },
+	{ 80, 144, 160, 288, 6, 0, 3 }
+};
+static AnimationFrame cagePunchLowFrames[] = {
+	{ 80, 144, 240, 288, 15, 0, 4 },
+	{ 80, 144, 320, 288, 19, 0, 4 },
+	{ 112, 144, 400, 288, 18, 0, 8 },
+	{ 80, 144, 320, 288, 19, 0, 4 },
+	{ 80, 144, 240, 288, 15, 0, 4 }
+};
+static AnimationFrame cagePunchHighFrames[] = {
+	{ 80, 144, 240, 288, 15, 0, 4 },
+	{ 80, 144, 320, 288, 19, 0, 4 },
+	{ 96, 144, 688, 288, 31, 0, 8 },
+	{ 80, 144, 320, 288, 19, 0, 4 },
+	{ 80, 144, 240, 288, 15, 0, 4 }
+};
+static AnimationFrame cageKickLowFrames[] = {
+	{ 48, 144, 880, 288, 40, 0, 4 },
+	{ 96, 144, 928, 288, 41, 0, 4 },
+	{ 128, 144, 0, 432, 33, 0, 8 },
+	{ 96, 144, 928, 288, 41, 0, 4 },
+	{ 48, 144, 880, 288, 40, 0, 4 }
+};
+static AnimationFrame cageKickHighFrames[] = {
+	{ 48, 144, 880, 288, 40, 0, 4 },
+	{ 48, 144, 128, 432, 39, 0, 4 },
+	{ 96, 144, 928, 288, 41, 0, 4 },
+	{ 112, 144, 176, 432, 39, 0, 8 },
+	{ 96, 144, 928, 288, 41, 0, 4 },
+	{ 48, 144, 128, 432, 39, 0, 4 },
+	{ 48, 144, 880, 288, 40, 0, 4 }
 };
 
 //Liu Kang animation frames
+struct ImpactFrame kangImpactFrameLowPunch = {
+	2, 100, 30
+};
+struct ImpactFrame kangImpactFrameHighPunch = {
+	2, 95, 10
+};
+struct ImpactFrame kangImpactFrameLowKick = {
+	2, 94, 25
+};
+struct ImpactFrame kangImpactFrameHighKick = {
+	3, 87, 8
+};
+
 static SpriteAnimator kangAnimator = {
 	KANG, 0.5f, BMPKANG, 0, 0
 };
@@ -129,12 +191,14 @@ static AnimationFrame kangPunchLowFrames[] = {
 	{ 80, 144, 80, 288, 8, 0, 4 },
 	{ 80, 144, 160, 288, 11, 0, 4 },
 	{ 112, 144, 240, 288, 12, 0, 8 },
+	{ 80, 144, 160, 288, 11, 0, 4 },
 	{ 80, 144, 80, 288, 8, 0, 4 }
 };
 static AnimationFrame kangPunchHighFrames[] = {
 	{ 80, 144, 80, 288, 8, 0, 4 },
 	{ 80, 144, 160, 288, 11, 0, 4 },
 	{ 112, 144, 640, 288, 12, 0, 8 },
+	{ 80, 144, 160, 288, 11, 0, 4 },
 	{ 80, 144, 80, 288, 8, 0, 4 }
 };
 static AnimationFrame kangKickLowFrames[] = {
@@ -154,6 +218,19 @@ static AnimationFrame kangKickHighFrames[] = {
 	{ 80, 144, 864, 288, 17, 0, 4 }
 };
 //Raiden animation frames
+struct ImpactFrame raidenImpactFrameLowPunch = {
+	2, 100, 30
+};
+struct ImpactFrame raidenImpactFrameHighPunch = {
+	2, 100, 10
+};
+struct ImpactFrame raidenImpactFrameLowKick = {
+	2, 98, 25
+};
+struct ImpactFrame raidenImpactFrameHighKick = {
+	2, 94, 5
+};
+
 static SpriteAnimator raidenAnimator = {
 	RAIDEN, 0.5f, BMPRAIDEN, 0, 0
 };
@@ -229,6 +306,19 @@ static AnimationFrame raidenKickHighFrames[] = {
 };
 
 //Subzero animation frames
+struct ImpactFrame subzeroImpactFrameLowPunch = {
+	2, 95, 30
+};
+struct ImpactFrame subzeroImpactFrameHighPunch = {
+	2, 95, 10
+};
+struct ImpactFrame subzeroImpactFrameLowKick = {
+	2, 98, 25
+};
+struct ImpactFrame subzeroImpactFrameHighKick = {
+	3, 94, 5
+};
+
 static SpriteAnimator subzeroAnimator = {
 	SUBZERO, 0.5f, BMPSUBZERO, 0, 0
 };
@@ -263,18 +353,48 @@ static AnimationFrame subzeroWalkFrames[] = {
 	{ 80, 144, 400, 144, 0, 0, 6 }
 };
 static AnimationFrame subzeroDuckFrames[] = {
-	{ 80, 144, 720, 144, 0, 0, 3 },
-	{ 80, 144, 800, 144, 0, 0, 3 },
-	{ 80, 144, 880, 144, 0, 0, 3 }
+	{ 64, 144, 480, 144, 12, 0, 3 },
+	{ 64, 144, 544, 144, 12, 0, 3 },
+	{ 64, 144, 608, 144, 12, 0, 3 }
 };
 static AnimationFrame subzeroBlockFrames[] = {
-	{ 80, 144, 0, 288, 0, 0, 3 },
-	{ 80, 144, 80, 288, 0, 0, 3 },
-	{ 80, 144, 160, 288, 0, 0, 3 }
+	{ 64, 144, 672, 144, 12, 0, 3 },
+	{ 64, 144, 736, 144, 12, 0, 3 },
+	{ 64, 144, 800, 144, 12, 0, 3 }
 };
 static AnimationFrame subzeroBlockDuckFrames[] = {
-	{ 80, 144, 240, 288, 0, 0, 3 },
-	{ 80, 144, 320, 288, 0, 0, 3 }
+	{ 64, 144, 864, 144, 12, 0, 3 },
+	{ 64, 144, 928, 144, 12, 0, 3 }
+};
+static AnimationFrame subzeroPunchLowFrames[] = {
+	{ 80, 144, 0, 288, 8, 0, 4 },
+	{ 96, 144, 80, 288, 11, 0, 4 },
+	{ 112, 144, 176, 288, 12, 0, 8 },
+	{ 96, 144, 80, 288, 11, 0, 4 },
+	{ 80, 144, 0, 288, 8, 0, 4 }
+};
+static AnimationFrame subzeroPunchHighFrames[] = {
+	{ 80, 144, 0, 288, 8, 0, 4 },
+	{ 80, 144, 480, 288, 11, 0, 4 },
+	{ 112, 144, 560, 288, 12, 0, 8 },
+	{ 80, 144, 480, 288, 11, 0, 4 },
+	{ 80, 144, 0, 288, 8, 0, 4 }
+};
+static AnimationFrame subzeroKickLowFrames[] = {
+	{ 64, 144, 784, 288, 10, 0, 4 },
+	{ 80, 144, 848, 288, 20, 0, 4 },
+	{ 112, 144, 0, 432, 17, 0, 8 },
+	{ 80, 144, 848, 288, 20, 0, 4 },
+	{ 64, 144, 784, 288, 10, 0, 4 }
+};
+static AnimationFrame subzeroKickHighFrames[] = {
+	{ 64, 144, 784, 288, 10, 0, 4 },
+	{ 48, 144, 112, 432, 20, 0, 4 },
+	{ 80, 144, 848, 288, 20, 0, 4 },
+	{ 112, 144, 160, 432, 17, 0, 8 },
+	{ 80, 144, 848, 288, 20, 0, 4 },
+	{ 48, 144, 112, 432, 20, 0, 4 },
+	{ 64, 144, 784, 288, 10, 0, 4 }
 };
 
 //Sonya animation frames
@@ -369,64 +489,16 @@ static AnimationFrame scorpionIdleFrames[] = {
 	{ 80, 144, 480, 736, 0, 0, 6 }
 };
 static AnimationFrame scorpionWalkFrames[] = {
-	{ 80, 144, 560, 0, 0, 0, 6 },
-	{ 80, 144, 640, 0, 0, 0, 6 },
-	{ 80, 144, 720, 0, 0, 0, 6 },
-	{ 80, 144, 800, 0, 0, 0, 6 },
-	{ 80, 144, 880, 0, 0, 0, 6 },
-	{ 80, 144, 0, 144, 0, 0, 6 },
-	{ 80, 144, 80, 144, 0, 0, 6 },
-	{ 80, 144, 160, 144, 0, 0, 6 },
-	{ 80, 144, 240, 144, 0, 0, 6 },
-	{ 80, 144, 320, 144, 0, 0, 6 }
-};
-static AnimationFrame scorpionDuckFrames[] = {
-	{ 64, 144, 320, 144, 13, 0, 3 },
-	{ 64, 144, 384, 144, 13, 0, 3 },
-	{ 64, 144, 448, 144, 13, 0, 3 }
-};
-static AnimationFrame scorpionBlockFrames[] = {
-	{ 64, 144, 512, 144, 15, 0, 3 },
-	{ 64, 144, 576, 144, 15, 0, 3 },
-	{ 64, 144, 640, 144, 15, 0, 3 }
-};
-static AnimationFrame scorpionBlockDuckFrames[] = {
-	{ 64, 144, 704, 144, 10, 0, 3 },
-	{ 64, 144, 768, 144, 10, 0, 3 }
-};
-static AnimationFrame scorpionPunchLowFrames[] = {
-	{ 80, 144, 832, 144, 7, 0, 3 },
-	{ 96, 144, 912, 144, 12, 0, 4 },
-	{ 112, 144, 0, 288, 12, 0, 8 },
-	{ 96, 144, 912, 144, 12, 0, 4 },
-	{ 80, 144, 832, 144, 7, 0, 3 }
-};
-static AnimationFrame scorpionPunchHighFrames[] = {
-	{ 80, 144, 832, 144, 7, 0, 3 },
-	{ 96, 144, 912, 144, 12, 0, 4 },
-	{ 112, 144, 384, 288, 12, 0, 8 },
-	{ 96, 144, 912, 144, 12, 0, 4 },
-	{ 80, 144, 832, 144, 7, 0, 3 }
-};
-static AnimationFrame scorpionKickLowFrames[] = {
-	{ 64, 144, 512, 144, 15, 0, 3 },
-	{ 80, 144, 608, 288, 16, 0, 4 },
-	{ 80, 144, 688, 288, 16, 0, 4 },
-	{ 112, 144, 768, 288, 16, 0, 8 },
-	{ 80, 144, 688, 288, 16, 0, 4 },
-	{ 80, 144, 608, 288, 16, 0, 4 },
-	{ 64, 144, 512, 144, 15, 0, 3 }
-};
-static AnimationFrame scorpionKickHighFrames[] = {
-	{ 64, 144, 512, 144, 15, 0, 3 },
-	{ 80, 144, 608, 288, 16, 0, 4 },
-	{ 64, 144, 960, 7, 18, 0, 4 },
-	{ 80, 144, 688, 288, 16, 0, 4 },
-	{ 112, 144, 880, 288, 12, 0, 8 },
-	{ 80, 144, 688, 288, 16, 0, 4 },
-	{ 64, 144, 960, 7, 18, 0, 4 },
-	{ 80, 144, 608, 288, 16, 0, 4 },
-	{ 64, 144, 512, 144, 15, 0, 3 }
+	{ 80, 144, 560, 736, 0, 0, 6 },
+	{ 80, 144, 640, 736, 0, 0, 6 },
+	{ 80, 144, 720, 736, 0, 0, 6 },
+	{ 80, 144, 800, 736, 0, 0, 6 },
+	{ 80, 144, 880, 736, 0, 0, 6 },
+	{ 80, 144, 0, 880, 0, 0, 6 },
+	{ 80, 144, 80, 880, 0, 0, 6 },
+	{ 80, 144, 160, 880, 0, 0, 6 },
+	{ 80, 144, 240, 880, 0, 0, 6 },
+	{ 80, 144, 320, 880, 0, 0, 6 }
 };
 
 //Kano animation frames
@@ -604,13 +676,13 @@ static Fighter fighterScorpion = {
 	SCORPION, BMPSUBZERO,
 	SCORPION_IDLE_FRAME_COUNT,
 	SCORPION_WALK_FRAME_COUNT,
-	SCORPION_DUCK_FRAME_COUNT,
-	SCORPION_BLOCK_FRAME_COUNT,
-	SCORPION_BLOCK_DUCK_FRAME_COUNT,
-	SCORPION_LOW_PUNCH_FRAME_COUNT,
-	SCORPION_HIGH_PUNCH_FRAME_COUNT,
-	SCORPION_LOW_KICK_FRAME_COUNT,
-	SCORPION_HIGH_KICK_FRAME_COUNT
+	SUBZERO_DUCK_FRAME_COUNT,
+	SUBZERO_BLOCK_FRAME_COUNT,
+	SUBZERO_BLOCK_DUCK_FRAME_COUNT,
+	SUBZERO_LOW_PUNCH_FRAME_COUNT,
+	SUBZERO_HIGH_PUNCH_FRAME_COUNT,
+	SUBZERO_LOW_KICK_FRAME_COUNT,
+	SUBZERO_HIGH_KICK_FRAME_COUNT
 };
 
 static Fighter fighterKano = {
@@ -698,13 +770,13 @@ static Fighter fighterScorpion2 = {
 	SCORPION2, BMPSUBZERO,
 	SCORPION_IDLE_FRAME_COUNT,
 	SCORPION_WALK_FRAME_COUNT,
-	SCORPION_DUCK_FRAME_COUNT,
-	SCORPION_BLOCK_FRAME_COUNT,
-	SCORPION_BLOCK_DUCK_FRAME_COUNT,
-	SCORPION_LOW_PUNCH_FRAME_COUNT,
-	SCORPION_HIGH_PUNCH_FRAME_COUNT,
-	SCORPION_LOW_KICK_FRAME_COUNT,
-	SCORPION_HIGH_KICK_FRAME_COUNT
+	SUBZERO_DUCK_FRAME_COUNT,
+	SUBZERO_BLOCK_FRAME_COUNT,
+	SUBZERO_BLOCK_DUCK_FRAME_COUNT,
+	SUBZERO_LOW_PUNCH_FRAME_COUNT,
+	SUBZERO_HIGH_PUNCH_FRAME_COUNT,
+	SUBZERO_LOW_KICK_FRAME_COUNT,
+	SUBZERO_HIGH_KICK_FRAME_COUNT
 };
 
 static Fighter fighterKano2 = {
@@ -1304,7 +1376,7 @@ int gameStartTicks = rapTicks;
 			{
 				case 0:
 					//Johnny Cage
-					fighterUpdate(delta, &fighterCage, &cageAnimator, cageIdleFrames, cageWalkFrames, cageDuckFrames, cageBlockFrames, cageBlockDuckFrames, sonyaPunchLowFrames, sonyaPunchHighFrames, sonyaKickLowFrames, sonyaKickHighFrames, false);
+					fighterUpdate(delta, &fighterCage, &cageAnimator, cageIdleFrames, cageWalkFrames, cageDuckFrames, cageBlockFrames, cageBlockDuckFrames, cagePunchLowFrames, cagePunchHighFrames, cageKickLowFrames, cageKickHighFrames, false);
 					break;
 				case 1:
 					//Kano
@@ -1312,7 +1384,7 @@ int gameStartTicks = rapTicks;
 					break;
 				case 2:
 					//Sub-Zero
-					fighterUpdate(delta, &fighterSubzero, &subzeroAnimator, subzeroIdleFrames, subzeroWalkFrames, subzeroDuckFrames, subzeroBlockFrames, subzeroBlockDuckFrames, sonyaPunchLowFrames, sonyaPunchHighFrames, sonyaKickLowFrames, sonyaKickHighFrames, false);
+					fighterUpdate(delta, &fighterSubzero, &subzeroAnimator, subzeroIdleFrames, subzeroWalkFrames, subzeroDuckFrames, subzeroBlockFrames, subzeroBlockDuckFrames, subzeroPunchLowFrames, subzeroPunchHighFrames, subzeroKickLowFrames, subzeroKickHighFrames, false);
 					break;
 				case 3:
 					//Sonya
@@ -1330,7 +1402,7 @@ int gameStartTicks = rapTicks;
 					break;
 				case 6:
 					//Scorpion
-					fighterUpdate(delta, &fighterScorpion, &scorpionAnimator, scorpionIdleFrames, scorpionWalkFrames, scorpionDuckFrames, scorpionBlockFrames, scorpionBlockDuckFrames, scorpionPunchLowFrames, scorpionPunchHighFrames, scorpionKickLowFrames, scorpionKickHighFrames, false);
+					fighterUpdate(delta, &fighterScorpion, &scorpionAnimator, scorpionIdleFrames, scorpionWalkFrames, subzeroDuckFrames, subzeroBlockFrames, subzeroBlockDuckFrames, subzeroPunchLowFrames, subzeroPunchHighFrames, subzeroKickLowFrames, subzeroKickHighFrames, false);
 					break;
 			}
 			
@@ -1341,7 +1413,7 @@ int gameStartTicks = rapTicks;
 			{
 				case 0:
 					//Johnny Cage
-					fighterUpdate(delta, &fighterCage2, &cageAnimator2, cageIdleFrames, cageWalkFrames, cageDuckFrames, cageBlockFrames, cageBlockDuckFrames, sonyaPunchLowFrames, sonyaPunchHighFrames, sonyaKickLowFrames, sonyaKickHighFrames, true);
+					fighterUpdate(delta, &fighterCage2, &cageAnimator2, cageIdleFrames, cageWalkFrames, cageDuckFrames, cageBlockFrames, cageBlockDuckFrames, cagePunchLowFrames, cagePunchHighFrames, cageKickLowFrames, cageKickHighFrames, true);
 					break;
 				case 1:
 					//Kano
@@ -1367,7 +1439,7 @@ int gameStartTicks = rapTicks;
 					break;
 				case 6:
 					//Scorpion
-					fighterUpdate(delta, &fighterScorpion2, &scorpionAnimator2, scorpionIdleFrames, scorpionWalkFrames, scorpionDuckFrames, scorpionBlockFrames, scorpionBlockDuckFrames, scorpionPunchLowFrames, scorpionPunchHighFrames, scorpionKickLowFrames, scorpionKickHighFrames, true);
+					fighterUpdate(delta, &fighterScorpion2, &scorpionAnimator2, scorpionIdleFrames, scorpionWalkFrames, subzeroDuckFrames, subzeroBlockFrames, subzeroBlockDuckFrames, subzeroPunchLowFrames, subzeroPunchHighFrames, subzeroKickLowFrames, subzeroKickHighFrames, true);
 					break;
 			}
 		}
@@ -1549,44 +1621,44 @@ void switchScreenFight(int p1Cursor, int p2Cursor)
 		case 0:
 			//Johnny Cage
 			jsfLoadClut((unsigned short *)(void *)(BMPCAGE_clut),14,16);
-			fighterInitialize(&fighterCage, true, &soundHandler);
+			fighterInitialize(&fighterCage, true, &soundHandler, &cageImpactFrameLowPunch, &cageImpactFrameHighPunch, &cageImpactFrameLowKick, &cageImpactFrameHighKick);
 			fighterShow(&fighterCage);
 			break;
 		case 1:
 			//Kano
 			jsfLoadClut((unsigned short *)(void *)(BMPKANO_clut),14,16);
-			fighterInitialize(&fighterKano, true, &soundHandler);
+			fighterInitialize(&fighterKano, true, &soundHandler, &cageImpactFrameLowPunch, &cageImpactFrameHighPunch, &cageImpactFrameLowKick, &cageImpactFrameHighKick);
 			fighterShow(&fighterKano);
 			break;
 		case 2:
 			//Sub-Zero
 			jsfLoadClut((unsigned short *)(void *)(BMPSUBZERO_clut),14,16);
-			fighterInitialize(&fighterSubzero, true, &soundHandler);
+			fighterInitialize(&fighterSubzero, true, &soundHandler, &subzeroImpactFrameLowPunch, &subzeroImpactFrameHighPunch, &subzeroImpactFrameLowKick, &subzeroImpactFrameHighKick);
 			fighterShow(&fighterSubzero);
 			break;
 		case 3:
 			//Sonya
 			jsfLoadClut((unsigned short *)(void *)(BMPSONYA_clut),14,16);
-			fighterInitialize(&fighterSonya, true, &soundHandler);
+			fighterInitialize(&fighterSonya, true, &soundHandler, &cageImpactFrameLowPunch, &cageImpactFrameHighPunch, &cageImpactFrameLowKick, &cageImpactFrameHighKick);
 			fighterShow(&fighterSonya);
 			break;
 		case 4:
 			//Raiden
 			jsfLoadClut((unsigned short *)(void *)(BMPRAIDEN_clut),14,16);
-			fighterInitialize(&fighterRaiden, true, &soundHandler);
+			fighterInitialize(&fighterRaiden, true, &soundHandler, &raidenImpactFrameLowPunch, &raidenImpactFrameHighPunch, &raidenImpactFrameLowKick, &raidenImpactFrameHighKick);
 			fighterShow(&fighterRaiden);
 			sprite[LIGHTNING].active = R_is_active;
 			break;
 		case 5:
 			//Liu Kang
 			jsfLoadClut((unsigned short *)(void *)(BMPKANG_clut),14,16);
-			fighterInitialize(&fighterKang, true, &soundHandler);
+			fighterInitialize(&fighterKang, true, &soundHandler, &kangImpactFrameLowPunch, &kangImpactFrameHighPunch, &kangImpactFrameLowKick, &kangImpactFrameHighKick);
 			fighterShow(&fighterKang);
 			break;
 		case 6:
 			//Scorpion
 			jsfLoadClut((unsigned short *)(void *)(PAL_SCORPION_clut),14,16);
-			fighterInitialize(&fighterScorpion, true, &soundHandler);
+			fighterInitialize(&fighterScorpion, true, &soundHandler, &cageImpactFrameLowPunch, &cageImpactFrameHighPunch, &cageImpactFrameLowKick, &cageImpactFrameHighKick);
 			fighterShow(&fighterScorpion);
 			break;
 	}
@@ -1596,44 +1668,44 @@ void switchScreenFight(int p1Cursor, int p2Cursor)
 		case 0:
 			//Johnny Cage
 			jsfLoadClut((unsigned short *)(void *)(BMPCAGE_clut),15,16);
-			fighterInitialize(&fighterCage2, false, &soundHandler);
+			fighterInitialize(&fighterCage2, false, &soundHandler, &cageImpactFrameLowPunch, &cageImpactFrameHighPunch, &cageImpactFrameLowKick, &cageImpactFrameHighKick);
 			fighterShow(&fighterCage2);
 			break;
 		case 1:
 			//Kano
 			jsfLoadClut((unsigned short *)(void *)(BMPKANO_clut),15,16);
-			fighterInitialize(&fighterKano2, false, &soundHandler);
+			fighterInitialize(&fighterKano2, false, &soundHandler, &cageImpactFrameLowPunch, &cageImpactFrameHighPunch, &cageImpactFrameLowKick, &cageImpactFrameHighKick);
 			fighterShow(&fighterKano2);
 			break;
 		case 2:
 			//Sub-Zero
 			jsfLoadClut((unsigned short *)(void *)(BMPSUBZERO_clut),15,16);
-			fighterInitialize(&fighterSubzero2, false, &soundHandler);
+			fighterInitialize(&fighterSubzero2, false, &soundHandler, &subzeroImpactFrameLowPunch, &subzeroImpactFrameHighPunch, &subzeroImpactFrameLowKick, &subzeroImpactFrameHighKick);
 			fighterShow(&fighterSubzero2);
 			break;
 		case 3:
 			//Sonya
 			jsfLoadClut((unsigned short *)(void *)(BMPSONYA_clut),15,16);
-			fighterInitialize(&fighterSonya2, false, &soundHandler);
+			fighterInitialize(&fighterSonya2, false, &soundHandler, &cageImpactFrameLowPunch, &cageImpactFrameHighPunch, &cageImpactFrameLowKick, &cageImpactFrameHighKick);
 			fighterShow(&fighterSonya2);
 			break;
 		case 4:
 			//Raiden
 			jsfLoadClut((unsigned short *)(void *)(BMPRAIDEN_clut),15,16);
-			fighterInitialize(&fighterRaiden2, false, &soundHandler);
+			fighterInitialize(&fighterRaiden2, false, &soundHandler, &raidenImpactFrameLowPunch, &raidenImpactFrameHighPunch, &raidenImpactFrameLowKick, &raidenImpactFrameHighKick);
 			fighterShow(&fighterRaiden2);
 			sprite[LIGHTNING2].active = R_is_active;
 			break;
 		case 5:
 			//Liu Kang
 			jsfLoadClut((unsigned short *)(void *)(BMPKANG_clut),15,16);
-			fighterInitialize(&fighterKang2, false, &soundHandler);
+			fighterInitialize(&fighterKang2, false, &soundHandler, &kangImpactFrameLowPunch, &kangImpactFrameHighPunch, &kangImpactFrameLowKick, &kangImpactFrameHighKick);
 			fighterShow(&fighterKang2);
 			break;
 		case 6:
 			//Scorpion
 			jsfLoadClut((unsigned short *)(void *)(PAL_SCORPION_clut),15,16);
-			fighterInitialize(&fighterScorpion2, false, &soundHandler);
+			fighterInitialize(&fighterScorpion2, false, &soundHandler, &cageImpactFrameLowPunch, &cageImpactFrameHighPunch, &cageImpactFrameLowKick, &cageImpactFrameHighKick);
 			fighterShow(&fighterScorpion2);
 			break;
 	}

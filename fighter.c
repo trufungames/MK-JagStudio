@@ -3,6 +3,7 @@
 #include "sound.h"
 #include "spriteanimator.h"
 #include "spritemovements.h"
+#include "impactFrame.h"
 
 void fighterHide(struct Fighter *fighter)
 {
@@ -39,9 +40,13 @@ void fighterMakeSelectable(struct Fighter* fighter, bool isPlayer1)
     fighter->positionY = sprite[fighter->spriteIndex].y_;
 }
 
-void fighterInitialize(struct Fighter *fighter, bool isPlayer1, struct SoundHandler* soundHandler)
+void fighterInitialize(struct Fighter *fighter, bool isPlayer1, struct SoundHandler* soundHandler, struct ImpactFrame* impactFrameLowPunch, struct ImpactFrame* impactFrameHighPunch, struct ImpactFrame* impactFrameLowKick, struct ImpactFrame* impactFrameHighKick)
 {
     fighter->soundHandler = soundHandler;
+    fighter->impactFrameLowPunch = impactFrameLowPunch;
+    fighter->impactFrameHighPunch = impactFrameHighPunch;
+    fighter->impactFrameLowKick = impactFrameLowKick;
+    fighter->impactFrameHighKick = impactFrameHighKick;
     fighter->pad = 0;
     fighter->playerMoveForwardSpeed = 2;
     fighter->playerMoveBackwardSpeed = 2;
@@ -78,6 +83,7 @@ void fighterInitialize(struct Fighter *fighter, bool isPlayer1, struct SoundHand
 
     fighter->positionX = sprite[fighter->spriteIndex].x_;
     fighter->positionY = sprite[fighter->spriteIndex].y_;
+    impactFrameReset(fighter);
 }
 
 void fighterUpdateIdle(float delta, struct Fighter *fighter, struct SpriteAnimator* animator, struct AnimationFrame idleFrames[])
@@ -99,6 +105,7 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
             fighterPlayHiya(fighter->spriteIndex, fighter->soundHandler, fighter->isPlayer1);
         }
 
+        impactFrameUpdate(animator, fighter, fighter->impactFrameLowPunch);
         updateSpriteAnimator(animator, punchLowFrames, fighter->LOW_PUNCH_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
 
         if (animationIsComplete(animator, fighter->LOW_PUNCH_FRAME_COUNT))
@@ -116,6 +123,7 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
             fighterPlayHiya(fighter->spriteIndex, fighter->soundHandler, fighter->isPlayer1);
         }
 
+        impactFrameUpdate(animator, fighter, fighter->impactFrameHighPunch);
         updateSpriteAnimator(animator, punchHighFrames, fighter->HIGH_PUNCH_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
 
         if (animationIsComplete(animator, fighter->HIGH_PUNCH_FRAME_COUNT))
@@ -133,6 +141,7 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
             fighterPlayHiya(fighter->spriteIndex, fighter->soundHandler, fighter->isPlayer1);
         }
 
+        impactFrameUpdate(animator, fighter, fighter->impactFrameLowKick);
         updateSpriteAnimator(animator, kickLowFrames, fighter->LOW_KICK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
 
         if (animationIsComplete(animator, fighter->LOW_KICK_FRAME_COUNT))
@@ -150,6 +159,7 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
             fighterPlayHiya(fighter->spriteIndex, fighter->soundHandler, fighter->isPlayer1);
         }
 
+        impactFrameUpdate(animator, fighter, fighter->impactFrameHighKick);
         updateSpriteAnimator(animator, kickHighFrames, fighter->HIGH_KICK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
 
         if (animationIsComplete(animator, fighter->HIGH_KICK_FRAME_COUNT))
@@ -274,6 +284,7 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
             {
                 fighter->IsWalking = false;
                 animator->currentFrame = 0;
+                impactFrameReset(fighter);
             }
 
             updateSpriteAnimator(animator, idleFrames, fighter->IDLE_FRAME_COUNT, true, true, fighter->positionX, fighter->positionY, fighter->direction);

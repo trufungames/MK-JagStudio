@@ -87,12 +87,16 @@ __Z21fighterMakeSelectableP7Fighterb:
 	move.l %d0,92(%a0)
 	jra .L5
 	.even
-	.globl	__Z17fighterInitializeP7FighterbP12SoundHandler
-__Z17fighterInitializeP7FighterbP12SoundHandler:
+	.globl	__Z17fighterInitializeP7FighterbP12SoundHandlerP11ImpactFrameS4_S4_S4_
+__Z17fighterInitializeP7FighterbP12SoundHandlerP11ImpactFrameS4_S4_S4_:
 	link.w %fp,#0
 	move.l 8(%fp),%a0
 	move.l 12(%fp),%d1
 	move.l 16(%fp),88(%a0)
+	move.l 20(%fp),98(%a0)
+	move.l 24(%fp),102(%a0)
+	move.l 28(%fp),106(%a0)
+	move.l 32(%fp),110(%a0)
 	clr.l 64(%a0)
 	moveq #2,%d0
 	move.l %d0,72(%a0)
@@ -133,8 +137,9 @@ __Z17fighterInitializeP7FighterbP12SoundHandler:
 	move.l %d0,80(%a0)
 	move.w 12(%a1),%a1
 	move.l %a1,84(%a0)
+	move.l %a0,8(%fp)
 	unlk %fp
-	rts
+	jra __Z16impactFrameResetP7Fighter
 .L16:
 	move.b #41,%d0
 	move.l %d0,60(%a0)
@@ -150,8 +155,9 @@ __Z17fighterInitializeP7FighterbP12SoundHandler:
 	move.l %d0,80(%a0)
 	move.w 12(%a1),%a1
 	move.l %a1,84(%a0)
+	move.l %a0,8(%fp)
 	unlk %fp
-	rts
+	jra __Z16impactFrameResetP7Fighter
 	.even
 	.globl	__Z17fighterUpdateIdlefP7FighterP14SpriteAnimatorP14AnimationFrame
 __Z17fighterUpdateIdlefP7FighterP14SpriteAnimatorP14AnimationFrame:
@@ -209,7 +215,12 @@ __Z13fighterUpdatefP7FighterP14SpriteAnimatorP14AnimationFrameS4_S4_S4_S4_S4_S4_
 	jsr __Z11sfxHiyaMaleP12SoundHandlerb
 	addq.l #8,%sp
 .L22:
-	move.l 92(%a2),-(%sp)
+	move.l 98(%a2),-(%sp)
+	move.l %a2,-(%sp)
+	move.l %a3,-(%sp)
+	jsr __Z17impactFrameUpdateP14SpriteAnimatorP7FighterP11ImpactFrame
+	addq.l #8,%sp
+	move.l 92(%a2),(%sp)
 	move.l 84(%a2),-(%sp)
 	move.l 80(%a2),-(%sp)
 	clr.l -(%sp)
@@ -274,7 +285,12 @@ __Z13fighterUpdatefP7FighterP14SpriteAnimatorP14AnimationFrameS4_S4_S4_S4_S4_S4_
 	jsr __Z11sfxHiyaMaleP12SoundHandlerb
 	addq.l #8,%sp
 .L31:
-	move.l 92(%a2),-(%sp)
+	move.l 102(%a2),-(%sp)
+	move.l %a2,-(%sp)
+	move.l %a3,-(%sp)
+	jsr __Z17impactFrameUpdateP14SpriteAnimatorP7FighterP11ImpactFrame
+	addq.l #8,%sp
+	move.l 92(%a2),(%sp)
 	move.l 84(%a2),-(%sp)
 	move.l 80(%a2),-(%sp)
 	clr.l -(%sp)
@@ -327,7 +343,12 @@ __Z13fighterUpdatefP7FighterP14SpriteAnimatorP14AnimationFrameS4_S4_S4_S4_S4_S4_
 	jsr __Z11sfxHiyaMaleP12SoundHandlerb
 	addq.l #8,%sp
 .L39:
-	move.l 92(%a2),-(%sp)
+	move.l 106(%a2),-(%sp)
+	move.l %a2,-(%sp)
+	move.l %a3,-(%sp)
+	jsr __Z17impactFrameUpdateP14SpriteAnimatorP7FighterP11ImpactFrame
+	addq.l #8,%sp
+	move.l 92(%a2),(%sp)
 	move.l 84(%a2),-(%sp)
 	move.l 80(%a2),-(%sp)
 	clr.l -(%sp)
@@ -377,7 +398,12 @@ __Z13fighterUpdatefP7FighterP14SpriteAnimatorP14AnimationFrameS4_S4_S4_S4_S4_S4_
 	jsr __Z11sfxHiyaMaleP12SoundHandlerb
 	addq.l #8,%sp
 .L47:
-	move.l 92(%a2),-(%sp)
+	move.l 110(%a2),-(%sp)
+	move.l %a2,-(%sp)
+	move.l %a3,-(%sp)
+	jsr __Z17impactFrameUpdateP14SpriteAnimatorP7FighterP11ImpactFrame
+	addq.l #8,%sp
+	move.l 92(%a2),(%sp)
 	move.l 84(%a2),-(%sp)
 	move.l 80(%a2),-(%sp)
 	clr.l -(%sp)
@@ -429,7 +455,12 @@ __Z13fighterUpdatefP7FighterP14SpriteAnimatorP14AnimationFrameS4_S4_S4_S4_S4_S4_
 	move.l %d1,-(%sp)
 	jsr __Z12sfxHiyaNinjaP12SoundHandlerb
 	addq.l #8,%sp
-	move.l 92(%a2),-(%sp)
+	move.l 98(%a2),-(%sp)
+	move.l %a2,-(%sp)
+	move.l %a3,-(%sp)
+	jsr __Z17impactFrameUpdateP14SpriteAnimatorP7FighterP11ImpactFrame
+	addq.l #8,%sp
+	move.l 92(%a2),(%sp)
 	move.l 84(%a2),-(%sp)
 	move.l 80(%a2),-(%sp)
 	clr.l -(%sp)
@@ -451,7 +482,12 @@ __Z13fighterUpdatefP7FighterP14SpriteAnimatorP14AnimationFrameS4_S4_S4_S4_S4_S4_
 	move.l %d1,-(%sp)
 	jsr __Z13sfxHiyaFemaleP12SoundHandlerb
 	addq.l #8,%sp
-	move.l 92(%a2),-(%sp)
+	move.l 98(%a2),-(%sp)
+	move.l %a2,-(%sp)
+	move.l %a3,-(%sp)
+	jsr __Z17impactFrameUpdateP14SpriteAnimatorP7FighterP11ImpactFrame
+	addq.l #8,%sp
+	move.l 92(%a2),(%sp)
 	move.l 84(%a2),-(%sp)
 	move.l 80(%a2),-(%sp)
 	clr.l -(%sp)
@@ -473,7 +509,12 @@ __Z13fighterUpdatefP7FighterP14SpriteAnimatorP14AnimationFrameS4_S4_S4_S4_S4_S4_
 	move.l %d1,-(%sp)
 	jsr __Z12sfxHiyaNinjaP12SoundHandlerb
 	addq.l #8,%sp
-	move.l 92(%a2),-(%sp)
+	move.l 102(%a2),-(%sp)
+	move.l %a2,-(%sp)
+	move.l %a3,-(%sp)
+	jsr __Z17impactFrameUpdateP14SpriteAnimatorP7FighterP11ImpactFrame
+	addq.l #8,%sp
+	move.l 92(%a2),(%sp)
 	move.l 84(%a2),-(%sp)
 	move.l 80(%a2),-(%sp)
 	clr.l -(%sp)
@@ -495,7 +536,12 @@ __Z13fighterUpdatefP7FighterP14SpriteAnimatorP14AnimationFrameS4_S4_S4_S4_S4_S4_
 	move.l %d1,-(%sp)
 	jsr __Z11sfxHiyaKangP12SoundHandlerb
 	addq.l #8,%sp
-	move.l 92(%a2),-(%sp)
+	move.l 98(%a2),-(%sp)
+	move.l %a2,-(%sp)
+	move.l %a3,-(%sp)
+	jsr __Z17impactFrameUpdateP14SpriteAnimatorP7FighterP11ImpactFrame
+	addq.l #8,%sp
+	move.l 92(%a2),(%sp)
 	move.l 84(%a2),-(%sp)
 	move.l 80(%a2),-(%sp)
 	clr.l -(%sp)
@@ -550,7 +596,12 @@ __Z13fighterUpdatefP7FighterP14SpriteAnimatorP14AnimationFrameS4_S4_S4_S4_S4_S4_
 	move.l %d1,-(%sp)
 	jsr __Z11sfxHiyaKangP12SoundHandlerb
 	addq.l #8,%sp
-	move.l 92(%a2),-(%sp)
+	move.l 102(%a2),-(%sp)
+	move.l %a2,-(%sp)
+	move.l %a3,-(%sp)
+	jsr __Z17impactFrameUpdateP14SpriteAnimatorP7FighterP11ImpactFrame
+	addq.l #8,%sp
+	move.l 92(%a2),(%sp)
 	move.l 84(%a2),-(%sp)
 	move.l 80(%a2),-(%sp)
 	clr.l -(%sp)
@@ -572,7 +623,12 @@ __Z13fighterUpdatefP7FighterP14SpriteAnimatorP14AnimationFrameS4_S4_S4_S4_S4_S4_
 	move.l %d1,-(%sp)
 	jsr __Z13sfxHiyaFemaleP12SoundHandlerb
 	addq.l #8,%sp
-	move.l 92(%a2),-(%sp)
+	move.l 102(%a2),-(%sp)
+	move.l %a2,-(%sp)
+	move.l %a3,-(%sp)
+	jsr __Z17impactFrameUpdateP14SpriteAnimatorP7FighterP11ImpactFrame
+	addq.l #8,%sp
+	move.l 92(%a2),(%sp)
 	move.l 84(%a2),-(%sp)
 	move.l 80(%a2),-(%sp)
 	clr.l -(%sp)
@@ -610,7 +666,12 @@ __Z13fighterUpdatefP7FighterP14SpriteAnimatorP14AnimationFrameS4_S4_S4_S4_S4_S4_
 	move.l %d1,-(%sp)
 	jsr __Z11sfxHiyaKangP12SoundHandlerb
 	addq.l #8,%sp
-	move.l 92(%a2),-(%sp)
+	move.l 106(%a2),-(%sp)
+	move.l %a2,-(%sp)
+	move.l %a3,-(%sp)
+	jsr __Z17impactFrameUpdateP14SpriteAnimatorP7FighterP11ImpactFrame
+	addq.l #8,%sp
+	move.l 92(%a2),(%sp)
 	move.l 84(%a2),-(%sp)
 	move.l 80(%a2),-(%sp)
 	clr.l -(%sp)
@@ -632,7 +693,12 @@ __Z13fighterUpdatefP7FighterP14SpriteAnimatorP14AnimationFrameS4_S4_S4_S4_S4_S4_
 	move.l %d1,-(%sp)
 	jsr __Z13sfxHiyaFemaleP12SoundHandlerb
 	addq.l #8,%sp
-	move.l 92(%a2),-(%sp)
+	move.l 106(%a2),-(%sp)
+	move.l %a2,-(%sp)
+	move.l %a3,-(%sp)
+	jsr __Z17impactFrameUpdateP14SpriteAnimatorP7FighterP11ImpactFrame
+	addq.l #8,%sp
+	move.l 92(%a2),(%sp)
 	move.l 84(%a2),-(%sp)
 	move.l 80(%a2),-(%sp)
 	clr.l -(%sp)
@@ -654,7 +720,12 @@ __Z13fighterUpdatefP7FighterP14SpriteAnimatorP14AnimationFrameS4_S4_S4_S4_S4_S4_
 	move.l %d1,-(%sp)
 	jsr __Z12sfxHiyaNinjaP12SoundHandlerb
 	addq.l #8,%sp
-	move.l 92(%a2),-(%sp)
+	move.l 106(%a2),-(%sp)
+	move.l %a2,-(%sp)
+	move.l %a3,-(%sp)
+	jsr __Z17impactFrameUpdateP14SpriteAnimatorP7FighterP11ImpactFrame
+	addq.l #8,%sp
+	move.l 92(%a2),(%sp)
 	move.l 84(%a2),-(%sp)
 	move.l 80(%a2),-(%sp)
 	clr.l -(%sp)
@@ -788,10 +859,24 @@ __Z13fighterUpdatefP7FighterP14SpriteAnimatorP14AnimationFrameS4_S4_S4_S4_S4_S4_
 	tst.b 46(%a2)
 	jne .L89
 	tst.b 44(%a2)
-	jeq .L68
+	jne .L90
+	move.l 92(%a2),-(%sp)
+	move.l 84(%a2),-(%sp)
+	move.l 80(%a2),-(%sp)
+	pea 1.w
+	pea 1.w
+	move.l 8(%a2),-(%sp)
+	move.l 20(%fp),-(%sp)
+	move.l %a3,-(%sp)
+	jsr __Z20updateSpriteAnimatorP14SpriteAnimatorP14AnimationFrameibbiii
+	lea (32,%sp),%sp
+	jra .L28
+.L90:
 	clr.b 44(%a2)
 	clr.l 16(%a3)
-.L68:
+	move.l %a2,-(%sp)
+	jsr __Z16impactFrameResetP7Fighter
+	addq.l #4,%sp
 	move.l 92(%a2),-(%sp)
 	move.l 84(%a2),-(%sp)
 	move.l 80(%a2),-(%sp)
@@ -1024,13 +1109,13 @@ __Z15fighterPlayHiyaiP12SoundHandlerb:
 	move.b 19(%fp),%d2
 	moveq #29,%d3
 	cmp.l %d0,%d3
-	jeq .L94
+	jeq .L95
 	move.b #30,%d3
 	cmp.l %d0,%d3
-	jeq .L95
+	jeq .L96
 	move.b #26,%d3
 	cmp.l %d0,%d3
-	jeq .L98
+	jeq .L99
 	and.l #255,%d2
 	move.l %d2,12(%fp)
 	move.l %d1,8(%fp)
@@ -1038,7 +1123,7 @@ __Z15fighterPlayHiyaiP12SoundHandlerb:
 	move.l (%sp)+,%d3
 	unlk %fp
 	jra __Z11sfxHiyaMaleP12SoundHandlerb
-.L98:
+.L99:
 	and.l #255,%d2
 	move.l %d2,12(%fp)
 	move.l %d1,8(%fp)
@@ -1046,7 +1131,7 @@ __Z15fighterPlayHiyaiP12SoundHandlerb:
 	move.l (%sp)+,%d3
 	unlk %fp
 	jra __Z11sfxHiyaKangP12SoundHandlerb
-.L95:
+.L96:
 	and.l #255,%d2
 	move.l %d2,12(%fp)
 	move.l %d1,8(%fp)
@@ -1054,7 +1139,7 @@ __Z15fighterPlayHiyaiP12SoundHandlerb:
 	move.l (%sp)+,%d3
 	unlk %fp
 	jra __Z13sfxHiyaFemaleP12SoundHandlerb
-.L94:
+.L95:
 	and.l #255,%d2
 	move.l %d2,12(%fp)
 	move.l %d1,8(%fp)

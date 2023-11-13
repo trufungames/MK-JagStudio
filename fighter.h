@@ -31,6 +31,10 @@ struct Fighter {
     struct SoundHandler* soundHandler;
     int direction;
     bool isPlayer1;
+    struct ImpactFrame* impactFrameLowPunch;
+    struct ImpactFrame* impactFrameHighPunch;
+    struct ImpactFrame* impactFrameLowKick;
+    struct ImpactFrame* impactFrameHighKick;
 };
 
 void fighterHide(struct Fighter* fighter);
@@ -39,7 +43,7 @@ void fighterShow(struct Fighter* fighter);
 
 void fighterMakeSelectable(struct Fighter* fighter, bool isPlayer1);
 
-void fighterInitialize(struct Fighter* fighter, bool isPlayer1, struct SoundHandler* soundHandler);
+void fighterInitialize(struct Fighter* fighter, bool isPlayer1, struct SoundHandler* soundHandler, struct ImpactFrame* impactFrameLowPunch, struct ImpactFrame* impactFrameHighPunch, struct ImpactFrame* impactFrameLowKick, struct ImpactFrame* impactFrameHighKick);
 
 void fighterUpdateIdle(float delta, struct Fighter *fighter, struct SpriteAnimator* animator, struct AnimationFrame idleFrames[]);
 
