@@ -22,6 +22,10 @@ struct Fighter {
     bool IsLowKicking;
     bool IsHighKicking;
     bool ButtonReleased;
+    bool IsHitLow;
+    bool IsHitHigh;
+    bool IsHitBack;
+    bool IsBeingDamaged;
     unsigned int HB_BODY;
     unsigned int HB_DUCK;
     unsigned int HB_ATTACK;

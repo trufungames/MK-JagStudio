@@ -5,6 +5,8 @@
 #include "spritemovements.h"
 #include "impactFrame.h"
 
+int collision = 0;
+
 void fighterHide(struct Fighter *fighter)
 {
     sprite[fighter->spriteIndex].active = R_is_inactive;
@@ -59,6 +61,10 @@ void fighterInitialize(struct Fighter *fighter, bool isPlayer1, struct SoundHand
     fighter->IsLowKicking = false;
     fighter->IsHighKicking = false;
     fighter->ButtonReleased = true;
+    fighter->IsHitLow = false;
+    fighter->IsHitHigh = false;
+    fighter->IsHitBack = false;
+    fighter->IsBeingDamaged = false;
     fighter->isPlayer1 = isPlayer1;
     sprite[fighter->spriteIndex].active = R_is_active;
 
@@ -93,213 +99,253 @@ void fighterUpdateIdle(float delta, struct Fighter *fighter, struct SpriteAnimat
 
 void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* animator, struct AnimationFrame idleFrames[], struct AnimationFrame walkFrames[], struct AnimationFrame duckFrames[], struct AnimationFrame blockFrames[], struct AnimationFrame blockDuckFrames[], struct AnimationFrame punchLowFrames[], struct AnimationFrame punchHighFrames[], struct AnimationFrame kickLowFrames[], struct AnimationFrame kickHighFrames[], struct AnimationFrame hitLowFrames[], struct AnimationFrame hitHighFrames[], struct AnimationFrame hitBackFrames[], bool walkForward)
 {
-    fighter->pad = jsfGetPad(fighter->PAD);
-
-    if (fighter->pad & JAGPAD_C && fighter->ButtonReleased || fighter->IsLowPunching)
+    //**************************************
+    //Impact Damage Checks
+    //**************************************
+    if (!fighter->IsBeingDamaged)
     {
-        if (!fighter->IsLowPunching && fighter->ButtonReleased)
+        if (fighter->IsHitLow || fighter->IsHitHigh)
         {
-            fighter->ButtonReleased = false;
-            fighter->IsLowPunching = true;
+            fighter->IsBeingDamaged = true;
             animator->currentFrame = 0;
-            fighterPlayHiya(fighter->spriteIndex, fighter->soundHandler, fighter->isPlayer1);
+            //TODO play SFX of damage
         }
+    }
 
-        impactFrameUpdate(animator, fighter, fighter->impactFrameLowPunch);
-        updateSpriteAnimator(animator, punchLowFrames, fighter->LOW_PUNCH_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
+    if (fighter->IsHitLow && fighter->IsBeingDamaged)
+    {
+        updateSpriteAnimator(animator, hitLowFrames, fighter->HIT_LOW_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
 
-        if (animationIsComplete(animator, fighter->LOW_PUNCH_FRAME_COUNT))
+        if (animationIsComplete(animator, fighter->HIT_LOW_FRAME_COUNT))
         {
+            fighter->IsHitLow = false;
+            fighter->IsBeingDamaged = false;
+        }
+    }
+    else if (fighter->IsHitHigh && fighter->IsBeingDamaged)
+    {
+        updateSpriteAnimator(animator, hitHighFrames, fighter->HIT_HIGH_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
+
+        if (animationIsComplete(animator, fighter->HIT_HIGH_FRAME_COUNT))
+        {
+            fighter->IsHitHigh = false;
+            fighter->IsBeingDamaged = false;
+        }
+    }
+
+    //**************************************
+    //Player Input Handling
+    //**************************************
+    if (!fighter->IsBeingDamaged)
+    {
+        fighter->pad = jsfGetPad(fighter->PAD);
+
+        if (fighter->pad & JAGPAD_C && fighter->ButtonReleased || fighter->IsLowPunching)
+        {
+            if (!fighter->IsLowPunching && fighter->ButtonReleased)
+            {
+                fighter->ButtonReleased = false;
+                fighter->IsLowPunching = true;
+                animator->currentFrame = 0;
+                fighterPlayHiya(fighter->spriteIndex, fighter->soundHandler, fighter->isPlayer1);
+            }
+
+            impactFrameUpdate(animator, fighter, fighter->impactFrameLowPunch);
+            updateSpriteAnimator(animator, punchLowFrames, fighter->LOW_PUNCH_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
+
+            if (animationIsComplete(animator, fighter->LOW_PUNCH_FRAME_COUNT))
+            {
+                fighter->IsLowPunching = false;
+            }
+        }
+        else if (fighter->pad & JAGPAD_9 && fighter->ButtonReleased || fighter->IsHighPunching)
+        {
+            if (!fighter->IsHighPunching && fighter->ButtonReleased)
+            {
+                fighter->ButtonReleased = false;
+                fighter->IsHighPunching = true;
+                animator->currentFrame = 0;
+                fighterPlayHiya(fighter->spriteIndex, fighter->soundHandler, fighter->isPlayer1);
+            }
+
+            impactFrameUpdate(animator, fighter, fighter->impactFrameHighPunch);
+            updateSpriteAnimator(animator, punchHighFrames, fighter->HIGH_PUNCH_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
+
+            if (animationIsComplete(animator, fighter->HIGH_PUNCH_FRAME_COUNT))
+            {
+                fighter->IsHighPunching = false;
+            }
+        }
+        else if (fighter->pad & JAGPAD_A && fighter->ButtonReleased || fighter->IsLowKicking)
+        {
+            if (!fighter->IsLowKicking && fighter->ButtonReleased)
+            {
+                fighter->ButtonReleased = false;
+                fighter->IsLowKicking = true;
+                animator->currentFrame = 0;
+                fighterPlayHiya(fighter->spriteIndex, fighter->soundHandler, fighter->isPlayer1);
+            }
+
+            impactFrameUpdate(animator, fighter, fighter->impactFrameLowKick);
+            updateSpriteAnimator(animator, kickLowFrames, fighter->LOW_KICK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
+
+            if (animationIsComplete(animator, fighter->LOW_KICK_FRAME_COUNT))
+            {
+                fighter->IsLowKicking = false;
+            }
+        }
+        else if (fighter->pad & JAGPAD_7 && fighter->ButtonReleased || fighter->IsHighKicking)
+        {
+            if (!fighter->IsHighKicking && fighter->ButtonReleased)
+            {
+                fighter->ButtonReleased = false;
+                fighter->IsHighKicking = true;
+                animator->currentFrame = 0;
+                fighterPlayHiya(fighter->spriteIndex, fighter->soundHandler, fighter->isPlayer1);
+            }
+
+            impactFrameUpdate(animator, fighter, fighter->impactFrameHighKick);
+            updateSpriteAnimator(animator, kickHighFrames, fighter->HIGH_KICK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
+
+            if (animationIsComplete(animator, fighter->HIGH_KICK_FRAME_COUNT))
+            {
+                fighter->IsHighKicking = false;
+            }
+        }
+        else if (fighter->pad & JAGPAD_B)
+        {
+            if (!fighter->IsBlocking)
+            {
+                fighter->IsBlocking = true;
+                animator->currentFrame = 0;
+            }
+
+            if (fighter->pad & JAGPAD_DOWN)
+            {
+                if (!fighter->IsDucking)
+                {
+                    fighter->IsDucking = true;
+                    animator->currentFrame = 0;
+                }
+
+                updateSpriteAnimator(animator, blockDuckFrames, fighter->BLOCK_DUCK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
+            }
+            else
+            {
+                if (fighter->IsDucking)
+                {
+                    fighter->IsDucking = false;
+                }
+                
+                updateSpriteAnimator(animator, blockFrames, fighter->BLOCK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
+            }
+        }
+        else if(fighter->pad & JAGPAD_LEFT)
+        {
+            updateSpriteAnimator(animator, walkFrames, fighter->WALK_FRAME_COUNT, walkForward, true, fighter->positionX, fighter->positionY, fighter->direction);
+            fighter->IsWalking = true;
+            fighter->IsDucking = false;
+            fighter->IsBlocking  = false;
             fighter->IsLowPunching = false;
-        }
-    }
-    else if (fighter->pad & JAGPAD_9 && fighter->ButtonReleased || fighter->IsHighPunching)
-    {
-        if (!fighter->IsHighPunching && fighter->ButtonReleased)
-        {
-            fighter->ButtonReleased = false;
-            fighter->IsHighPunching = true;
-            animator->currentFrame = 0;
-            fighterPlayHiya(fighter->spriteIndex, fighter->soundHandler, fighter->isPlayer1);
-        }
-
-        impactFrameUpdate(animator, fighter, fighter->impactFrameHighPunch);
-        updateSpriteAnimator(animator, punchHighFrames, fighter->HIGH_PUNCH_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
-
-        if (animationIsComplete(animator, fighter->HIGH_PUNCH_FRAME_COUNT))
-        {
             fighter->IsHighPunching = false;
-        }
-    }
-    else if (fighter->pad & JAGPAD_A && fighter->ButtonReleased || fighter->IsLowKicking)
-    {
-        if (!fighter->IsLowKicking && fighter->ButtonReleased)
-        {
-            fighter->ButtonReleased = false;
-            fighter->IsLowKicking = true;
-            animator->currentFrame = 0;
-            fighterPlayHiya(fighter->spriteIndex, fighter->soundHandler, fighter->isPlayer1);
-        }
 
-        impactFrameUpdate(animator, fighter, fighter->impactFrameLowKick);
-        updateSpriteAnimator(animator, kickLowFrames, fighter->LOW_KICK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
+            if (sprite[fighter->spriteIndex].x_ > 0)
+            {
+                sprite[fighter->spriteIndex].x_ -= fighter->playerMoveBackwardSpeed * delta;
+                sprite[fighter->HB_BODY].x_ -= fighter->playerMoveBackwardSpeed * delta;
+                sprite[fighter->HB_DUCK].x_ -= fighter->playerMoveBackwardSpeed * delta;
+                sprite[fighter->HB_ATTACK].x_ -= fighter->playerMoveBackwardSpeed * delta;
+            }
+            else
+            {
+                bgScrollLeft(delta);
+            }
 
-        if (animationIsComplete(animator, fighter->LOW_KICK_FRAME_COUNT))
-        {
-            fighter->IsLowKicking = false;
+        fighter->positionX = sprite[fighter->spriteIndex].x_;
+        fighter->positionY = sprite[fighter->spriteIndex].y_;
         }
-    }
-    else if (fighter->pad & JAGPAD_7 && fighter->ButtonReleased || fighter->IsHighKicking)
-    {
-        if (!fighter->IsHighKicking && fighter->ButtonReleased)
+        else if(fighter->pad & JAGPAD_RIGHT)
         {
-            fighter->ButtonReleased = false;
-            fighter->IsHighKicking = true;
-            animator->currentFrame = 0;
-            fighterPlayHiya(fighter->spriteIndex, fighter->soundHandler, fighter->isPlayer1);
-        }
+            updateSpriteAnimator(animator, walkFrames, fighter->WALK_FRAME_COUNT, !walkForward, true, fighter->positionX, fighter->positionY, fighter->direction);
+            fighter->IsWalking = true;
+            fighter->IsDucking = false;
+            fighter->IsBlocking = false;
+            fighter->IsLowPunching = false;
+            fighter->IsHighPunching = false;
+            
+            if (sprite[fighter->spriteIndex].x_ < 260)
+            {
+                sprite[fighter->spriteIndex].x_ += fighter->playerMoveForwardSpeed * delta;
+                sprite[fighter->HB_BODY].x_ += fighter->playerMoveForwardSpeed * delta;
+                sprite[fighter->HB_DUCK].x_ += fighter->playerMoveForwardSpeed * delta;
+                sprite[fighter->HB_ATTACK].x_ += fighter->playerMoveForwardSpeed * delta;
+            }
+            else
+            {
+                bgScrollRight(delta);
+            }
 
-        impactFrameUpdate(animator, fighter, fighter->impactFrameHighKick);
-        updateSpriteAnimator(animator, kickHighFrames, fighter->HIGH_KICK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
-
-        if (animationIsComplete(animator, fighter->HIGH_KICK_FRAME_COUNT))
-        {
-            fighter->IsHighKicking = false;
+        fighter->positionX = sprite[fighter->spriteIndex].x_;
+        fighter->positionY = sprite[fighter->spriteIndex].y_;
         }
-    }
-    else if (fighter->pad & JAGPAD_B)
-    {
-        if (!fighter->IsBlocking)
-        {
-            fighter->IsBlocking = true;
-            animator->currentFrame = 0;
-        }
-
-        if (fighter->pad & JAGPAD_DOWN)
+        else if (fighter->pad & JAGPAD_DOWN)
         {
             if (!fighter->IsDucking)
             {
                 fighter->IsDucking = true;
                 animator->currentFrame = 0;
             }
-
-            updateSpriteAnimator(animator, blockDuckFrames, fighter->BLOCK_DUCK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
+            updateSpriteAnimator(animator, duckFrames, fighter->DUCK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
+            sprite[fighter->HB_BODY].active = R_is_inactive;
         }
         else
         {
             if (fighter->IsDucking)
             {
-                fighter->IsDucking = false;
-            }
-            
-            updateSpriteAnimator(animator, blockFrames, fighter->BLOCK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
-        }
-    }
-    else if(fighter->pad & JAGPAD_LEFT)
-    {
-        updateSpriteAnimator(animator, walkFrames, fighter->WALK_FRAME_COUNT, walkForward, true, fighter->positionX, fighter->positionY, fighter->direction);
-        fighter->IsWalking = true;
-        fighter->IsDucking = false;
-        fighter->IsBlocking  = false;
-        fighter->IsLowPunching = false;
-        fighter->IsHighPunching = false;
-
-        if (sprite[fighter->spriteIndex].x_ > 0)
-        {
-            sprite[fighter->spriteIndex].x_ -= fighter->playerMoveBackwardSpeed * delta;
-            sprite[fighter->HB_BODY].x_ -= fighter->playerMoveBackwardSpeed * delta;
-            sprite[fighter->HB_DUCK].x_ -= fighter->playerMoveBackwardSpeed * delta;
-            sprite[fighter->HB_ATTACK].x_ -= fighter->playerMoveBackwardSpeed * delta;
-        }
-        else
-        {
-            bgScrollLeft(delta);
-        }
-
-       fighter->positionX = sprite[fighter->spriteIndex].x_;
-       fighter->positionY = sprite[fighter->spriteIndex].y_;
-    }
-    else if(fighter->pad & JAGPAD_RIGHT)
-    {
-        updateSpriteAnimator(animator, walkFrames, fighter->WALK_FRAME_COUNT, !walkForward, true, fighter->positionX, fighter->positionY, fighter->direction);
-        fighter->IsWalking = true;
-        fighter->IsDucking = false;
-        fighter->IsBlocking = false;
-        fighter->IsLowPunching = false;
-        fighter->IsHighPunching = false;
-        
-        if (sprite[fighter->spriteIndex].x_ < 260)
-        {
-            sprite[fighter->spriteIndex].x_ += fighter->playerMoveForwardSpeed * delta;
-            sprite[fighter->HB_BODY].x_ += fighter->playerMoveForwardSpeed * delta;
-            sprite[fighter->HB_DUCK].x_ += fighter->playerMoveForwardSpeed * delta;
-            sprite[fighter->HB_ATTACK].x_ += fighter->playerMoveForwardSpeed * delta;
-        }
-        else
-        {
-            bgScrollRight(delta);
-        }
-
-       fighter->positionX = sprite[fighter->spriteIndex].x_;
-       fighter->positionY = sprite[fighter->spriteIndex].y_;
-    }
-    else if (fighter->pad & JAGPAD_DOWN)
-    {
-        if (!fighter->IsDucking)
-        {
-            fighter->IsDucking = true;
-            animator->currentFrame = 0;
-        }
-        updateSpriteAnimator(animator, duckFrames, fighter->DUCK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
-        sprite[fighter->HB_BODY].active = R_is_inactive;
-    }
-    else
-    {
-        if (fighter->IsDucking)
-        {
-            updateSpriteAnimator(animator, duckFrames, fighter->DUCK_FRAME_COUNT, false, false, fighter->positionX, fighter->positionY, fighter->direction);
-            
-            if (animator->currentFrame == 0)
-            {
-                fighter->IsDucking = false;
-
-                if (sprite[fighter->HB_DUCK].active == R_is_active)
+                updateSpriteAnimator(animator, duckFrames, fighter->DUCK_FRAME_COUNT, false, false, fighter->positionX, fighter->positionY, fighter->direction);
+                
+                if (animator->currentFrame == 0)
                 {
-                    sprite[fighter->HB_BODY].active = R_is_active;
+                    fighter->IsDucking = false;
+
+                    if (sprite[fighter->HB_DUCK].active == R_is_active)
+                    {
+                        sprite[fighter->HB_BODY].active = R_is_active;
+                    }
                 }
             }
-        }
-        else if (fighter->IsBlocking)
-        {
-            updateSpriteAnimator(animator, blockFrames, fighter->BLOCK_FRAME_COUNT, false, false, fighter->positionX, fighter->positionY, fighter->direction);
-            
-            if (animator->currentFrame == 0)
+            else if (fighter->IsBlocking)
             {
-                fighter->IsBlocking = false;
+                updateSpriteAnimator(animator, blockFrames, fighter->BLOCK_FRAME_COUNT, false, false, fighter->positionX, fighter->positionY, fighter->direction);
+                
+                if (animator->currentFrame == 0)
+                {
+                    fighter->IsBlocking = false;
+                }
+            }
+            else
+            {
+                if (fighter->IsWalking)
+                {
+                    fighter->IsWalking = false;
+                    animator->currentFrame = 0;
+                    impactFrameReset(fighter);
+                }
+
+                updateSpriteAnimator(animator, idleFrames, fighter->IDLE_FRAME_COUNT, true, true, fighter->positionX, fighter->positionY, fighter->direction);
+
+            //fighter->positionX = sprite[fighter->spriteIndex].x_;
+            //fighter->positionY = sprite[fighter->spriteIndex].y_;
             }
         }
-        else
+
+        if (!(fighter->pad & JAGPAD_C)
+            && !(fighter->pad & JAGPAD_9)
+            && !(fighter->pad & JAGPAD_A)
+            && !(fighter->pad & JAGPAD_7))
         {
-            if (fighter->IsWalking)
-            {
-                fighter->IsWalking = false;
-                animator->currentFrame = 0;
-                impactFrameReset(fighter);
-            }
-
-            updateSpriteAnimator(animator, idleFrames, fighter->IDLE_FRAME_COUNT, true, true, fighter->positionX, fighter->positionY, fighter->direction);
-
-           //fighter->positionX = sprite[fighter->spriteIndex].x_;
-           //fighter->positionY = sprite[fighter->spriteIndex].y_;
+            fighter->ButtonReleased = true;
         }
-    }
-
-    if (!(fighter->pad & JAGPAD_C)
-        && !(fighter->pad & JAGPAD_9)
-        && !(fighter->pad & JAGPAD_A)
-        && !(fighter->pad & JAGPAD_7))
-    {
-        fighter->ButtonReleased = true;
     }
 }
 
@@ -323,7 +369,46 @@ void fighterPlayHiya(int fighter, struct SoundHandler* soundHandler, bool isPlay
 
 void fighterImpactCheck(struct Fighter* fighter1, struct Fighter* fighter2)
 {
-    //TODO check if P1_HB_ATTACK collides with P2_HB_BODY, then set fighter2's Hit flag based on fighter1's attack
+    collision = rapCollide(P1_HB_BODY-1,P1_HB_ATTACK-1,P2_HB_BODY-1,P2_HB_ATTACK-1);
 
-    //TODO check if P2_HB_ATTACK collides with P1_HB_BODY, then set fighter1's Hit flag based on fighter2's attack
+    if (collision > -1)
+    {
+        int i = 0;
+        int collisionSprAddr = 0;
+        int collisionSprAddr2 = 0;
+
+        while (collisionSprAddr2 >= 0)
+        {
+            collisionSprAddr = colliders[i].objectSourceHitAddr;
+            collisionSprAddr2 = colliders[i].objectHitAddr;
+
+            if (collisionSprAddr > -1)
+            {
+                int collisionSprIndex = jsfGetSpriteIndex(collisionSprAddr);
+                int collisionSprIndex2 = jsfGetSpriteIndex(collisionSprAddr2);
+                sprite[collisionSprIndex].was_hit = -1;
+                sprite[collisionSprIndex2].was_hit = -1;
+
+                if (collisionSprIndex == P1_HB_ATTACK && collisionSprIndex2 == P2_HB_BODY)
+                {
+                    if (!fighter2->IsBeingDamaged)
+                    {
+                        if (fighter1->IsLowPunching)
+                        {
+                            fighter2->IsHitLow = true;
+                        }
+                        else if (fighter1->IsHighPunching)
+                        {
+                            fighter2->IsHitHigh = true;
+                        }
+                        else if (fighter1->IsLowKicking)
+                        {
+                            fighter2->IsHitLow = true;
+                        }
+                    }
+                }
+            }
+            i++;
+        }
+    }
 }

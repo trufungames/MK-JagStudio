@@ -1052,6 +1052,8 @@ void basicmain()
 	int shutterTicks = 0;
 	bool roundFightSequenceComplete = false;
 	int fightScale = 0;
+	struct Fighter* fighter1Ptr;
+	struct Fighter* fighter2Ptr;
 /*
 The formula (C-notation) to get a 16-bit color value from the red/green/blue parts is as follows:
 
@@ -1391,24 +1393,31 @@ int gameStartTicks = rapTicks;
 				{
 					case 0:
 						sfxJohnnyCage(&soundHandler, true);
+						fighter1Ptr = &fighterCage;
 						break;
 					case 1:
 						sfxKano(&soundHandler, true);
+						fighter1Ptr = &fighterKano;
 						break;
 					case 2:
 						sfxSubzero(&soundHandler, true);
+						fighter1Ptr = &fighterSubzero;
 						break;
 					case 3:
 						sfxSonya(&soundHandler, true);
+						fighter1Ptr = &fighterSonya;
 						break;
 					case 4:
 						sfxRaiden(&soundHandler, true);
+						fighter1Ptr = &fighterRaiden;
 						break;
 					case 5:
 						sfxLiuKang(&soundHandler, true);
+						fighter1Ptr = &fighterKang;
 						break;
 					case 6:
 						sfxScorpion(&soundHandler, true);
+						fighter1Ptr = &fighterScorpion;
 						break;
 				}
 			}
@@ -1422,24 +1431,31 @@ int gameStartTicks = rapTicks;
 				{
 					case 0:
 						sfxJohnnyCage(&soundHandler, false);
+						fighter2Ptr = &fighterCage2;
 						break;
 					case 1:
 						sfxKano(&soundHandler, false);
+						fighter2Ptr = &fighterKano2;
 						break;
 					case 2:
 						sfxSubzero(&soundHandler, false);
+						fighter2Ptr = &fighterSubzero2;
 						break;
 					case 3:
 						sfxSonya(&soundHandler, false);
+						fighter2Ptr = &fighterSonya2;
 						break;
 					case 4:
 						sfxRaiden(&soundHandler, false);
+						fighter2Ptr = &fighterRaiden2;
 						break;
 					case 5:
 						sfxLiuKang(&soundHandler, false);
+						fighter2Ptr = &fighterKang2;
 						break;
 					case 6:
 						sfxScorpion(&soundHandler, false);
+						fighter2Ptr = &fighterScorpion2;
 						break;
 				}
 			}
@@ -1610,8 +1626,11 @@ int gameStartTicks = rapTicks;
 					fighterUpdate(delta, &fighterScorpion2, &scorpionAnimator2, scorpionIdleFrames, scorpionWalkFrames, subzeroDuckFrames, subzeroBlockFrames, subzeroBlockDuckFrames, subzeroPunchLowFrames, subzeroPunchHighFrames, subzeroKickLowFrames, subzeroKickHighFrames, subzeroHitLowFrames, subzeroHitHighFrames, subzeroHitBackFrames, true);
 					break;
 			}
+
+			fighterImpactCheck(fighter1Ptr, fighter2Ptr);
 		}
 		
+
 		pad1=jsfGetPadPressed(LEFT_PAD);
 		
 		if(pad1 & JAGPAD_STAR)
@@ -1622,7 +1641,7 @@ int gameStartTicks = rapTicks;
 			sprite[P2_HB_BODY].active = R_is_active;
 			sprite[P2_HB_DUCK].active = R_is_active;
 			sprite[P2_HB_ATTACK].active = R_is_active;
-			//rapDebugSetVisible(DEBUG_SHOW);
+			rapDebugSetVisible(DEBUG_SHOW);
 		}
 		else if (pad1 & JAGPAD_HASH)
 		{
@@ -1632,7 +1651,7 @@ int gameStartTicks = rapTicks;
 			sprite[P2_HB_BODY].active = R_is_inactive;
 			sprite[P2_HB_DUCK].active = R_is_inactive;
 			sprite[P2_HB_ATTACK].active = R_is_inactive;
-			//rapDebugSetVisible(DEBUG_HIDE);
+			rapDebugSetVisible(DEBUG_HIDE);
 		}
 
 		rapDebugUpdate();
