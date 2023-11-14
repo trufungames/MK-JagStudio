@@ -10,6 +10,9 @@ struct Fighter {
     unsigned int HIGH_PUNCH_FRAME_COUNT;
     unsigned int LOW_KICK_FRAME_COUNT;
     unsigned int HIGH_KICK_FRAME_COUNT;
+    unsigned int HIT_LOW_FRAME_COUNT;
+    unsigned int HIT_HIGH_FRAME_COUNT;
+    unsigned int HIT_BACK_FRAME_COUNT;
 
     bool IsWalking;
     bool IsDucking;
@@ -47,6 +50,8 @@ void fighterInitialize(struct Fighter* fighter, bool isPlayer1, struct SoundHand
 
 void fighterUpdateIdle(float delta, struct Fighter *fighter, struct SpriteAnimator* animator, struct AnimationFrame idleFrames[]);
 
-void fighterUpdate(float delta, struct Fighter* fighter, struct SpriteAnimator* animator, struct AnimationFrame idleFrames[], struct AnimationFrame walkFrames[], struct AnimationFrame duckFrames[], struct AnimationFrame blockFrames[], struct AnimationFrame blockDuckFrames[], struct AnimationFrame punchLowFrames[], struct AnimationFrame punchHighFrames[], struct AnimationFrame kickLowFrames[], struct AnimationFrame kickHighFrames[], bool walkForward);
+void fighterUpdate(float delta, struct Fighter* fighter, struct SpriteAnimator* animator, struct AnimationFrame idleFrames[], struct AnimationFrame walkFrames[], struct AnimationFrame duckFrames[], struct AnimationFrame blockFrames[], struct AnimationFrame blockDuckFrames[], struct AnimationFrame punchLowFrames[], struct AnimationFrame punchHighFrames[], struct AnimationFrame kickLowFrames[], struct AnimationFrame kickHighFrames[], struct AnimationFrame hitLowFrames[], struct AnimationFrame hitHighFrames[], struct AnimationFrame hitBackFrames[], bool walkForward);
 
 void fighterPlayHiya(int fighter, struct SoundHandler* soundHandler, bool isPlayer1);
+
+void fighterImpactCheck(struct Fighter* fighter1, struct Fighter* fighter2);

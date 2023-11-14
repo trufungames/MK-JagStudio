@@ -91,7 +91,7 @@ void fighterUpdateIdle(float delta, struct Fighter *fighter, struct SpriteAnimat
     updateSpriteAnimator(animator, idleFrames, fighter->IDLE_FRAME_COUNT, true, true, fighter->positionX, fighter->positionY, fighter->direction);
 }
 
-void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* animator, struct AnimationFrame idleFrames[], struct AnimationFrame walkFrames[], struct AnimationFrame duckFrames[], struct AnimationFrame blockFrames[], struct AnimationFrame blockDuckFrames[], struct AnimationFrame punchLowFrames[], struct AnimationFrame punchHighFrames[], struct AnimationFrame kickLowFrames[], struct AnimationFrame kickHighFrames[], bool walkForward)
+void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* animator, struct AnimationFrame idleFrames[], struct AnimationFrame walkFrames[], struct AnimationFrame duckFrames[], struct AnimationFrame blockFrames[], struct AnimationFrame blockDuckFrames[], struct AnimationFrame punchLowFrames[], struct AnimationFrame punchHighFrames[], struct AnimationFrame kickLowFrames[], struct AnimationFrame kickHighFrames[], struct AnimationFrame hitLowFrames[], struct AnimationFrame hitHighFrames[], struct AnimationFrame hitBackFrames[], bool walkForward)
 {
     fighter->pad = jsfGetPad(fighter->PAD);
 
@@ -319,4 +319,11 @@ void fighterPlayHiya(int fighter, struct SoundHandler* soundHandler, bool isPlay
         default:
             sfxHiyaMale(soundHandler, isPlayer1);
     }
+}
+
+void fighterImpactCheck(struct Fighter* fighter1, struct Fighter* fighter2)
+{
+    //TODO check if P1_HB_ATTACK collides with P2_HB_BODY, then set fighter2's Hit flag based on fighter1's attack
+
+    //TODO check if P2_HB_ATTACK collides with P1_HB_BODY, then set fighter1's Hit flag based on fighter2's attack
 }
