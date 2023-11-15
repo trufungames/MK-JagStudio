@@ -118,7 +118,7 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
     //**************************************
     if (!fighter->IsBeingDamaged)
     {
-        if (fighter->IsHitLow || fighter->IsHitHigh)
+        if (fighter->IsHitLow || fighter->IsHitHigh || fighter->IsHitBack)
         {
             fighter->IsBeingDamaged = true;
             animator->currentFrame = 0;
@@ -143,6 +143,16 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
         if (animationIsComplete(animator, fighter->HIT_HIGH_FRAME_COUNT))
         {
             fighter->IsHitHigh = false;
+            fighter->IsBeingDamaged = false;
+        }
+    }
+    else if (fighter->IsHitBack && fighter->IsBeingDamaged)
+    {
+        updateSpriteAnimator(animator, hitBackFrames, fighter->HIT_BACK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
+
+        if (animationIsComplete(animator, fighter->HIT_BACK_FRAME_COUNT))
+        {
+            fighter->IsHitBack = false;
             fighter->IsBeingDamaged = false;
         }
     }
@@ -418,6 +428,10 @@ void fighterImpactCheck(struct Fighter* fighter1, struct Fighter* fighter2)
                         else if (fighter1->IsLowKicking)
                         {
                             fighter2->IsHitLow = true;
+                        }
+                        else if (fighter1->IsHighKicking)
+                        {
+                            fighter2->IsHitBack = true;
                         }
                     }
                 }
