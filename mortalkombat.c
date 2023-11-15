@@ -39,11 +39,11 @@ static	SoundHandler soundHandler = {
 	};
 //Scorpion animation frames
 static SpriteAnimator cageAnimator = {
-	CAGE, 0.5f, BMPCAGE, 0, 0
+	CAGE, 0.5f, BMPCAGE, 0, 0, 96
 };
 
 static SpriteAnimator cageAnimator2 = {
-	CAGE2, 0.5f, BMPCAGE, 0, 0
+	CAGE2, 0.5f, BMPCAGE, 0, 0, 96
 };
 
 struct ImpactFrame cageImpactFrameLowPunch = {
@@ -159,11 +159,11 @@ struct ImpactFrame kangImpactFrameHighKick = {
 };
 
 static SpriteAnimator kangAnimator = {
-	KANG, 0.5f, BMPKANG, 0, 0
+	KANG, 0.5f, BMPKANG, 0, 0, 80
 };
 
 static SpriteAnimator kangAnimator2 = {
-	KANG2, 0.5f, BMPKANG, 0, 0
+	KANG2, 0.5f, BMPKANG, 0, 0, 80
 };
 
 static AnimationFrame kangHitLowFrames[] = {
@@ -266,11 +266,11 @@ struct ImpactFrame raidenImpactFrameHighKick = {
 };
 
 static SpriteAnimator raidenAnimator = {
-	RAIDEN, 0.5f, BMPRAIDEN, 0, 0
+	RAIDEN, 0.5f, BMPRAIDEN, 0, 0, 80
 };
 
 static SpriteAnimator raidenAnimator2 = {
-	RAIDEN2, 0.5f, BMPRAIDEN, 0, 0
+	RAIDEN2, 0.5f, BMPRAIDEN, 0, 0, 80
 };
 
 static AnimationFrame raidenHitLowFrames[] = {
@@ -374,11 +374,11 @@ struct ImpactFrame subzeroImpactFrameHighKick = {
 };
 
 static SpriteAnimator subzeroAnimator = {
-	SUBZERO, 0.5f, BMPSUBZERO, 0, 0
+	SUBZERO, 0.5f, BMPSUBZERO, 0, 0, 64
 };
 
 static SpriteAnimator subzeroAnimator2 = {
-	SUBZERO2, 0.5f, BMPSUBZERO, 0, 0
+	SUBZERO2, 0.5f, BMPSUBZERO, 0, 0, 64
 };
 
 static AnimationFrame subzeroHitLowFrames[] = {
@@ -485,11 +485,11 @@ struct ImpactFrame sonyaImpactFrameHighKick = {
 	3, 80, 13
 };
 static SpriteAnimator sonyaAnimator = {
-	SONYA, 0.5f, BMPSONYA, 0, 0
+	SONYA, 0.5f, BMPSONYA, 0, 0, 80
 };
 
 static SpriteAnimator sonyaAnimator2 = {
-	SONYA2, 0.5f, BMPSONYA, 0, 0
+	SONYA2, 0.5f, BMPSONYA, 0, 0, 80
 };
 
 static AnimationFrame sonyaHitLowFrames[] = {
@@ -578,11 +578,11 @@ static AnimationFrame sonyaKickHighFrames[] = {
 
 //Scorpion animation frames
 static SpriteAnimator scorpionAnimator = {
-	SCORPION, 0.5f, BMPSUBZERO, 0, 0
+	SCORPION, 0.5f, BMPSUBZERO, 0, 0, 80
 };
 
 static SpriteAnimator scorpionAnimator2 = {
-	SCORPION2, 0.5f, BMPSUBZERO, 0, 0
+	SCORPION2, 0.5f, BMPSUBZERO, 0, 0, 80
 };
 
 static AnimationFrame scorpionIdleFrames[] = {
@@ -609,11 +609,11 @@ static AnimationFrame scorpionWalkFrames[] = {
 
 //Kano animation frames
 static SpriteAnimator kanoAnimator = {
-	KANO, 0.5f, BMPKANO, 0, 0
+	KANO, 0.5f, BMPKANO, 0, 0, 80
 };
 
 static SpriteAnimator kanoAnimator2 = {
-	KANO2, 0.5f, BMPKANO, 0, 0
+	KANO2, 0.5f, BMPKANO, 0, 0, 80
 };
 
 static AnimationFrame kanoHitLowFrames[] = {

@@ -31,7 +31,11 @@ void fighterMakeSelectable(struct Fighter* fighter, bool isPlayer1)
 
         if (fighter->spriteIndex == CAGE2)
         {
-            sprite[fighter->spriteIndex].x_ = 227;
+            sprite[fighter->spriteIndex].x_ -= 16;
+        }
+        else if (fighter->spriteIndex == SUBZERO2)
+        {
+            sprite[fighter->spriteIndex].x_ += 16;
         }
 
         sprite[fighter->spriteIndex].flip = R_is_flipped;
@@ -84,6 +88,16 @@ void fighterInitialize(struct Fighter *fighter, bool isPlayer1, struct SoundHand
         fighter->HB_DUCK = P2_HB_DUCK;
         fighter->PAD = RIGHT_PAD;
         sprite[fighter->spriteIndex].x_ = 210;
+
+        if (fighter->spriteIndex == CAGE2)
+        {
+            sprite[fighter->spriteIndex].x_ -= 16;
+        }
+        else if (fighter->spriteIndex == SUBZERO2)
+        {
+            sprite[fighter->spriteIndex].x_ += 16;
+        }
+
         fighter->direction = -1;
     }
 
@@ -391,7 +405,7 @@ void fighterImpactCheck(struct Fighter* fighter1, struct Fighter* fighter2)
 
                 if (collisionSprIndex == P1_HB_ATTACK && collisionSprIndex2 == P2_HB_BODY)
                 {
-                    if (!fighter2->IsBeingDamaged)
+                    if (!fighter2->IsBeingDamaged && !fighter2->IsBlocking)
                     {
                         if (fighter1->IsLowPunching)
                         {

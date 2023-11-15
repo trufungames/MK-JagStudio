@@ -3221,6 +3221,7 @@ __ZL16shutter1Animator:
 	.long	12277312
 	.long	0
 	.long	0
+	.skip 4
 	.even
 __ZL13shutterFrames:
 	.long	48
@@ -3335,6 +3336,7 @@ __ZL16shutter2Animator:
 	.long	12277312
 	.long	0
 	.long	0
+	.skip 4
 	.even
 __ZL16shutter3Animator:
 	.long	49
@@ -3342,6 +3344,7 @@ __ZL16shutter3Animator:
 	.long	12277312
 	.long	0
 	.long	0
+	.skip 4
 	.even
 __ZL16shutter4Animator:
 	.long	50
@@ -3349,6 +3352,7 @@ __ZL16shutter4Animator:
 	.long	12277312
 	.long	0
 	.long	0
+	.skip 4
 	.even
 __ZL16shutter5Animator:
 	.long	51
@@ -3356,6 +3360,7 @@ __ZL16shutter5Animator:
 	.long	12277312
 	.long	0
 	.long	0
+	.skip 4
 	.even
 __ZL11fighterCage:
 	.long	25
@@ -3482,6 +3487,7 @@ __ZL12cageAnimator:
 	.long	8704048
 	.long	0
 	.long	0
+	.long	96
 	.even
 __ZL14cageIdleFrames:
 	.long	96
@@ -3540,6 +3546,7 @@ __ZL12kanoAnimator:
 	.long	11325648
 	.long	0
 	.long	0
+	.long	80
 	.even
 __ZL14kanoIdleFrames:
 	.long	80
@@ -3598,6 +3605,7 @@ __ZL15subzeroAnimator:
 	.long	10277008
 	.long	0
 	.long	0
+	.long	64
 	.even
 __ZL17subzeroIdleFrames:
 	.long	64
@@ -3691,6 +3699,7 @@ __ZL13sonyaAnimator:
 	.long	10801328
 	.long	0
 	.long	0
+	.long	80
 	.even
 __ZL15sonyaIdleFrames:
 	.long	80
@@ -3749,6 +3758,7 @@ __ZL14raidenAnimator:
 	.long	9752688
 	.long	0
 	.long	0
+	.long	80
 	.even
 __ZL16raidenIdleFrames:
 	.long	80
@@ -3828,6 +3838,7 @@ __ZL17lightningAnimator:
 	.long	12060928
 	.long	0
 	.long	0
+	.skip 4
 	.even
 __ZL15lightningFrames:
 	.long	80
@@ -4047,6 +4058,7 @@ __ZL12kangAnimator:
 	.long	9228368
 	.long	0
 	.long	0
+	.long	80
 	.even
 __ZL14kangIdleFrames:
 	.long	80
@@ -4112,6 +4124,7 @@ __ZL16scorpionAnimator:
 	.long	10277008
 	.long	0
 	.long	0
+	.long	80
 	.even
 __ZL18scorpionIdleFrames:
 	.long	80
@@ -4289,6 +4302,7 @@ __ZL13cageAnimator2:
 	.long	8704048
 	.long	0
 	.long	0
+	.long	96
 	.even
 __ZL13kanoAnimator2:
 	.long	32
@@ -4296,6 +4310,7 @@ __ZL13kanoAnimator2:
 	.long	11325648
 	.long	0
 	.long	0
+	.long	80
 	.even
 __ZL16subzeroAnimator2:
 	.long	37
@@ -4303,6 +4318,7 @@ __ZL16subzeroAnimator2:
 	.long	10277008
 	.long	0
 	.long	0
+	.long	64
 	.even
 __ZL14sonyaAnimator2:
 	.long	38
@@ -4310,6 +4326,7 @@ __ZL14sonyaAnimator2:
 	.long	10801328
 	.long	0
 	.long	0
+	.long	80
 	.even
 __ZL15raidenAnimator2:
 	.long	35
@@ -4317,6 +4334,7 @@ __ZL15raidenAnimator2:
 	.long	9752688
 	.long	0
 	.long	0
+	.long	80
 	.even
 __ZL18lightning2Animator:
 	.long	36
@@ -4324,6 +4342,7 @@ __ZL18lightning2Animator:
 	.long	12060928
 	.long	0
 	.long	0
+	.skip 4
 	.even
 __ZL13kangAnimator2:
 	.long	34
@@ -4331,6 +4350,7 @@ __ZL13kangAnimator2:
 	.long	9228368
 	.long	0
 	.long	0
+	.long	80
 	.even
 __ZL17scorpionAnimator2:
 	.long	31
@@ -4338,6 +4358,7 @@ __ZL17scorpionAnimator2:
 	.long	10277008
 	.long	0
 	.long	0
+	.long	80
 	.even
 __ZL13fightAnimator:
 	.long	19
@@ -4345,6 +4366,7 @@ __ZL13fightAnimator:
 	.long	12293280
 	.long	0
 	.long	0
+	.skip 4
 	.even
 __ZL16fightFlashFrames:
 	.long	160

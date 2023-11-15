@@ -8,9 +8,9 @@ struct AnimationFrame {
     unsigned int ticks;
 };
 
-void animateFrame(unsigned int spriteIndex, unsigned int frame, struct AnimationFrame animationFrames[], float mulFactor, unsigned int base);
+void animateFrame(unsigned int spriteIndex, unsigned int frame, struct AnimationFrame animationFrames[], float mulFactor, unsigned int base, int idleFrameWidth);
 
-void animateFrame(unsigned int spriteIndex, unsigned int frame, struct AnimationFrame animationFrames[], float mulFactor, unsigned int base, int positionX, int positionY, int direction);
+void animateFrame(unsigned int spriteIndex, unsigned int frame, struct AnimationFrame animationFrames[], float mulFactor, unsigned int base, int idleFrameWidth, int positionX, int positionY, int direction);
 
 struct SpriteAnimator {
     unsigned int spriteIndex;
@@ -18,6 +18,7 @@ struct SpriteAnimator {
     unsigned int base;
     int lastTick;
     int currentFrame;
+    int idleFrameWidth;
 };
 
 bool animationIsComplete(struct SpriteAnimator *animator, int totalFrames);

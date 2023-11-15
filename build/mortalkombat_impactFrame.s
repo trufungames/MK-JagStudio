@@ -61,32 +61,32 @@ __Z17impactFrameUpdateP14SpriteAnimatorP7FighterP11ImpactFrame:
 	lsl.l #6,%d0
 	lea (%a2,%d0.l),%a3
 	move.w 110(%a0),%d0
-	move.w %d0,%d1
-	muls.w 6(%a1),%d1
-	add.w 8(%a3),%d1
-	move.w %d1,7880(%a2)
-	muls.w 10(%a1),%d0
-	add.w 12(%a3),%d0
-	move.w %d0,7884(%a2)
+	muls.w 6(%a1),%d0
+	add.w 8(%a3),%d0
+	move.w %d0,7880(%a2)
+	move.w 12(%a3),%a3
+	add.w 10(%a1),%a3
+	move.w %a3,7884(%a2)
 	move.l (%sp)+,%a2
 	move.l (%sp)+,%a3
 	unlk %fp
 	rts
 .L9:
 	move.l (%a0),%d0
-	move.l %d0,%d1
-	add.l %d0,%d1
-	add.l %d1,%d0
+	move.l %d0,%a3
+	add.l %d0,%a3
+	add.l %a3,%d0
 	lsl.l #6,%d0
 	lea (%a2,%d0.l),%a3
+	move.w 8(%a3),%d1
+	add.w 30(%a3),%d1
 	move.w 110(%a0),%d0
-	move.w %d0,%d1
-	muls.w 6(%a1),%d1
-	add.w 8(%a3),%d1
+	muls.w 6(%a1),%d0
+	add.w %d0,%d1
 	move.w %d1,8456(%a2)
-	muls.w 10(%a1),%d0
-	add.w 12(%a3),%d0
-	move.w %d0,8460(%a2)
+	move.w 12(%a3),%a3
+	add.w 10(%a1),%a3
+	move.w %a3,8460(%a2)
 	move.l (%sp)+,%a2
 	move.l (%sp)+,%a3
 	unlk %fp
