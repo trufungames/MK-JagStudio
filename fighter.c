@@ -122,7 +122,15 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
         {
             fighter->IsBeingDamaged = true;
             animator->currentFrame = 0;
-            //TODO play SFX of damage
+
+            if (fighter->IsHitLow || fighter->IsHitHigh)
+            {
+                fighterPlayGroan(fighter->spriteIndex, fighter->soundHandler, fighter->isPlayer1);
+            }
+            else if (fighter->IsHitBack)
+            {
+                sfxImpact(fighter->soundHandler);
+            }
         }
     }
 
@@ -172,6 +180,7 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
                 fighter->IsLowPunching = true;
                 animator->currentFrame = 0;
                 fighterPlayHiya(fighter->spriteIndex, fighter->soundHandler, fighter->isPlayer1);
+                sfxSwing(fighter->soundHandler);
             }
 
             impactFrameUpdate(animator, fighter, fighter->impactFrameLowPunch);
@@ -190,6 +199,7 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
                 fighter->IsHighPunching = true;
                 animator->currentFrame = 0;
                 fighterPlayHiya(fighter->spriteIndex, fighter->soundHandler, fighter->isPlayer1);
+                sfxSwing(fighter->soundHandler);
             }
 
             impactFrameUpdate(animator, fighter, fighter->impactFrameHighPunch);
@@ -208,6 +218,7 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
                 fighter->IsLowKicking = true;
                 animator->currentFrame = 0;
                 fighterPlayHiya(fighter->spriteIndex, fighter->soundHandler, fighter->isPlayer1);
+                sfxSwing(fighter->soundHandler);
             }
 
             impactFrameUpdate(animator, fighter, fighter->impactFrameLowKick);
@@ -226,6 +237,7 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
                 fighter->IsHighKicking = true;
                 animator->currentFrame = 0;
                 fighterPlayHiya(fighter->spriteIndex, fighter->soundHandler, fighter->isPlayer1);
+                sfxSwing(fighter->soundHandler);
             }
 
             impactFrameUpdate(animator, fighter, fighter->impactFrameHighKick);
@@ -285,8 +297,14 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
                 bgScrollLeft(delta);
             }
 
-        fighter->positionX = sprite[fighter->spriteIndex].x_;
-        fighter->positionY = sprite[fighter->spriteIndex].y_;
+            fighter->positionX = sprite[fighter->spriteIndex].x_;
+            fighter->positionY = sprite[fighter->spriteIndex].y_;
+
+            if (fighter->direction == -1)
+            {
+                //player 2, so we have to factor the idleFrameWidth into the offset
+                fighter->positionX += walkFrames[animator->currentFrame].width - animator->idleFrameWidth;
+            }
         }
         else if(fighter->pad & JAGPAD_RIGHT)
         {
@@ -309,8 +327,14 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
                 bgScrollRight(delta);
             }
 
-        fighter->positionX = sprite[fighter->spriteIndex].x_;
-        fighter->positionY = sprite[fighter->spriteIndex].y_;
+            fighter->positionX = sprite[fighter->spriteIndex].x_;
+            fighter->positionY = sprite[fighter->spriteIndex].y_;
+
+            if (fighter->direction == -1)
+            {
+                //player 2, so we have to factor the idleFrameWidth into the offset
+                fighter->positionX += walkFrames[animator->currentFrame].width - animator->idleFrameWidth;
+            }
         }
         else if (fighter->pad & JAGPAD_DOWN)
         {
@@ -378,12 +402,15 @@ void fighterPlayHiya(int fighter, struct SoundHandler* soundHandler, bool isPlay
     switch (fighter)
     {
         case SONYA:
+        case SONYA2:
             sfxHiyaFemale(soundHandler, isPlayer1);
             break;
         case SUBZERO:
+        case SUBZERO2:
             sfxHiyaNinja(soundHandler, isPlayer1);
             break;
         case KANG:
+        case KANG2:
             sfxHiyaKang(soundHandler, isPlayer1);
             break;
         default:
@@ -391,9 +418,22 @@ void fighterPlayHiya(int fighter, struct SoundHandler* soundHandler, bool isPlay
     }
 }
 
+void fighterPlayGroan(int fighter, struct SoundHandler* soundHandler, bool isPlayer1)
+{
+    switch (fighter)
+    {
+        case SONYA:
+        case SONYA2:
+            sfxGroanFemale(soundHandler, isPlayer1);
+            break;
+        default:
+            sfxGroanMale(soundHandler, isPlayer1);
+    }
+}
+
 void fighterImpactCheck(struct Fighter* fighter1, struct Fighter* fighter2)
 {
-    collision = rapCollide(P1_HB_BODY-1,P1_HB_ATTACK-1,P2_HB_BODY-1,P2_HB_ATTACK-1);
+    collision = rapCollide(P1_HB_BODY-1,P2_HB_ATTACK-1,P1_HB_BODY-1,P2_HB_ATTACK-1);
 
     if (collision > -1)
     {
@@ -432,6 +472,29 @@ void fighterImpactCheck(struct Fighter* fighter1, struct Fighter* fighter2)
                         else if (fighter1->IsHighKicking)
                         {
                             fighter2->IsHitBack = true;
+                        }
+                    }
+                }
+
+                if (collisionSprIndex == P2_HB_ATTACK && collisionSprIndex2 == P1_HB_BODY)
+                {
+                    if (!fighter1->IsBeingDamaged && !fighter1->IsBlocking)
+                    {
+                        if (fighter2->IsLowPunching)
+                        {
+                            fighter1->IsHitLow = true;
+                        }
+                        else if (fighter2->IsHighPunching)
+                        {
+                            fighter1->IsHitHigh = true;
+                        }
+                        else if (fighter2->IsLowKicking)
+                        {
+                            fighter1->IsHitLow = true;
+                        }
+                        else if (fighter2->IsHighKicking)
+                        {
+                            fighter1->IsHitBack = true;
                         }
                     }
                 }

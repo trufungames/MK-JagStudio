@@ -58,4 +58,6 @@ void fighterUpdate(float delta, struct Fighter* fighter, struct SpriteAnimator* 
 
 void fighterPlayHiya(int fighter, struct SoundHandler* soundHandler, bool isPlayer1);
 
+void fighterPlayGroan(int fighter, struct SoundHandler* soundHandler, bool isPlayer1);
+
 void fighterImpactCheck(struct Fighter* fighter1, struct Fighter* fighter2);

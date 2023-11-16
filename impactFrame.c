@@ -28,7 +28,7 @@ void impactFrameUpdate(struct SpriteAnimator* animator, struct Fighter* fighter,
         }
         else
         {
-            sprite[P2_HB_ATTACK].x_ = sprite[fighter->spriteIndex].x_ + sprite[fighter->spriteIndex].width + (impactFrame->RelativePositionX * fighter->direction);
+            sprite[P2_HB_ATTACK].x_ = sprite[fighter->spriteIndex].x_ + sprite[fighter->spriteIndex].width + ((48 + impactFrame->RelativePositionX) * fighter->direction);
             sprite[P2_HB_ATTACK].y_ = sprite[fighter->spriteIndex].y_ + impactFrame->RelativePositionY;
         }
     }

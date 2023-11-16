@@ -80,8 +80,9 @@ __Z17impactFrameUpdateP14SpriteAnimatorP7FighterP11ImpactFrame:
 	lea (%a2,%d0.l),%a3
 	move.w 8(%a3),%d1
 	add.w 30(%a3),%d1
-	move.w 110(%a0),%d0
-	muls.w 6(%a1),%d0
+	moveq #48,%d0
+	add.l 4(%a1),%d0
+	muls.w 110(%a0),%d0
 	add.w %d0,%d1
 	move.w %d1,8456(%a2)
 	move.w 12(%a3),%a3

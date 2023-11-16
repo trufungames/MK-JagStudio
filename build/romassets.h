@@ -16,57 +16,58 @@
 #define BMP_HUD_SCORPION 0x849510
 #define BMP_FLAME 0x849E10
 #define BMP_FLAME_clut 0x84AA10
-#define BMP_HITBOX_BODY 0x84AA30
-#define BMP_HITBOX_DUCK 0x84C230
-#define BMP_HITBOX_ATTACK 0x84CE30
-#define BMPCAGE 0x84D030
-#define BMPCAGE_clut 0x8CD030
-#define BMPKANG 0x8CD050
-#define BMPKANG_clut 0x94D050
-#define BMPRAIDEN 0x94D070
-#define BMPRAIDEN_clut 0x9CD070
-#define BMPSUBZERO 0x9CD090
-#define BMPSUBZERO_clut 0xA4D090
-#define BMPSONYA 0xA4D0B0
-#define BMPSONYA_clut 0xACD0B0
-#define BMPKANO 0xACD0D0
-#define BMPKANO_clut 0xB4D0D0
-#define BMP_TITLESCREEN 0xB4D0F0
-#define BMP_TITLESCREEN_clut 0xB61AF0
-#define BMP_CHOOSEFIGHTER 0xB61CF0
-#define BMP_CHOOSEFIGHTER_clut 0xB766F0
-#define BMP_P1_SELECTOR 0xB768F0
-#define BMP_P2_SELECTOR 0xB7B8F0
-#define BMP_DOTLAST 0xB808F0
-#define BMP_LIGHTNING 0xB80900
-#define BMP_LIGHTNING_clut 0xBAAC00
-#define BMP_BG_STONE 0xBAAC20
-#define BMP_BG_STONE_clut 0xBAB420
-#define BMP_BATTLE 0xBAB440
-#define BMP_BATTLE_clut 0xBB0F40
-#define BMP_PT_CAGE 0xBB0F60
-#define BMP_PT_CAGE_clut 0xBB1960
-#define BMP_PT_KANO 0xBB1980
-#define BMP_PT_KANO_clut 0xBB2380
-#define BMP_PT_KANG 0xBB23A0
-#define BMP_PT_KANG_clut 0xBB2DA0
-#define BMP_PT_RAIDEN 0xBB2DC0
-#define BMP_PT_RAIDEN_clut 0xBB37C0
-#define BMP_PT_SCORPION 0xBB37E0
-#define BMP_PT_SCORPION_clut 0xBB41E0
-#define BMP_PT_SONYA 0xBB4200
-#define BMP_PT_SONYA_clut 0xBB4C00
-#define BMP_PT_SUBZERO 0xBB4C20
-#define BMP_PT_SUBZERO_clut 0xBB5620
-#define BMP_SHUTTER 0xBB5640
-#define BMP_ROUND1 0xBB90C0
-#define BMP_ROUND1_clut 0xBB9480
-#define BMP_FIGHT 0xBB94A0
-#define BMP_FIGHT_clut 0xBBB2A0
-#define PAL_SCORPION 0xBBB2C0
-#define PAL_SCORPION_clut 0xBBB2D0
-#define PAL_REPTILE 0xBBB2F0
-#define PAL_REPTILE_clut 0xBBB300
+#define BMP_HITBOX 0x84AA30
+#define BMP_HITBOX_ATTACK 0x84AE30
+#define BMP_HITBOX_OFF 0x84AFB0
+#define BMP_HITBOX_ATTACK_OFF 0x84B3B0
+#define BMPCAGE 0x84B530
+#define BMPCAGE_clut 0x8CB530
+#define BMPKANG 0x8CB550
+#define BMPKANG_clut 0x94B550
+#define BMPRAIDEN 0x94B570
+#define BMPRAIDEN_clut 0x9CB570
+#define BMPSUBZERO 0x9CB590
+#define BMPSUBZERO_clut 0xA4B590
+#define BMPSONYA 0xA4B5B0
+#define BMPSONYA_clut 0xACB5B0
+#define BMPKANO 0xACB5D0
+#define BMPKANO_clut 0xB4B5D0
+#define BMP_TITLESCREEN 0xB4B5F0
+#define BMP_TITLESCREEN_clut 0xB5FFF0
+#define BMP_CHOOSEFIGHTER 0xB601F0
+#define BMP_CHOOSEFIGHTER_clut 0xB74BF0
+#define BMP_P1_SELECTOR 0xB74DF0
+#define BMP_P2_SELECTOR 0xB79DF0
+#define BMP_DOTLAST 0xB7EDF0
+#define BMP_LIGHTNING 0xB7EE00
+#define BMP_LIGHTNING_clut 0xBA9100
+#define BMP_BG_STONE 0xBA9120
+#define BMP_BG_STONE_clut 0xBA9920
+#define BMP_BATTLE 0xBA9940
+#define BMP_BATTLE_clut 0xBAF440
+#define BMP_PT_CAGE 0xBAF460
+#define BMP_PT_CAGE_clut 0xBAFE60
+#define BMP_PT_KANO 0xBAFE80
+#define BMP_PT_KANO_clut 0xBB0880
+#define BMP_PT_KANG 0xBB08A0
+#define BMP_PT_KANG_clut 0xBB12A0
+#define BMP_PT_RAIDEN 0xBB12C0
+#define BMP_PT_RAIDEN_clut 0xBB1CC0
+#define BMP_PT_SCORPION 0xBB1CE0
+#define BMP_PT_SCORPION_clut 0xBB26E0
+#define BMP_PT_SONYA 0xBB2700
+#define BMP_PT_SONYA_clut 0xBB3100
+#define BMP_PT_SUBZERO 0xBB3120
+#define BMP_PT_SUBZERO_clut 0xBB3B20
+#define BMP_SHUTTER 0xBB3B40
+#define BMP_ROUND1 0xBB75C0
+#define BMP_ROUND1_clut 0xBB7980
+#define BMP_FIGHT 0xBB79A0
+#define BMP_FIGHT_clut 0xBB97A0
+#define PAL_SCORPION 0xBB97C0
+#define PAL_SCORPION_clut 0xBB97D0
+#define PAL_REPTILE 0xBB97F0
+#define PAL_REPTILE_clut 0xBB9800
 extern void *explode_sam asm("explode_sam");
 extern void *explode_sam_end asm("explode_sam_end");
 extern void *fight_sam asm("fight_sam");
@@ -109,3 +110,23 @@ extern void *hiya_ninja1_sam asm("hiya_ninja1_sam");
 extern void *hiya_ninja1_sam_end asm("hiya_ninja1_sam_end");
 extern void *hiya_ninja2_sam asm("hiya_ninja2_sam");
 extern void *hiya_ninja2_sam_end asm("hiya_ninja2_sam_end");
+extern void *block_sam asm("block_sam");
+extern void *block_sam_end asm("block_sam_end");
+extern void *groan_male01_sam asm("groan_male01_sam");
+extern void *groan_male01_sam_end asm("groan_male01_sam_end");
+extern void *groan_male02_sam asm("groan_male02_sam");
+extern void *groan_male02_sam_end asm("groan_male02_sam_end");
+extern void *groan_female01_sam asm("groan_female01_sam");
+extern void *groan_female01_sam_end asm("groan_female01_sam_end");
+extern void *groan_female02_sam asm("groan_female02_sam");
+extern void *groan_female02_sam_end asm("groan_female02_sam_end");
+extern void *hit_01_sam asm("hit_01_sam");
+extern void *hit_01_sam_end asm("hit_01_sam_end");
+extern void *hit_02_sam asm("hit_02_sam");
+extern void *hit_02_sam_end asm("hit_02_sam_end");
+extern void *hit_impact_sam asm("hit_impact_sam");
+extern void *hit_impact_sam_end asm("hit_impact_sam_end");
+extern void *swing_01_sam asm("swing_01_sam");
+extern void *swing_01_sam_end asm("swing_01_sam_end");
+extern void *swing_02_sam asm("swing_02_sam");
+extern void *swing_02_sam_end asm("swing_02_sam_end");

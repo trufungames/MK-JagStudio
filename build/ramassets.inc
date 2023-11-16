@@ -125,3 +125,63 @@ hiya_ninja2_sam_end:
 .extern hiya_ninja2_sam
 .extern hiya_ninja2_sam_end
 .dphrase
+block_sam: incbin "build/block.wav.raw"
+.dc.b 0,0,0
+block_sam_end:
+.extern block_sam
+.extern block_sam_end
+.dphrase
+groan_male01_sam: incbin "build/groan_male01.wav.raw"
+.dc.b 0,0,0
+groan_male01_sam_end:
+.extern groan_male01_sam
+.extern groan_male01_sam_end
+.dphrase
+groan_male02_sam: incbin "build/groan_male02.wav.raw"
+.dc.b 0,0,0
+groan_male02_sam_end:
+.extern groan_male02_sam
+.extern groan_male02_sam_end
+.dphrase
+groan_female01_sam: incbin "build/groan_female01.wav.raw"
+.dc.b 0,0,0
+groan_female01_sam_end:
+.extern groan_female01_sam
+.extern groan_female01_sam_end
+.dphrase
+groan_female02_sam: incbin "build/groan_female02.wav.raw"
+.dc.b 0,0,0
+groan_female02_sam_end:
+.extern groan_female02_sam
+.extern groan_female02_sam_end
+.dphrase
+hit_01_sam: incbin "build/hit_01.wav.raw"
+.dc.b 0,0,0
+hit_01_sam_end:
+.extern hit_01_sam
+.extern hit_01_sam_end
+.dphrase
+hit_02_sam: incbin "build/hit_02.wav.raw"
+.dc.b 0,0,0
+hit_02_sam_end:
+.extern hit_02_sam
+.extern hit_02_sam_end
+.dphrase
+hit_impact_sam: incbin "build/hit_impact.wav.raw"
+.dc.b 0,0,0
+hit_impact_sam_end:
+.extern hit_impact_sam
+.extern hit_impact_sam_end
+.dphrase
+swing_01_sam: incbin "build/swing_01.wav.raw"
+.dc.b 0,0,0
+swing_01_sam_end:
+.extern swing_01_sam
+.extern swing_01_sam_end
+.dphrase
+swing_02_sam: incbin "build/swing_02.wav.raw"
+.dc.b 0,0,0
+swing_02_sam_end:
+.extern swing_02_sam
+.extern swing_02_sam_end
+.dphrase

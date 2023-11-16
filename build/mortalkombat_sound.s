@@ -534,6 +534,240 @@ __Z12sfxHiyaNinjaP12SoundHandlerb:
 	jsr zeroPlaySample
 	lea (20,%sp),%sp
 	jra .L114
+	.even
+	.globl	__Z8sfxBlockP12SoundHandler
+__Z8sfxBlockP12SoundHandler:
+	link.w %fp,#0
+	move.l 8(%fp),%a0
+	tst.b (%a0)
+	jne .L119
+	unlk %fp
+	rts
+.L119:
+	clr.l -(%sp)
+	pea 6.w
+	move.l #block_sam_end,%d0
+	sub.l #block_sam-3,%d0
+	moveq #-4,%d1
+	and.l %d0,%d1
+	move.l %d1,-(%sp)
+	pea block_sam
+	pea 4.w
+	jsr zeroPlaySample
+	lea (20,%sp),%sp
+	unlk %fp
+	rts
+	.even
+	.globl	__Z12sfxGroanMaleP12SoundHandlerb
+__Z12sfxGroanMaleP12SoundHandlerb:
+	link.w %fp,#0
+	move.l %d2,-(%sp)
+	move.b 15(%fp),%d2
+	move.l 8(%fp),%a0
+	tst.b (%a0)
+	jne .L130
+	move.l -4(%fp),%d2
+	unlk %fp
+	rts
+.L130:
+	jsr RAPTOR_random
+	btst #0,%d0
+	jeq .L123
+	tst.b %d2
+	seq %d0
+	ext.w %d0
+	clr.l -(%sp)
+	pea 6.w
+	move.l #groan_male01_sam_end,%d1
+	sub.l #groan_male01_sam-3,%d1
+	moveq #-4,%d2
+	and.l %d1,%d2
+	move.l %d2,-(%sp)
+	pea groan_male01_sam
+	move.w #1,%a0
+	sub.w %d0,%a0
+	move.l %a0,-(%sp)
+	jsr zeroPlaySample
+	lea (20,%sp),%sp
+.L131:
+	move.l -4(%fp),%d2
+	unlk %fp
+	rts
+.L123:
+	tst.b %d2
+	seq %d0
+	ext.w %d0
+	clr.l -(%sp)
+	pea 6.w
+	move.l #groan_male02_sam_end,%d1
+	sub.l #groan_male02_sam-3,%d1
+	moveq #-4,%d2
+	and.l %d1,%d2
+	move.l %d2,-(%sp)
+	pea groan_male02_sam
+	move.w #1,%a0
+	sub.w %d0,%a0
+	move.l %a0,-(%sp)
+	jsr zeroPlaySample
+	lea (20,%sp),%sp
+	jra .L131
+	.even
+	.globl	__Z14sfxGroanFemaleP12SoundHandlerb
+__Z14sfxGroanFemaleP12SoundHandlerb:
+	link.w %fp,#0
+	move.l %d2,-(%sp)
+	move.b 15(%fp),%d2
+	move.l 8(%fp),%a0
+	tst.b (%a0)
+	jne .L142
+	move.l -4(%fp),%d2
+	unlk %fp
+	rts
+.L142:
+	jsr RAPTOR_random
+	btst #0,%d0
+	jeq .L135
+	tst.b %d2
+	seq %d0
+	ext.w %d0
+	clr.l -(%sp)
+	pea 6.w
+	move.l #groan_female01_sam_end,%d1
+	sub.l #groan_female01_sam-3,%d1
+	moveq #-4,%d2
+	and.l %d1,%d2
+	move.l %d2,-(%sp)
+	pea groan_female01_sam
+	move.w #1,%a0
+	sub.w %d0,%a0
+	move.l %a0,-(%sp)
+	jsr zeroPlaySample
+	lea (20,%sp),%sp
+.L143:
+	move.l -4(%fp),%d2
+	unlk %fp
+	rts
+.L135:
+	tst.b %d2
+	seq %d0
+	ext.w %d0
+	clr.l -(%sp)
+	pea 6.w
+	move.l #groan_female02_sam_end,%d1
+	sub.l #groan_female02_sam-3,%d1
+	moveq #-4,%d2
+	and.l %d1,%d2
+	move.l %d2,-(%sp)
+	pea groan_female02_sam
+	move.w #1,%a0
+	sub.w %d0,%a0
+	move.l %a0,-(%sp)
+	jsr zeroPlaySample
+	lea (20,%sp),%sp
+	jra .L143
+	.even
+	.globl	__Z6sfxHitP12SoundHandler
+__Z6sfxHitP12SoundHandler:
+	link.w %fp,#0
+	move.l 8(%fp),%a0
+	tst.b (%a0)
+	jne .L149
+	unlk %fp
+	rts
+.L149:
+	jsr RAPTOR_random
+	btst #0,%d0
+	jne .L150
+	clr.l -(%sp)
+	pea 6.w
+	move.l #hit_02_sam_end,%d0
+	sub.l #hit_02_sam-3,%d0
+	moveq #-4,%d1
+	and.l %d0,%d1
+	move.l %d1,-(%sp)
+	pea hit_02_sam
+	pea 4.w
+	jsr zeroPlaySample
+	lea (20,%sp),%sp
+	unlk %fp
+	rts
+.L150:
+	clr.l -(%sp)
+	pea 6.w
+	move.l #hit_01_sam_end,%d0
+	sub.l #hit_01_sam-3,%d0
+	moveq #-4,%d1
+	and.l %d0,%d1
+	move.l %d1,-(%sp)
+	pea hit_01_sam
+	pea 4.w
+	jsr zeroPlaySample
+	lea (20,%sp),%sp
+	unlk %fp
+	rts
+	.even
+	.globl	__Z9sfxImpactP12SoundHandler
+__Z9sfxImpactP12SoundHandler:
+	link.w %fp,#0
+	move.l 8(%fp),%a0
+	tst.b (%a0)
+	jne .L155
+	unlk %fp
+	rts
+.L155:
+	clr.l -(%sp)
+	pea 6.w
+	move.l #hit_impact_sam_end,%d0
+	sub.l #hit_impact_sam-3,%d0
+	moveq #-4,%d1
+	and.l %d0,%d1
+	move.l %d1,-(%sp)
+	pea hit_impact_sam
+	pea 4.w
+	jsr zeroPlaySample
+	lea (20,%sp),%sp
+	unlk %fp
+	rts
+	.even
+	.globl	__Z8sfxSwingP12SoundHandler
+__Z8sfxSwingP12SoundHandler:
+	link.w %fp,#0
+	move.l 8(%fp),%a0
+	tst.b (%a0)
+	jne .L161
+	unlk %fp
+	rts
+.L161:
+	jsr RAPTOR_random
+	btst #0,%d0
+	jne .L162
+	clr.l -(%sp)
+	pea 6.w
+	move.l #swing_02_sam_end,%d0
+	sub.l #swing_02_sam-3,%d0
+	moveq #-4,%d1
+	and.l %d0,%d1
+	move.l %d1,-(%sp)
+	pea swing_02_sam
+	pea 4.w
+	jsr zeroPlaySample
+	lea (20,%sp),%sp
+	unlk %fp
+	rts
+.L162:
+	clr.l -(%sp)
+	pea 6.w
+	move.l #swing_01_sam_end,%d0
+	sub.l #swing_01_sam-3,%d0
+	moveq #-4,%d1
+	and.l %d0,%d1
+	move.l %d1,-(%sp)
+	pea swing_01_sam
+	pea 4.w
+	jsr zeroPlaySample
+	lea (20,%sp),%sp
+	unlk %fp
+	rts
 	.globl	colliders
 	.data
 	.even

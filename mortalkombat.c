@@ -47,16 +47,16 @@ static SpriteAnimator cageAnimator2 = {
 };
 
 struct ImpactFrame cageImpactFrameLowPunch = {
-	2, 95, 25
+	2, 62, 30
 };
 struct ImpactFrame cageImpactFrameHighPunch = {
-	2, 85, 7
+	2, 62, 10
 };
 struct ImpactFrame cageImpactFrameLowKick = {
-	2, 102, 32
+	2, 62, 30
 };
 struct ImpactFrame cageImpactFrameHighKick = {
-	3, 90, 12
+	3, 62, 10
 };
 
 static AnimationFrame cageHitLowFrames[] = {
@@ -146,16 +146,16 @@ static AnimationFrame cageKickHighFrames[] = {
 
 //Liu Kang animation frames
 struct ImpactFrame kangImpactFrameLowPunch = {
-	2, 100, 30
+	2, 62, 30
 };
 struct ImpactFrame kangImpactFrameHighPunch = {
-	2, 95, 10
+	2, 62, 10
 };
 struct ImpactFrame kangImpactFrameLowKick = {
-	2, 94, 25
+	2, 62, 30
 };
 struct ImpactFrame kangImpactFrameHighKick = {
-	3, 87, 8
+	3, 62, 10
 };
 
 static SpriteAnimator kangAnimator = {
@@ -251,16 +251,16 @@ static AnimationFrame kangKickHighFrames[] = {
 };
 //Raiden animation frames
 struct ImpactFrame raidenImpactFrameLowPunch = {
-	2, 100, 30
+	2, 62, 30
 };
 struct ImpactFrame raidenImpactFrameHighPunch = {
-	2, 100, 10
+	2, 62, 10
 };
 struct ImpactFrame raidenImpactFrameLowKick = {
-	2, 98, 25
+	2, 62, 30
 };
 struct ImpactFrame raidenImpactFrameHighKick = {
-	2, 94, 5
+	2, 62, 10
 };
 
 static SpriteAnimator raidenAnimator = {
@@ -357,24 +357,24 @@ static AnimationFrame raidenKickHighFrames[] = {
 
 //Subzero animation frames
 struct ImpactFrame subzeroImpactFrameLowPunch = {
-	2, 95, 30
+	2, 62, 30
 };
 struct ImpactFrame subzeroImpactFrameHighPunch = {
-	2, 95, 10
+	2, 62, 10
 };
 struct ImpactFrame subzeroImpactFrameLowKick = {
-	2, 98, 40
+	2, 62, 30
 };
 struct ImpactFrame subzeroImpactFrameHighKick = {
-	3, 94, 17
+	3, 62, 10
 };
 
 static SpriteAnimator subzeroAnimator = {
-	SUBZERO, 0.5f, BMPSUBZERO, 0, 0, 64
+	SUBZERO, 0.5f, BMPSUBZERO, 0, 0, 72
 };
 
 static SpriteAnimator subzeroAnimator2 = {
-	SUBZERO2, 0.5f, BMPSUBZERO, 0, 0, 64
+	SUBZERO2, 0.5f, BMPSUBZERO, 0, 0, 72
 };
 
 static AnimationFrame subzeroHitLowFrames[] = {
@@ -468,16 +468,16 @@ static AnimationFrame subzeroKickHighFrames[] = {
 
 //Sonya animation frames
 struct ImpactFrame sonyaImpactFrameLowPunch = {
-	2, 90, 30
+	2, 62, 30
 };
 struct ImpactFrame sonyaImpactFrameHighPunch = {
-	2, 90, 5
+	2, 62, 10
 };
 struct ImpactFrame sonyaImpactFrameLowKick = {
-	3, 95, 33
+	3, 62, 30
 };
 struct ImpactFrame sonyaImpactFrameHighKick = {
-	3, 80, 13
+	3, 62, 10
 };
 static SpriteAnimator sonyaAnimator = {
 	SONYA, 0.5f, BMPSONYA, 0, 0, 80
@@ -608,6 +608,19 @@ static SpriteAnimator kanoAnimator = {
 
 static SpriteAnimator kanoAnimator2 = {
 	KANO2, 0.5f, BMPKANO, 0, 0, 80
+};
+
+struct ImpactFrame kanoImpactFrameLowPunch = {
+	2, 62, 30
+};
+struct ImpactFrame kanoImpactFrameHighPunch = {
+	2, 62, 10
+};
+struct ImpactFrame kanoImpactFrameLowKick = {
+	3, 62, 30
+};
+struct ImpactFrame kanoImpactFrameHighKick = {
+	3, 62, 10
 };
 
 static AnimationFrame kanoHitLowFrames[] = {
@@ -1627,23 +1640,23 @@ int gameStartTicks = rapTicks;
 		
 		if(pad1 & JAGPAD_STAR)
 		{
-			sprite[P1_HB_BODY].active = R_is_active;
-			sprite[P1_HB_DUCK].active = R_is_active;
-			sprite[P1_HB_ATTACK].active = R_is_active;
-			sprite[P2_HB_BODY].active = R_is_active;
-			sprite[P2_HB_DUCK].active = R_is_active;
-			sprite[P2_HB_ATTACK].active = R_is_active;
-			rapDebugSetVisible(DEBUG_SHOW);
+			setFrame(P1_HB_BODY, 32, 64, 0, 0, 0.5f, BMP_HITBOX);
+			setFrame(P1_HB_DUCK, 32, 64, 0, 0, 0.5f, BMP_HITBOX);
+			setFrame(P2_HB_BODY, 32, 64, 0, 0, 0.5f, BMP_HITBOX);
+			setFrame(P2_HB_DUCK, 32, 64, 0, 0, 0.5f, BMP_HITBOX);
+			setFrame(P1_HB_ATTACK, 48, 32, 0, 0, 0.5f, BMP_HITBOX_ATTACK);
+			setFrame(P2_HB_ATTACK, 48, 32, 0, 0, 0.5f, BMP_HITBOX_ATTACK);
+			//rapDebugSetVisible(DEBUG_SHOW);
 		}
 		else if (pad1 & JAGPAD_HASH)
 		{
-			sprite[P1_HB_BODY].active = R_is_inactive;
-			sprite[P1_HB_DUCK].active = R_is_inactive;
-			sprite[P1_HB_ATTACK].active = R_is_inactive;
-			sprite[P2_HB_BODY].active = R_is_inactive;
-			sprite[P2_HB_DUCK].active = R_is_inactive;
-			sprite[P2_HB_ATTACK].active = R_is_inactive;
-			rapDebugSetVisible(DEBUG_HIDE);
+			setFrame(P1_HB_BODY, 32, 64, 0, 0, 0.5f, BMP_HITBOX_OFF);
+			setFrame(P1_HB_DUCK, 32, 64, 0, 0, 0.5f, BMP_HITBOX_OFF);
+			setFrame(P2_HB_BODY, 32, 64, 0, 0, 0.5f, BMP_HITBOX_OFF);
+			setFrame(P2_HB_DUCK, 32, 64, 0, 0, 0.5f, BMP_HITBOX_OFF);
+			setFrame(P1_HB_ATTACK, 48, 32, 0, 0, 0.5f, BMP_HITBOX_ATTACK_OFF);
+			setFrame(P2_HB_ATTACK, 48, 32, 0, 0, 0.5f, BMP_HITBOX_ATTACK_OFF);
+			//rapDebugSetVisible(DEBUG_HIDE);
 		}
 
 		rapDebugUpdate();
@@ -1806,7 +1819,7 @@ void switchScreenFight(int p1Cursor, int p2Cursor)
 		case 1:
 			//Kano
 			jsfLoadClut((unsigned short *)(void *)(BMPKANO_clut),14,16);
-			fighterInitialize(&fighterKano, true, &soundHandler, &cageImpactFrameLowPunch, &cageImpactFrameHighPunch, &cageImpactFrameLowKick, &cageImpactFrameHighKick);
+			fighterInitialize(&fighterKano, true, &soundHandler, &kanoImpactFrameLowPunch, &kanoImpactFrameHighPunch, &kanoImpactFrameLowKick, &kanoImpactFrameHighKick);
 			fighterShow(&fighterKano);
 			break;
 		case 2:
@@ -1853,7 +1866,7 @@ void switchScreenFight(int p1Cursor, int p2Cursor)
 		case 1:
 			//Kano
 			jsfLoadClut((unsigned short *)(void *)(BMPKANO_clut),15,16);
-			fighterInitialize(&fighterKano2, false, &soundHandler, &cageImpactFrameLowPunch, &cageImpactFrameHighPunch, &cageImpactFrameLowKick, &cageImpactFrameHighKick);
+			fighterInitialize(&fighterKano2, false, &soundHandler, &kanoImpactFrameLowPunch, &kanoImpactFrameHighPunch, &kanoImpactFrameLowKick, &kanoImpactFrameHighKick);
 			fighterShow(&fighterKano2);
 			break;
 		case 2:

@@ -158,3 +158,79 @@ void sfxHiyaNinja(struct SoundHandler* soundHandler, bool isPlayer1)
 		zeroPlaySample(isPlayer1 ? SOUND_CHANNEL_PLAYER1 : SOUND_CHANNEL_PLAYER2,STRPTR(hiya_ninja2_sam),(STRPTR(hiya_ninja2_sam_end)-STRPTR(hiya_ninja2_sam)+3) & 0xfffffffc,(46168/7000),Zero_Audio_8bit_Signed);
 	}
 }
+
+void sfxBlock(struct SoundHandler* soundHandler)
+{
+	if (!soundHandler->EnableSFX)
+		return;
+
+	zeroPlaySample(SOUND_CHANNEL_MISC,STRPTR(block_sam),(STRPTR(block_sam_end)-STRPTR(block_sam)+3) & 0xfffffffc,(46168/7000),Zero_Audio_8bit_Signed);
+}
+
+void sfxGroanMale(struct SoundHandler* soundHandler, bool isPlayer1)
+{
+	if (!soundHandler->EnableSFX)
+		return;
+
+	if (rapRND() & 255 > 100)
+	{
+		zeroPlaySample(isPlayer1 ? SOUND_CHANNEL_PLAYER1 : SOUND_CHANNEL_PLAYER2,STRPTR(groan_male01_sam),(STRPTR(groan_male01_sam_end)-STRPTR(groan_male01_sam)+3) & 0xfffffffc,(46168/7000),Zero_Audio_8bit_Signed);
+	}
+	else
+	{
+		zeroPlaySample(isPlayer1 ? SOUND_CHANNEL_PLAYER1 : SOUND_CHANNEL_PLAYER2,STRPTR(groan_male02_sam),(STRPTR(groan_male02_sam_end)-STRPTR(groan_male02_sam)+3) & 0xfffffffc,(46168/7000),Zero_Audio_8bit_Signed);
+	}
+}
+
+void sfxGroanFemale(struct SoundHandler* soundHandler, bool isPlayer1)
+{
+	if (!soundHandler->EnableSFX)
+		return;
+
+	if (rapRND() & 255 > 100)
+	{
+		zeroPlaySample(isPlayer1 ? SOUND_CHANNEL_PLAYER1 : SOUND_CHANNEL_PLAYER2,STRPTR(groan_female01_sam),(STRPTR(groan_female01_sam_end)-STRPTR(groan_female01_sam)+3) & 0xfffffffc,(46168/7000),Zero_Audio_8bit_Signed);
+	}
+	else
+	{
+		zeroPlaySample(isPlayer1 ? SOUND_CHANNEL_PLAYER1 : SOUND_CHANNEL_PLAYER2,STRPTR(groan_female02_sam),(STRPTR(groan_female02_sam_end)-STRPTR(groan_female02_sam)+3) & 0xfffffffc,(46168/7000),Zero_Audio_8bit_Signed);
+	}
+}
+
+void sfxHit(struct SoundHandler* soundHandler)
+{
+	if (!soundHandler->EnableSFX)
+		return;
+
+	if (rapRND() & 255 > 100)
+	{
+		zeroPlaySample(SOUND_CHANNEL_MISC,STRPTR(hit_01_sam),(STRPTR(hit_01_sam_end)-STRPTR(hit_01_sam)+3) & 0xfffffffc,(46168/7000),Zero_Audio_8bit_Signed);
+	}
+	else
+	{
+		zeroPlaySample(SOUND_CHANNEL_MISC,STRPTR(hit_02_sam),(STRPTR(hit_02_sam_end)-STRPTR(hit_02_sam)+3) & 0xfffffffc,(46168/7000),Zero_Audio_8bit_Signed);
+	}
+}
+
+void sfxImpact(struct SoundHandler* soundHandler)
+{
+	if (!soundHandler->EnableSFX)
+		return;
+
+	zeroPlaySample(SOUND_CHANNEL_MISC,STRPTR(hit_impact_sam),(STRPTR(hit_impact_sam_end)-STRPTR(hit_impact_sam)+3) & 0xfffffffc,(46168/7000),Zero_Audio_8bit_Signed);
+}
+
+void sfxSwing(struct SoundHandler* soundHandler)
+{
+	if (!soundHandler->EnableSFX)
+		return;
+
+	if (rapRND() & 255 > 100)
+	{
+		zeroPlaySample(SOUND_CHANNEL_MISC,STRPTR(swing_01_sam),(STRPTR(swing_01_sam_end)-STRPTR(swing_01_sam)+3) & 0xfffffffc,(46168/7000),Zero_Audio_8bit_Signed);
+	}
+	else
+	{
+		zeroPlaySample(SOUND_CHANNEL_MISC,STRPTR(swing_02_sam),(STRPTR(swing_02_sam_end)-STRPTR(swing_02_sam)+3) & 0xfffffffc,(46168/7000),Zero_Audio_8bit_Signed);
+	}
+}
