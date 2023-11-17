@@ -304,7 +304,7 @@ __Z13fighterUpdatefP7FighterP14SpriteAnimatorP14AnimationFrameS4_S4_S4_S4_S4_S4_
 	lsl.l #6,%d0
 	move.l sprite,%a0
 	add.l %d0,%a0
-	move.w 8(%a0),%a1
+	move.w 8(%a0),%a4
 	move.l 108(%a2),%d1
 	moveq #-1,%d0
 	cmp.l %d1,%d0
@@ -584,13 +584,31 @@ __Z13fighterUpdatefP7FighterP14SpriteAnimatorP14AnimationFrameS4_S4_S4_S4_S4_S4_
 	move.l %d1,-(%sp)
 	move.w 12(%a0),%a0
 	pea 20(%a0)
-	move.l %a1,-(%sp)
+	move.l %a4,-(%sp)
 	jsr __Z9bloodGlobiii
+	move.l 108(%a2),%d0
+	addq.l #8,%sp
+	move.l %d0,(%sp)
+	move.l (%a2),%d1
+	move.l %d1,%a0
+	add.l %d1,%a0
+	add.l %a0,%d1
+	lsl.l #6,%d1
+	move.l sprite,%a0
+	move.w 12(%a0,%d1.l),%a0
+	pea -30(%a0)
+	move.l %d0,%d1
+	add.l %d0,%d1
+	add.l %d1,%d1
+	add.l %d1,%d0
+	lsl.l #3,%d0
+	pea (%a4,%d0.l)
+	jsr __Z9bloodDropiii
 	move.b 67(%a2),%d0
 	lea (12,%sp),%sp
 	jra .L36
 .L127:
-	lea (-40,%a1),%a1
+	lea (-40,%a4),%a4
 	jra .L46
 .L42:
 	move.l %d3,-(%sp)
@@ -657,13 +675,13 @@ __Z13fighterUpdatefP7FighterP14SpriteAnimatorP14AnimationFrameS4_S4_S4_S4_S4_S4_
 	move.l %d1,-(%sp)
 	move.w 12(%a0),%a0
 	pea -10(%a0)
-	move.l %a1,-(%sp)
+	move.l %a4,-(%sp)
 	jsr __Z10bloodSprayiii
 	move.b 67(%a2),%d0
 	lea (12,%sp),%sp
 	jra .L36
 .L126:
-	lea (40,%a1),%a1
+	lea (40,%a4),%a4
 	jra .L46
 .L135:
 	tst.b 63(%a2)

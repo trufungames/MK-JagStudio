@@ -1496,6 +1496,7 @@ int gameStartTicks = rapTicks;
 
 				roundFightSequenceComplete = false;
 				myTicks = rapTicks;
+				bloodInit();
 				switchScreenFight(p1Cursor, p2Cursor);
 			}
 		}
@@ -1800,7 +1801,7 @@ void switchScreenFight(int p1Cursor, int p2Cursor)
 {
 	unsigned short bg = (21 << 11) + (57 << 5) + 31;  //(red << 11) + (green << 5) + blue=
 	*(volatile unsigned short*)(BG)=(volatile unsigned short)bg;
-
+	
 	jsfLoadClut((unsigned short *)(void *)(BMP_PG_0_clut),0,112);
 	jsfLoadClut((unsigned short *)(void *)(BMP_FLAME_clut),7,16);
 	jsfLoadClut((unsigned short *)(void *)(BMP_CLOUD1_clut),8,16);

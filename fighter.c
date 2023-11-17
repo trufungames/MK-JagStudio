@@ -153,6 +153,7 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
                 else if (fighter->IsHitBack)
                 {
                     bloodGlob(bloodX, sprite[fighter->spriteIndex].y_ + 20, fighter->direction);
+                    bloodDrop(bloodX + (40 * fighter->direction), sprite[fighter->spriteIndex].y_ - 30, fighter->direction);
                 }
             }
         }
