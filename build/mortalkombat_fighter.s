@@ -46,12 +46,12 @@ __Z21fighterMakeSelectableP7Fighterb:
 	move.l sprite,%a1
 	add.l %d1,%a1
 	move.w #243,8(%a1)
-	moveq #33,%d1
+	moveq #43,%d1
 	cmp.l %d0,%d1
 	jeq .L11
 	moveq #12,%d1
 	not.b %d1
-	moveq #37,%d2
+	moveq #47,%d2
 	cmp.l %d0,%d2
 	jeq .L12
 	moveq #-1,%d0
@@ -136,21 +136,21 @@ __Z17fighterInitializeP7FighterbP12SoundHandlerP11ImpactFrameS4_S4_S4_:
 	move.l %d1,4(%a1)
 	tst.b %d2
 	jne .L21
-	moveq #44,%d1
+	moveq #54,%d1
 	move.l %d1,76(%a0)
-	moveq #42,%d2
+	moveq #52,%d2
 	move.l %d2,68(%a0)
-	move.b #43,%d1
+	move.b #53,%d1
 	move.l %d1,72(%a0)
 	move.b #2,%d2
 	move.l %d2,84(%a0)
 	move.w #210,8(%a1)
-	move.b #33,%d1
+	move.b #43,%d1
 	cmp.l %d0,%d1
 	jeq .L22
 	moveq #45,%d1
 	not.b %d1
-	moveq #37,%d2
+	moveq #47,%d2
 	cmp.l %d0,%d2
 	jeq .L23
 	moveq #-1,%d0
@@ -164,17 +164,16 @@ __Z17fighterInitializeP7FighterbP12SoundHandlerP11ImpactFrameS4_S4_S4_:
 	unlk %fp
 	jra __Z16impactFrameResetP7Fighter
 .L21:
-	moveq #41,%d2
+	moveq #51,%d2
 	move.l %d2,76(%a0)
-	moveq #39,%d0
+	moveq #49,%d0
 	move.l %d0,68(%a0)
-	move.b #40,%d1
+	move.b #50,%d1
 	move.l %d1,72(%a0)
 	move.b #1,%d2
 	move.l %d2,84(%a0)
 	move.w #50,8(%a1)
 	move.l %d2,108(%a0)
-	move.b #50,%d1
 	move.l %d1,96(%a0)
 	move.w 12(%a1),%a1
 	move.l %a1,100(%a0)
@@ -219,7 +218,7 @@ __Z15fighterPlayHiyaiP12SoundHandlerb:
 	move.l %d2,-(%sp)
 	move.l 12(%fp),%d1
 	move.b 19(%fp),%d2
-	moveq #-26,%d0
+	moveq #-36,%d0
 	add.l 8(%fp),%d0
 	moveq #12,%d3
 	and.l #255,%d2
@@ -284,10 +283,10 @@ __Z13fighterUpdatefP7FighterP14SpriteAnimatorP14AnimationFrameS4_S4_S4_S4_S4_S4_
 	move.b 112(%a2),%d3
 	move.l 104(%a2),%d1
 	move.l (%a2),%d0
-	moveq #30,%d4
+	moveq #40,%d4
 	cmp.l %d0,%d4
 	jeq .L42
-	move.b #38,%d4
+	move.b #48,%d4
 	cmp.l %d0,%d4
 	jeq .L42
 	move.l %d3,-(%sp)
@@ -353,7 +352,7 @@ __Z13fighterUpdatefP7FighterP14SpriteAnimatorP14AnimationFrameS4_S4_S4_S4_S4_S4_
 	moveq #0,%d2
 	move.b 112(%a2),%d2
 	move.l 104(%a2),%d1
-	moveq #-26,%d0
+	moveq #-36,%d0
 	add.l (%a2),%d0
 	moveq #12,%d3
 	cmp.l %d0,%d3
@@ -452,7 +451,7 @@ __Z13fighterUpdatefP7FighterP14SpriteAnimatorP14AnimationFrameS4_S4_S4_S4_S4_S4_
 	moveq #0,%d2
 	move.b 112(%a2),%d2
 	move.l 104(%a2),%d1
-	moveq #-26,%d0
+	moveq #-36,%d0
 	add.l (%a2),%d0
 	moveq #12,%d4
 	cmp.l %d0,%d4
@@ -694,7 +693,7 @@ __Z13fighterUpdatefP7FighterP14SpriteAnimatorP14AnimationFrameS4_S4_S4_S4_S4_S4_
 	moveq #0,%d2
 	move.b 112(%a2),%d2
 	move.l 104(%a2),%d1
-	moveq #-26,%d0
+	moveq #-36,%d0
 	add.l (%a2),%d0
 	moveq #12,%d3
 	cmp.l %d0,%d3
@@ -1338,13 +1337,13 @@ __Z16fighterPlayGroaniP12SoundHandlerb:
 	move.l 8(%fp),%d0
 	move.l 12(%fp),%d1
 	move.b 19(%fp),%d2
-	moveq #30,%d3
+	moveq #40,%d3
 	and.l #255,%d2
 	move.l %d2,12(%fp)
 	move.l %d1,8(%fp)
 	cmp.l %d0,%d3
 	jeq .L146
-	move.b #38,%d3
+	move.b #48,%d3
 	cmp.l %d0,%d3
 	jeq .L146
 	move.l (%sp)+,%d2
@@ -1363,10 +1362,10 @@ __Z18fighterImpactCheckP7FighterS0_:
 	movem.l #12348,-(%sp)
 	move.l 8(%fp),%a2
 	move.l 12(%fp),%a3
-	pea 43.w
-	pea 38.w
-	pea 43.w
-	pea 38.w
+	pea 53.w
+	pea 48.w
+	pea 53.w
+	pea 48.w
 	jsr rapCollide
 	move.l %d0,_collision
 	lea (16,%sp),%sp
@@ -1391,10 +1390,10 @@ __Z18fighterImpactCheckP7FighterS0_:
 	add.l %d1,%d2
 	lsl.l #6,%d2
 	move.l %d3,112(%a5,%d2.l)
-	moveq #41,%d2
+	moveq #51,%d2
 	cmp.l %d0,%d2
 	jeq .L166
-	moveq #44,%d2
+	moveq #54,%d2
 	cmp.l %d0,%d2
 	jeq .L167
 .L152:
@@ -1406,7 +1405,7 @@ __Z18fighterImpactCheckP7FighterS0_:
 	unlk %fp
 	rts
 .L167:
-	moveq #39,%d3
+	moveq #49,%d3
 	cmp.l %d1,%d3
 	jne .L152
 	tst.b 67(%a2)
@@ -1427,7 +1426,7 @@ __Z18fighterImpactCheckP7FighterS0_:
 	jge .L161
 	jra .L150
 .L166:
-	moveq #42,%d3
+	moveq #52,%d3
 	cmp.l %d1,%d3
 	jne .L152
 	tst.b 67(%a3)

@@ -24,7 +24,7 @@
 #define HUD FIGHT + 1
 #define HEALTHBAR_P1 HUD + 1
 #define HEALTHBAR_P2 HEALTHBAR_P1 + 1
-#define P1_HB_BODY 39
+#define P1_HB_BODY 49
 #define P1_HB_DUCK P1_HB_BODY + 1
 #define P1_HB_ATTACK P1_HB_DUCK + 1
 #define P2_HB_BODY P1_HB_ATTACK + 1
@@ -32,7 +32,7 @@
 #define P2_HB_ATTACK P2_HB_DUCK + 1
 #define NAME_SCORPION_P1 P2_HB_ATTACK + 1
 #define NAME_KANO_P2 NAME_SCORPION_P1 + 1
-#define SHUTTER_1 47
+#define SHUTTER_1 57
 #define SHUTTER_2 SHUTTER_1 + 1
 #define SHUTTER_3 SHUTTER_2 + 1
 #define SHUTTER_4 SHUTTER_3 + 1
@@ -40,8 +40,8 @@
 #define BLOOD_SPRAY SHUTTER_5 + 1  //1 of 2
 #define BLOOD_GLOB BLOOD_SPRAY + 2
 #define BLOOD_DROP BLOOD_GLOB + 1  //1 of 10
-#define BLOOD_POOL BLOOD_DROP + 10  //1 of 10
-#define SCORPION 23
+#define BLOOD_POOL 23  //1 of 10
+#define SCORPION BLOOD_POOL + 10
 #define KANO SCORPION + 1
 #define CAGE KANO + 1
 #define KANG CAGE + 1

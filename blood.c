@@ -3,6 +3,7 @@
 #include "sound.h"
 #include "spriteanimator.h"
 #include "blood.h"
+#include "spritedelay.h"
 
 SpriteAnimator bloodSpray1Animator = {
 	BLOOD_SPRAY, 0.5f, BMP_BLOOD, 0, 0
@@ -74,14 +75,14 @@ SpriteAnimator bloodDrop10Animator = {
 };
 
 AnimationFrame bloodDropFrames[] = {
-	{ 48, 48, 288, 128, 0, 0, 2 },
-	{ 48, 48, 336, 128, 0, 0, 2 },
-	{ 48, 48, 0, 176, 0, 0, 2 },
-	{ 48, 48, 48, 176, 0, 0, 2 },
-	{ 48, 48, 96, 176, 0, 0, 2 },
-    { 48, 48, 144, 176, 0, 0, 2 },
-    { 48, 48, 192, 176, 0, 0, 2 },
-    { 48, 48, 240, 176, 0, 0, 2 }
+	{ 48, 48, 288, 128, 0, 0, 1 },
+	{ 48, 48, 336, 128, 0, 0, 1 },
+	{ 48, 48, 0, 176, 0, 0, 1 },
+	{ 48, 48, 48, 176, 0, 0, 1 },
+	{ 48, 48, 96, 176, 0, 0, 1 },
+    { 48, 48, 144, 176, 0, 0, 1 },
+    { 48, 48, 192, 176, 0, 0, 1 },
+    { 48, 48, 240, 176, 0, 0, 1 }
 };
 
 SpriteAnimator bloodPool1Animator = {
@@ -155,16 +156,47 @@ bool bloodPool9InUse = false;
 bool bloodPool10InUse = false;
 int bloodDirection = 1;
 int updateTicks = 0;
-int lastTicks = 0;
+int lastTicks1 = 0;
+int lastTicks2 = 0;
+int lastTicks3 = 0;
+int lastTicks4 = 0;
+int lastTicks5 = 0;
+int lastTicks6 = 0;
+int lastTicks7 = 0;
+int lastTicks8 = 0;
+int lastTicks9 = 0;
+int lastTicks10 = 0;
 float bloodSpeed = 0.0f;
 float gravity = 0.0f;
 float bloodDropMomentumStart = 0.0f;
 float bloodDrop1Momentum = 0;
+float bloodDrop2Momentum = 0;
+float bloodDrop3Momentum = 0;
+float bloodDrop4Momentum = 0;
+float bloodDrop5Momentum = 0;
+float bloodDrop6Momentum = 0;
+float bloodDrop7Momentum = 0;
+float bloodDrop8Momentum = 0;
+float bloodDrop9Momentum = 0;
+float bloodDrop10Momentum = 0;
+int bloodStayDelay = 0;
+int poolYLocation = 0;
+int bloodSpeedRnd = 0;
 
 void bloodInit()
 {
+    bloodStayDelay = 120;
     updateTicks = 3;
-    lastTicks = 0;
+    lastTicks1 = 0;
+    lastTicks2 = 0;
+    lastTicks3 = 0;
+    lastTicks4 = 0;
+    lastTicks5 = 0;
+    lastTicks6 = 0;
+    lastTicks7 = 0;
+    lastTicks8 = 0;
+    lastTicks9 = 0;
+    lastTicks10 = 0;
     bloodSpeed = 7.0f;
     gravity = 4.0f;
     bloodDropMomentumStart = -20.0f;
@@ -241,28 +273,251 @@ void bloodUpdate()
     {
         updateSpriteAnimator(&bloodDrop1Animator, bloodDropFrames, 8, bloodDirection == -1 ? true : false, true);
 
-        if (rapTicks - lastTicks >= updateTicks)
+        if (rapTicks - lastTicks1 >= updateTicks)
         {
-            sprite[BLOOD_DROP].x_ -= bloodSpeed * bloodDirection;
+            sprite[BLOOD_DROP].x_ -= bloodSpeedRnd * bloodDirection;
             sprite[BLOOD_DROP].y_ += bloodDrop1Momentum;
 
-            if (sprite[BLOOD_DROP].y_ > 185)
+            if (sprite[BLOOD_DROP].y_ > poolYLocation)
             {
-                bloodPool(sprite[BLOOD_DROP].x_, 185);
+                bloodPool(sprite[BLOOD_DROP].x_, poolYLocation);
                 sprite[BLOOD_DROP].active = R_is_inactive;
                 bloodDrop1InUse  = false;
             }
 
             bloodDrop1Momentum += gravity;
-            lastTicks = rapTicks;
+            lastTicks1 = rapTicks;
+        }
+    }
+
+    if (bloodDrop2InUse)
+    {
+        updateSpriteAnimator(&bloodDrop2Animator, bloodDropFrames, 8, bloodDirection == -1 ? true : false, true);
+
+        if (rapTicks - lastTicks2 >= updateTicks)
+        {
+            sprite[BLOOD_DROP+1].x_ -= bloodSpeedRnd * bloodDirection;
+            sprite[BLOOD_DROP+1].y_ += bloodDrop2Momentum;
+
+            if (sprite[BLOOD_DROP+1].y_ > poolYLocation)
+            {
+                bloodPool(sprite[BLOOD_DROP+1].x_, poolYLocation);
+                sprite[BLOOD_DROP+1].active = R_is_inactive;
+                bloodDrop2InUse  = false;
+            }
+
+            bloodDrop2Momentum += gravity;
+            lastTicks2 = rapTicks;
+        }
+    }
+
+    if (bloodDrop3InUse)
+    {
+        updateSpriteAnimator(&bloodDrop3Animator, bloodDropFrames, 8, bloodDirection == -1 ? true : false, true);
+
+        if (rapTicks - lastTicks3 >= updateTicks)
+        {
+            sprite[BLOOD_DROP+2].x_ -= bloodSpeedRnd * bloodDirection;
+            sprite[BLOOD_DROP+2].y_ += bloodDrop3Momentum;
+
+            if (sprite[BLOOD_DROP+2].y_ > poolYLocation)
+            {
+                bloodPool(sprite[BLOOD_DROP+2].x_, poolYLocation);
+                sprite[BLOOD_DROP+2].active = R_is_inactive;
+                bloodDrop3InUse  = false;
+            }
+
+            bloodDrop3Momentum += gravity;
+            lastTicks3 = rapTicks;
+        }
+    }
+
+    if (bloodDrop4InUse)
+    {
+        updateSpriteAnimator(&bloodDrop4Animator, bloodDropFrames, 8, bloodDirection == -1 ? true : false, true);
+
+        if (rapTicks - lastTicks4 >= updateTicks)
+        {
+            sprite[BLOOD_DROP+3].x_ -= bloodSpeedRnd * bloodDirection;
+            sprite[BLOOD_DROP+3].y_ += bloodDrop4Momentum;
+
+            if (sprite[BLOOD_DROP+3].y_ > poolYLocation)
+            {
+                bloodPool(sprite[BLOOD_DROP+3].x_, poolYLocation);
+                sprite[BLOOD_DROP+3].active = R_is_inactive;
+                bloodDrop4InUse  = false;
+            }
+
+            bloodDrop4Momentum += gravity;
+            lastTicks4 = rapTicks;
+        }
+    }
+
+    if (bloodDrop5InUse)
+    {
+        updateSpriteAnimator(&bloodDrop5Animator, bloodDropFrames, 8, bloodDirection == -1 ? true : false, true);
+
+        if (rapTicks - lastTicks5 >= updateTicks)
+        {
+            sprite[BLOOD_DROP+4].x_ -= bloodSpeedRnd * bloodDirection;
+            sprite[BLOOD_DROP+4].y_ += bloodDrop5Momentum;
+
+            if (sprite[BLOOD_DROP+4].y_ > poolYLocation)
+            {
+                bloodPool(sprite[BLOOD_DROP+4].x_, poolYLocation);
+                sprite[BLOOD_DROP+4].active = R_is_inactive;
+                bloodDrop5InUse  = false;
+            }
+
+            bloodDrop5Momentum += gravity;
+            lastTicks5 = rapTicks;
+        }
+    }
+
+    if (bloodDrop6InUse)
+    {
+        updateSpriteAnimator(&bloodDrop6Animator, bloodDropFrames, 8, bloodDirection == -1 ? true : false, true);
+
+        if (rapTicks - lastTicks6 >= updateTicks)
+        {
+            sprite[BLOOD_DROP+5].x_ -= bloodSpeedRnd * bloodDirection;
+            sprite[BLOOD_DROP+5].y_ += bloodDrop6Momentum;
+
+            if (sprite[BLOOD_DROP+5].y_ > poolYLocation)
+            {
+                bloodPool(sprite[BLOOD_DROP+5].x_, poolYLocation);
+                sprite[BLOOD_DROP+5].active = R_is_inactive;
+                bloodDrop6InUse  = false;
+            }
+
+            bloodDrop6Momentum += gravity;
+            lastTicks6 = rapTicks;
+        }
+    }
+
+    if (bloodDrop7InUse)
+    {
+        updateSpriteAnimator(&bloodDrop7Animator, bloodDropFrames, 8, bloodDirection == -1 ? true : false, true);
+
+        if (rapTicks - lastTicks7 >= updateTicks)
+        {
+            sprite[BLOOD_DROP+6].x_ -= bloodSpeedRnd * bloodDirection;
+            sprite[BLOOD_DROP+6].y_ += bloodDrop7Momentum;
+
+            if (sprite[BLOOD_DROP+6].y_ > poolYLocation)
+            {
+                bloodPool(sprite[BLOOD_DROP+6].x_, poolYLocation);
+                sprite[BLOOD_DROP+6].active = R_is_inactive;
+                bloodDrop7InUse  = false;
+            }
+
+            bloodDrop7Momentum += gravity;
+            lastTicks7 = rapTicks;
+        }
+    }
+
+    if (bloodDrop8InUse)
+    {
+        updateSpriteAnimator(&bloodDrop8Animator, bloodDropFrames, 8, bloodDirection == -1 ? true : false, true);
+
+        if (rapTicks - lastTicks8 >= updateTicks)
+        {
+            sprite[BLOOD_DROP+7].x_ -= bloodSpeedRnd * bloodDirection;
+            sprite[BLOOD_DROP+7].y_ += bloodDrop8Momentum;
+
+            if (sprite[BLOOD_DROP+7].y_ > poolYLocation)
+            {
+                bloodPool(sprite[BLOOD_DROP+7].x_, poolYLocation);
+                sprite[BLOOD_DROP+7].active = R_is_inactive;
+                bloodDrop8InUse  = false;
+            }
+
+            bloodDrop8Momentum += gravity;
+            lastTicks8 = rapTicks;
+        }
+    }
+
+    if (bloodDrop9InUse)
+    {
+        updateSpriteAnimator(&bloodDrop9Animator, bloodDropFrames, 8, bloodDirection == -1 ? true : false, true);
+
+        if (rapTicks - lastTicks9 >= updateTicks)
+        {
+            sprite[BLOOD_DROP+8].x_ -= bloodSpeedRnd * bloodDirection;
+            sprite[BLOOD_DROP+8].y_ += bloodDrop9Momentum;
+
+            if (sprite[BLOOD_DROP+8].y_ > poolYLocation)
+            {
+                bloodPool(sprite[BLOOD_DROP+8].x_, poolYLocation);
+                sprite[BLOOD_DROP+8].active = R_is_inactive;
+                bloodDrop9InUse  = false;
+            }
+
+            bloodDrop9Momentum += gravity;
+            lastTicks9 = rapTicks;
+        }
+    }
+
+    if (bloodDrop10InUse)
+    {
+        updateSpriteAnimator(&bloodDrop10Animator, bloodDropFrames, 8, bloodDirection == -1 ? true : false, true);
+
+        if (rapTicks - lastTicks10 >= updateTicks)
+        {
+            sprite[BLOOD_DROP+9].x_ -= bloodSpeedRnd * bloodDirection;
+            sprite[BLOOD_DROP+9].y_ += bloodDrop10Momentum;
+
+            if (sprite[BLOOD_DROP+9].y_ > poolYLocation)
+            {
+                bloodPool(sprite[BLOOD_DROP+9].x_, poolYLocation);
+                sprite[BLOOD_DROP+9].active = R_is_inactive;
+                bloodDrop10InUse  = false;
+            }
+
+            bloodDrop10Momentum += gravity;
+            lastTicks10 = rapTicks;
         }
     }
 
     if (bloodPool1InUse)
     {
-        updateSpriteAnimator(&bloodPool1Animator, bloodPoolFrames, 2, true, false);
-
-        //keep the blood!?
+        updateSpriteAnimator(&bloodPool1Animator, bloodPoolFrames, 2, true, false);        
+    }
+    if (bloodPool2InUse)
+    {
+        updateSpriteAnimator(&bloodPool2Animator, bloodPoolFrames, 2, true, false);
+    }
+    if (bloodPool3InUse)
+    {
+        updateSpriteAnimator(&bloodPool3Animator, bloodPoolFrames, 2, true, false);
+    }
+    if (bloodPool4InUse)
+    {
+        updateSpriteAnimator(&bloodPool4Animator, bloodPoolFrames, 2, true, false);
+    }
+    if (bloodPool5InUse)
+    {
+        updateSpriteAnimator(&bloodPool5Animator, bloodPoolFrames, 2, true, false);
+    }
+    if (bloodPool6InUse)
+    {
+        updateSpriteAnimator(&bloodPool6Animator, bloodPoolFrames, 2, true, false);
+    }
+    if (bloodPool7InUse)
+    {
+        updateSpriteAnimator(&bloodPool7Animator, bloodPoolFrames, 2, true, false);
+    }
+    if (bloodPool8InUse)
+    {
+        updateSpriteAnimator(&bloodPool8Animator, bloodPoolFrames, 2, true, false);
+    }
+    if (bloodPool9InUse)
+    {
+        updateSpriteAnimator(&bloodPool9Animator, bloodPoolFrames, 2, true, false);
+    }
+    if (bloodPool10InUse)
+    {
+        updateSpriteAnimator(&bloodPool10Animator, bloodPoolFrames, 2, true, false);
     }
 }
 
@@ -296,6 +551,21 @@ void bloodGlob(int x, int y, int direction)
 
 void bloodDrop(int x, int y, int direction)
 {
+    poolYLocation = 186 + (rapRND() & 8);
+
+    if (rapRND() & 500 < 150)
+    {
+        bloodSpeedRnd = bloodSpeed + 0.4f;
+    }
+    else if (rapRND() & 500 < 350)
+    {
+        bloodSpeedRnd = bloodSpeed - 0.4f;
+    }
+    else
+    {
+        bloodSpeedRnd = bloodSpeed + 0.0f;
+    }
+
     if (!bloodDrop1InUse)
     {
         bloodDrop1InUse = true;
@@ -307,8 +577,7 @@ void bloodDrop(int x, int y, int direction)
         bloodDrop1Animator.currentFrame = 0;
         bloodDrop1Momentum = bloodDropMomentumStart;
     }
-
-    if (!bloodDrop2InUse)
+    else if (!bloodDrop2InUse)
     {
         bloodDrop2InUse = true;
         bloodDirection = direction;
@@ -318,8 +587,7 @@ void bloodDrop(int x, int y, int direction)
         sprite[BLOOD_DROP+1].active = R_is_active;
         bloodDrop2Animator.currentFrame = 0;
     }
-
-    if (!bloodDrop3InUse)
+    else if (!bloodDrop3InUse)
     {
         bloodDrop3InUse = true;
         bloodDirection = direction;
@@ -329,8 +597,7 @@ void bloodDrop(int x, int y, int direction)
         sprite[BLOOD_DROP+2].active = R_is_active;
         bloodDrop3Animator.currentFrame = 0;
     }
-
-    if (!bloodDrop4InUse)
+    else if (!bloodDrop4InUse)
     {
         bloodDrop4InUse = true;
         bloodDirection = direction;
@@ -340,8 +607,7 @@ void bloodDrop(int x, int y, int direction)
         sprite[BLOOD_DROP+3].active = R_is_active;
         bloodDrop4Animator.currentFrame = 0;
     }
-
-    if (!bloodDrop5InUse)
+    else if (!bloodDrop5InUse)
     {
         bloodDrop5InUse = true;
         bloodDirection = direction;
@@ -351,8 +617,7 @@ void bloodDrop(int x, int y, int direction)
         sprite[BLOOD_DROP+4].active = R_is_active;
         bloodDrop5Animator.currentFrame = 0;
     }
-
-    if (!bloodDrop6InUse)
+    else if (!bloodDrop6InUse)
     {
         bloodDrop6InUse = true;
         bloodDirection = direction;
@@ -362,8 +627,7 @@ void bloodDrop(int x, int y, int direction)
         sprite[BLOOD_DROP+5].active = R_is_active;
         bloodDrop6Animator.currentFrame = 0;
     }
-
-    if (!bloodDrop7InUse)
+    else if (!bloodDrop7InUse)
     {
         bloodDrop7InUse = true;
         bloodDirection = direction;
@@ -373,8 +637,7 @@ void bloodDrop(int x, int y, int direction)
         sprite[BLOOD_DROP+6].active = R_is_active;
         bloodDrop7Animator.currentFrame = 0;
     }
-
-    if (!bloodDrop8InUse)
+    else if (!bloodDrop8InUse)
     {
         bloodDrop8InUse = true;
         bloodDirection = direction;
@@ -384,8 +647,7 @@ void bloodDrop(int x, int y, int direction)
         sprite[BLOOD_DROP+7].active = R_is_active;
         bloodDrop8Animator.currentFrame = 0;
     }
-
-    if (!bloodDrop9InUse)
+    else if (!bloodDrop9InUse)
     {
         bloodDrop9InUse = true;
         bloodDirection = direction;
@@ -395,8 +657,7 @@ void bloodDrop(int x, int y, int direction)
         sprite[BLOOD_DROP+8].active = R_is_active;
         bloodDrop9Animator.currentFrame = 0;
     }
-
-    if (!bloodDrop10InUse)
+    else if (!bloodDrop10InUse)
     {
         bloodDrop10InUse = true;
         bloodDirection = direction;
@@ -417,5 +678,87 @@ void bloodPool(int x, int y)
         sprite[BLOOD_POOL].y_ = y;
         sprite[BLOOD_POOL].active = R_is_active;
         bloodPool1Animator.currentFrame = 0;
+        spriteDelaySetInactive(BLOOD_POOL, rapTicks+bloodStayDelay, &bloodPool1InUse);
+    }
+    else if (!bloodPool2InUse)
+    {
+        bloodPool2InUse = true;
+        sprite[BLOOD_POOL+1].x_ = x;
+        sprite[BLOOD_POOL+1].y_ = y;
+        sprite[BLOOD_POOL+1].active = R_is_active;
+        bloodPool2Animator.currentFrame = 0;
+        spriteDelaySetInactive(BLOOD_POOL+1, rapTicks+bloodStayDelay, &bloodPool2InUse);
+    }
+    else if (!bloodPool3InUse)
+    {
+        bloodPool3InUse = true;
+        sprite[BLOOD_POOL+2].x_ = x;
+        sprite[BLOOD_POOL+2].y_ = y;
+        sprite[BLOOD_POOL+2].active = R_is_active;
+        bloodPool3Animator.currentFrame = 0;
+        spriteDelaySetInactive(BLOOD_POOL+2, rapTicks+bloodStayDelay, &bloodPool3InUse);
+    }
+    else if (!bloodPool4InUse)
+    {
+        bloodPool4InUse = true;
+        sprite[BLOOD_POOL+3].x_ = x;
+        sprite[BLOOD_POOL+3].y_ = y;
+        sprite[BLOOD_POOL+3].active = R_is_active;
+        bloodPool4Animator.currentFrame = 0;
+        spriteDelaySetInactive(BLOOD_POOL+3, rapTicks+bloodStayDelay, &bloodPool4InUse);
+    }
+    else if (!bloodPool5InUse)
+    {
+        bloodPool5InUse = true;
+        sprite[BLOOD_POOL+4].x_ = x;
+        sprite[BLOOD_POOL+4].y_ = y;
+        sprite[BLOOD_POOL+4].active = R_is_active;
+        bloodPool5Animator.currentFrame = 0;
+        spriteDelaySetInactive(BLOOD_POOL+4, rapTicks+bloodStayDelay, &bloodPool5InUse);
+    }
+    else if (!bloodPool6InUse)
+    {
+        bloodPool6InUse = true;
+        sprite[BLOOD_POOL+5].x_ = x;
+        sprite[BLOOD_POOL+5].y_ = y;
+        sprite[BLOOD_POOL+5].active = R_is_active;
+        bloodPool6Animator.currentFrame = 0;
+        spriteDelaySetInactive(BLOOD_POOL+5, rapTicks+bloodStayDelay, &bloodPool6InUse);
+    }
+    else if (!bloodPool7InUse)
+    {
+        bloodPool7InUse = true;
+        sprite[BLOOD_POOL+6].x_ = x;
+        sprite[BLOOD_POOL+6].y_ = y;
+        sprite[BLOOD_POOL+6].active = R_is_active;
+        bloodPool7Animator.currentFrame = 0;
+        spriteDelaySetInactive(BLOOD_POOL+6, rapTicks+bloodStayDelay, &bloodPool7InUse);
+    }
+    else if (!bloodPool8InUse)
+    {
+        bloodPool8InUse = true;
+        sprite[BLOOD_POOL+7].x_ = x;
+        sprite[BLOOD_POOL+7].y_ = y;
+        sprite[BLOOD_POOL+7].active = R_is_active;
+        bloodPool8Animator.currentFrame = 0;
+        spriteDelaySetInactive(BLOOD_POOL+7, rapTicks+bloodStayDelay, &bloodPool8InUse);
+    }
+    else if (!bloodPool9InUse)
+    {
+        bloodPool9InUse = true;
+        sprite[BLOOD_POOL+8].x_ = x;
+        sprite[BLOOD_POOL+8].y_ = y;
+        sprite[BLOOD_POOL+8].active = R_is_active;
+        bloodPool9Animator.currentFrame = 0;
+        spriteDelaySetInactive(BLOOD_POOL+8, rapTicks+bloodStayDelay, &bloodPool9InUse);
+    }
+    else if (!bloodPool10InUse)
+    {
+        bloodPool10InUse = true;
+        sprite[BLOOD_POOL+9].x_ = x;
+        sprite[BLOOD_POOL+9].y_ = y;
+        sprite[BLOOD_POOL+9].active = R_is_active;
+        bloodPool10Animator.currentFrame = 0;
+        spriteDelaySetInactive(BLOOD_POOL+9, rapTicks+bloodStayDelay, &bloodPool10InUse);
     }
 }
