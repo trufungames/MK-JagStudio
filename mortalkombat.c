@@ -13,7 +13,7 @@
 #include "fighter.h"
 #include "sound.h"
 #include "impactFrame.h"
-
+#include "blood.h"
 
 // *************************************************
 //            User Global Variables
@@ -32,7 +32,7 @@ static int BLACKPAL[128];
 static int WHITEPAL[8];
 
 static	SoundHandler soundHandler = {
-		false,  //sound on/off
+		true,  //sound on/off
 		false,  //music on/off
 		1,  //sound volume
 		1   //music volume
@@ -1633,6 +1633,8 @@ int gameStartTicks = rapTicks;
 			}
 
 			fighterImpactCheck(fighter1Ptr, fighter2Ptr);
+
+			bloodUpdate();
 		}
 		
 
@@ -1806,7 +1808,8 @@ void switchScreenFight(int p1Cursor, int p2Cursor)
 	jsfLoadClut((unsigned short *)(void *)(BMP_MOUNTAINS_clut),10,16);
 	jsfLoadClut((unsigned short *)(void *)(BMP_BUSH_clut),11,16);
 	jsfLoadClut((unsigned short *)(void *)(BMP_ROUND1_clut),12,16);
-	jsfLoadClut((unsigned short *)(void *)(BMP_LIGHTNING_clut),13,3);
+	//jsfLoadClut((unsigned short *)(void *)(BMP_LIGHTNING_clut),13,3);
+	jsfLoadClut((unsigned short *)(void *)(BMP_BLOOD_clut),13,16);
 
 	switch (p1Cursor)
 	{

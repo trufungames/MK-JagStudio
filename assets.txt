@@ -69,6 +69,7 @@ ROM,BMP_PT_SUBZERO,gfx_clut,ASSETS\GFX\pt_subzero.BMP
 ROM,BMP_SHUTTER,gfx_clut16,ASSETS\GFX\shutter.BMP
 ROM,BMP_ROUND1,gfx_clut,ASSETS\GFX\round1.BMP
 ROM,BMP_FIGHT,gfx_clut,ASSETS\GFX\fight.BMP
+ROM,BMP_BLOOD,gfx_clut,ASSETS\GFX\blood.BMP
 
 ROM,PAL_SCORPION,gfx_clut,ASSETS\GFX\pal_scorpion.BMP
 ROM,PAL_REPTILE,gfx_clut,ASSETS\GFX\pal_reptile.BMP

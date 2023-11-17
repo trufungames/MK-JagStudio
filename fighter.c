@@ -4,6 +4,7 @@
 #include "spriteanimator.h"
 #include "spritemovements.h"
 #include "impactFrame.h"
+#include "blood.h"
 
 int collision = 0;
 
@@ -130,6 +131,29 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
             else if (fighter->IsHitBack)
             {
                 sfxImpact(fighter->soundHandler);
+            }
+
+            if (fighter->IsHitHigh || fighter->IsHitBack)
+            {
+                int bloodX = sprite[fighter->spriteIndex].x_;
+
+                if (fighter->direction == -1)
+                {
+                    bloodX += 40;
+                }
+                else if (fighter->direction == 1)
+                {
+                    bloodX -= 40;
+                }
+
+                if (fighter->IsHitHigh)
+                {
+                    bloodSpray(bloodX, sprite[fighter->spriteIndex].y_ - 10, fighter->direction);
+                }
+                else if (fighter->IsHitBack)
+                {
+                    bloodGlob(bloodX, sprite[fighter->spriteIndex].y_ + 20, fighter->direction);
+                }
             }
         }
     }

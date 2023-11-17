@@ -101,20 +101,20 @@ __Z20switchScreenVsBattleii:
 	jsr (%a2)
 	move.l sprite,%a0
 	moveq #-1,%d0
-	move.l %d0,14212(%a0)
-	move.l %d0,14404(%a0)
-	move.l %d0,15172(%a0)
 	move.l %d0,14788(%a0)
-	move.l %d0,14596(%a0)
-	move.l %d0,15364(%a0)
 	move.l %d0,14980(%a0)
-	move.l %d0,15556(%a0)
 	move.l %d0,15748(%a0)
-	move.l %d0,16516(%a0)
-	move.l %d0,16132(%a0)
+	move.l %d0,15364(%a0)
+	move.l %d0,15172(%a0)
 	move.l %d0,15940(%a0)
-	move.l %d0,16708(%a0)
+	move.l %d0,15556(%a0)
+	move.l %d0,16132(%a0)
 	move.l %d0,16324(%a0)
+	move.l %d0,17092(%a0)
+	move.l %d0,16708(%a0)
+	move.l %d0,16516(%a0)
+	move.l %d0,17284(%a0)
+	move.l %d0,16900(%a0)
 	lea (12,%sp),%sp
 	moveq #6,%d0
 	cmp.l %d3,%d0
@@ -137,7 +137,7 @@ __Z20switchScreenVsBattleii:
 	jsr (%a2)
 	move.l sprite,%a0
 	moveq #1,%d0
-	move.l %d0,15364(%a0)
+	move.l %d0,15940(%a0)
 	lea (12,%sp),%sp
 .L3:
 	moveq #6,%d0
@@ -161,7 +161,7 @@ __Z20switchScreenVsBattleii:
 	jsr (%a2)
 	move.l sprite,%a0
 	moveq #1,%d0
-	move.l %d0,16708(%a0)
+	move.l %d0,17284(%a0)
 	lea (12,%sp),%sp
 .L12:
 	pea 2.w
@@ -179,7 +179,7 @@ __Z20switchScreenVsBattleii:
 	jsr (%a2)
 	move.l sprite,%a0
 	moveq #1,%d0
-	move.l %d0,16516(%a0)
+	move.l %d0,17092(%a0)
 	lea (12,%sp),%sp
 	pea 2.w
 	jsr rapSetActiveList
@@ -196,7 +196,7 @@ __Z20switchScreenVsBattleii:
 	jsr (%a2)
 	move.l sprite,%a0
 	moveq #1,%d0
-	move.l %d0,14212(%a0)
+	move.l %d0,14788(%a0)
 	lea (12,%sp),%sp
 	jra .L3
 .L5:
@@ -206,7 +206,7 @@ __Z20switchScreenVsBattleii:
 	jsr (%a2)
 	move.l sprite,%a0
 	moveq #1,%d0
-	move.l %d0,14404(%a0)
+	move.l %d0,14980(%a0)
 	lea (12,%sp),%sp
 	jra .L3
 .L6:
@@ -216,7 +216,7 @@ __Z20switchScreenVsBattleii:
 	jsr (%a2)
 	move.l sprite,%a0
 	moveq #1,%d0
-	move.l %d0,14596(%a0)
+	move.l %d0,15172(%a0)
 	lea (12,%sp),%sp
 	jra .L3
 .L7:
@@ -226,7 +226,7 @@ __Z20switchScreenVsBattleii:
 	jsr (%a2)
 	move.l sprite,%a0
 	moveq #1,%d0
-	move.l %d0,14788(%a0)
+	move.l %d0,15364(%a0)
 	lea (12,%sp),%sp
 	jra .L3
 .L8:
@@ -236,7 +236,7 @@ __Z20switchScreenVsBattleii:
 	jsr (%a2)
 	move.l sprite,%a0
 	moveq #1,%d0
-	move.l %d0,14980(%a0)
+	move.l %d0,15556(%a0)
 	lea (12,%sp),%sp
 	jra .L3
 .L9:
@@ -246,7 +246,7 @@ __Z20switchScreenVsBattleii:
 	jsr (%a2)
 	move.l sprite,%a0
 	moveq #1,%d0
-	move.l %d0,15172(%a0)
+	move.l %d0,15748(%a0)
 	lea (12,%sp),%sp
 	jra .L3
 .L13:
@@ -256,7 +256,7 @@ __Z20switchScreenVsBattleii:
 	jsr (%a2)
 	move.l sprite,%a0
 	moveq #1,%d0
-	move.l %d0,15556(%a0)
+	move.l %d0,16132(%a0)
 	lea (12,%sp),%sp
 	pea 2.w
 	jsr rapSetActiveList
@@ -273,7 +273,7 @@ __Z20switchScreenVsBattleii:
 	jsr (%a2)
 	move.l sprite,%a0
 	moveq #1,%d0
-	move.l %d0,15748(%a0)
+	move.l %d0,16324(%a0)
 	lea (12,%sp),%sp
 	pea 2.w
 	jsr rapSetActiveList
@@ -290,7 +290,7 @@ __Z20switchScreenVsBattleii:
 	jsr (%a2)
 	move.l sprite,%a0
 	moveq #1,%d0
-	move.l %d0,15940(%a0)
+	move.l %d0,16516(%a0)
 	lea (12,%sp),%sp
 	pea 2.w
 	jsr rapSetActiveList
@@ -307,7 +307,7 @@ __Z20switchScreenVsBattleii:
 	jsr (%a2)
 	move.l sprite,%a0
 	moveq #1,%d0
-	move.l %d0,16132(%a0)
+	move.l %d0,16708(%a0)
 	lea (12,%sp),%sp
 	pea 2.w
 	jsr rapSetActiveList
@@ -324,7 +324,7 @@ __Z20switchScreenVsBattleii:
 	jsr (%a2)
 	move.l sprite,%a0
 	moveq #1,%d0
-	move.l %d0,16324(%a0)
+	move.l %d0,16900(%a0)
 	lea (12,%sp),%sp
 	pea 2.w
 	jsr rapSetActiveList
@@ -384,10 +384,10 @@ __Z17switchScreenFightii:
 	move.l #12286336,-(%sp)
 	jsr (%a2)
 	addq.l #8,%sp
-	moveq #3,%d1
+	moveq #16,%d1
 	move.l %d1,(%sp)
 	pea 13.w
-	move.l #12226816,-(%sp)
+	move.l #12337088,-(%sp)
 	jsr (%a2)
 	lea (12,%sp),%sp
 	moveq #6,%d0
@@ -407,7 +407,7 @@ __Z17switchScreenFightii:
 .L31:
 	pea 16.w
 	pea 14.w
-	move.l #12294096,-(%sp)
+	move.l #12337136,-(%sp)
 	jsr (%a2)
 	addq.l #8,%sp
 	move.l #_subzeroImpactFrameHighKick,(%sp)
@@ -640,7 +640,7 @@ __Z17switchScreenFightii:
 .L40:
 	pea 16.w
 	pea 15.w
-	move.l #12294096,-(%sp)
+	move.l #12337136,-(%sp)
 	jsr (%a2)
 	addq.l #8,%sp
 	move.l #_subzeroImpactFrameHighKick,(%sp)
@@ -963,7 +963,7 @@ __Z17SetPlayerPalettesv:
 .L54:
 	pea 16.w
 	pea 14.w
-	move.l #12294096,-(%sp)
+	move.l #12337136,-(%sp)
 	jsr jsfLoadClut
 	addq.l #8,%sp
 	moveq #1,%d2
@@ -996,7 +996,7 @@ __Z17SetPlayerPalettesv:
 .L63:
 	pea 16.w
 	pea 15.w
-	move.l #12294096,-(%sp)
+	move.l #12337136,-(%sp)
 	jsr jsfLoadClut
 	addq.l #8,%sp
 	clr.l (%sp)
@@ -2447,6 +2447,7 @@ __Z9basicmainv:
 	move.l -16(%fp),-(%sp)
 	jsr __Z18fighterImpactCheckP7FighterS0_
 	addq.l #8,%sp
+	jsr __Z11bloodUpdatev
 	jra .L78
 .L168:
 	move.l sprite,%a0
@@ -2482,6 +2483,7 @@ __Z9basicmainv:
 	move.l -16(%fp),-(%sp)
 	jsr __Z18fighterImpactCheckP7FighterS0_
 	addq.l #8,%sp
+	jsr __Z11bloodUpdatev
 	jra .L78
 .L167:
 	pea 1.w
@@ -2508,6 +2510,7 @@ __Z9basicmainv:
 	move.l -16(%fp),-(%sp)
 	jsr __Z18fighterImpactCheckP7FighterS0_
 	addq.l #8,%sp
+	jsr __Z11bloodUpdatev
 	jra .L78
 .L166:
 	pea 1.w
@@ -2534,6 +2537,7 @@ __Z9basicmainv:
 	move.l -16(%fp),-(%sp)
 	jsr __Z18fighterImpactCheckP7FighterS0_
 	addq.l #8,%sp
+	jsr __Z11bloodUpdatev
 	jra .L78
 .L165:
 	pea 1.w
@@ -2560,6 +2564,7 @@ __Z9basicmainv:
 	move.l -16(%fp),-(%sp)
 	jsr __Z18fighterImpactCheckP7FighterS0_
 	addq.l #8,%sp
+	jsr __Z11bloodUpdatev
 	jra .L78
 .L164:
 	pea 1.w
@@ -2586,6 +2591,7 @@ __Z9basicmainv:
 	move.l -16(%fp),-(%sp)
 	jsr __Z18fighterImpactCheckP7FighterS0_
 	addq.l #8,%sp
+	jsr __Z11bloodUpdatev
 	jra .L78
 .L159:
 	move.l sprite,%a0
@@ -2643,6 +2649,7 @@ __Z9basicmainv:
 	move.l -16(%fp),-(%sp)
 	jsr __Z18fighterImpactCheckP7FighterS0_
 	addq.l #8,%sp
+	jsr __Z11bloodUpdatev
 	jra .L78
 .L161:
 	clr.l -(%sp)
@@ -3323,7 +3330,7 @@ __ZL11ticksPerSec:
 .lcomm __ZL8WHITEPAL,32
 	.even
 __ZL12soundHandler:
-	.byte	0
+	.byte	1
 	.byte	0
 	.long	1
 	.long	1
