@@ -1,3 +1,18 @@
+struct BloodDrop {
+    unsigned int SpriteIndex;
+    struct SpriteAnimator* Animator;
+    bool InUse;
+    int LastTicks;
+    int Direction;
+    float Momentum;
+};
+
+struct BloodPool {
+    unsigned int SpriteIndex;
+    struct SpriteAnimator* Animator;
+    bool InUse;
+};
+
 void bloodInit();
 
 void bloodUpdate();
