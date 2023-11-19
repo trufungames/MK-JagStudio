@@ -27,6 +27,12 @@ void bgScrollRight (float delta)
 		sprite[BG1_BACKDROP].x_ -= 2.0f * delta;
 		sprite[BG1_FLAME1].x_ -= 2.0f * delta;
 		sprite[BG1_FLAME2].x_ -= 2.0f * delta;
+
+		for (int i = 0; i < TOTAL_BLOOD_COUNT; i++)
+		{
+			sprite[BLOOD_DROP+i].x_ -= 2.0f * delta;
+			sprite[BLOOD_POOL+i].x_ -= 2.0f * delta;
+		}
 	}
 }
 
@@ -44,5 +50,11 @@ void bgScrollLeft (float delta)
 		sprite[BG1_BACKDROP].x_ += 2.0f * delta;
 		sprite[BG1_FLAME1].x_ += 2.0f * delta;
 		sprite[BG1_FLAME2].x_ += 2.0f * delta;
+
+		for (int i = 0; i < TOTAL_BLOOD_COUNT; i++)
+		{
+			sprite[BLOOD_DROP+i].x_ += 2.0f * delta;
+			sprite[BLOOD_POOL+i].x_ += 2.0f * delta;
+		}
 	}
 }
