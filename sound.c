@@ -220,6 +220,21 @@ void sfxImpact(struct SoundHandler* soundHandler)
 	zeroPlaySample(SOUND_CHANNEL_MISC,STRPTR(hit_impact_sam),(STRPTR(hit_impact_sam_end)-STRPTR(hit_impact_sam)+3) & 0xfffffffc,(46168/7000),Zero_Audio_8bit_Signed);
 }
 
+void sfxBlood(struct SoundHandler* soundHandler)
+{
+	if (!soundHandler->EnableSFX)
+		return;
+
+	if (rapRND() & 255 > 100)
+	{
+		zeroPlaySample(SOUND_CHANNEL_MISC,STRPTR(blood01_sam),(STRPTR(blood01_sam_end)-STRPTR(blood01_sam)+3) & 0xfffffffc,(46168/7000),Zero_Audio_8bit_Signed);
+	}
+	else
+	{
+		zeroPlaySample(SOUND_CHANNEL_MISC,STRPTR(blood02_sam),(STRPTR(blood02_sam_end)-STRPTR(blood02_sam)+3) & 0xfffffffc,(46168/7000),Zero_Audio_8bit_Signed);
+	}
+}
+
 void sfxSwing(struct SoundHandler* soundHandler)
 {
 	if (!soundHandler->EnableSFX)

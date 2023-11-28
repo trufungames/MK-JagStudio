@@ -132,3 +132,7 @@ extern void *swing_01_sam asm("swing_01_sam");
 extern void *swing_01_sam_end asm("swing_01_sam_end");
 extern void *swing_02_sam asm("swing_02_sam");
 extern void *swing_02_sam_end asm("swing_02_sam_end");
+extern void *blood01_sam asm("blood01_sam");
+extern void *blood01_sam_end asm("blood01_sam_end");
+extern void *blood02_sam asm("blood02_sam");
+extern void *blood02_sam_end asm("blood02_sam_end");

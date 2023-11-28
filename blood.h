@@ -15,7 +15,7 @@ struct BloodPool {
 
 void bloodInit();
 
-void bloodUpdate();
+void bloodUpdate(struct SoundHandler* soundHandler);
 
 void bloodSpray(int x, int y, int direction);
 

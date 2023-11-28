@@ -47,17 +47,19 @@ void fighterMakeSelectable(struct Fighter* fighter, bool isPlayer1)
     fighter->positionY = sprite[fighter->spriteIndex].y_;
 }
 
-void fighterInitialize(struct Fighter *fighter, bool isPlayer1, struct SoundHandler* soundHandler, struct ImpactFrame* impactFrameLowPunch, struct ImpactFrame* impactFrameHighPunch, struct ImpactFrame* impactFrameLowKick, struct ImpactFrame* impactFrameHighKick)
+void fighterInitialize(struct Fighter *fighter, bool isPlayer1, struct SoundHandler* soundHandler, struct ImpactFrame* impactFrameLowPunch, struct ImpactFrame* impactFrameHighPunch, struct ImpactFrame* impactFrameLowKick, struct ImpactFrame* impactFrameHighKick, struct ImpactFrame* impactFrameUppercut)
 {
     fighter->soundHandler = soundHandler;
     fighter->impactFrameLowPunch = impactFrameLowPunch;
     fighter->impactFrameHighPunch = impactFrameHighPunch;
     fighter->impactFrameLowKick = impactFrameLowKick;
     fighter->impactFrameHighKick = impactFrameHighKick;
+    fighter->impactFrameUppercut = impactFrameUppercut;
     fighter->pad = 0;
     fighter->playerMoveForwardSpeed = 2;
     fighter->playerMoveBackwardSpeed = 2;
-
+    fighter->playerKnockbackSpeed = 4.5f;
+    fighter->damageTicks = 1;
     fighter->IsWalking = false;
     fighter->IsDucking = false;
     fighter->IsBlocking = false;
@@ -65,10 +67,12 @@ void fighterInitialize(struct Fighter *fighter, bool isPlayer1, struct SoundHand
     fighter->IsHighPunching = false;
     fighter->IsLowKicking = false;
     fighter->IsHighKicking = false;
+    fighter->IsUppercutting = false;
     fighter->ButtonReleased = true;
     fighter->IsHitLow = false;
     fighter->IsHitHigh = false;
     fighter->IsHitBack = false;
+    fighter->IsHitFall = false;
     fighter->IsBeingDamaged = false;
     fighter->isPlayer1 = isPlayer1;
     sprite[fighter->spriteIndex].active = R_is_active;
@@ -112,7 +116,7 @@ void fighterUpdateIdle(float delta, struct Fighter *fighter, struct SpriteAnimat
     updateSpriteAnimator(animator, idleFrames, fighter->IDLE_FRAME_COUNT, true, true, fighter->positionX, fighter->positionY, fighter->direction);
 }
 
-void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* animator, struct AnimationFrame idleFrames[], struct AnimationFrame walkFrames[], struct AnimationFrame duckFrames[], struct AnimationFrame blockFrames[], struct AnimationFrame blockDuckFrames[], struct AnimationFrame punchLowFrames[], struct AnimationFrame punchHighFrames[], struct AnimationFrame kickLowFrames[], struct AnimationFrame kickHighFrames[], struct AnimationFrame hitLowFrames[], struct AnimationFrame hitHighFrames[], struct AnimationFrame hitBackFrames[], bool walkForward)
+void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* animator, bool walkForward)
 {
     //**************************************
     //Impact Damage Checks
@@ -122,6 +126,7 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
         if (fighter->IsHitLow || fighter->IsHitHigh || fighter->IsHitBack)
         {
             fighter->IsBeingDamaged = true;
+            fighter->lastTicks = rapTicks;
             animator->currentFrame = 0;
 
             if (fighter->IsHitLow || fighter->IsHitHigh)
@@ -161,7 +166,7 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
 
     if (fighter->IsHitLow && fighter->IsBeingDamaged)
     {
-        updateSpriteAnimator(animator, hitLowFrames, fighter->HIT_LOW_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
+        updateSpriteAnimator(animator, *fighter->hitLowFrames, fighter->HIT_LOW_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
 
         if (animationIsComplete(animator, fighter->HIT_LOW_FRAME_COUNT))
         {
@@ -171,7 +176,7 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
     }
     else if (fighter->IsHitHigh && fighter->IsBeingDamaged)
     {
-        updateSpriteAnimator(animator, hitHighFrames, fighter->HIT_HIGH_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
+        updateSpriteAnimator(animator, *fighter->hitHighFrames, fighter->HIT_HIGH_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
 
         if (animationIsComplete(animator, fighter->HIT_HIGH_FRAME_COUNT))
         {
@@ -181,7 +186,17 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
     }
     else if (fighter->IsHitBack && fighter->IsBeingDamaged)
     {
-        updateSpriteAnimator(animator, hitBackFrames, fighter->HIT_BACK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
+        if (rapTicks >= fighter->lastTicks + fighter->damageTicks)
+        {
+            //sprite[fighter->spriteIndex].x_ += fighter->playerKnockbackSpeed * -fighter->direction;
+            sprite[fighter->HB_BODY].x_ += fighter->playerKnockbackSpeed * -fighter->direction;
+            sprite[fighter->HB_DUCK].x_ += fighter->playerKnockbackSpeed * -fighter->direction;
+            sprite[fighter->HB_ATTACK].x_ += fighter->playerKnockbackSpeed * -fighter->direction;
+            fighter->positionX += fighter->playerKnockbackSpeed * -fighter->direction;
+            fighter->lastTicks = rapTicks;
+        }     
+
+        updateSpriteAnimator(animator, *fighter->hitBackFrames, fighter->HIT_BACK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
 
         if (animationIsComplete(animator, fighter->HIT_BACK_FRAME_COUNT))
         {
@@ -197,7 +212,27 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
     {
         fighter->pad = jsfGetPad(fighter->PAD);
 
-        if (fighter->pad & JAGPAD_C && fighter->ButtonReleased || fighter->IsLowPunching)
+        if ((fighter->pad & JAGPAD_C || fighter->pad & JAGPAD_9) && fighter->IsDucking && fighter->ButtonReleased || fighter->IsUppercutting)
+        {
+            if (!fighter->IsUppercutting && fighter->ButtonReleased)
+            {
+                fighter->ButtonReleased = false;
+                fighter->IsUppercutting = true;
+                fighter->IsDucking = false;
+                sprite[fighter->HB_BODY].active = R_is_active;
+                animator->currentFrame = 0;
+                sfxSwing(fighter->soundHandler);
+            }
+
+            impactFrameUpdate(animator, fighter, fighter->impactFrameUppercut);
+            updateSpriteAnimator(animator, *fighter->uppercutFrames, fighter->UPPERCUT_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
+
+            if (animationIsComplete(animator, fighter->UPPERCUT_FRAME_COUNT))
+            {
+                fighter->IsUppercutting = false;
+            }
+        }
+        else if (fighter->pad & JAGPAD_C && fighter->ButtonReleased || fighter->IsLowPunching)
         {
             if (!fighter->IsLowPunching && fighter->ButtonReleased)
             {
@@ -209,7 +244,7 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
             }
 
             impactFrameUpdate(animator, fighter, fighter->impactFrameLowPunch);
-            updateSpriteAnimator(animator, punchLowFrames, fighter->LOW_PUNCH_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
+            updateSpriteAnimator(animator, *fighter->punchLowFrames, fighter->LOW_PUNCH_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
 
             if (animationIsComplete(animator, fighter->LOW_PUNCH_FRAME_COUNT))
             {
@@ -228,7 +263,7 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
             }
 
             impactFrameUpdate(animator, fighter, fighter->impactFrameHighPunch);
-            updateSpriteAnimator(animator, punchHighFrames, fighter->HIGH_PUNCH_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
+            updateSpriteAnimator(animator, *fighter->punchHighFrames, fighter->HIGH_PUNCH_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
 
             if (animationIsComplete(animator, fighter->HIGH_PUNCH_FRAME_COUNT))
             {
@@ -247,7 +282,7 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
             }
 
             impactFrameUpdate(animator, fighter, fighter->impactFrameLowKick);
-            updateSpriteAnimator(animator, kickLowFrames, fighter->LOW_KICK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
+            updateSpriteAnimator(animator, *fighter->kickLowFrames, fighter->LOW_KICK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
 
             if (animationIsComplete(animator, fighter->LOW_KICK_FRAME_COUNT))
             {
@@ -266,7 +301,7 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
             }
 
             impactFrameUpdate(animator, fighter, fighter->impactFrameHighKick);
-            updateSpriteAnimator(animator, kickHighFrames, fighter->HIGH_KICK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
+            updateSpriteAnimator(animator, *fighter->kickHighFrames, fighter->HIGH_KICK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
 
             if (animationIsComplete(animator, fighter->HIGH_KICK_FRAME_COUNT))
             {
@@ -289,21 +324,22 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
                     animator->currentFrame = 0;
                 }
 
-                updateSpriteAnimator(animator, blockDuckFrames, fighter->BLOCK_DUCK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
+                updateSpriteAnimator(animator, *fighter->blockDuckFrames, fighter->BLOCK_DUCK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
             }
             else
             {
                 if (fighter->IsDucking)
                 {
                     fighter->IsDucking = false;
+                    sprite[fighter->HB_BODY].active = R_is_active;
                 }
                 
-                updateSpriteAnimator(animator, blockFrames, fighter->BLOCK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
+                updateSpriteAnimator(animator, *fighter->blockFrames, fighter->BLOCK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
             }
         }
         else if(fighter->pad & JAGPAD_LEFT)
         {
-            updateSpriteAnimator(animator, walkFrames, fighter->WALK_FRAME_COUNT, walkForward, true, fighter->positionX, fighter->positionY, fighter->direction);
+            updateSpriteAnimator(animator, *fighter->walkFrames, fighter->WALK_FRAME_COUNT, walkForward, true, fighter->positionX, fighter->positionY, fighter->direction);
             fighter->IsWalking = true;
             fighter->IsDucking = false;
             fighter->IsBlocking  = false;
@@ -328,12 +364,13 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
             if (fighter->direction == -1)
             {
                 //player 2, so we have to factor the idleFrameWidth into the offset
-                fighter->positionX += walkFrames[animator->currentFrame].width - animator->idleFrameWidth;
+                //fighter->positionX += (*fighter->walkFrames[animator->currentFrame]).width - animator->idleFrameWidth;
+                fighter->positionX += 80 - animator->idleFrameWidth;
             }
         }
         else if(fighter->pad & JAGPAD_RIGHT)
         {
-            updateSpriteAnimator(animator, walkFrames, fighter->WALK_FRAME_COUNT, !walkForward, true, fighter->positionX, fighter->positionY, fighter->direction);
+            updateSpriteAnimator(animator, *fighter->walkFrames, fighter->WALK_FRAME_COUNT, !walkForward, true, fighter->positionX, fighter->positionY, fighter->direction);
             fighter->IsWalking = true;
             fighter->IsDucking = false;
             fighter->IsBlocking = false;
@@ -358,7 +395,8 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
             if (fighter->direction == -1)
             {
                 //player 2, so we have to factor the idleFrameWidth into the offset
-                fighter->positionX += walkFrames[animator->currentFrame].width - animator->idleFrameWidth;
+                //fighter->positionX += (*fighter->walkFrames[animator->currentFrame]).width - animator->idleFrameWidth;
+                fighter->positionX += 80 - animator->idleFrameWidth;
             }
         }
         else if (fighter->pad & JAGPAD_DOWN)
@@ -368,28 +406,24 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
                 fighter->IsDucking = true;
                 animator->currentFrame = 0;
             }
-            updateSpriteAnimator(animator, duckFrames, fighter->DUCK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
+            updateSpriteAnimator(animator, *fighter->duckFrames, fighter->DUCK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
             sprite[fighter->HB_BODY].active = R_is_inactive;
         }
         else
         {
             if (fighter->IsDucking)
             {
-                updateSpriteAnimator(animator, duckFrames, fighter->DUCK_FRAME_COUNT, false, false, fighter->positionX, fighter->positionY, fighter->direction);
+                updateSpriteAnimator(animator, *fighter->duckFrames, fighter->DUCK_FRAME_COUNT, false, false, fighter->positionX, fighter->positionY, fighter->direction);
                 
                 if (animator->currentFrame == 0)
                 {
                     fighter->IsDucking = false;
-
-                    if (sprite[fighter->HB_DUCK].active == R_is_active)
-                    {
-                        sprite[fighter->HB_BODY].active = R_is_active;
-                    }
+                    sprite[fighter->HB_BODY].active = R_is_active;
                 }
             }
             else if (fighter->IsBlocking)
             {
-                updateSpriteAnimator(animator, blockFrames, fighter->BLOCK_FRAME_COUNT, false, false, fighter->positionX, fighter->positionY, fighter->direction);
+                updateSpriteAnimator(animator, *fighter->blockFrames, fighter->BLOCK_FRAME_COUNT, false, false, fighter->positionX, fighter->positionY, fighter->direction);
                 
                 if (animator->currentFrame == 0)
                 {
@@ -405,7 +439,7 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
                     impactFrameReset(fighter);
                 }
 
-                updateSpriteAnimator(animator, idleFrames, fighter->IDLE_FRAME_COUNT, true, true, fighter->positionX, fighter->positionY, fighter->direction);
+                updateSpriteAnimator(animator, *fighter->idleFrames, fighter->IDLE_FRAME_COUNT, true, true, fighter->positionX, fighter->positionY, fighter->direction);
 
             //fighter->positionX = sprite[fighter->spriteIndex].x_;
             //fighter->positionY = sprite[fighter->spriteIndex].y_;

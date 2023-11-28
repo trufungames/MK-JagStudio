@@ -185,3 +185,15 @@ swing_02_sam_end:
 .extern swing_02_sam
 .extern swing_02_sam_end
 .dphrase
+blood01_sam: incbin "build/blood01.wav.raw"
+.dc.b 0,0,0
+blood01_sam_end:
+.extern blood01_sam
+.extern blood01_sam_end
+.dphrase
+blood02_sam: incbin "build/blood02.wav.raw"
+.dc.b 0,0,0
+blood02_sam_end:
+.extern blood02_sam
+.extern blood02_sam_end
+.dphrase

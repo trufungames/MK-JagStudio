@@ -108,4 +108,6 @@ ABS,hit_02_sam,sfx_raw8000,ASSETS\SFX\hit_02.wav
 ABS,hit_impact_sam,sfx_raw8000,ASSETS\SFX\hit_impact.wav
 ABS,swing_01_sam,sfx_raw8000,ASSETS\SFX\swing_01.wav
 ABS,swing_02_sam,sfx_raw8000,ASSETS\SFX\swing_02.wav
+ABS,blood01_sam,sfx_raw8000,ASSETS\SFX\blood01.wav
+ABS,blood02_sam,sfx_raw8000,ASSETS\SFX\blood02.wav
 ' End of file.

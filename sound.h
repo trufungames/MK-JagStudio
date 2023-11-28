@@ -26,4 +26,5 @@ void sfxGroanMale(struct SoundHandler* soundHandler, bool isPlayer1);
 void sfxGroanFemale(struct SoundHandler* soundHandler, bool isPlayer1);
 void sfxHit(struct SoundHandler* soundHandler);
 void sfxImpact(struct SoundHandler* soundHandler);
+void sfxBlood(struct SoundHandler* soundHandler);
 void sfxSwing(struct SoundHandler* soundHandler);

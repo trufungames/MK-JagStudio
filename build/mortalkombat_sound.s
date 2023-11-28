@@ -729,8 +729,8 @@ __Z9sfxImpactP12SoundHandler:
 	unlk %fp
 	rts
 	.even
-	.globl	__Z8sfxSwingP12SoundHandler
-__Z8sfxSwingP12SoundHandler:
+	.globl	__Z8sfxBloodP12SoundHandler
+__Z8sfxBloodP12SoundHandler:
 	link.w %fp,#0
 	move.l 8(%fp),%a0
 	tst.b (%a0)
@@ -741,6 +741,46 @@ __Z8sfxSwingP12SoundHandler:
 	jsr RAPTOR_random
 	btst #0,%d0
 	jne .L162
+	clr.l -(%sp)
+	pea 6.w
+	move.l #blood02_sam_end,%d0
+	sub.l #blood02_sam-3,%d0
+	moveq #-4,%d1
+	and.l %d0,%d1
+	move.l %d1,-(%sp)
+	pea blood02_sam
+	pea 4.w
+	jsr zeroPlaySample
+	lea (20,%sp),%sp
+	unlk %fp
+	rts
+.L162:
+	clr.l -(%sp)
+	pea 6.w
+	move.l #blood01_sam_end,%d0
+	sub.l #blood01_sam-3,%d0
+	moveq #-4,%d1
+	and.l %d0,%d1
+	move.l %d1,-(%sp)
+	pea blood01_sam
+	pea 4.w
+	jsr zeroPlaySample
+	lea (20,%sp),%sp
+	unlk %fp
+	rts
+	.even
+	.globl	__Z8sfxSwingP12SoundHandler
+__Z8sfxSwingP12SoundHandler:
+	link.w %fp,#0
+	move.l 8(%fp),%a0
+	tst.b (%a0)
+	jne .L168
+	unlk %fp
+	rts
+.L168:
+	jsr RAPTOR_random
+	btst #0,%d0
+	jne .L169
 	clr.l -(%sp)
 	pea 6.w
 	move.l #swing_02_sam_end,%d0
@@ -754,7 +794,7 @@ __Z8sfxSwingP12SoundHandler:
 	lea (20,%sp),%sp
 	unlk %fp
 	rts
-.L162:
+.L169:
 	clr.l -(%sp)
 	pea 6.w
 	move.l #swing_01_sam_end,%d0

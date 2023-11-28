@@ -89,14 +89,16 @@ void updateSpriteAnimator(struct SpriteAnimator *animator, struct AnimationFrame
                 }
                 else
                 {
-                    animator->currentFrame = totalFrames;
+                    animator->currentFrame = totalFrames - 1;
                 }
-                
-                // js_r_textbuffer = (char *)"Restart animation!";
-                // jsfDebugMessage();
             }
         }
 
         animator->lastTick = rapTicks;
     }
 }
+
+
+                
+                // js_r_textbuffer = (char *)"Restart animation!";
+                // jsfDebugMessage();

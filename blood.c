@@ -168,12 +168,10 @@ float bloodDropMomentumStart = 0.0f;
 int bloodStayDelay = 0;
 int poolYLocation = 0;
 int bloodSpeedRnd = 0;
-int bloodDropCount = 0;
 
 void bloodInit()
 {
-    bloodDropCount = 10;
-    bloodStayDelay = 120;
+    bloodStayDelay = 180;
     updateTicks = 3;
     bloodSpeed = 7.0f;
     gravity = 4.0f;
@@ -184,7 +182,7 @@ void bloodInit()
     bloodDirection = 1;
 }
 
-void bloodUpdate()
+void bloodUpdate(struct SoundHandler* soundHandler)
 {
     if (bloodSpray1InUse)
     {
@@ -227,7 +225,7 @@ void bloodUpdate()
         }
     }
 
-    for (int i = 0; i < bloodDropCount; i++)
+    for (int i = 0; i < TOTAL_BLOOD_COUNT; i++)
     {
         if (bloodDrops[i].InUse)
         {
@@ -241,6 +239,7 @@ void bloodUpdate()
                 if (sprite[bloodDrops[i].SpriteIndex].y_ > poolYLocation)
                 {
                     bloodPool(sprite[bloodDrops[i].SpriteIndex].x_, poolYLocation);
+                    sfxBlood(soundHandler);
                     sprite[bloodDrops[i].SpriteIndex].active = R_is_inactive;
                     bloodDrops[i].InUse  = false;
                 }
@@ -251,7 +250,7 @@ void bloodUpdate()
         }
     }
 
-    for (int i = 0; i < bloodDropCount; i++)
+    for (int i = 0; i < TOTAL_BLOOD_COUNT; i++)
     {
         if (bloodPools[i].InUse)
         {
@@ -305,7 +304,7 @@ void bloodDrop(int x, int y, int direction)
         bloodSpeedRnd = bloodSpeed + 0.0f;
     }
 
-    for (int i = 0; i < bloodDropCount; i++)
+    for (int i = 0; i < TOTAL_BLOOD_COUNT; i++)
     {
         if (!bloodDrops[i].InUse)
         {
@@ -324,7 +323,7 @@ void bloodDrop(int x, int y, int direction)
 
 void bloodPool(int x, int y)
 {
-    for (int i = 0; i < bloodDropCount; i++)
+    for (int i = 0; i < TOTAL_BLOOD_COUNT; i++)
     {
         if (!bloodPools[i].InUse)
         {

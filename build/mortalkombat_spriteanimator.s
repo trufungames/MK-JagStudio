@@ -362,21 +362,18 @@ __Z20updateSpriteAnimatorP14SpriteAnimatorP14AnimationFrameibb:
 	cmp.l %d4,%d1
 	jlt .L16
 	tst.b %d5
-	jne .L19
-	move.l %d4,16(%a2)
+	jeq .L18
+.L19:
+	clr.l 16(%a2)
 	move.w %a0,%a0
 	move.l %a0,12(%a2)
 	jra .L13
 .L21:
 	tst.b %d5
 	jeq .L19
+.L18:
 	subq.l #1,%d4
 	move.l %d4,16(%a2)
-	move.w %a0,%a0
-	move.l %a0,12(%a2)
-	jra .L13
-.L19:
-	clr.l 16(%a2)
 	move.w %a0,%a0
 	move.l %a0,12(%a2)
 	jra .L13
@@ -432,21 +429,18 @@ __Z20updateSpriteAnimatorP14SpriteAnimatorP14AnimationFrameibbiii:
 	cmp.l %d4,%d1
 	jlt .L26
 	tst.b %d5
-	jne .L29
-	move.l %d4,16(%a2)
+	jeq .L28
+.L29:
+	clr.l 16(%a2)
 	move.w %a0,%a0
 	move.l %a0,12(%a2)
 	jra .L23
 .L31:
 	tst.b %d5
 	jeq .L29
+.L28:
 	subq.l #1,%d4
 	move.l %d4,16(%a2)
-	move.w %a0,%a0
-	move.l %a0,12(%a2)
-	jra .L23
-.L29:
-	clr.l 16(%a2)
 	move.w %a0,%a0
 	move.l %a0,12(%a2)
 	jra .L23
