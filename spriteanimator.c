@@ -42,6 +42,11 @@ void setFrame(unsigned int spriteIndex, int width, int height, int x, int y, flo
     sprite[spriteIndex].gfxbase = base + (x * mulFactor) + (y * sprite[spriteIndex].gwidth);
 }
 
+void setAnimationFrame(unsigned int spriteIndex, SpriteAnimator *animator, struct AnimationFrame* animationFrame)
+{
+    setFrame(spriteIndex, animationFrame->width, animationFrame->height, animationFrame->x, animationFrame->y, animator->mulFactor, animator->base);
+}
+
 bool animationIsComplete(struct SpriteAnimator *animator, int totalFrames)
 {
     if (animator->currentFrame >= totalFrames - 1)

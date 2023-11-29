@@ -49,6 +49,13 @@ void fighterMakeSelectable(struct Fighter* fighter, bool isPlayer1)
 
 void fighterInitialize(struct Fighter *fighter, bool isPlayer1, struct SoundHandler* soundHandler, struct ImpactFrame* impactFrameLowPunch, struct ImpactFrame* impactFrameHighPunch, struct ImpactFrame* impactFrameLowKick, struct ImpactFrame* impactFrameHighKick, struct ImpactFrame* impactFrameUppercut)
 {
+    //defaults
+    fighter->gravity = 4.0f;
+    fighter->momentumY = 0.0f;
+    fighter->uppercutMomentumYStart = -30.0f;
+    fighter->floorLocationY = 186;
+
+    //assignments
     fighter->soundHandler = soundHandler;
     fighter->impactFrameLowPunch = impactFrameLowPunch;
     fighter->impactFrameHighPunch = impactFrameHighPunch;
@@ -123,17 +130,18 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
     //**************************************
     if (!fighter->IsBeingDamaged)
     {
-        if (fighter->IsHitLow || fighter->IsHitHigh || fighter->IsHitBack)
+        if (fighter->IsHitLow || fighter->IsHitHigh || fighter->IsHitBack || fighter->IsHitFall)
         {
             fighter->IsBeingDamaged = true;
             fighter->lastTicks = rapTicks;
             animator->currentFrame = 0;
+            fighter->momentumY = fighter->uppercutMomentumYStart;
 
             if (fighter->IsHitLow || fighter->IsHitHigh)
             {
                 fighterPlayGroan(fighter->spriteIndex, fighter->soundHandler, fighter->isPlayer1);
             }
-            else if (fighter->IsHitBack)
+            else if (fighter->IsHitBack || fighter->IsHitFall)
             {
                 sfxImpact(fighter->soundHandler);
             }
@@ -203,6 +211,45 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
             fighter->IsHitBack = false;
             fighter->IsBeingDamaged = false;
         }
+    }
+    else if (fighter->IsHitFall && fighter->IsBeingDamaged)
+    {
+        sprite[fighter->spriteIndex].y_ += fighter->momentumY;
+
+        if (fighter->momentumY >= fighter->uppercutMomentumYStart && fighter->momentumY < -20.0f)
+        {
+            animateFrame(fighter->spriteIndex, 0, *fighter->hitFallFrames, animator->mulFactor, animator->base, animator->idleFrameWidth, fighter->positionX, sprite[fighter->spriteIndex].y_, fighter->direction);
+        }
+        else if (fighter->momentumY >= -20.0f && fighter->momentumY < -10.0f)
+        {
+            animateFrame(fighter->spriteIndex, 1, *fighter->hitFallFrames, animator->mulFactor, animator->base, animator->idleFrameWidth, fighter->positionX, sprite[fighter->spriteIndex].y_, fighter->direction);
+        }
+        else if (fighter->momentumY >= -10.0f && fighter->momentumY < 0.0f)
+        {
+            animateFrame(fighter->spriteIndex, 2, *fighter->hitFallFrames, animator->mulFactor, animator->base, animator->idleFrameWidth, fighter->positionX, sprite[fighter->spriteIndex].y_, fighter->direction);
+        }
+        else if (fighter->momentumY >= 0.0f && fighter->momentumY < 10.0f)
+        {
+            animateFrame(fighter->spriteIndex, 3, *fighter->hitFallFrames, animator->mulFactor, animator->base, animator->idleFrameWidth, fighter->positionX, sprite[fighter->spriteIndex].y_, fighter->direction);
+        }
+        else if (fighter->momentumY >= 10.0f)
+        {
+            animateFrame(fighter->spriteIndex, 4, *fighter->hitFallFrames, animator->mulFactor, animator->base, animator->idleFrameWidth, fighter->positionX, sprite[fighter->spriteIndex].y_, fighter->direction);
+        }
+
+        if (sprite[fighter->spriteIndex].y_ > fighter->floorLocationY)
+        {
+            //show last frame of HitFall animation
+            animateFrame(fighter->spriteIndex, 5, *fighter->hitFallFrames, animator->mulFactor, animator->base, animator->idleFrameWidth, fighter->positionX, sprite[fighter->spriteIndex].y_, fighter->direction);
+
+            fighter->IsHitFall = false;
+            fighter->IsBeingDamaged = false;
+            //play thud
+            //shake screen
+            //set ticks, so the fighter gets back up after 60 ticks
+        }
+
+        fighter->momentumY += fighter->gravity;
     }
 
     //**************************************
@@ -532,6 +579,10 @@ void fighterImpactCheck(struct Fighter* fighter1, struct Fighter* fighter2)
                         {
                             fighter2->IsHitBack = true;
                         }
+                        else if (fighter1->IsUppercutting)
+                        {
+                            fighter2->IsHitFall = true;
+                        }
                     }
                 }
 
@@ -554,6 +605,10 @@ void fighterImpactCheck(struct Fighter* fighter1, struct Fighter* fighter2)
                         else if (fighter2->IsHighKicking)
                         {
                             fighter1->IsHitBack = true;
+                        }
+                        else if (fighter2->IsUppercutting)
+                        {
+                            fighter1->IsHitFall = true;
                         }
                     }
                 }

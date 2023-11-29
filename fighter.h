@@ -45,6 +45,10 @@ struct Fighter {
     struct SoundHandler* soundHandler;
     int direction;
     bool isPlayer1;
+    float gravity;
+    float momentumY;
+    float uppercutMomentumYStart;
+    float floorLocationY;
     struct ImpactFrame* impactFrameLowPunch;
     struct ImpactFrame* impactFrameHighPunch;
     struct ImpactFrame* impactFrameLowKick;

@@ -23,6 +23,8 @@ struct SpriteAnimator {
 
 void setFrame(unsigned int spriteIndex, int width, int height, int x, int y, float mulFactor, unsigned int base);
 
+void setAnimationFrame(unsigned int spriteIndex, SpriteAnimator* animator, struct AnimationFrame* animationFrame);
+
 bool animationIsComplete(struct SpriteAnimator *animator, int totalFrames);
 
 void updateSpriteAnimator(struct SpriteAnimator *animator, struct AnimationFrame animationFrames[], int totalFrames, bool playForward, bool loop);
