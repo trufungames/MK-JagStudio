@@ -990,7 +990,7 @@ raptor_init_table:
 	dc.l	1								; sprite_animspd				; frame delay between animation changes
 	dc.l	0								; sprite_maxframe				; number of frames in animation chain
 	dc.l	ani_rept						; sprite_animloop				; repeat or play once
-	dc.l	edge_wrap						; sprite_wrap					; wrap on screen exit, or remove
+	dc.l	edge_ignore						; sprite_wrap					; wrap on screen exit, or remove
 	dc.l	spr_inf							; sprite_timer					; frames sprite is active for (or spr_inf)
 	dc.l	spr_linear						; sprite_track					; use 16.16 xadd/yadd or point to 16.16 x/y table
 	dc.l	0								; sprite_tracktop				; pointer to loop point in track table (if used)
@@ -1029,7 +1029,7 @@ raptor_init_table:
 	dc.l	1								; sprite_animspd				; frame delay between animation changes
 	dc.l	0								; sprite_maxframe				; number of frames in animation chain
 	dc.l	ani_rept						; sprite_animloop				; repeat or play once
-	dc.l	edge_wrap						; sprite_wrap					; wrap on screen exit, or remove
+	dc.l	edge_ignore						; sprite_wrap					; wrap on screen exit, or remove
 	dc.l	spr_inf							; sprite_timer					; frames sprite is active for (or spr_inf)
 	dc.l	spr_linear						; sprite_track					; use 16.16 xadd/yadd or point to 16.16 x/y table
 	dc.l	0								; sprite_tracktop				; pointer to loop point in track table (if used)
@@ -1068,7 +1068,7 @@ raptor_init_table:
 	dc.l	1								; sprite_animspd				; frame delay between animation changes
 	dc.l	0								; sprite_maxframe				; number of frames in animation chain
 	dc.l	ani_rept						; sprite_animloop				; repeat or play once
-	dc.l	edge_wrap						; sprite_wrap					; wrap on screen exit, or remove
+	dc.l	edge_ignore						; sprite_wrap					; wrap on screen exit, or remove
 	dc.l	spr_inf							; sprite_timer					; frames sprite is active for (or spr_inf)
 	dc.l	spr_linear						; sprite_track					; use 16.16 xadd/yadd or point to 16.16 x/y table
 	dc.l	0								; sprite_tracktop				; pointer to loop point in track table (if used)
@@ -1107,7 +1107,7 @@ raptor_init_table:
 	dc.l	1								; sprite_animspd				; frame delay between animation changes
 	dc.l	0								; sprite_maxframe				; number of frames in animation chain
 	dc.l	ani_rept						; sprite_animloop				; repeat or play once
-	dc.l	edge_wrap						; sprite_wrap					; wrap on screen exit, or remove
+	dc.l	edge_ignore						; sprite_wrap					; wrap on screen exit, or remove
 	dc.l	spr_inf							; sprite_timer					; frames sprite is active for (or spr_inf)
 	dc.l	spr_linear						; sprite_track					; use 16.16 xadd/yadd or point to 16.16 x/y table
 	dc.l	0								; sprite_tracktop				; pointer to loop point in track table (if used)
@@ -1146,7 +1146,7 @@ raptor_init_table:
 	dc.l	1								; sprite_animspd				; frame delay between animation changes
 	dc.l	0								; sprite_maxframe				; number of frames in animation chain
 	dc.l	ani_rept						; sprite_animloop				; repeat or play once
-	dc.l	edge_wrap						; sprite_wrap					; wrap on screen exit, or remove
+	dc.l	edge_ignore						; sprite_wrap					; wrap on screen exit, or remove
 	dc.l	spr_inf							; sprite_timer					; frames sprite is active for (or spr_inf)
 	dc.l	spr_linear						; sprite_track					; use 16.16 xadd/yadd or point to 16.16 x/y table
 	dc.l	0								; sprite_tracktop				; pointer to loop point in track table (if used)
@@ -1185,7 +1185,7 @@ raptor_init_table:
 	dc.l	1								; sprite_animspd				; frame delay between animation changes
 	dc.l	0								; sprite_maxframe				; number of frames in animation chain
 	dc.l	ani_rept						; sprite_animloop				; repeat or play once
-	dc.l	edge_wrap						; sprite_wrap					; wrap on screen exit, or remove
+	dc.l	edge_ignore						; sprite_wrap					; wrap on screen exit, or remove
 	dc.l	spr_inf							; sprite_timer					; frames sprite is active for (or spr_inf)
 	dc.l	spr_linear						; sprite_track					; use 16.16 xadd/yadd or point to 16.16 x/y table
 	dc.l	0								; sprite_tracktop				; pointer to loop point in track table (if used)
@@ -1224,7 +1224,7 @@ raptor_init_table:
 	dc.l	1								; sprite_animspd				; frame delay between animation changes
 	dc.l	0								; sprite_maxframe				; number of frames in animation chain
 	dc.l	ani_rept						; sprite_animloop				; repeat or play once
-	dc.l	edge_wrap						; sprite_wrap					; wrap on screen exit, or remove
+	dc.l	edge_ignore						; sprite_wrap					; wrap on screen exit, or remove
 	dc.l	spr_inf							; sprite_timer					; frames sprite is active for (or spr_inf)
 	dc.l	spr_linear						; sprite_track					; use 16.16 xadd/yadd or point to 16.16 x/y table
 	dc.l	0								; sprite_tracktop				; pointer to loop point in track table (if used)
@@ -1263,7 +1263,7 @@ raptor_init_table:
 	dc.l	1								; sprite_animspd				; frame delay between animation changes
 	dc.l	0								; sprite_maxframe				; number of frames in animation chain
 	dc.l	ani_rept						; sprite_animloop				; repeat or play once
-	dc.l	edge_wrap						; sprite_wrap					; wrap on screen exit, or remove
+	dc.l	edge_ignore						; sprite_wrap					; wrap on screen exit, or remove
 	dc.l	spr_inf							; sprite_timer					; frames sprite is active for (or spr_inf)
 	dc.l	spr_linear						; sprite_track					; use 16.16 xadd/yadd or point to 16.16 x/y table
 	dc.l	0								; sprite_tracktop				; pointer to loop point in track table (if used)
@@ -1303,7 +1303,7 @@ raptor_init_table:
 	dc.l	1								; sprite_animspd				; frame delay between animation changes
 	dc.l	0								; sprite_maxframe				; number of frames in animation chain
 	dc.l	ani_rept						; sprite_animloop				; repeat or play once
-	dc.l	edge_wrap						; sprite_wrap					; wrap on screen exit, or remove
+	dc.l	edge_ignore						; sprite_wrap					; wrap on screen exit, or remove
 	dc.l	spr_inf							; sprite_timer					; frames sprite is active for (or spr_inf)
 	dc.l	spr_linear						; sprite_track					; use 16.16 xadd/yadd or point to 16.16 x/y table
 	dc.l	0								; sprite_tracktop				; pointer to loop point in track table (if used)
@@ -1342,7 +1342,7 @@ raptor_init_table:
 	dc.l	1								; sprite_animspd				; frame delay between animation changes
 	dc.l	0								; sprite_maxframe				; number of frames in animation chain
 	dc.l	ani_rept						; sprite_animloop				; repeat or play once
-	dc.l	edge_wrap						; sprite_wrap					; wrap on screen exit, or remove
+	dc.l	edge_ignore						; sprite_wrap					; wrap on screen exit, or remove
 	dc.l	spr_inf							; sprite_timer					; frames sprite is active for (or spr_inf)
 	dc.l	spr_linear						; sprite_track					; use 16.16 xadd/yadd or point to 16.16 x/y table
 	dc.l	0								; sprite_tracktop				; pointer to loop point in track table (if used)
@@ -1381,7 +1381,7 @@ raptor_init_table:
 	dc.l	1								; sprite_animspd				; frame delay between animation changes
 	dc.l	0								; sprite_maxframe				; number of frames in animation chain
 	dc.l	ani_rept						; sprite_animloop				; repeat or play once
-	dc.l	edge_wrap						; sprite_wrap					; wrap on screen exit, or remove
+	dc.l	edge_ignore						; sprite_wrap					; wrap on screen exit, or remove
 	dc.l	spr_inf							; sprite_timer					; frames sprite is active for (or spr_inf)
 	dc.l	spr_linear						; sprite_track					; use 16.16 xadd/yadd or point to 16.16 x/y table
 	dc.l	0								; sprite_tracktop				; pointer to loop point in track table (if used)
@@ -1420,7 +1420,7 @@ raptor_init_table:
 	dc.l	1								; sprite_animspd				; frame delay between animation changes
 	dc.l	0								; sprite_maxframe				; number of frames in animation chain
 	dc.l	ani_rept						; sprite_animloop				; repeat or play once
-	dc.l	edge_wrap						; sprite_wrap					; wrap on screen exit, or remove
+	dc.l	edge_ignore						; sprite_wrap					; wrap on screen exit, or remove
 	dc.l	spr_inf							; sprite_timer					; frames sprite is active for (or spr_inf)
 	dc.l	spr_linear						; sprite_track					; use 16.16 xadd/yadd or point to 16.16 x/y table
 	dc.l	0								; sprite_tracktop				; pointer to loop point in track table (if used)
@@ -1459,7 +1459,7 @@ raptor_init_table:
 	dc.l	1								; sprite_animspd				; frame delay between animation changes
 	dc.l	0								; sprite_maxframe				; number of frames in animation chain
 	dc.l	ani_rept						; sprite_animloop				; repeat or play once
-	dc.l	edge_wrap						; sprite_wrap					; wrap on screen exit, or remove
+	dc.l	edge_ignore						; sprite_wrap					; wrap on screen exit, or remove
 	dc.l	spr_inf							; sprite_timer					; frames sprite is active for (or spr_inf)
 	dc.l	spr_linear						; sprite_track					; use 16.16 xadd/yadd or point to 16.16 x/y table
 	dc.l	0								; sprite_tracktop				; pointer to loop point in track table (if used)
@@ -1498,7 +1498,7 @@ raptor_init_table:
 	dc.l	1								; sprite_animspd				; frame delay between animation changes
 	dc.l	0								; sprite_maxframe				; number of frames in animation chain
 	dc.l	ani_rept						; sprite_animloop				; repeat or play once
-	dc.l	edge_wrap						; sprite_wrap					; wrap on screen exit, or remove
+	dc.l	edge_ignore						; sprite_wrap					; wrap on screen exit, or remove
 	dc.l	spr_inf							; sprite_timer					; frames sprite is active for (or spr_inf)
 	dc.l	spr_linear						; sprite_track					; use 16.16 xadd/yadd or point to 16.16 x/y table
 	dc.l	0								; sprite_tracktop				; pointer to loop point in track table (if used)
@@ -1537,7 +1537,7 @@ raptor_init_table:
 	dc.l	1								; sprite_animspd				; frame delay between animation changes
 	dc.l	0								; sprite_maxframe				; number of frames in animation chain
 	dc.l	ani_rept						; sprite_animloop				; repeat or play once
-	dc.l	edge_wrap						; sprite_wrap					; wrap on screen exit, or remove
+	dc.l	edge_ignore						; sprite_wrap					; wrap on screen exit, or remove
 	dc.l	spr_inf							; sprite_timer					; frames sprite is active for (or spr_inf)
 	dc.l	spr_linear						; sprite_track					; use 16.16 xadd/yadd or point to 16.16 x/y table
 	dc.l	0								; sprite_tracktop				; pointer to loop point in track table (if used)
@@ -1576,7 +1576,7 @@ raptor_init_table:
 	dc.l	1								; sprite_animspd				; frame delay between animation changes
 	dc.l	0								; sprite_maxframe				; number of frames in animation chain
 	dc.l	ani_rept						; sprite_animloop				; repeat or play once
-	dc.l	edge_wrap						; sprite_wrap					; wrap on screen exit, or remove
+	dc.l	edge_ignore						; sprite_wrap					; wrap on screen exit, or remove
 	dc.l	spr_inf							; sprite_timer					; frames sprite is active for (or spr_inf)
 	dc.l	spr_linear						; sprite_track					; use 16.16 xadd/yadd or point to 16.16 x/y table
 	dc.l	0								; sprite_tracktop				; pointer to loop point in track table (if used)

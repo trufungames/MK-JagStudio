@@ -29,6 +29,7 @@ struct Fighter {
     bool IsHitHigh;
     bool IsHitBack;
     bool IsHitFall;
+    bool IsMidAir;
     bool IsFalling;
     bool IsLayingDown;
     bool IsBeingDamaged;
