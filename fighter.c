@@ -50,10 +50,10 @@ void fighterMakeSelectable(struct Fighter* fighter, bool isPlayer1)
 void fighterInitialize(struct Fighter *fighter, bool isPlayer1, struct SoundHandler* soundHandler, struct ImpactFrame* impactFrameLowPunch, struct ImpactFrame* impactFrameHighPunch, struct ImpactFrame* impactFrameLowKick, struct ImpactFrame* impactFrameHighKick, struct ImpactFrame* impactFrameUppercut)
 {
     //defaults
-    fighter->gravity = 4.0f;
+    fighter->gravity = 2.6f;
     fighter->momentumY = 0.0f;
     fighter->uppercutMomentumYStart = -30.0f;
-    fighter->floorLocationY = 186;
+    fighter->floorLocationY = 188;
 
     //assignments
     fighter->soundHandler = soundHandler;
@@ -80,6 +80,8 @@ void fighterInitialize(struct Fighter *fighter, bool isPlayer1, struct SoundHand
     fighter->IsHitHigh = false;
     fighter->IsHitBack = false;
     fighter->IsHitFall = false;
+    fighter->IsFalling = false;
+    fighter->IsLayingDown = false;
     fighter->IsBeingDamaged = false;
     fighter->isPlayer1 = isPlayer1;
     sprite[fighter->spriteIndex].active = R_is_active;
@@ -214,42 +216,69 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
     }
     else if (fighter->IsHitFall && fighter->IsBeingDamaged)
     {
-        sprite[fighter->spriteIndex].y_ += fighter->momentumY;
+        if (fighter->IsLayingDown)
+        {
+            if (rapTicks >= fighter->lastTicks + 300)
+            {
+                fighter->IsHitFall = false;
+                fighter->IsBeingDamaged = false;
+                fighter->IsLayingDown = false;
+            }
+        }
+        else if (rapTicks >= fighter->lastTicks + 2)
+        {
+            sprite[fighter->spriteIndex].y_ += fighter->momentumY;
 
-        if (fighter->momentumY >= fighter->uppercutMomentumYStart && fighter->momentumY < -20.0f)
-        {
-            animateFrame(fighter->spriteIndex, 0, *fighter->hitFallFrames, animator->mulFactor, animator->base, animator->idleFrameWidth, fighter->positionX, sprite[fighter->spriteIndex].y_, fighter->direction);
-        }
-        else if (fighter->momentumY >= -20.0f && fighter->momentumY < -10.0f)
-        {
-            animateFrame(fighter->spriteIndex, 1, *fighter->hitFallFrames, animator->mulFactor, animator->base, animator->idleFrameWidth, fighter->positionX, sprite[fighter->spriteIndex].y_, fighter->direction);
-        }
-        else if (fighter->momentumY >= -10.0f && fighter->momentumY < 0.0f)
-        {
-            animateFrame(fighter->spriteIndex, 2, *fighter->hitFallFrames, animator->mulFactor, animator->base, animator->idleFrameWidth, fighter->positionX, sprite[fighter->spriteIndex].y_, fighter->direction);
-        }
-        else if (fighter->momentumY >= 0.0f && fighter->momentumY < 10.0f)
-        {
-            animateFrame(fighter->spriteIndex, 3, *fighter->hitFallFrames, animator->mulFactor, animator->base, animator->idleFrameWidth, fighter->positionX, sprite[fighter->spriteIndex].y_, fighter->direction);
-        }
-        else if (fighter->momentumY >= 10.0f)
-        {
-            animateFrame(fighter->spriteIndex, 4, *fighter->hitFallFrames, animator->mulFactor, animator->base, animator->idleFrameWidth, fighter->positionX, sprite[fighter->spriteIndex].y_, fighter->direction);
-        }
+            if (fighter->momentumY >= fighter->uppercutMomentumYStart && fighter->momentumY < -20.0f)
+            {
+                animateFrame(fighter->spriteIndex, 0, *fighter->hitFallFrames, animator->mulFactor, animator->base, animator->idleFrameWidth, fighter->positionX, sprite[fighter->spriteIndex].y_, fighter->direction);
+                animator->currentFrame = 0;
+            }
+            else if (fighter->momentumY >= -20.0f && fighter->momentumY < -15.0f)
+            {
+                animateFrame(fighter->spriteIndex, 1, *fighter->hitFallFrames, animator->mulFactor, animator->base, animator->idleFrameWidth, fighter->positionX, sprite[fighter->spriteIndex].y_, fighter->direction);
+                animator->currentFrame = 1;
+            }
+            else if (fighter->momentumY >= -15.0f && fighter->momentumY < 0.0f)
+            {
+                animateFrame(fighter->spriteIndex, 2, *fighter->hitFallFrames, animator->mulFactor, animator->base, animator->idleFrameWidth, fighter->positionX, sprite[fighter->spriteIndex].y_, fighter->direction);
+                animator->currentFrame = 2;
+            }
+            else if (!fighter->IsFalling)
+            {
+                //once we've reached the apex of the uppercut hit, finish the animation (-1 frame), then complete the fall
+                updateSpriteAnimator(animator, *fighter->hitBackFrames, fighter->HIT_BACK_FRAME_COUNT, true, false, fighter->positionX, fighter->positionY, fighter->direction);
 
-        if (sprite[fighter->spriteIndex].y_ > fighter->floorLocationY)
-        {
-            //show last frame of HitFall animation
-            animateFrame(fighter->spriteIndex, 5, *fighter->hitFallFrames, animator->mulFactor, animator->base, animator->idleFrameWidth, fighter->positionX, sprite[fighter->spriteIndex].y_, fighter->direction);
+                if (animationIsComplete(animator, fighter->HIT_FALL_FRAME_COUNT-1))
+                {
+                    fighter->IsFalling = true;
+                }
+            }
+            else
+            {
+                if (sprite[fighter->spriteIndex].y_ > fighter->floorLocationY)
+                {
+                    //show last frame of HitFall animation
+                    animateFrame(fighter->spriteIndex, 5, *fighter->hitFallFrames, animator->mulFactor, animator->base, animator->idleFrameWidth, fighter->positionX, sprite[fighter->spriteIndex].y_, fighter->direction);
 
-            fighter->IsHitFall = false;
-            fighter->IsBeingDamaged = false;
-            //play thud
-            //shake screen
-            //set ticks, so the fighter gets back up after 60 ticks
+                    fighter->IsLayingDown = true;
+                    fighter->lastTicks = rapTicks;
+                    sprite[fighter->spriteIndex].y_ = fighter->floorLocationY;
+                    //play thud
+                    //shake screen
+                    //set ticks, so the fighter gets back up after 60 ticks
+                }
+
+                fighter->momentumY += fighter->gravity;
+
+                if (fighter->momentumY > 1.0f)
+                {
+                    fighter->momentumY = 1.0f;
+                }
+            }
+
+            fighter->lastTicks = rapTicks;
         }
-
-        fighter->momentumY += fighter->gravity;
     }
 
     //**************************************

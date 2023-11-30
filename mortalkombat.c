@@ -33,7 +33,7 @@ static int BLACKPAL[128];
 static int WHITEPAL[8];
 
 static	SoundHandler soundHandler = {
-		true,  //sound on/off
+		false,  //sound on/off
 		false,  //music on/off
 		1,  //sound volume
 		1   //music volume
@@ -90,8 +90,8 @@ static AnimationFrame cageHitBackFrames[] = {
 static AnimationFrame cageHitFallFrames[] = {
 	{ 80, 144, 208, 576, 6, 0, 6 },
 	{ 96, 144, 288, 576, -15, 0, 6 },
-	{ 112, 144, 0, 720, -24, 0, 6 },
-	{ 96, 96, 928, 928, -17, -48, 6 },
+	{ 112, 112, 0, 720, -24, 0, 6 },
+	{ 96, 96, 928, 928, -25, -28, 6 },
 	{ 96, 96, 352, 864, -24, -48, 6 },
 	{ 128, 64, 896, 870, -41, -90, 6 }
 };
