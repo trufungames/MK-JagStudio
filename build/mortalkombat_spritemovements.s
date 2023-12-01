@@ -656,6 +656,94 @@ __Z12bgScrollLeftf:
 	movem.l -28(%fp),#15388
 	unlk %fp
 	rts
+	.even
+	.globl	__Z8bgUpdateP7FighterS0_
+__Z8bgUpdateP7FighterS0_:
+	link.w %fp,#0
+	move.l _LastTicks,%d0
+	addq.l #1,%d0
+	move.w raptor_ticks,%a0
+	cmp.l %d0,%a0
+	jle .L15
+	tst.b _IsScrollingUp
+	jeq .L15
+	move.l sprite,%a0
+	move.w _bgYOffset+2,%d0
+	add.w %d0,2892(%a0)
+	add.w %d0,3084(%a0)
+	add.w %d0,3276(%a0)
+	move.l 8(%fp),%a1
+	move.l (%a1),%d1
+	move.l %d1,%a1
+	add.l %d1,%a1
+	add.l %a1,%d1
+	lsl.l #6,%d1
+	add.w %d0,12(%a0,%d1.l)
+	move.l 12(%fp),%a1
+	move.l (%a1),%d1
+	move.l %d1,%a1
+	add.l %d1,%a1
+	add.l %a1,%d1
+	lsl.l #6,%d1
+	add.w %d0,12(%a0,%d1.l)
+.L15:
+	unlk %fp
+	rts
+	.even
+	.globl	__Z10bgScrollUpv
+__Z10bgScrollUpv:
+	link.w %fp,#0
+	move.b #1,_IsScrollingUp
+	clr.b _IsScrollingDown
+	move.w raptor_ticks,%a0
+	move.l %a0,_LastTicks
+	unlk %fp
+	rts
+	.even
+	.globl	__Z12bgScrollDownv
+__Z12bgScrollDownv:
+	link.w %fp,#0
+	clr.b _IsScrollingUp
+	move.b #1,_IsScrollingDown
+	move.w raptor_ticks,%a0
+	move.l %a0,_LastTicks
+	unlk %fp
+	rts
+	.even
+	.globl	__Z7bgShakev
+__Z7bgShakev:
+	link.w %fp,#0
+	clr.b _IsScrollingUp
+	clr.b _IsScrollingDown
+	move.b #1,_IsShaking
+	move.w raptor_ticks,%a0
+	move.l %a0,_LastTicks
+	unlk %fp
+	rts
+	.globl	_bgYOffset
+	.bss
+	.even
+_bgYOffset:
+	.skip 4
+	.globl	_ShakeTicks
+	.data
+	.even
+_ShakeTicks:
+	.long	40
+	.globl	_LastTicks
+	.bss
+	.even
+_LastTicks:
+	.skip 4
+	.globl	_IsShaking
+_IsShaking:
+	.skip 1
+	.globl	_IsScrollingDown
+_IsScrollingDown:
+	.skip 1
+	.globl	_IsScrollingUp
+_IsScrollingUp:
+	.skip 1
 	.globl	colliders
 	.data
 	.even

@@ -33,7 +33,7 @@ static int BLACKPAL[128];
 static int WHITEPAL[8];
 
 static	SoundHandler soundHandler = {
-		true,  //sound on/off
+		false,  //sound on/off
 		false,  //music on/off
 		1,  //sound volume
 		1   //music volume
@@ -60,7 +60,7 @@ struct ImpactFrame cageImpactFrameHighKick = {
 	3, 62, 10
 };
 struct ImpactFrame cageImpactFrameUppercut = {
-	3, 22, 30
+	3, 32, 30
 };
 
 static AnimationFrame cageHitLowFrames[] = {
@@ -1943,7 +1943,7 @@ int gameStartTicks = rapTicks;
 			}
 
 			fighterImpactCheck(fighter1Ptr, fighter2Ptr);
-
+			bgUpdate(fighter1Ptr, fighter2Ptr);
 			bloodUpdate(&soundHandler);
 			spriteDelayUpdate();
 		}

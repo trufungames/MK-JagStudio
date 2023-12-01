@@ -2621,6 +2621,10 @@ __Z9basicmainv:
 	move.l -16(%fp),-(%sp)
 	jsr __Z18fighterImpactCheckP7FighterS0_
 	addq.l #4,%sp
+	move.l -20(%fp),(%sp)
+	move.l -16(%fp),-(%sp)
+	jsr __Z8bgUpdateP7FighterS0_
+	addq.l #4,%sp
 	move.l #__ZL12soundHandler,(%sp)
 	jsr __Z11bloodUpdateP12SoundHandler
 	addq.l #4,%sp
@@ -2648,6 +2652,10 @@ __Z9basicmainv:
 	move.l -16(%fp),-(%sp)
 	jsr __Z18fighterImpactCheckP7FighterS0_
 	addq.l #4,%sp
+	move.l -20(%fp),(%sp)
+	move.l -16(%fp),-(%sp)
+	jsr __Z8bgUpdateP7FighterS0_
+	addq.l #4,%sp
 	move.l #__ZL12soundHandler,(%sp)
 	jsr __Z11bloodUpdateP12SoundHandler
 	addq.l #4,%sp
@@ -2665,6 +2673,10 @@ __Z9basicmainv:
 	move.l -20(%fp),-(%sp)
 	move.l -16(%fp),-(%sp)
 	jsr __Z18fighterImpactCheckP7FighterS0_
+	addq.l #4,%sp
+	move.l -20(%fp),(%sp)
+	move.l -16(%fp),-(%sp)
+	jsr __Z8bgUpdateP7FighterS0_
 	addq.l #4,%sp
 	move.l #__ZL12soundHandler,(%sp)
 	jsr __Z11bloodUpdateP12SoundHandler
@@ -2684,6 +2696,10 @@ __Z9basicmainv:
 	move.l -16(%fp),-(%sp)
 	jsr __Z18fighterImpactCheckP7FighterS0_
 	addq.l #4,%sp
+	move.l -20(%fp),(%sp)
+	move.l -16(%fp),-(%sp)
+	jsr __Z8bgUpdateP7FighterS0_
+	addq.l #4,%sp
 	move.l #__ZL12soundHandler,(%sp)
 	jsr __Z11bloodUpdateP12SoundHandler
 	addq.l #4,%sp
@@ -2702,6 +2718,10 @@ __Z9basicmainv:
 	move.l -16(%fp),-(%sp)
 	jsr __Z18fighterImpactCheckP7FighterS0_
 	addq.l #4,%sp
+	move.l -20(%fp),(%sp)
+	move.l -16(%fp),-(%sp)
+	jsr __Z8bgUpdateP7FighterS0_
+	addq.l #4,%sp
 	move.l #__ZL12soundHandler,(%sp)
 	jsr __Z11bloodUpdateP12SoundHandler
 	addq.l #4,%sp
@@ -2719,6 +2739,10 @@ __Z9basicmainv:
 	move.l -20(%fp),-(%sp)
 	move.l -16(%fp),-(%sp)
 	jsr __Z18fighterImpactCheckP7FighterS0_
+	addq.l #4,%sp
+	move.l -20(%fp),(%sp)
+	move.l -16(%fp),-(%sp)
+	jsr __Z8bgUpdateP7FighterS0_
 	addq.l #4,%sp
 	move.l #__ZL12soundHandler,(%sp)
 	jsr __Z11bloodUpdateP12SoundHandler
@@ -2756,6 +2780,10 @@ __Z9basicmainv:
 	move.l -20(%fp),-(%sp)
 	move.l -16(%fp),-(%sp)
 	jsr __Z18fighterImpactCheckP7FighterS0_
+	addq.l #4,%sp
+	move.l -20(%fp),(%sp)
+	move.l -16(%fp),-(%sp)
+	jsr __Z8bgUpdateP7FighterS0_
 	addq.l #4,%sp
 	move.l #__ZL12soundHandler,(%sp)
 	jsr __Z11bloodUpdateP12SoundHandler
@@ -3316,7 +3344,7 @@ _kangImpactFrameLowPunch:
 	.even
 _cageImpactFrameUppercut:
 	.long	3
-	.long	22
+	.long	32
 	.long	30
 	.globl	_cageImpactFrameHighKick
 	.even
@@ -6992,7 +7020,7 @@ __ZL18sonyaHitBackFrames:
 .lcomm __ZL8WHITEPAL,32
 	.even
 __ZL12soundHandler:
-	.byte	1
+	.byte	0
 	.byte	0
 	.long	1
 	.long	1
