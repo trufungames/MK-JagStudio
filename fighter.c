@@ -219,13 +219,14 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
     {
         if (fighter->IsLayingDown)
         {
-            if (rapTicks >= fighter->lastTicks + 300)
+            if (rapTicks >= fighter->lastTicks + 60)
             {
                 fighter->IsHitFall = false;
                 fighter->IsBeingDamaged = false;
                 fighter->IsMidAir = false;
                 fighter->IsFalling = false;
                 fighter->IsLayingDown = false;
+                fighter->positionY = fighter->floorLocationY - 98;
             }
         }
         else if (rapTicks >= fighter->lastTicks + 1)
@@ -255,17 +256,17 @@ void fighterUpdate(float delta, struct Fighter *fighter, struct SpriteAnimator* 
             }
             else
             {
-                if (fighter->positionY > fighter->floorLocationY - 98)
+                if (fighter->positionY > fighter->floorLocationY - 94)
                 {
+                    fighter->IsLayingDown = true;
+                    fighter->lastTicks = rapTicks;
+                    fighter->positionY = fighter->floorLocationY - 94;
+
                     //show last frame of HitFall animation
                     animateFrame(fighter->spriteIndex, 5, *fighter->hitFallFrames, animator->mulFactor, animator->base, animator->idleFrameWidth, fighter->positionX, fighter->positionY, fighter->direction);
 
-                    fighter->IsLayingDown = true;
-                    fighter->lastTicks = rapTicks;
-                    fighter->positionY = fighter->floorLocationY - 112;
                     //play thud
                     //shake screen
-                    //set ticks, so the fighter gets back up after 60 ticks
                 }
                 else
                 {

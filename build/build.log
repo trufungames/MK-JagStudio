@@ -541,10 +541,10 @@ __Z17fighterUpdateIdlefP7FighterP14SpriteAnimatorP14AnimationFrame G  0004E520  
 __Z11sfxHiyaMaleP12SoundHandlerb G  00052FF0   __Z13sfxHiyaFemaleP12SoundHandlerb G  0005308C   __Z12sfxHiyaNinjaP12SoundHandlerb G  000531C4   
 __Z11sfxHiyaKangP12SoundHandlerb G  00053128   __Z13fighterUpdatefP7FighterP14SpriteAnimatorb G  0004E5D4   __Z12sfxGroanMaleP12SoundHandlerb G  000532A0   
 jsfGetPad G  00060724   __Z8sfxSwingP12SoundHandler G  00053510   __Z17impactFrameUpdateP14SpriteAnimatorP7FighterP11ImpactFrame G  0004F80C   
-___lesf2 G  00060220   ___ltsf2 G  00060200   ___subsf3 G  0005FA28   
+___subsf3 G  0005FA28   ___lesf2 G  00060220   ___ltsf2 G  00060200   
 ___gtsf2 G  000601C0   __Z12animateFramejjP14AnimationFramefjiiii G  000536B6   __Z14sfxGroanFemaleP12SoundHandlerb G  0005333C   
 ___mulsf3 G  0005FCBE   __Z9sfxImpactP12SoundHandler G  00053454   __Z12bgScrollLeftf G  00053FD0   
-__Z13bgScrollRightf G  00053CB0   __Z16fighterPlayGroaniP12SoundHandlerb G  0004F5CC   __Z18fighterImpactCheckP7FighterS0_ G  0004F614   
+__Z13bgScrollRightf G  00053CB0   __Z16fighterPlayGroaniP12SoundHandlerb G  0004F5DC   __Z18fighterImpactCheckP7FighterS0_ G  0004F624   
 rapCollide G  000613B0   __Z25switchScreenChooseFighterv G  0004F900   jsfLoadClut G  00060F5E   
 rapSetActiveList G  00061396   __Z20switchScreenVsBattleii G  0004FA20   __Z17switchScreenFightii G  0004FDAA   
 __Z17SetPlayerPalettesv G  00050792   rapFadeClut G  00061374   rapDebugSetXY G  0006124E   
@@ -783,10 +783,10 @@ __Z17fighterUpdateIdlefP7FighterP14SpriteAnimatorP14AnimationFrame G  0004E520  
 __Z11sfxHiyaMaleP12SoundHandlerb G  00052FF0   __Z13sfxHiyaFemaleP12SoundHandlerb G  0005308C   __Z12sfxHiyaNinjaP12SoundHandlerb G  000531C4   
 __Z11sfxHiyaKangP12SoundHandlerb G  00053128   __Z13fighterUpdatefP7FighterP14SpriteAnimatorb G  0004E5D4   __Z12sfxGroanMaleP12SoundHandlerb G  000532A0   
 jsfGetPad G  00060724   __Z8sfxSwingP12SoundHandler G  00053510   __Z17impactFrameUpdateP14SpriteAnimatorP7FighterP11ImpactFrame G  0004F80C   
-___lesf2 G  00060220   ___ltsf2 G  00060200   ___subsf3 G  0005FA28   
+___subsf3 G  0005FA28   ___lesf2 G  00060220   ___ltsf2 G  00060200   
 ___gtsf2 G  000601C0   __Z12animateFramejjP14AnimationFramefjiiii G  000536B6   __Z14sfxGroanFemaleP12SoundHandlerb G  0005333C   
 ___mulsf3 G  0005FCBE   __Z9sfxImpactP12SoundHandler G  00053454   __Z12bgScrollLeftf G  00053FD0   
-__Z13bgScrollRightf G  00053CB0   __Z16fighterPlayGroaniP12SoundHandlerb G  0004F5CC   __Z18fighterImpactCheckP7FighterS0_ G  0004F614   
+__Z13bgScrollRightf G  00053CB0   __Z16fighterPlayGroaniP12SoundHandlerb G  0004F5DC   __Z18fighterImpactCheckP7FighterS0_ G  0004F624   
 rapCollide G  000613B0   __Z25switchScreenChooseFighterv G  0004F900   jsfLoadClut G  00060F5E   
 rapSetActiveList G  00061396   __Z20switchScreenVsBattleii G  0004FA20   __Z17switchScreenFightii G  0004FDAA   
 __Z17SetPlayerPalettesv G  00050792   rapFadeClut G  00061374   rapDebugSetXY G  0006124E   

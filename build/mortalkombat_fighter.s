@@ -461,8 +461,8 @@ __Z13fighterUpdatefP7FighterP14SpriteAnimatorb:
 	jeq .L63
 	tst.b 79(%a2)
 	jeq .L61
-	move.l 114(%a2),%d0
-	add.l #299,%d0
+	moveq #59,%d0
+	add.l 114(%a2),%d0
 	move.w raptor_ticks,%a0
 	cmp.l %d0,%a0
 	jle .L35
@@ -471,6 +471,14 @@ __Z13fighterUpdatefP7FighterP14SpriteAnimatorb:
 	clr.b 77(%a2)
 	clr.b 78(%a2)
 	clr.b 79(%a2)
+	move.l #0x42c40000,-(%sp)
+	move.l 152(%a2),-(%sp)
+	jsr ___subsf3
+	addq.l #4,%sp
+	move.l %d0,(%sp)
+	jsr ___fixsfsi
+	addq.l #4,%sp
+	move.l %d0,126(%a2)
 	move.l 98(%a2),-(%sp)
 	jsr jsfGetPad
 	move.l %d0,94(%a2)
@@ -480,8 +488,8 @@ __Z13fighterUpdatefP7FighterP14SpriteAnimatorb:
 	jne .L73
 	jra .L156
 .L61:
-	move.w raptor_ticks,%a0
-	cmp.l 114(%a2),%a0
+	move.w raptor_ticks,%a4
+	cmp.l 114(%a2),%a4
 	jle .L35
 	tst.b 77(%a2)
 	jeq .L64
@@ -503,22 +511,26 @@ __Z13fighterUpdatefP7FighterP14SpriteAnimatorb:
 	tst.b 78(%a2)
 	jeq .L159
 	move.l 126(%a2),%d3
+	move.l #0x42bc0000,-(%sp)
+	move.l 152(%a2),-(%sp)
+	jsr ___subsf3
+	addq.l #8,%sp
+	move.l %d0,%d4
 	move.l %d3,-(%sp)
 	jsr ___floatsisf
-	move.l %d0,%d4
-	lea ___subsf3,%a4
-	move.l #0x42c40000,(%sp)
-	move.l 152(%a2),-(%sp)
-	jsr (%a4)
-	addq.l #4,%sp
-	move.l %d0,(%sp)
-	move.l %d4,-(%sp)
+	move.l %d4,(%sp)
+	move.l %d0,-(%sp)
 	jsr ___gtsf2
 	addq.l #8,%sp
 	tst.l %d0
 	jle .L137
-	move.l 134(%a2),-(%sp)
-	move.l %d3,-(%sp)
+	move.b #1,79(%a2)
+	move.l %a4,114(%a2)
+	move.l %d4,-(%sp)
+	jsr ___fixsfsi
+	move.l %d0,126(%a2)
+	move.l 134(%a2),(%sp)
+	move.l %d0,-(%sp)
 	move.l 122(%a2),-(%sp)
 	move.l 20(%a3),-(%sp)
 	move.l 8(%a3),-(%sp)
@@ -527,15 +539,7 @@ __Z13fighterUpdatefP7FighterP14SpriteAnimatorb:
 	pea 5.w
 	move.l (%a2),-(%sp)
 	jsr __Z12animateFramejjP14AnimationFramefjiiii
-	move.b #1,79(%a2)
-	move.l #0x42e00000,-(%sp)
-	move.l 152(%a2),-(%sp)
-	jsr (%a4)
-	addq.l #4,%sp
-	move.l %d0,(%sp)
-	jsr ___fixsfsi
-	move.l %d0,126(%a2)
-	lea (40,%sp),%sp
+	lea (36,%sp),%sp
 .L69:
 	move.w raptor_ticks,%a0
 	move.l %a0,114(%a2)
@@ -1090,17 +1094,17 @@ __Z13fighterUpdatefP7FighterP14SpriteAnimatorb:
 	move.l 144(%a2),%d3
 	move.l 126(%a2),-(%sp)
 	jsr ___floatsisf
-	lea ___addsf3,%a4
+	lea ___addsf3,%a5
 	move.l %d3,(%sp)
 	move.l %d0,-(%sp)
-	jsr (%a4)
+	jsr (%a5)
 	addq.l #4,%sp
 	move.l %d0,(%sp)
 	jsr ___fixsfsi
 	move.l %d0,126(%a2)
 	move.l 140(%a2),(%sp)
 	move.l %d3,-(%sp)
-	jsr (%a4)
+	jsr (%a5)
 	addq.l #8,%sp
 	move.l %d0,%d3
 	move.l %d0,144(%a2)
