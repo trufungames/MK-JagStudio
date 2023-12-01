@@ -33,6 +33,9 @@ struct Fighter {
     bool IsFalling;
     bool IsLayingDown;
     bool IsBeingDamaged;
+    bool AcceptingInput;
+    bool MadeContactUppercut;
+    int CooldownTicksUppercut;
     unsigned int HB_BODY;
     unsigned int HB_DUCK;
     unsigned int HB_ATTACK;
@@ -41,6 +44,7 @@ struct Fighter {
     int playerMoveForwardSpeed;
     int playerMoveBackwardSpeed;
     float playerKnockbackSpeed;
+    float playerUppercutXSpeed;
     int lastTicks;
     int damageTicks;
     int positionX;

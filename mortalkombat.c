@@ -33,7 +33,7 @@ static int BLACKPAL[128];
 static int WHITEPAL[8];
 
 static	SoundHandler soundHandler = {
-		false,  //sound on/off
+		true,  //sound on/off
 		false,  //music on/off
 		1,  //sound volume
 		1   //music volume

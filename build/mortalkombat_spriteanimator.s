@@ -384,6 +384,20 @@ __Z17setAnimationFramejP14SpriteAnimatorP14AnimationFrame:
 	unlk %fp
 	rts
 	.even
+	.globl	__Z22getAnimationFrameWidthP14AnimationFramei
+__Z22getAnimationFrameWidthP14AnimationFramei:
+	link.w %fp,#0
+	move.l 12(%fp),%d0
+	add.l %d0,%d0
+	add.l %d0,%d0
+	move.l %d0,%d1
+	lsl.l #3,%d1
+	move.l 8(%fp),%a0
+	sub.l %d0,%a0
+	move.l (%a0,%d1.l),%d0
+	unlk %fp
+	rts
+	.even
 	.globl	__Z19animationIsCompleteP14SpriteAnimatori
 __Z19animationIsCompleteP14SpriteAnimatori:
 	link.w %fp,#0
@@ -425,40 +439,40 @@ __Z20updateSpriteAnimatorP14SpriteAnimatorP14AnimationFrameibb:
 	add.l 12(%a2),%d0
 	lea (24,%sp),%sp
 	cmp.l %a1,%d0
-	jhi .L14
+	jhi .L15
 	tst.b %d3
-	jne .L16
+	jne .L17
 	subq.l #1,%d1
 	move.l %d1,16(%a2)
-	jlt .L22
-.L17:
+	jlt .L23
+.L18:
 	move.w %a0,%a0
 	move.l %a0,12(%a2)
-.L14:
+.L15:
 	movem.l -24(%fp),#3132
 	unlk %fp
 	rts
-.L16:
+.L17:
 	addq.l #1,%d1
 	move.l %d1,16(%a2)
 	cmp.l %d4,%d1
-	jlt .L17
+	jlt .L18
 	tst.b %d5
-	jeq .L19
-.L20:
+	jeq .L20
+.L21:
 	clr.l 16(%a2)
 	move.w %a0,%a0
 	move.l %a0,12(%a2)
-	jra .L14
-.L22:
+	jra .L15
+.L23:
 	tst.b %d5
-	jeq .L20
-.L19:
+	jeq .L21
+.L20:
 	subq.l #1,%d4
 	move.l %d4,16(%a2)
 	move.w %a0,%a0
 	move.l %a0,12(%a2)
-	jra .L14
+	jra .L15
 	.even
 	.globl	__Z20updateSpriteAnimatorP14SpriteAnimatorP14AnimationFrameibbiii
 __Z20updateSpriteAnimatorP14SpriteAnimatorP14AnimationFrameibbiii:
@@ -492,40 +506,40 @@ __Z20updateSpriteAnimatorP14SpriteAnimatorP14AnimationFrameibbiii:
 	add.l 12(%a2),%d0
 	lea (36,%sp),%sp
 	cmp.l %a1,%d0
-	jhi .L24
+	jhi .L25
 	tst.b %d3
-	jne .L26
+	jne .L27
 	subq.l #1,%d1
 	move.l %d1,16(%a2)
-	jlt .L32
-.L27:
+	jlt .L33
+.L28:
 	move.w %a0,%a0
 	move.l %a0,12(%a2)
-.L24:
+.L25:
 	movem.l -24(%fp),#3132
 	unlk %fp
 	rts
-.L26:
+.L27:
 	addq.l #1,%d1
 	move.l %d1,16(%a2)
 	cmp.l %d4,%d1
-	jlt .L27
+	jlt .L28
 	tst.b %d5
-	jeq .L29
-.L30:
+	jeq .L30
+.L31:
 	clr.l 16(%a2)
 	move.w %a0,%a0
 	move.l %a0,12(%a2)
-	jra .L24
-.L32:
+	jra .L25
+.L33:
 	tst.b %d5
-	jeq .L30
-.L29:
+	jeq .L31
+.L30:
 	subq.l #1,%d4
 	move.l %d4,16(%a2)
 	move.w %a0,%a0
 	move.l %a0,12(%a2)
-	jra .L24
+	jra .L25
 	.globl	colliders
 	.data
 	.even

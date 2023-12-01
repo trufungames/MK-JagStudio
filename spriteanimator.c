@@ -47,6 +47,11 @@ void setAnimationFrame(unsigned int spriteIndex, SpriteAnimator *animator, struc
     setFrame(spriteIndex, animationFrame->width, animationFrame->height, animationFrame->x, animationFrame->y, animator->mulFactor, animator->base);
 }
 
+int getAnimationFrameWidth(struct AnimationFrame animationFrames[], int currentFrame)
+{
+    return animationFrames[currentFrame].width;
+}
+
 bool animationIsComplete(struct SpriteAnimator *animator, int totalFrames)
 {
     if (animator->currentFrame >= totalFrames - 1)

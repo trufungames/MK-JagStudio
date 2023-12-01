@@ -13,6 +13,12 @@ struct BloodPool {
     bool InUse;
 };
 
+struct BloodSquirt {
+    unsigned int SpriteIndex;
+    struct SpriteAnimator* Animator;
+    bool InUse;
+};
+
 void bloodInit();
 
 void bloodUpdate(struct SoundHandler* soundHandler);
@@ -24,3 +30,5 @@ void bloodGlob(int x, int y, int direction);
 void bloodDrop(int x, int y, int direction);
 
 void bloodPool(int x, int y);
+
+void bloodSquirt(int x, int y);

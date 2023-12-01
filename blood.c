@@ -146,15 +146,58 @@ BloodDrop bloodDrops[] = {
 
 BloodPool bloodPools[] = {
     { BLOOD_POOL, &bloodPool1Animator, false },
-    { BLOOD_POOL, &bloodPool2Animator, false },
-    { BLOOD_POOL, &bloodPool3Animator, false },
-    { BLOOD_POOL, &bloodPool4Animator, false },
-    { BLOOD_POOL, &bloodPool5Animator, false },
-    { BLOOD_POOL, &bloodPool6Animator, false },
-    { BLOOD_POOL, &bloodPool7Animator, false },
-    { BLOOD_POOL, &bloodPool8Animator, false },
-    { BLOOD_POOL, &bloodPool9Animator, false },
-    { BLOOD_POOL, &bloodPool10Animator, false }
+    { BLOOD_POOL+1, &bloodPool2Animator, false },
+    { BLOOD_POOL+2, &bloodPool3Animator, false },
+    { BLOOD_POOL+3, &bloodPool4Animator, false },
+    { BLOOD_POOL+4, &bloodPool5Animator, false },
+    { BLOOD_POOL+5, &bloodPool6Animator, false },
+    { BLOOD_POOL+6, &bloodPool7Animator, false },
+    { BLOOD_POOL+7, &bloodPool8Animator, false },
+    { BLOOD_POOL+8, &bloodPool9Animator, false },
+    { BLOOD_POOL+9, &bloodPool10Animator, false }
+};
+
+AnimationFrame bloodSquirtFrames[] = {
+	{ 48, 64, 0, 64, 0, 0, 8 },
+	{ 48, 64, 48, 64, 0, 0, 8 },
+    { 48, 64, 96, 64, 0, 0, 8 },
+    { 48, 64, 144, 64, 0, 0, 8 },
+    { 48, 64, 192, 64, 0, 0, 8 },
+    { 48, 64, 240, 64, 0, 0, 8 },
+    { 48, 64, 288, 64, 0, 0, 8 }
+};
+
+SpriteAnimator bloodSquirt1Animator = {
+	BLOOD_SQUIRT, 0.5f, BMP_BLOOD, 0, 0
+};
+
+SpriteAnimator bloodSquirt2Animator = {
+	BLOOD_SQUIRT+1, 0.5f, BMP_BLOOD, 0, 0
+};
+
+SpriteAnimator bloodSquirt3Animator = {
+	BLOOD_SQUIRT+2, 0.5f, BMP_BLOOD, 0, 0
+};
+
+SpriteAnimator bloodSquirt4Animator = {
+	BLOOD_SQUIRT+3, 0.5f, BMP_BLOOD, 0, 0
+};
+
+SpriteAnimator bloodSquirt5Animator = {
+	BLOOD_SQUIRT+4, 0.5f, BMP_BLOOD, 0, 0
+};
+
+SpriteAnimator bloodSquirt6Animator = {
+	BLOOD_SQUIRT+5, 0.5f, BMP_BLOOD, 0, 0
+};
+
+BloodSquirt bloodSquirts[] = {
+    { BLOOD_SQUIRT, &bloodSquirt1Animator, false },
+    { BLOOD_SQUIRT+1, &bloodSquirt2Animator, false },
+    { BLOOD_SQUIRT+2, &bloodSquirt3Animator, false },
+    { BLOOD_SQUIRT+3, &bloodSquirt4Animator, false },
+    { BLOOD_SQUIRT+4, &bloodSquirt5Animator, false },
+    { BLOOD_SQUIRT+5, &bloodSquirt6Animator, false },
 };
 
 bool bloodSpray1InUse = false;
@@ -254,7 +297,21 @@ void bloodUpdate(struct SoundHandler* soundHandler)
     {
         if (bloodPools[i].InUse)
         {
-            updateSpriteAnimator(bloodPools[i].Animator, bloodPoolFrames, 2, true, false);     
+            updateSpriteAnimator(bloodPools[i].Animator, bloodPoolFrames, 3, true, false);     
+        }
+    }
+
+    for (int i = 0; i < TOTAL_BLOOD_SQUIRT_COUNT; i++)
+    {
+        if (bloodSquirts[i].InUse)
+        {
+            updateSpriteAnimator(bloodSquirts[i].Animator, bloodSquirtFrames, 6, true, false);     
+
+            if (animationIsComplete(bloodSquirts[i].Animator, 6))
+            {
+                bloodSquirts[i].InUse = false;
+                sprite[bloodSquirts[i].SpriteIndex].active = R_is_inactive;
+            }
         }
     }
 }
@@ -333,6 +390,22 @@ void bloodPool(int x, int y)
             sprite[bloodPools[i].SpriteIndex].active = R_is_active;
             bloodPools[i].Animator->currentFrame = 0;
             spriteDelaySetInactive(bloodPools[i].SpriteIndex, rapTicks+bloodStayDelay, &bloodPools[i].InUse);
+            break;
+        }
+    }
+}
+
+void bloodSquirt(int x, int y)
+{
+    for (int i = 0; i < TOTAL_BLOOD_SQUIRT_COUNT; i++)
+    {
+        if (!bloodSquirts[i].InUse)
+        {
+            bloodSquirts[i].InUse = true;
+            sprite[bloodSquirts[i].SpriteIndex].x_ = x;
+            sprite[bloodSquirts[i].SpriteIndex].y_ = y;
+            sprite[bloodSquirts[i].SpriteIndex].active = R_is_active;
+            bloodSquirts[i].Animator->currentFrame = 0;
             break;
         }
     }

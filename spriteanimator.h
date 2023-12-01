@@ -25,6 +25,8 @@ void setFrame(unsigned int spriteIndex, int width, int height, int x, int y, flo
 
 void setAnimationFrame(unsigned int spriteIndex, SpriteAnimator* animator, struct AnimationFrame* animationFrame);
 
+int getAnimationFrameWidth(struct AnimationFrame animationFrames[], int currentFrame);
+
 bool animationIsComplete(struct SpriteAnimator *animator, int totalFrames);
 
 void updateSpriteAnimator(struct SpriteAnimator *animator, struct AnimationFrame animationFrames[], int totalFrames, bool playForward, bool loop);
